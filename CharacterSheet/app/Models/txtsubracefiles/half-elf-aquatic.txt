@@ -1,0 +1,1 @@
+{"name":"Half-aquatic elf","source":["S",116],"plural":"Half-aquatic elves","speed":["30 ft\n30 ft swim","20 ft\n20 ft swim"],"skillstxt":"","trait":"Half-Aquatic Elf (+2 Charisma and +1 to two other ability scores of my choice)\n\nSwimming Speed:\n   My aquatic heritage gives me a swimming speed of 30 feet."}

@@ -1,0 +1,148 @@
+<section class="pageContent">
+
+	<h2 data-bind="text:displayName"></h2>
+
+	<div class="panel-group" id="accordion2">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion2" href="#collapse100" data-bind="text:'the '+displayName()"></a>
+			  </h4>
+			</div>
+			<div id="collapse100" class="panel-collapse collapse">
+				<div class="panel-body">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Level</th>
+								<th>Proficiency Bonus</th>
+								<th>Features</th>
+								<th>Rages</th>
+								<th>Rage Damage</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- ko foreach: classDetails -->
+							<tr>
+								<td data-bind="text:level"></td>
+								<td data-bind="text:profbonus"></td>
+								<td data-bind="text:features"></td>
+								<td data-bind="text:rages"></td>
+								<td data-bind="text:ragedamage"></td>
+							</tr>
+							<!-- /ko -->
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div data-bind="foreach: propList">
+    <div data-bind="template: {name: templateName, data: $data}"></div>
+</div>
+
+<script type="text/html" id="list_templ">
+    <hr><h3>List template</h3>
+		    prop name=<span data-bind="text: propName"></span><br>
+    <ul data-bind="foreach: propValue">
+        <li data-bind="text: $data"></li>
+    </ul>
+</script>
+
+<script type="text/html" id="scalar_templ">
+    <hr><h3>Scalar template</h3>
+    	prop name=<span data-bind="text: propName"></span><br>
+    <span data-bind="text: propValue"></span>
+</script>
+
+	<div class="panel-group" id="accordion">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Primary Ability</a>
+			  </h4>
+			</div>
+			<div id="collapse1" class="panel-collapse collapse in">
+				<div class="panel-body">
+					<span data-bind="text: primaryAbility"></span>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+				  <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Hit Points</a>
+			  </h4>
+			</div>
+			<div id="collapse2" class="panel-collapse collapse">
+				<div class="panel-body">
+					<div>Hit Dice: <span data-bind="text:hitPoints().hitdieperlevel"></span></div>
+					<div>Hit Points at 1st Level: <span data-bind="text:hitPoints().hpatfirstlevel"></span></div>
+					<div>Hit Points at Higher Levels: <span data-bind="text:hitPoints().hpathigherlevels"></span></div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Proficiencies</a>
+			  </h4>
+			</div>
+			<div id="collapse3" class="panel-collapse collapse">
+				<div class="panel-body">
+					<div>Armor: <span data-bind="text:armorList"></span></div>
+					<div>Weapons: <span data-bind="text:weaponList"></span></div>
+					<div>Tools: <span data-bind="text:toolList().length > 0 ? 'toolList' : 'None' "></span></div>
+					<div>Saving Throws: <span data-bind="text:savingthrowList"></span></div>
+					<div>Skills: <span data-bind="text:skills().description"></span></div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Equipment</a>
+			  </h4>
+			</div>
+			<div id="collapse4" class="panel-collapse collapse">
+				<div class="panel-body">
+					<!-- ko foreach:equipment -->
+					<div><span data-bind="text:$data"></span></div>
+					<!-- /ko -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel-group">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+	        <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">Features</a>
+	      </h4>
+			</div>
+			<div id="collapse6" class="panel-collapse collapse">
+				<div class="panel-group" id="accordion3">
+					<!-- ko foreach:features -->
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion3" data-bind="attr:{href:'#'+id}, text:name"></a>
+				      </h4>
+						</div>
+						<div data-bind="attr:{id:id}" class="panel-collapse collapse">
+							<div class="panel-body">
+								<div><span data-bind="text:description"></span></div>
+							</div>
+						</div>
+					</div>
+					<!-- /ko -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</section>

@@ -1,0 +1,1 @@
+{"name":"Winged tiefling","source":["S",118],"plural":"Winged tieflings","speed":["30 ft\n30 ft fly","20 ft\n20 ft fly"],"trait":"Winged Tiefling (+1 Intelligence, +2 Charisma)\n\nWings:\n   I have bat-like wings sprouting from my shoulder blades that give me flying speed of 30 feet.","features":"","abilitySave":0,"spellcastingAbility":"","spellcastingBonus":""}

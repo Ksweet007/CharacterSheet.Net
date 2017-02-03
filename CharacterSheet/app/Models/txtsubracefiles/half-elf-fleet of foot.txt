@@ -1,0 +1,1 @@
+{"name":"Half-wood elf","source":["S",116],"plural":"Half-wood elves","speed":[35,25],"skillstxt":"","trait":"Half-Wood Elf (+2 Charisma and +1 to two other ability scores of my choice)"}
