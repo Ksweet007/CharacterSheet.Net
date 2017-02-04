@@ -2,6 +2,7 @@
 using System.Web.Http;
 using CharacterSheet.Core.Interfaces;
 using CharacterSheet.Core.Model;
+using CharacterSheet.Infrastructure.Data;
 
 
 namespace CharacterSheet.Controllers.Api
@@ -9,11 +10,11 @@ namespace CharacterSheet.Controllers.Api
     public class ClassController : ApiController
     {
 
-        private readonly ICharacterClassRepository _characterClassRepository;
+        private readonly CharacterClassRepository _characterClassRepository;
 
-        public ClassController(ICharacterClassRepository characterClassRepository)
+        public ClassController()
         {
-            _characterClassRepository = characterClassRepository;
+            _characterClassRepository = new CharacterClassRepository();
         }
        
         [HttpGet]

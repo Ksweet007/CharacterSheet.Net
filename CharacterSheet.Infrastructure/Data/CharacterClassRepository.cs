@@ -8,13 +8,13 @@ using CharacterSheet.Infrastructure.Data.Contexts;
 
 namespace CharacterSheet.Infrastructure.Data
 {
-    public class CharacterClassRepository : ICharacterClassRepository
+    public class CharacterClassRepository
     {
         private readonly CharacterSheetDbContext _db;
 
-        public CharacterClassRepository(CharacterSheetDbContext db)
+        public CharacterClassRepository()
         {
-            _db = db;
+            _db = new CharacterSheetDbContext();
         }
 
         public Class CreateClass(Class classToAdd)

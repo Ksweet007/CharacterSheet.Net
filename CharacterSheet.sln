@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterSheet.Core", "Char
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterSheet.Infrastructure", "CharacterSheet.Infrastructure\CharacterSheet.Infrastructure.csproj", "{305104AF-961D-4EF8-9696-1AAB8BB4ED11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterSheet.IoC", "CharacterSheet.IoC\CharacterSheet.IoC.csproj", "{4EE4A73A-749B-4587-AD36-23D604004E27}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{305104AF-961D-4EF8-9696-1AAB8BB4ED11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{305104AF-961D-4EF8-9696-1AAB8BB4ED11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{305104AF-961D-4EF8-9696-1AAB8BB4ED11}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4EE4A73A-749B-4587-AD36-23D604004E27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4EE4A73A-749B-4587-AD36-23D604004E27}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4EE4A73A-749B-4587-AD36-23D604004E27}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4EE4A73A-749B-4587-AD36-23D604004E27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
