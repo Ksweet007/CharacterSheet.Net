@@ -36,7 +36,7 @@ define(function(require) {
 		});
 
 		self.activate = function() {
-			return _i.charajax.get('classes/_all_docs?include_docs=true').done(function(response) {
+			return _i.charajax.getJSON('/api/GetClassList').done(function(response) {
 				var mappedList = _i.$.map(response.rows, function(obj, index) {
 					var item = obj.doc;
 					item.id = obj.id;

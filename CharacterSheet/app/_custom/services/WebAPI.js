@@ -35,10 +35,9 @@ define(function(require) {
 
 	ApiCls.prototype.getJSON = function(url, data) {
 		return this.ajax({
-			url: 'https://ksweet007.cloudant.com/' + url,
+			url: url,
 			data: JSON.stringify(data),
 			headers: {
-				"Authorization": "Basic " + btoa('ksweet007' + ":" + '@Manda!!o5'),
 				"Content-Type": "application/json"
 			},
 			dataType: 'json'
