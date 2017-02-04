@@ -87,32 +87,6 @@ define(function(require) {
 					self.classDetails(data.levels);
 				});
 
-				//This will also read functions so it needs to look at just a list of what should be split
-				self.propList = _i.ko.computed(function() {
-					var result = [];
-					for (var propName in self.data) {
-						var propertyName = propName;
-						var propertyValue = self.data[propertyName];
-
-						if (self.data.hasOwnProperty(propName) && propName !== 'propList') {
-
-							result.push({
-								propName: propName,
-								propValue: self.data[propName],
-								templateName: function(data) {
-									if (data.propValue() instanceof Array) {
-										return "list_templ";
-									} else {
-										return "scalar_templ";
-									}
-								}
-							});
-						}
-					}
-					return result
-				});
-
-
 			});
 		}//END RETURN
 

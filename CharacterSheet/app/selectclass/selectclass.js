@@ -36,7 +36,7 @@ define(function(require) {
 		});
 
 		self.activate = function() {
-			return _i.charajax.get('classes/_all_docs?include_docs=true').done(function(response) {
+			return _i.charajax.getJSON('/api/GetClassList').done(function(response) {
 				var mappedList = _i.$.map(response.rows, function(obj, index) {
 					var item = obj.doc;
 					item.id = obj.id;
@@ -65,35 +65,15 @@ define(function(require) {
 		};
 
 		self.selectClass = function (item, event) {
-
-		    var data = {
-		        name: "Barbarian",
-		        description: "A fierce warrior of primitive background who can enter a battle rage",
-		        primaryability: "Strength",
-		        hitdieperlevel: "1d12",
-		        hpatfirstlevel: "12 + your constitution modifier",
-		        hpathigherlevels: "1d12(or 7) + your Constitution modifier per barbarian level after 1st"
-		    }
-
-
-		    var promise = _i.$.ajax({
-		        headers: {
-		            "Content-Type": "application/json"
-		        },
-		        url: '/api/AddClass',
-		        dataType: 'json',
-		        data: JSON.stringify(data),
-		        method: 'PUT'              
-		    });
-			//self.isComplete(true);
-			//_i.app.trigger('view:done', 'Class List');
-			//var $element = _i.$(event.target);
-			//if (item.id === self.selectedClassId()) {
-			//	self.selectedClassId(0);
-			//} else {
-			//	self.selectedClassId(item.id);
-			//	onclick = location.href = '#classdetails/' + item.id;
-			//}
+			self.isComplete(true);
+			_i.app.trigger('view:done', 'Class List');
+			var $element = _i.$(event.target);
+			if (item.id === self.selectedClassId()) {
+				self.selectedClassId(0);
+			} else {
+				self.selectedClassId(item.id);
+				onclick = location.href = '#classdetails/' + item.id;
+			}
 		};
 
 	};

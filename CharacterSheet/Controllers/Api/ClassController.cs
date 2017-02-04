@@ -1,58 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
-using CharacterSheet.Models;
-using CharacterSheet.Repositories;
+using CharacterSheet.Core.Interfaces;
+using CharacterSheet.Core.Model;
+using CharacterSheet.Infrastructure.Data;
+
 
 namespace CharacterSheet.Controllers.Api
 {
     public class ClassController : ApiController
     {
-        private readonly ClassRepository _classRepo;
+
+        private readonly CharacterClassRepository _characterClassRepository;
 
         public ClassController()
         {
-            _classRepo = new ClassRepository();
+            _characterClassRepository = new CharacterClassRepository();
+        }
+       
+        [HttpGet]
+        [Route("api/GetClassList")]
+        public IHttpActionResult GetClassList()
+        {
+            return Ok(_characterClassRepository.GetClassList());
         }
         
-        public IEnumerable<string> Get()
+        [HttpPost]
+        [Route("api/EditClass")]
+        public IHttpActionResult EditClass([FromBody]string value)
         {
-            return new string[] { "value1", "value2" };
-        }
-
-        public string Get(int id)
-        {
-            return "value";
-        }
-        
-        public void Post([FromBody]string value)
-        {
+            return Ok();
         }
 
         [HttpPut]
         [Route("api/AddClass")]
         public IHttpActionResult AddNewClass(Class classToAdd)
         {
-            var addedClass = _classRepo.CreateClass(classToAdd);
+            var addedClass = _characterClassRepository.CreateClass(classToAdd);
 
             return Ok(addedClass);
         }
 
+        [HttpPut]
+        [Route("api/AddClassList")]
         public IHttpActionResult AddNewClassList(IList<Class> classesToAdd)
         {
-            foreach(var item in classesToAdd)
+            foreach (var item in classesToAdd)
             {
-                var addedClass = _classRepo.CreateClass(item);
+                _characterClassRepository.CreateClass(item);
             }
 
             return Ok(classesToAdd);
         }
 
-        public void Delete(int id)
+        [HttpDelete]
+        [Route("api/DeleteClass")]
+        public IHttpActionResult Delete(int id)
         {
+            return Ok();
         }
     }
 }
