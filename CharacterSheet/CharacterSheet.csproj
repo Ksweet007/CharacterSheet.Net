@@ -235,6 +235,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\addclass\addclass.html" />
+    <Content Include="app\addclass\addclass.js" />
     <Content Include="app\classdetails\classdetails.html" />
     <Content Include="app\classdetails\classdetails.js" />
     <Content Include="app\ClassList.js" />

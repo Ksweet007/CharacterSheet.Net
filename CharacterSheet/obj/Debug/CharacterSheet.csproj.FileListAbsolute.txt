@@ -150,3 +150,4 @@ C:\Git\ServerSideProjects\CharacterSheet\CharacterSheet\bin\System.Web.WebPages.
 C:\Git\ServerSideProjects\CharacterSheet\CharacterSheet\bin\System.Web.WebPages.Razor.xml
 C:\Git\ServerSideProjects\CharacterSheet\CharacterSheet\obj\Debug\CharacterSheet.dll
 C:\Git\ServerSideProjects\CharacterSheet\CharacterSheet\obj\Debug\CharacterSheet.pdb
+C:\Git\ServerSideProjects\CharacterSheet\CharacterSheet\obj\Debug\CharacterSheet.csprojResolveAssemblyReference.cache

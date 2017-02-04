@@ -41,6 +41,8 @@ namespace CharacterSheet.Controllers.Api
             return Ok(addedClass);
         }
 
+        [HttpPut]
+        [Route("api/AddClassList")]
         public IHttpActionResult AddNewClassList(IList<Class> classesToAdd)
         {
             foreach(var item in classesToAdd)

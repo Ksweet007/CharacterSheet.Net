@@ -52,6 +52,9 @@ define(function(require) {
 	ApiCls.prototype.put = function(url, data) {
 		//   https://$USERNAME.cloudant.com/$DATABASE/$DOCUMENT_ID
 		return this.ajax({
+			headers: {
+				"Content-Type": "application/json"
+			},
 			url: url,
 			data: JSON.stringify(data),
 			method: 'PUT'

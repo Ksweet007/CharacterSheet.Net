@@ -1,0 +1,46 @@
+﻿<div class="container">
+    <div class="page-header">
+        <h2 data-bind="text:displayName"></h2>
+    </div>
+
+    <div class="page-header">
+        <button data-bind="click:addClassForm" class="btn btn-default">Add Class To List</button>
+        <button data-bind="click:addClassList,visible: isList()" class="btn btn-default" >Submit List</button>
+    </div>
+
+<!-- ko foreach:classList -->
+    <div class="col-md-3" style="border-style:solid; border-width:1px; padding-top: 2px; padding-bottom: 10px">
+        <div class="form-group">
+            <label>Name:</label>
+            <input class="form-control" data-bind="textInput: name" />
+        </div>
+
+        <div class="form-group">
+            <label>Desc:</label>
+            <textarea class="form-control" data-bind="textInput: description" />
+        </div>
+
+        <div class="form-group">
+            <label>Primary Ability:</label>
+            <input class="form-control" data-bind="textInput: primaryability" />
+        </div>
+
+        <div class="form-group">
+            <label>Hit Die Per Level:</label>
+            <input class="form-control" data-bind="textInput: hitdieperlevel" />
+        </div>
+
+        <div class="form-group">
+            <label>HP At First Level:</label>
+            <input class="form-control" data-bind="textInput: hpatfirstlevel" />
+        </div>
+
+        <div class="form-group">
+            <label>HP At Higher Levels:</label>
+            <input class="form-control" data-bind="textInput: hpathigherlevels" />
+        </div>
+        <button data-bind="click:$parent.addClass,css:{'inactive': $parent.isList(),'active': !$parent.isList()}" class="btn btn-default">Submit Class</button>
+    </div>
+<!-- /ko -->
+
+</div>
