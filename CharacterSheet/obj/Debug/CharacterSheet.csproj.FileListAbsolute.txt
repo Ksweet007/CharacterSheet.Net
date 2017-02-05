@@ -163,3 +163,5 @@ C:\Git\ServerSideProjects\CharacterSheet\CharacterSheet\bin\System.Web.WebPages.
 C:\Git\ServerSideProjects\CharacterSheet\CharacterSheet\obj\Debug\CharacterSheet.csprojResolveAssemblyReference.cache
 C:\Git\ServerSideProjects\CharacterSheet\CharacterSheet\obj\Debug\CharacterSheet.dll
 C:\Git\ServerSideProjects\CharacterSheet\CharacterSheet\obj\Debug\CharacterSheet.pdb
+C:\Git\ServerSideProjects\CharacterSheet\CharacterSheet\obj\Debug\CharacterSheet.Views.CharacterSheet.App_LocalResources.Common.resources
+C:\Git\ServerSideProjects\CharacterSheet\CharacterSheet\obj\Debug\CharacterSheet.csproj.GenerateResource.Cache

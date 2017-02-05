@@ -25,7 +25,7 @@ namespace CharacterSheet.Infrastructure.Data
 
             return classToAdd;
         }
-
+        
         public IList<Class> GetClassList()
         {
            return  _db.Classes.ToList();
@@ -41,7 +41,7 @@ namespace CharacterSheet.Infrastructure.Data
             return _db.Skills.ToList();
         }
 
-        public IList<ClassProficiencyTypeAssoc> GetAllProfs()
+        public IList<Proficiencies> GetAllProfs()
         {
             return _db.Proficiencies.ToList();
         }

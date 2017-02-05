@@ -1,4 +1,4 @@
-define('services/listmanager', function(require) {
+define(function(require) {
     var _i = {
         ko: require('knockout')
     };

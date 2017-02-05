@@ -52,7 +52,7 @@ section {
 }
 
 .navbar-nav li.loader {
-    margin: 12px 6px 0 6px;
+    padding-top: 15px;
     visibility: hidden;
 }
 
@@ -290,3 +290,6 @@ panel-body.details{
 .navbar-toggle .icon-bar{
     background-color: white;
 }
+/*.form-control{
+    height:100% !important;
+}*/

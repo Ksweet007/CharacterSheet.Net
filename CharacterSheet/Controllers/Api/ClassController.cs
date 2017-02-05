@@ -48,11 +48,10 @@ namespace CharacterSheet.Controllers.Api
                 hitdieperlevel = cls.hitdieperlevel,
                 hpatfirstlevel = cls.hpatfirstlevel,
                 hpathigherlevels = cls.hpathigherlevels,
-                skills = allSkills,
-
+                skills = allSkills
             };
             
-            return Ok();
+            return Ok(mappedClass);
         }
 
         [HttpPost]

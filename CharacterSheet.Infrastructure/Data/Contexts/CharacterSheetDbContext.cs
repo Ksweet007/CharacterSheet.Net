@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,8 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
 
         public DbSet<Class> Classes { get; set; }
         public DbSet<Skill> Skills { get; set; }
-        public DbSet<ClassProficiencyTypeAssoc> Proficiencies  { get; set; }
+        //public DbSet<ClassProficiencyTypeAssoc> ClassProficiencyTypeAssocs { get; set; }
+        public DbSet<Proficiencies> Proficiencies { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -29,6 +31,7 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             EfMapClass(modelBuilder);
             EfMapSkills(modelBuilder);
             EfMapProficiencies(modelBuilder);
+            //EfMapProficiencyAssocs(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }
@@ -38,6 +41,10 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             var cls = modelBuilder.Entity<Class>();
             cls.ToTable("classes");
             cls.HasKey(k => k.classId);
+            cls.HasMany(t => t.Proficiencies).WithMany()
+                .Map(t => t.ToTable("ClassProficiencyTypeAssoc")
+                    .MapLeftKey("classId")
+                    .MapRightKey("proficiencytypeId"));
         }
 
         private static void EfMapSkills(DbModelBuilder modelBuilder)
@@ -49,13 +56,17 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
 
         private static void EfMapProficiencies(DbModelBuilder modelBuilder)
         {
-            var prof = modelBuilder.Entity<ClassProficiencyTypeAssoc>();
-            prof.ToTable("ClassProficiencyTypeAssoc");
-            prof.HasRequired(p => p.Class).WithMany().HasForeignKey(p => p.Class.classId);
+            var prof = modelBuilder.Entity<Proficiencies>();
+            prof.ToTable("ProficiencyTypes")
+                .HasKey(k => k.ProficiencytypeId);
+        }
+
+        //private static void EfMapProficiencyAssocs(DbModelBuilder modelBuilder)
+        //{
+        //    var prof = modelBuilder.Entity<ClassProficiencyTypeAssoc>();
+        //    prof.ToTable("ClassProficiencyTypeAssoc");
             
 
-            //prof.Property(k => k.CMIId)
-            //    .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-        }
+        //}
     }
 }

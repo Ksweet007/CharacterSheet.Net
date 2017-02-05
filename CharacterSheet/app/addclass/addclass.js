@@ -4,7 +4,8 @@ define(function(require) {
 		$: require('jquery'),
 		search: require('_custom/services/search'),
 		charajax: require('_custom/services/WebAPI'),
-		app: require('durandal/app')
+		app: require('durandal/app'),
+		list: require('_custom/services/listmanager')
 	};
 
 	return function() {
@@ -14,6 +15,7 @@ define(function(require) {
 		self.name = _i.ko.observable('');
 		self.skills = _i.ko.observableArray([]);
 		self.proficiencies = _i.ko.observableArray([]);
+		self.chosenSkills = _i.ko.observableArray([]);
 
 		self.deactivate = function() {
 			return _i.app.trigger('view:done', 'Details');
@@ -24,9 +26,12 @@ define(function(require) {
 			return true;
 		};
 
-		self.activate = function(classname) {
-			return _i.charajax.getJSON('api/GetSheetFields').done(function(){
-				
+		self.activate = function() {
+			return _i.charajax.getJSON('api/GetSheetFields/1').done(function(response){
+				self.data = response;
+				self.name = response.name;
+				self.skills(response.skills);
+				_i.list.sortAlphabetically(self.skills());
 			});
 		}
 

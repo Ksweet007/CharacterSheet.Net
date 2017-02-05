@@ -1,10 +1,32 @@
 ﻿<div class="container">
+
+
+
+    <!-- <div class="row">
+        <div class="col-9" style="background-color:red;">.col-9</div>
+        <div class="col-4" style="background-color:blue;">.col-4<br>Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.</div>
+        <div class="col-6" style="background-color:yellow;">.col-6<br>Subsequent columns continue along the new line.</div>
+    </div> -->
+
+
+
     <div class="page-header">
         <h2 data-bind="text:displayName"></h2>
     </div>
 
+    <div>
+        <label>Skills</label>
+        <!-- ko foreach: skills-->
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" data-bind="checkedValue:$data, checked:$root.chosenSkills">
+                <span data-bind="text:name"></span>
+            </label>
+        </div>
+        <!-- /ko -->
+    </div>
 
-    <div class="col-md-3" style="border-style:solid; border-width:1px; padding-top: 2px; padding-bottom: 10px">
+    <div class="col-md-4">
         <h1 data-bind="text:name"></h1>
         <div class="form-group">
             <label>Class Name:</label>
@@ -12,31 +34,28 @@
         </div>
         <div class="form-group">
             <label>Description:</label>
-            <label class="form-control" data-bind="text: description" />
+            <label class="form-control" data-bind="text: data.description" />
         </div>
         <div class="form-group">
             <label>Primary Ability:</label>
-            <label class="form-control" data-bind="text: primaryability" />
+            <label class="form-control" data-bind="text: data.primaryability" />
         </div>
         <div class="form-group">
             <label>Hit Die Per Level:</label>
-            <label class="form-control" data-bind="text: hitdieperlevel" />
+            <label class="form-control" data-bind="text: data.hitdieperlevel" />
         </div>
         <div class="form-group">
             <label>HP At First Level:</label>
-            <label class="form-control" data-bind="text: hpatfirstlevel" />
+            <label class="form-control" data-bind="text: data.hpatfirstlevel" />
         </div>
         <div class="form-group">
             <label>HP At Higher Levels:</label>
-            <label class="form-control" data-bind="text: hpathigherlevels" />
+            <label class="form-control" data-bind="text: data.hpathigherlevels" />
         </div>
 
-        <div class="col-md-3" style="border-style:solid; border-width:1px; padding-top: 2px; padding-bottom: 10px">
-            <div class="checkbox">
-                <label>Skills</label>
-              <label><input type="checkbox" value="">Option 1</label>
-            </div>
-        </div>
+
+
+
 
         <button data-bind="click:addClass" class="btn btn-default">Submit Class</button>
     </div>
