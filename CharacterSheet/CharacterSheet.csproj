@@ -321,10 +321,6 @@
     <Content Include="app\Models\txtsubracefiles\tiefling-winged.txt" />
     <Content Include="app\selectclass\selectclass.html" />
     <Content Include="app\selectclass\selectclass.js" />
-    <Content Include="app\selectrace\raceasjs.js" />
-    <Content Include="app\selectrace\racebackup.js" />
-    <Content Include="app\selectrace\RaceList.js" />
-    <Content Include="app\selectrace\rasceasjson.js" />
     <Content Include="app\selectrace\selectrace.html" />
     <Content Include="app\selectrace\selectrace.js" />
     <Content Include="app\selectrace\subraces.js" />
