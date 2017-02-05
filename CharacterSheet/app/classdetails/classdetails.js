@@ -10,11 +10,13 @@ define(function(require) {
 
 	return function() {
 		var self = this;
-		//self.data = null;
+		self.data = null;
 		self.displayName = _i.ko.observable('');
 		self.levelDetail = _i.ko.observableArray([]);
 		self.primaryAbility = _i.ko.observable('');
-		self.hitPoints = _i.ko.observable({});
+		self.hitdieperlevel = _i.ko.observable('');
+		self.hpatfirstlevel = _i.ko.observable('');
+		self.hpathigherlevels = _i.ko.observable('');
 		self.proficiencies = _i.ko.observableArray([]);
 		self.armor = _i.ko.observableArray([]);
 		self.weapons = _i.ko.observableArray([]);
@@ -35,57 +37,58 @@ define(function(require) {
 			return true;
 		};
 
-		self.activate = function(classname) {
-			return _i.charajax.getJSON('classes/' + classname).done(function(response) {
+		self.activate = function(classId) {
+			return _i.charajax.getJSON('api/GetClass/' + classId).done(function(response) {
 				var classDetails = response;
-				classDetails.id = classname;
 				var data = classDetails;
-				classDetails.features[0].description = classDetails.features[0].description.replace(/\\n/g, "\n");
+				//classDetails.features[0].description = classDetails.features[0].description.replace(/\\n/g, "\n");
 				self.data = classDetails;
-				self.displayName(classname);
+				self.displayName(data.name);
 				self.primaryAbility(data.primaryability);
-				self.hitPoints(data.hitpoints);
+				self.hitdieperlevel(data.hitdieperlevel);
+				self.hpatfirstlevel(data.hpatfirstlevel);
+				self.hpathigherlevels(data.hpathigherlevels);
 				self.proficiencies(data.proficiencies);
-				self.armor(self.proficiencies().armor);
-				self.weapons(self.proficiencies().weapons);
-				self.tools(self.proficiencies().tools);
-				self.savingThrows(self.proficiencies().saves);
-				self.skills(self.proficiencies().skills);
-				self.features(data.features);
-				self.equipment(data.equipment);
+				// self.armor(self.proficiencies().armor);
+				// self.weapons(self.proficiencies().weapons);
+				// self.tools(self.proficiencies().tools);
+				// self.savingThrows(self.proficiencies().saves);
+				// self.skills(self.proficiencies().skills);
+				// self.features(data.features);
+				// self.equipment(data.equipment);
 
-				self.armorList = _i.ko.computed(function() {
-					return buildList(self.armor());
-				});
+				// self.armorList = _i.ko.computed(function() {
+				// 	return buildList(self.armor());
+				// });
+				//
+				// self.weaponList = _i.ko.computed(function() {
+				// 	return buildList(self.weapons());
+				// });
+				//
+				// self.toolList = _i.ko.computed(function() {
+				// 	return buildList(self.tools());
+				// });
+				//
+				// self.savingthrowList = _i.ko.computed(function() {
+				// 	return buildList(self.savingThrows());
+				// });
+				//
+				// self.equipmentList = _i.ko.computed(function() {
+				// 	return buildListString(self.equipment());
+				// });
+				//
+				// self.featureList = _i.ko.computed(function() {
+				// 	var mappedList = _i.$.map(self.features(), function(obj, index) {
+				// 		var item = obj;
+				// 		item.id = "collapse" + index + 1;
+				// 		item.description = obj.description.replace(/\\n/g, "\n");
+				// 		return item;
+				// 	});
+				// });
 
-				self.weaponList = _i.ko.computed(function() {
-					return buildList(self.weapons());
-				});
-
-				self.toolList = _i.ko.computed(function() {
-					return buildList(self.tools());
-				});
-
-				self.savingthrowList = _i.ko.computed(function() {
-					return buildList(self.savingThrows());
-				});
-
-				self.equipmentList = _i.ko.computed(function() {
-					return buildListString(self.equipment());
-				});
-
-				self.featureList = _i.ko.computed(function() {
-					var mappedList = _i.$.map(self.features(), function(obj, index) {
-						var item = obj;
-						item.id = "collapse" + index + 1;
-						item.description = obj.description.replace(/\\n/g, "\n");
-						return item;
-					});
-				});
-
-				_i.charajax.getJSON('classdetailpanel/' + classname).done(function(data) {
-					self.classDetails(data.levels);
-				});
+				// _i.charajax.getJSON('classdetailpanel/' + classname).done(function(data) {
+				// 	self.classDetails(data.levels);
+				// });
 
 			});
 		}//END RETURN

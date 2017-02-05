@@ -44,13 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\AbilityScoreTypeValues.cs" />
+    <Compile Include="Enums\ProficiencyTypeValues.cs" />
+    <Compile Include="Enums\SkillTypeValues.cs" />
     <Compile Include="Interfaces\ICharacterClassRepository.cs" />
+    <Compile Include="Model\AbilityScore.cs" />
     <Compile Include="Model\Class.cs" />
+    <Compile Include="Model\DTO\NewClassDTO.cs" />
+    <Compile Include="Model\ClassProficiencyTypeAssoc.cs" />
+    <Compile Include="Model\Skill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Enums\" />
-    <Folder Include="Model\DTO\" />
     <Folder Include="Model\Interfaces\" />
   </ItemGroup>
   <ItemGroup>

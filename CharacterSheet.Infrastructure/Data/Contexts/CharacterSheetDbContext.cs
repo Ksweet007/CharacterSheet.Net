@@ -18,6 +18,8 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
         }
 
         public DbSet<Class> Classes { get; set; }
+        public DbSet<Skill> Skills { get; set; }
+        public DbSet<ClassProficiencyTypeAssoc> Proficiencies  { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -25,16 +27,35 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
             EfMapClass(modelBuilder);
-
+            EfMapSkills(modelBuilder);
+            EfMapProficiencies(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }
-
+        //Fluent API
         private static void EfMapClass(DbModelBuilder modelBuilder)
         {
-            var cmi = modelBuilder.Entity<Class>();
-            cmi.ToTable("classes");
-            cmi.HasKey(k => k.classId);
+            var cls = modelBuilder.Entity<Class>();
+            cls.ToTable("classes");
+            cls.HasKey(k => k.classId);
+        }
+
+        private static void EfMapSkills(DbModelBuilder modelBuilder)
+        {
+            var skill = modelBuilder.Entity<Skill>();
+            skill.ToTable("skills");
+            skill.HasKey(k => k.skillId);
+        }
+
+        private static void EfMapProficiencies(DbModelBuilder modelBuilder)
+        {
+            var prof = modelBuilder.Entity<ClassProficiencyTypeAssoc>();
+            prof.ToTable("ClassProficiencyTypeAssoc");
+            prof.HasRequired(p => p.Class).WithMany().HasForeignKey(p => p.Class.classId);
+            
+
+            //prof.Property(k => k.CMIId)
+            //    .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
         }
     }
 }

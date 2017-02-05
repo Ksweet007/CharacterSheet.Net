@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CharacterSheet.Core.Interfaces;
@@ -29,5 +30,21 @@ namespace CharacterSheet.Infrastructure.Data
         {
            return  _db.Classes.ToList();
         }
+
+        public Class GetClassById(int classId)
+        {
+            return _db.Classes.Single(c => c.classId == classId);
+        }
+
+        public IList<Skill> GetAllSkills()
+        {
+            return _db.Skills.ToList();
+        }
+
+        public IList<ClassProficiencyTypeAssoc> GetAllProfs()
+        {
+            return _db.Proficiencies.ToList();
+        }
+
     }
 }

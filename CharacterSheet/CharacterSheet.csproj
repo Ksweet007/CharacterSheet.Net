@@ -517,10 +517,6 @@
       <Project>{305104af-961d-4ef8-9696-1aab8bb4ed11}</Project>
       <Name>CharacterSheet.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CharacterSheet.IoC\CharacterSheet.IoC.csproj">
-      <Project>{4ee4a73a-749b-4587-ad36-23d604004e27}</Project>
-      <Name>CharacterSheet.IoC</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
