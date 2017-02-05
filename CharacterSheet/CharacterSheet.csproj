@@ -253,7 +253,6 @@
     <Content Include="app\addclass\addclass.js" />
     <Content Include="app\classdetails\classdetails.html" />
     <Content Include="app\classdetails\classdetails.js" />
-    <Content Include="app\ClassList.js" />
     <Content Include="app\domainmanipulations\LockScroll.js" />
     <Content Include="app\experimentfolder\CharacterListing.js" />
     <Content Include="app\main.js" />
