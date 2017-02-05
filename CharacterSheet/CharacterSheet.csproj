@@ -439,6 +439,7 @@
     <Content Include="lib\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="lib\font-awesome\fonts\FontAwesome.otf" />
     <Content Include="lib\jquery\jquery-1.9.1.min.map" />
+    <None Include="Properties\PublishProfiles\sweetcharactersheets.com - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
