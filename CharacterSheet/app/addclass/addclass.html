@@ -1,64 +1,50 @@
-﻿<div class="container">
-
-
-
-    <!-- <div class="row">
-        <div class="col-9" style="background-color:red;">.col-9</div>
-        <div class="col-4" style="background-color:blue;">.col-4<br>Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.</div>
-        <div class="col-6" style="background-color:yellow;">.col-6<br>Subsequent columns continue along the new line.</div>
-    </div> -->
-
-
-
-    <div class="page-header">
-        <h2 data-bind="text:displayName"></h2>
-    </div>
-
+<section class="knockout-samples">
     <div>
-        <label>Skills</label>
-        <!-- ko foreach: skills-->
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" data-bind="checkedValue:$data, checked:$root.chosenSkills">
-                <span data-bind="text:name"></span>
-            </label>
+        <div class="col-md-2">
+            <ul class="well nav nav-pills nav-stacked">
+                <li class="nav-header">Skills</li>
+                <!-- ko foreach: skills-->
+                <li>
+                    <input type="checkbox" data-bind="checkedValue:$data, checked:$root.chosenSkills">
+                    <span data-bind="text:name"></span>
+                </li>
+                <!-- /ko -->
+            </ul>
         </div>
-        <!-- /ko -->
+        <div class="col-md-10" style="padding: 0">
+            <div>
+                <h1>Add Class</h1>
+                <div class="well row" style="margin: 0">
+                <div class="col-md-4">
+                    <h1 data-bind="text:name"></h1>
+                    <div class="form-group">
+                        <label>Class Name:</label>
+                        <span data-bind="text: name" />
+                    </div>
+                    <div class="form-group">
+                        <label>Description:</label>
+                        <span data-bind="text: data.description" />
+                    </div>
+                    <div class="form-group">
+                        <label>Primary Ability:</label>
+                        <span data-bind="text: data.primaryability" />
+                    </div>
+                    <div class="form-group">
+                        <label>Hit Die Per Level:</label>
+                        <span data-bind="text: data.hitdieperlevel" />
+                    </div>
+                    <div class="form-group">
+                        <label>HP At First Level:</label>
+                        <span data-bind="text: data.hpatfirstlevel" />
+                    </div>
+                    <div class="form-group">
+                        <label>HP At Higher Levels:</label>
+                        <span data-bind="text: data.hpathigherlevels" />
+                    </div>
+                    <button data-bind="click:addClass" class="btn btn-default">Submit Class</button>
+                </div>
+            </div>
+        </div>
+        </div>
     </div>
-
-    <div class="col-md-4">
-        <h1 data-bind="text:name"></h1>
-        <div class="form-group">
-            <label>Class Name:</label>
-            <label class="form-control" data-bind="text: name" />
-        </div>
-        <div class="form-group">
-            <label>Description:</label>
-            <label class="form-control" data-bind="text: data.description" />
-        </div>
-        <div class="form-group">
-            <label>Primary Ability:</label>
-            <label class="form-control" data-bind="text: data.primaryability" />
-        </div>
-        <div class="form-group">
-            <label>Hit Die Per Level:</label>
-            <label class="form-control" data-bind="text: data.hitdieperlevel" />
-        </div>
-        <div class="form-group">
-            <label>HP At First Level:</label>
-            <label class="form-control" data-bind="text: data.hpatfirstlevel" />
-        </div>
-        <div class="form-group">
-            <label>HP At Higher Levels:</label>
-            <label class="form-control" data-bind="text: data.hpathigherlevels" />
-        </div>
-
-
-
-
-
-        <button data-bind="click:addClass" class="btn btn-default">Submit Class</button>
-    </div>
-
-
-</div>
+</section>

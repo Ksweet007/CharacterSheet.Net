@@ -13,6 +13,7 @@ namespace CharacterSheet.Core.Model.DTO
         public string hpatfirstlevel { get; set; }
         public string hpathigherlevels { get; set; }
         public IList<Skill> skills { get; set; }
+        public IList<Skill> ClassSkills { get; set; }
         public IList<ProficiencyTypeValues> Proficiencies { get; set; }
 
     }

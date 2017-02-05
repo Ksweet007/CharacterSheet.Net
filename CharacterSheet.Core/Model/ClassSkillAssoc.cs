@@ -7,10 +7,10 @@ using CharacterSheet.Core.Enums;
 
 namespace CharacterSheet.Core.Model
 {
-    public class Skill
+    public class ClassSkillAssoc
     {
-        public int skillId { get; set; }
-        public string name { get; set; }
-        public virtual AbilityScoreTypeValues abilityScoreId { get; set; }
+        public virtual int Id { get; set; }
+        public virtual int ClassId { get; set; }
+        public virtual int SkillId { get; set; }
     }
 }

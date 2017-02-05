@@ -50,6 +50,7 @@
     <Compile Include="Interfaces\ICharacterClassRepository.cs" />
     <Compile Include="Model\AbilityScore.cs" />
     <Compile Include="Model\Class.cs" />
+    <Compile Include="Model\ClassSkillAssoc.cs" />
     <Compile Include="Model\DTO\NewClassDTO.cs" />
     <Compile Include="Model\ClassProficiencyTypeAssoc.cs" />
     <Compile Include="Model\Proficiencies.cs" />
