@@ -38,6 +38,7 @@ namespace CharacterSheet.Controllers.Api
         {
             var cls = _characterClassRepository.GetClassById(classId);
             var allSkills = _characterClassRepository.GetAllSkills();
+            var proficiencyList = _characterClassRepository.GetAllProfs();
 
             var mappedClass = new NewClassDTO
             {
@@ -49,7 +50,8 @@ namespace CharacterSheet.Controllers.Api
                 hpatfirstlevel = cls.hpatfirstlevel,
                 hpathigherlevels = cls.hpathigherlevels,
                 skills = allSkills,
-                ClassSkills = cls.Skills
+                ClassSkills = cls.Skills,
+                Proficiencies = proficiencyList
             };
             
             return Ok(mappedClass);

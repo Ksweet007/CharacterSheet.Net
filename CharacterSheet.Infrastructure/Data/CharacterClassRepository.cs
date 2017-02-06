@@ -34,7 +34,8 @@ namespace CharacterSheet.Infrastructure.Data
 
         public Class GetClassById(int classId)
         {
-            var retObj = _db.Classes.Include(x => x.Skills).Single(n => n.classId == classId);
+            var retObj = _db.Classes.Include(x => x.Skills).Include(x=>x.Proficiencies)
+                .Single(n => n.classId == classId);
             return retObj;
         }
 
@@ -43,11 +44,16 @@ namespace CharacterSheet.Infrastructure.Data
             return _db.Skills.ToList();
         }
 
-        public IList<Proficiencies> GetAllProfs()
+        public IList<Proficiency> GetAllProfs()
         {
             return _db.Proficiencies.ToList();
         }
 
+        public void AddProficiency(IList<Proficiency> profs)
+        {
+            _db.Proficiencies.AddRange(profs);
+            _db.SaveChanges();
+        }
 
     }
 }

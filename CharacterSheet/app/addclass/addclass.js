@@ -16,6 +16,15 @@ define(function(require) {
 		self.skills = _i.ko.observableArray([]);
 		self.proficiencies = _i.ko.observableArray([]);
 		self.chosenSkills = _i.ko.observableArray([]);
+		self.classSkills = _i.ko.observableArray([]);
+		self.proficiencies = _i.ko.observable([]);
+		self.profType = _i.ko.observableArray([
+			{id:1, Value:"Armor"},
+			{id:2, Value:"Weapon"},
+			{id:3, Value:"Tool"},
+			{id:4, Value:"Save"},
+			{id:5, Value:"Skill"}
+		]);
 
 		self.deactivate = function() {
 			return _i.app.trigger('view:done', 'Details');
@@ -27,15 +36,21 @@ define(function(require) {
 		};
 
 		self.activate = function() {
-			return _i.charajax.getJSON('api/GetSheetFields/1').done(function(response){
+			return _i.charajax.getJSON('api/GetSheetFields/1').done(function(response) {
 				self.data = response;
 				self.name = response.name;
-				self.skills(response.skills);
+
+				if (response.ClassSkills.length > 0) {
+					self.skills(response.ClassSkills);
+				} else {
+					self.skills(response.skills);
+				}
+
 				_i.list.sortAlphabetically(self.skills());
 			});
 		}
 
-		self.addClass = function(item,event) {
+		self.addClass = function(item, event) {
 			_i.charajax.put('/api/AddClass', dataToSend).done(function(response) {
 				console.log(response);
 				self.name('');
@@ -47,8 +62,14 @@ define(function(require) {
 			});
 		}
 
-		self.addClassForm = function(){
-		}
+		self.addClassForm = function() {}
+
+		self.addContact = function() {
+			self.contacts.push({
+				profType: "",
+				name:""
+			});
+		};
 
 	};
 });
