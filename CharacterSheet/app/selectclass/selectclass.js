@@ -37,16 +37,8 @@ define(function(require) {
 
 		self.activate = function() {
 			return _i.charajax.getJSON('/api/GetClassList').done(function(response) {
-				var mappedList = _i.$.map(response.rows, function(obj, index) {
-					var item = obj.doc;
-					item.id = obj.id;
-					item.key = obj.key
-
-					return item;
-				});
-
-				self.data = mappedList;
-				self.classList(mappedList);
+				self.data = response;
+				self.classList(response);
 			});
 		};
 
@@ -72,7 +64,7 @@ define(function(require) {
 				self.selectedClassId(0);
 			} else {
 				self.selectedClassId(item.id);
-				onclick = location.href = '#classdetails/' + item.id;
+				onclick = location.href = '#classdetails/' + item.classId;
 			}
 		};
 

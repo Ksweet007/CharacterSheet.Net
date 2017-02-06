@@ -2,6 +2,7 @@
 using System.Web.Http;
 using CharacterSheet.Core.Interfaces;
 using CharacterSheet.Core.Model;
+using CharacterSheet.Core.Model.DTO;
 using CharacterSheet.Infrastructure.Data;
 
 
@@ -23,7 +24,39 @@ namespace CharacterSheet.Controllers.Api
         {
             return Ok(_characterClassRepository.GetClassList());
         }
-        
+
+        [HttpGet]
+        [Route("api/GetClass/{classId}")]
+        public IHttpActionResult GetClass(int classId)
+        {
+            return Ok(_characterClassRepository.GetClassById(classId));
+        }
+
+        [HttpGet]
+        [Route("api/GetSheetFields/{classId}")]
+        public IHttpActionResult GetSheetFields(int classId)
+        {
+            var cls = _characterClassRepository.GetClassById(classId);
+            var allSkills = _characterClassRepository.GetAllSkills();
+            var proficiencyList = _characterClassRepository.GetAllProfs();
+
+            var mappedClass = new NewClassDTO
+            {
+                classId = cls.classId,
+                name = cls.name,
+                description = cls.description,
+                primaryability = cls.primaryability,
+                hitdieperlevel = cls.hitdieperlevel,
+                hpatfirstlevel = cls.hpatfirstlevel,
+                hpathigherlevels = cls.hpathigherlevels,
+                skills = allSkills,
+                ClassSkills = cls.Skills,
+                Proficiencies = proficiencyList
+            };
+            
+            return Ok(mappedClass);
+        }
+
         [HttpPost]
         [Route("api/EditClass")]
         public IHttpActionResult EditClass([FromBody]string value)

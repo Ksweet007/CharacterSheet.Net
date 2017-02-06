@@ -1,46 +1,92 @@
-﻿<div class="container">
-    <div class="page-header">
-        <h2 data-bind="text:displayName"></h2>
+<section class="knockout-samples">
+    <div>
+        <div class="col-md-2">
+            <div style="padding-top: 69px;">
+                <ul class="well nav nav-pills nav-stacked">
+                    <li class="nav-header">Skills</li>
+                    <!-- ko foreach: skills-->
+                    <li>
+                        <input type="checkbox" data-bind="checkedValue:$data, checked:$root.chosenSkills">
+                        <span data-bind="text:name"></span>
+                    </li>
+                    <!-- /ko -->
+                </ul>
+            </div>
+            <div style="margin-top: 10px;">
+                <ul class="well nav nav-pills nav-stacked">
+                    <li class="nav-header">Skills</li>
+                    <!-- ko foreach: skills-->
+                    <li>
+                        <input type="checkbox" data-bind="checkedValue:$data, checked:$root.chosenSkills">
+                        <span data-bind="text:name"></span>
+                    </li>
+                    <!-- /ko -->
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-10" style="padding: 0">
+            <div>
+                <h1>Add Class</h1>
+                <div class="well row" style="margin: 0">
+                    <div class="col-md-4">
+                        <h1 data-bind="text:name"></h1>
+                        <div class="form-group">
+                            <label>Class Name:</label>
+                            <span data-bind="text: name" />
+                        </div>
+                        <div class="form-group">
+                            <label>Description:</label>
+                            <span data-bind="text: data.description" />
+                        </div>
+                        <div class="form-group">
+                            <label>Primary Ability:</label>
+                            <span data-bind="text: data.primaryability" />
+                        </div>
+                        <div class="form-group">
+                            <label>Hit Die Per Level:</label>
+                            <span data-bind="text: data.hitdieperlevel" />
+                        </div>
+                        <div class="form-group">
+                            <label>HP At First Level:</label>
+                            <span data-bind="text: data.hpatfirstlevel" />
+                        </div>
+                        <div class="form-group">
+                            <label>HP At Higher Levels:</label>
+                            <span data-bind="text: data.hpathigherlevels" />
+                        </div>
+                        <button data-bind="click:addClass" class="btn btn-default">Submit Class</button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h1>Add Profs</h1>
+                <div class="well">
+                    <div>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Prof Type</th>
+                                <th>Name</th>
+                            </tr>
+                            <tbody data-bind="foreach: proficiencies">
+                                <tr>
+                                    <td class="col-xs-4">
+                                        <select data-bind="options: proficiencies, value:profType "></select>
+                                    </td>
+                                    <td class="col-xs-4">
+                                        <input type="text" class="form-control" data-bind='value: name' />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br/>
+                    <div>
+                        <button class="btn btn-default" data-bind='click: addProf'>Add Proficiencies</button>
+                        <button class="btn btn-default" data-bind='click: addContact'>Send to Server</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="page-header">
-        <button data-bind="click:addClassForm" class="btn btn-default">Add Class To List</button>
-        <button data-bind="click:addClassList,visible: isList()" class="btn btn-default" >Submit List</button>
-    </div>
-
-<!-- ko foreach:classList -->
-    <div class="col-md-3" style="border-style:solid; border-width:1px; padding-top: 2px; padding-bottom: 10px">
-        <div class="form-group">
-            <label>Name:</label>
-            <input class="form-control" data-bind="textInput: name" />
-        </div>
-
-        <div class="form-group">
-            <label>Desc:</label>
-            <textarea class="form-control" data-bind="textInput: description" />
-        </div>
-
-        <div class="form-group">
-            <label>Primary Ability:</label>
-            <input class="form-control" data-bind="textInput: primaryability" />
-        </div>
-
-        <div class="form-group">
-            <label>Hit Die Per Level:</label>
-            <input class="form-control" data-bind="textInput: hitdieperlevel" />
-        </div>
-
-        <div class="form-group">
-            <label>HP At First Level:</label>
-            <input class="form-control" data-bind="textInput: hpatfirstlevel" />
-        </div>
-
-        <div class="form-group">
-            <label>HP At Higher Levels:</label>
-            <input class="form-control" data-bind="textInput: hpathigherlevels" />
-        </div>
-        <button data-bind="click:$parent.addClass,css:{'inactive': $parent.isList(),'active': !$parent.isList()}" class="btn btn-default">Submit Class</button>
-    </div>
-<!-- /ko -->
-
-</div>
+</section>

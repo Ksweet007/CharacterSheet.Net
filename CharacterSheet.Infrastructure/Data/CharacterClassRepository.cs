@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using CharacterSheet.Core.Interfaces;
 using CharacterSheet.Core.Model;
@@ -24,10 +26,34 @@ namespace CharacterSheet.Infrastructure.Data
 
             return classToAdd;
         }
-
+        
         public IList<Class> GetClassList()
         {
            return  _db.Classes.ToList();
         }
+
+        public Class GetClassById(int classId)
+        {
+            var retObj = _db.Classes.Include(x => x.Skills).Include(x=>x.Proficiencies)
+                .Single(n => n.classId == classId);
+            return retObj;
+        }
+
+        public IList<Skill> GetAllSkills()
+        {
+            return _db.Skills.ToList();
+        }
+
+        public IList<Proficiency> GetAllProfs()
+        {
+            return _db.Proficiencies.ToList();
+        }
+
+        public void AddProficiency(IList<Proficiency> profs)
+        {
+            _db.Proficiencies.AddRange(profs);
+            _db.SaveChanges();
+        }
+
     }
 }

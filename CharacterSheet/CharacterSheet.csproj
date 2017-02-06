@@ -238,6 +238,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -247,13 +248,17 @@
     <Compile Include="Repositories\Contexts\CharacterSheetDbContext.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Views\CharacterSheet\App_LocalResources\Common.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Common.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\addclass\addclass.html" />
     <Content Include="app\addclass\addclass.js" />
     <Content Include="app\classdetails\classdetails.html" />
     <Content Include="app\classdetails\classdetails.js" />
-    <Content Include="app\ClassList.js" />
     <Content Include="app\domainmanipulations\LockScroll.js" />
     <Content Include="app\experimentfolder\CharacterListing.js" />
     <Content Include="app\main.js" />
@@ -322,10 +327,6 @@
     <Content Include="app\Models\txtsubracefiles\tiefling-winged.txt" />
     <Content Include="app\selectclass\selectclass.html" />
     <Content Include="app\selectclass\selectclass.js" />
-    <Content Include="app\selectrace\raceasjs.js" />
-    <Content Include="app\selectrace\racebackup.js" />
-    <Content Include="app\selectrace\RaceList.js" />
-    <Content Include="app\selectrace\rasceasjson.js" />
     <Content Include="app\selectrace\selectrace.html" />
     <Content Include="app\selectrace\selectrace.js" />
     <Content Include="app\selectrace\subraces.js" />
@@ -439,6 +440,7 @@
     <Content Include="lib\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="lib\font-awesome\fonts\FontAwesome.otf" />
     <Content Include="lib\jquery\jquery-1.9.1.min.map" />
+    <None Include="Properties\PublishProfiles\sweetcharactersheets.com - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -457,7 +459,6 @@
     <Content Include="Scripts\app\app.viewmodel.js" />
     <Content Include="Scripts\app\common.js" />
     <Content Include="Scripts\app\home.viewmodel.js" />
-    <Content Include="Views\CharacterSheet\index.html" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -496,9 +497,11 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\CharacterSheet\index.cshtml" />
+    <Content Include="Views\Shared\ServerError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -517,10 +520,13 @@
       <Project>{305104af-961d-4ef8-9696-1aab8bb4ed11}</Project>
       <Name>CharacterSheet.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CharacterSheet.IoC\CharacterSheet.IoC.csproj">
-      <Project>{4ee4a73a-749b-4587-ad36-23d604004e27}</Project>
-      <Name>CharacterSheet.IoC</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CharacterSheet\App_LocalResources\Common.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Common.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
