@@ -63,6 +63,7 @@ define(['plugins/router', 'durandal/app'], function(router, app, vemod) {
 					title: 'Add Class',
 					moduleId: 'addclass/addclass',
 					nav: true,
+					hash: '#addclass',
 					ident: 'addclass'
 				}
 

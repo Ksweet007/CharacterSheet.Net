@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Runtime.CompilerServices;
 using CharacterSheet.Core.Model;
 
 namespace CharacterSheet.Infrastructure.Data.Contexts
@@ -21,7 +22,8 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
         public DbSet<Class> Classes { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Proficiency> Proficiencies { get; set; }
-        
+        public DbSet<Feature> Features { get; set; }
+
         //Fluent API
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -31,6 +33,7 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             EfMapProficiency(modelBuilder);
             EfMapClass(modelBuilder);
             EfMapSkills(modelBuilder);
+            EfMapFeature(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }
@@ -70,6 +73,13 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             var prof = modelBuilder.Entity<Proficiency>();
             prof.ToTable("Proficiencies");
             prof.HasKey(k => k.ProficiencyId);
+        }
+
+        private static void EfMapFeature(DbModelBuilder modelBuilder)
+        {
+            var feature = modelBuilder.Entity<Feature>();
+            feature.ToTable("features");
+            feature.HasKey(k => k.FeatureId);
         }
 
 

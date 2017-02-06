@@ -49,11 +49,22 @@ namespace CharacterSheet.Infrastructure.Data
             return _db.Proficiencies.ToList();
         }
 
-        public void AddProficiency(IList<Proficiency> profs)
+        public void AddProficiencies(IList<Proficiency> profs)
         {
             _db.Proficiencies.AddRange(profs);
             _db.SaveChanges();
         }
+
+        public void AddProficiency(Proficiency prof)
+        {
+            if (prof.ProficiencyId == 0)
+            {
+                _db.Proficiencies.Add(prof);
+            }
+            
+            _db.SaveChanges();
+        }
+
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using CharacterSheet.Core.Interfaces;
 using CharacterSheet.Core.Model;
@@ -12,12 +13,13 @@ namespace CharacterSheet.Controllers.Api
     {
 
         private readonly CharacterClassRepository _characterClassRepository;
-
+        private readonly FeatureRepository _featureRepository;
         public ClassController()
         {
             _characterClassRepository = new CharacterClassRepository();
+            _featureRepository = new FeatureRepository();
         }
-       
+
         [HttpGet]
         [Route("api/GetClassList")]
         public IHttpActionResult GetClassList()
@@ -53,7 +55,7 @@ namespace CharacterSheet.Controllers.Api
                 ClassSkills = cls.Skills,
                 Proficiencies = proficiencyList
             };
-            
+
             return Ok(mappedClass);
         }
 
@@ -83,6 +85,19 @@ namespace CharacterSheet.Controllers.Api
             }
 
             return Ok(classesToAdd);
+        }
+
+        [HttpPut]
+        [Route("api/AddProficiencies")]
+        public IHttpActionResult AddNewProficiency(IList<Proficiency> profsToAdd )
+        {
+            foreach (var item in profsToAdd)
+            {
+                 _characterClassRepository.AddProficiency(item);   
+            }
+
+
+            return Ok(profsToAdd);
         }
 
         [HttpDelete]
