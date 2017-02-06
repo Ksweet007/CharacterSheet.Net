@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\AbilityScoreTypeValues.cs" />
-    <Compile Include="Enums\ProficiencyTypeValues.cs" />
+    <Compile Include="Enums\ProficiencyTypeId.cs" />
     <Compile Include="Enums\SkillTypeValues.cs" />
     <Compile Include="Interfaces\ICharacterClassRepository.cs" />
     <Compile Include="Model\AbilityScore.cs" />

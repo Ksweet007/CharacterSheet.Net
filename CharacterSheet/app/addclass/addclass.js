@@ -14,55 +14,25 @@ define(function(require) {
 		self.displayName = "Add Class";
 		self.name = _i.ko.observable('');
 		self.skills = _i.ko.observableArray([]);
-		self.proficiencies = _i.ko.observableArray([]);
 		self.chosenSkills = _i.ko.observableArray([]);
 		self.classSkills = _i.ko.observableArray([]);
-		self.profTypeList = _i.ko.observableArray( [{
-				ProficiencytypeId: _i.ko.observable(1),
-				Name: _i.ko.observable("Armor")
-			},
-			{
-				ProficiencytypeId: _i.ko.observable(2),
-				Name: _i.ko.observable("Weapon")
-			},
-			{
-				ProficiencytypeId: _i.ko.observable(3),
-				Name: _i.ko.observable("Tool")
-			},
-			{
-				ProficiencytypeId: _i.ko.observable(4),
-				Name: _i.ko.observable("Save")
-			},
-			{
-				ProficiencytypeId: _i.ko.observable(5),
-				Name: _i.ko.observable("Skill")
-			}
-		]);
-
-		self.proficienciesListToBind = _i.ko.pureComputed(function() {
-			return _i.ko.utils.arrayMap(self.proficiencies(),function(item){
-				return {
-					ProficiencytypeId: item.ProficiencytypeId,
-					Name: item.Name
-				}
-			});
-		});
-
 		self.profChoice = _i.ko.observable('');
-
-		self.deactivate = function() {
-			return _i.app.trigger('view:done', 'Details');
-		};
-
-		self.canDeactivate = function() {
-			_i.app.trigger('view:done', 'Details');
-			return true;
-		};
 
 		self.activate = function() {
 			return _i.charajax.getJSON('api/GetSheetFields/1').done(function(response) {
 				self.data = response;
 				self.name = response.name;
+
+				for(var i=0; i < response.Proficiencies.length; i++){
+					var prof = {
+						proficiencyId : response.Proficiencies[i].ProficiencyId,
+						profTypeId : response.Proficiencies[i].ProficiencytypeId,
+						profName : response.Proficiencies[i].Name,
+						proficiencyTypeList: self.profTypeList
+					};
+					self.proficienciesListToBind.push(prof);
+				}
+
 				self.proficiencies(response.Proficiencies);
 
 				if (response.ClassSkills.length > 0) {
@@ -74,7 +44,6 @@ define(function(require) {
 				_i.list.sortAlphabetically(self.skills());
 			});
 		}
-
 
 		self.addClass = function(item, event) {
 			_i.charajax.put('/api/AddClass', dataToSend).done(function(response) {
@@ -90,10 +59,30 @@ define(function(require) {
 
 		self.addClassForm = function() {}
 
+		self.proficiencies = _i.ko.observableArray([]);
+		self.profTypeList =  [
+			{Value: 1,Name: "Armor"},
+			{Value: 2,Name: "Weapon"},
+			{Value: 3,Name: "Tool"},
+			{Value: 4,Name: "Save"},
+			{Value: 5,Name: "Skill"}];
+
+		self.proficienciesListToBind = _i.ko.observableArray(
+			_i.ko.utils.arrayMap(self.proficiencies(),function(prof){
+			return{
+				proficiencyId : prof.proficiencyId,
+				profTypeId : prof.profTypeId,
+				profName : prof.profName,
+				proficiencyTypeList : _i.ko.observableArray(prof.proficiencyTypeList)
+			};
+		}));
+
 		self.addProf = function(item,event) {
-			self.proficiencies.push({
-				ProficiencytypeId: "",
-				Name: ""
+			self.proficienciesListToBind.push({
+				proficiencyId : 0,
+				profTypeId : 0,
+				profName : "",
+				proficiencyTypeList: self.profTypeList
 			});
 		};
 

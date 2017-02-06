@@ -1,6 +1,6 @@
 ﻿namespace CharacterSheet.Core.Enums
 {
-    public enum ProficiencyTypeValues
+    public enum ProficiencyTypeId
     {
         Armor = 1,
         Weapon,
