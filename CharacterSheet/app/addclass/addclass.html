@@ -68,10 +68,10 @@
                                 <th>Prof Type</th>
                                 <th>Name</th>
                             </tr>
-                            <tbody data-bind="foreach: proficiencies">
+                            <tbody data-bind="foreach: proficienciesListToBind">
                                 <tr>
                                     <td class="col-xs-4">
-                                        <select data-bind="options: proficiencies, value:profType "></select>
+                                        <select data-bind="options: $parent.profTypeList, optionsText: 'Name', optionsValue:'Value', value: $parent.profChoice()  "></select>
                                     </td>
                                     <td class="col-xs-4">
                                         <input type="text" class="form-control" data-bind='value: name' />

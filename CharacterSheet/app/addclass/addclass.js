@@ -17,14 +17,47 @@ define(function(require) {
 		self.proficiencies = _i.ko.observableArray([]);
 		self.chosenSkills = _i.ko.observableArray([]);
 		self.classSkills = _i.ko.observableArray([]);
-		self.proficiencies = _i.ko.observable([]);
-		self.profType = _i.ko.observableArray([
-			{id:1, Value:"Armor"},
-			{id:2, Value:"Weapon"},
-			{id:3, Value:"Tool"},
-			{id:4, Value:"Save"},
-			{id:5, Value:"Skill"}
-		]);
+		//self.proficiencies = _i.ko.observableArray([]);
+		self.profTypeList = [{
+				Value: 1,
+				Name: "Armor"
+			},
+			{
+				Value: 2,
+				Name: "Weapon"
+			},
+			{
+				Value: 3,
+				Name: "Tool"
+			},
+			{
+				Value: 4,
+				Name: "Save"
+			},
+			{
+				Value: 5,
+				Name: "Skill"
+			}
+		];
+
+		self.proficienciesListToBind = _i.ko.pureComputed(function() {
+			return _i.ko.utils.arrayMap(self.proficiencies(),function(item){
+				return {ProficiencytypeId: item.ProficiencytypeId,Name: item.Name}
+			});
+		});
+
+
+		self.proficienciesListToBind = _i.ko.pureComputed(function() {
+			return _i.ko.utils.arrayMap(self.proficiencies(), function(item) {
+				return {
+					ProficiencytypeId: item.ProficiencytypeId,
+					Name: item.Name
+				};
+			});
+		});
+
+
+		self.profChoice = _i.ko.observable('');
 
 		self.deactivate = function() {
 			return _i.app.trigger('view:done', 'Details');
@@ -39,6 +72,7 @@ define(function(require) {
 			return _i.charajax.getJSON('api/GetSheetFields/1').done(function(response) {
 				self.data = response;
 				self.name = response.name;
+				self.proficiencies(response.Proficiencies);
 
 				if (response.ClassSkills.length > 0) {
 					self.skills(response.ClassSkills);
@@ -49,6 +83,7 @@ define(function(require) {
 				_i.list.sortAlphabetically(self.skills());
 			});
 		}
+
 
 		self.addClass = function(item, event) {
 			_i.charajax.put('/api/AddClass', dataToSend).done(function(response) {
@@ -64,10 +99,10 @@ define(function(require) {
 
 		self.addClassForm = function() {}
 
-		self.addContact = function() {
-			self.contacts.push({
-				profType: "",
-				name:""
+		self.addProf = function() {
+			self.proficiencies.push({
+				ProficiencytypeId: "",
+				Name: ""
 			});
 		};
 
