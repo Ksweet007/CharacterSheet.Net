@@ -17,45 +17,36 @@ define(function(require) {
 		self.proficiencies = _i.ko.observableArray([]);
 		self.chosenSkills = _i.ko.observableArray([]);
 		self.classSkills = _i.ko.observableArray([]);
-		//self.proficiencies = _i.ko.observableArray([]);
-		self.profTypeList = [{
-				Value: 1,
-				Name: "Armor"
+		self.profTypeList = _i.ko.observableArray( [{
+				ProficiencytypeId: _i.ko.observable(1),
+				Name: _i.ko.observable("Armor")
 			},
 			{
-				Value: 2,
-				Name: "Weapon"
+				ProficiencytypeId: _i.ko.observable(2),
+				Name: _i.ko.observable("Weapon")
 			},
 			{
-				Value: 3,
-				Name: "Tool"
+				ProficiencytypeId: _i.ko.observable(3),
+				Name: _i.ko.observable("Tool")
 			},
 			{
-				Value: 4,
-				Name: "Save"
+				ProficiencytypeId: _i.ko.observable(4),
+				Name: _i.ko.observable("Save")
 			},
 			{
-				Value: 5,
-				Name: "Skill"
+				ProficiencytypeId: _i.ko.observable(5),
+				Name: _i.ko.observable("Skill")
 			}
-		];
+		]);
 
 		self.proficienciesListToBind = _i.ko.pureComputed(function() {
 			return _i.ko.utils.arrayMap(self.proficiencies(),function(item){
-				return {ProficiencytypeId: item.ProficiencytypeId,Name: item.Name}
-			});
-		});
-
-
-		self.proficienciesListToBind = _i.ko.pureComputed(function() {
-			return _i.ko.utils.arrayMap(self.proficiencies(), function(item) {
 				return {
 					ProficiencytypeId: item.ProficiencytypeId,
 					Name: item.Name
-				};
+				}
 			});
 		});
-
 
 		self.profChoice = _i.ko.observable('');
 
@@ -99,7 +90,7 @@ define(function(require) {
 
 		self.addClassForm = function() {}
 
-		self.addProf = function() {
+		self.addProf = function(item,event) {
 			self.proficiencies.push({
 				ProficiencytypeId: "",
 				Name: ""
