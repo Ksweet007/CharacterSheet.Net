@@ -21,23 +21,44 @@ define(function(require) {
 		self.profChoice = _i.ko.observable('');
 		self.lastSavedJson = ko.observable("");
 
+		/*PROFICIENCIES*/
+		self.proficiencies = _i.ko.observableArray([]);
+
+
+		/*FEATURES*/
+		self.proficienciesListToBind = _i.ko.observableArray([]);
+
+
+
+
+
+		self.getPageData = function(){
+			var deferred = _i.deferred.create();
+			var promise = _i.deferred.waitForAll(
+				self.getFeatures()
+			);
+
+			promise.done(function(){
+				self.getClassData().done(function(){
+					deferred.resolve();
+				});
+			});
+			return deferred;
+		};
+
 		self.getClassData = function(){
 			var deferred = _i.deferred.create();
-
-			_i.$.getJSON('api/GetSheetFields/1', function(response) {
+			_i.charajax.getJSON('api/GetSheetFields/1').done(function(response) {
+				self.classData = response;
 				self.data = response;
 				self.name = response.name;
 				self.classId = response.classId;
+				self.proficienciesListToBind(self.classData.Proficiencies);
 
-				for (var i = 0; i < response.Proficiencies.length; i++) {
-					var prof = {
-						proficiencyId: response.Proficiencies[i].ProficiencyId,
-						profTypeId: response.Proficiencies[i].ProficiencytypeId,
-						profName: response.Proficiencies[i].Name,
-						proficiencyTypeList: self.profTypeList
-					};
-					self.proficienciesListToBind.push(prof);
-				}
+				self.proficienciesListToBind().forEach(function(item){
+					item.proficiencyTypeList = self.profTypeList;
+				});
+
 				self.proficiencies(response.Proficiencies);
 
 				if (response.ClassSkills.length > 0) {
@@ -55,6 +76,7 @@ define(function(require) {
 
 		self.activate = function() {
 			return self.getClassData().done(function(response) {
+				//Get feature information
 
 			});
 		}
@@ -73,7 +95,7 @@ define(function(require) {
 
 		self.addClassForm = function() {}
 
-		self.proficiencies = _i.ko.observableArray([]);
+
 		self.profTypeList = [{
 				Value: 1,	Name: "Armor"},
 			{	Value: 2,	Name: "Weapon"},
@@ -93,21 +115,15 @@ define(function(require) {
 
 		self.addProf = function(item, event) {
 			self.proficienciesListToBind.push({
-				proficiencyId: 0,
-				profTypeId: 0,
-				profName: "",
+				ProficiencyId: 0,
+				ProficiencytypeId: 0,
+				Name: "",
 				proficiencyTypeList: self.profTypeList
 			});
 		};
 
 		self.save = function() {
-			var profsToSave = _i.$.map(self.proficienciesListToBind(), function(item) {
-				return {
-					ProficiencyId: item.proficiencyId,
-					ProficiencytypeId: item.profTypeId,
-					Name: item.profName
-				}
-			});
+			var profsToSave = self.proficienciesListToBind();
 
 			_i.charajax.put('/api/AddProficiencies', profsToSave).done(function(response) {
 				console.log('Added Proficiency ---> ' + response);

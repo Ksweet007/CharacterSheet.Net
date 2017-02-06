@@ -28,6 +28,16 @@ namespace CharacterSheet.Controllers.Api
         }
 
         [HttpGet]
+        [Route("api/GetClassFeatures/{classId}")]
+        public IHttpActionResult GetClassFeatures(int classId)
+        {
+            var featureList = _featureRepository.GetFeatureByClassId(classId);
+
+            return Ok(featureList);
+        }
+
+
+        [HttpGet]
         [Route("api/GetClass/{classId}")]
         public IHttpActionResult GetClass(int classId)
         {
@@ -95,7 +105,6 @@ namespace CharacterSheet.Controllers.Api
             {
                  _characterClassRepository.AddProficiency(item);   
             }
-
 
             return Ok(profsToAdd);
         }
