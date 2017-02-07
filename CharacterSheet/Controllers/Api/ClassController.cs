@@ -36,7 +36,6 @@ namespace CharacterSheet.Controllers.Api
             return Ok(featureList);
         }
 
-
         [HttpGet]
         [Route("api/GetClass/{classId}")]
         public IHttpActionResult GetClass(int classId)
@@ -95,6 +94,18 @@ namespace CharacterSheet.Controllers.Api
             }
 
             return Ok(classesToAdd);
+        }
+
+        [HttpPut]
+        [Route("api/AddFeatureList")]
+        public IHttpActionResult AddNewFeatureList(IList<Feature> featuresToAdd)
+        {
+            foreach (var item in featuresToAdd)
+            {
+                _featureRepository.AddProficiency(item);
+            }
+
+            return Ok(featuresToAdd);
         }
 
         [HttpPut]

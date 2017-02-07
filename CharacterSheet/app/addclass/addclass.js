@@ -6,11 +6,28 @@ define(function(require) {
 		charajax: require('_custom/services/WebAPI'),
 		app: require('durandal/app'),
 		list: require('_custom/services/listmanager'),
-		deferred: require('_custom/deferred')
+		deferred: require('_custom/deferred'),
+		router: require('plugins/router'),
+		system: require('durandal/system')
 	};
-
 	return function() {
 		var self = this;
+		self.masterVm = _i.ko.observable();
+		self.router = _i.router
+			.createChildRouter()
+			.makeRelative({
+				moduleId: 'addclass',
+				fromParent: true,
+				dynamicHash: ':id'
+			})
+			.map([{
+				route: ['features', ''],
+				moduleId: 'features',
+				title: 'Features',
+				nav: true,
+				hash: '#features'
+			}]).buildNavigationModel();
+
 		self.data = null;
 		self.classId = null;
 		self.displayName = "Add Class";
@@ -26,41 +43,45 @@ define(function(require) {
 
 		/*FEATURES*/
 		self.features = _i.ko.observableArray([]);
+		self.levelCount = _i.ko.observableArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
 
-
-		self.getPageData = function(){
+		self.getPageData = function() {
 			var deferred = _i.deferred.create();
 			var promise = _i.deferred.waitForAll(
 				self.getClassFeatures()
 			);
 
-			promise.done(function(){
-				self.getClassData().done(function(){
+			promise.done(function() {
+				self.getClassData().done(function() {
 					deferred.resolve();
 				});
 			});
 			return deferred;
 		};
 
-		self.getClassFeatures = function(){
+		self.getClassFeatures = function() {
 			var promise = _i.deferred.create();
-			_i.charajax.getJSON('api/GetClassFeatures/'+self.classId).done(function(response){
-				self.features = response;
+			_i.charajax.getJSON('api/GetClassFeatures/' + self.classId).done(function(response) {
+				self.features(response);
+				self.features().forEach(function(item) {
+					item.LevelCount = self.levelCount();
+				});
+
 				promise.resolve();
 			});
 
 			return promise;
 		};
 
-		self.getClassData = function(){
+		self.getClassData = function() {
 			var deferred = _i.deferred.create();
-			_i.charajax.getJSON('api/GetSheetFields/'+self.classId).done(function(response) {
+			_i.charajax.getJSON('api/GetSheetFields/' + self.classId).done(function(response) {
 				self.classData = response;
 				self.data = response;
 				self.name = response.name;
 				self.classId = response.classId;
 				self.proficiencies(self.classData.Proficiencies);
-				self.proficiencies().forEach(function(item){
+				self.proficiencies().forEach(function(item) {
 					item.proficiencyTypeList = self.profTypeList;
 				});
 
@@ -76,13 +97,6 @@ define(function(require) {
 
 			return deferred;
 		};
-
-		self.activate = function(classId) {
-			self.classId = classId;
-			return self.getPageData().done(function(response) {
-
-			});
-		}
 
 		self.addClass = function(item, event) {
 			_i.charajax.put('/api/AddClass', dataToSend).done(function(response) {
@@ -100,11 +114,26 @@ define(function(require) {
 
 
 		self.profTypeList = [{
-				Value: 1,	Name: "Armor"},
-			{	Value: 2,	Name: "Weapon"},
-			{	Value: 3,	Name: "Tool"},
-			{	Value: 4,	Name: "Save"},
-			{	Value: 5,	Name: "Skill"}];
+				Value: 1,
+				Name: "Armor"
+			},
+			{
+				Value: 2,
+				Name: "Weapon"
+			},
+			{
+				Value: 3,
+				Name: "Tool"
+			},
+			{
+				Value: 4,
+				Name: "Save"
+			},
+			{
+				Value: 5,
+				Name: "Skill"
+			}
+		];
 
 		self.proficiencies = _i.ko.observableArray(
 			_i.ko.utils.arrayMap(self.proficiencies(), function(prof) {
@@ -125,14 +154,53 @@ define(function(require) {
 			});
 		};
 
+		self.addFeature = function() {
+			self.features.push({
+				FeatureId: 0,
+				Name: "",
+				Description: "",
+				ActionType: "",
+				RecoveryType: "",
+				LevelGained: 0,
+				ClassId: self.classId,
+				LevelCount: self.levelCount()
+			});
+		};
+
 		self.save = function() {
 			var profsToSave = self.proficiencies();
 
 			_i.charajax.put('/api/AddProficiencies', profsToSave).done(function(response) {
 				console.log('Added Proficiency ---> ' + response);
 			});
-			self.lastSavedJson(JSON.stringify(ko.toJS(self.proficiencies), null, 2));
 		};
 
+		self.saveFeature = function() {
+			var featuresToSave = self.features();
+
+			_i.charajax.put('/api/AddFeatureList', featuresToSave).done(function(response) {
+				console.log('Added Features ---> ' + response);
+			});
+		};
+
+		self.activate = function(id) {
+			id = 1;
+			_i.system.log('Master View ' + id + ' Activated');
+			return loadObservables(id);
+		}
+
+		function deactivate() {
+			_i.system.log('Master View ' + self.masterVm().id + ' Deactivated');
+		}
+
+		function loadObservables(id) {
+			self.masterVm({
+				id: id,
+				name: 'Master'
+			});
+		}
+
 	};
+
+
 });
