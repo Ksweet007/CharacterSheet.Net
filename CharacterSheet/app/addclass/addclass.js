@@ -184,9 +184,14 @@ define(function(require) {
 		};
 
 		self.activate = function(id) {
-			id = 1;
-			_i.system.log('Master View ' + id + ' Activated');
-			return loadObservables(id);
+			self.classId = id;
+			return self.getPageData().done(function(response) {
+				_i.system.log('Master View ' + id + ' Activated');
+				loadObservables(id);
+			});
+
+			// _i.system.log('Master View ' + id + ' Activated');
+			// return loadObservables(id);
 		}
 
 		function deactivate() {

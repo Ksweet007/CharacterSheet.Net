@@ -1,4 +1,17 @@
 <div>
     <h4><span data-bind="text: firstVm().name" /></h4>
     <h5>Master Id <span data-bind="text: firstVm().id" /></h5>
+    <div class="col-md-2">
+        <div style="padding-top: 69px;">
+            <ul class="well nav nav-pills nav-stacked">
+                <li class="nav-header">Skills</li>
+                <!-- ko foreach: skills-->
+                <li>
+                    <input type="checkbox" data-bind="checkedValue:$data, checked:$root.chosenSkills">
+                    <span data-bind="text:name"></span>
+                </li>
+                <!-- /ko -->
+            </ul>
+        </div>
+    </div>
 </div>
