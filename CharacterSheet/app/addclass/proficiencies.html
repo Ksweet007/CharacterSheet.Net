@@ -1,0 +1,47 @@
+﻿﻿<div>
+    <h4><span data-bind="text: secondVm().name" /></h4>
+     <!--<h5>Master Id <span data-bind="text: secondVm().id" /></h5>-->
+     <div class="col-md-2" style="padding: 15px;">
+         <div>
+             <ul class="well nav nav-pills nav-stacked">
+                 <li class="nav-header">Skills</li>
+                 <!-- ko foreach: skills-->
+                 <li>
+                     <input type="checkbox" data-bind="checkedValue:$data, checked:$root.chosenSkills">
+                     <span data-bind="text:name"></span>
+                 </li>
+                 <!-- /ko -->
+             </ul>
+         </div>
+     </div>
+    <div class="col-md-5" style="padding: 15px;">
+        <div class="well">
+            <div>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Prof Type</th>
+                        <th>Name</th>
+                    </tr>
+                    <tbody>
+                    <!-- ko if:armorProfList().length > 0 -->
+                    <tr>
+                        <td class="col-xs-2">
+                            
+                            <select data-bind="options: armorProfList, optionsText: 'Name'  "></select>
+                        </td>
+                        <td class="col-xs-4">
+                            <label>Armor</label>
+                        </td>
+                    </tr>
+                    <!-- /ko -->
+                    </tbody>
+                </table>
+            </div>
+            <br />
+            <div>
+                <button class="btn btn-default" data-bind='click: addProf'>Add Proficiencies</button>
+                <button class="btn btn-default" data-bind='click: save'>Save to JSON</button>
+            </div>
+        </div>
+    </div>
+</div>

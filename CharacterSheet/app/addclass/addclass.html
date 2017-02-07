@@ -1,25 +1,13 @@
 <section class="knockout-samples">
     <div>
-        <div class="col-md-2">
-            <div style="padding-top: 69px;">
-                <ul class="well nav nav-pills nav-stacked">
-                    <li class="nav-header">Skills</li>
-                    <!-- ko foreach: skills-->
-                    <li>
-                        <input type="checkbox" data-bind="checkedValue:$data, checked:$root.chosenSkills">
-                        <span data-bind="text:name"></span>
-                    </li>
-                    <!-- /ko -->
-                </ul>
-            </div>
+        <div class="page-header">
+            <h4><span data-bind="text: masterVm().name"></span></h4>
         </div>
 
-        <div class="col-md-10" style="padding: 0">
+        <div style="padding: 0">
             <div>
-                <h1>Add Class</h1>
-                <div class="well row" style="margin: 0">
+                <div class="well-sm row" style="margin: 2px">
                     <div class="col-md-4">
-                        <h1 data-bind="text:name"></h1>
                         <div class="form-group">
                             <label>Class Name:</label>
                             <span data-bind="text: name" />
@@ -32,6 +20,8 @@
                             <label>Primary Ability:</label>
                             <span data-bind="text: data.primaryability" />
                         </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Hit Die Per Level:</label>
                             <span data-bind="text: data.hitdieperlevel" />
@@ -44,69 +34,20 @@
                             <label>HP At Higher Levels:</label>
                             <span data-bind="text: data.hpathigherlevels" />
                         </div>
-                        <button data-bind="click:addClass" class="btn btn-default">Submit Class</button>
                     </div>
-                </div>
-            </div>
-            <div>
-                <h1>Add Profs</h1>
-                <div class="well">
-                    <div>
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>Prof Type</th>
-                                <th>Name</th>
-                            </tr>
-                            <tbody data-bind = "foreach:proficiencies">
-                                <tr>
-                                    <td class="col-xs-4">
-                                        <select data-bind="options: proficiencyTypeList, optionsText: 'Name', value:ProficiencytypeId, optionsValue: 'Value'  "></select>
-                                    </td>
-                                    <td class="col-xs-4">
-                                        <input type="text" class="form-control" data-bind='textInput: Name' />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <br/>
-                    <div>
-                        <button class="btn btn-default" data-bind='click: addProf'>Add Proficiencies</button>
-                        <button class="btn btn-default" data-bind='click: save'>Save to JSON</button>
+                    <div class="col-md-4">
+                        
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-2">
-            <div>
-                <h1>Add Features</h1>
-                <div class="well">
-                    <div>
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>Prof Type</th>
-                                <th>Name</th>
-                            </tr>
-                            <tbody data-bind = "foreach:proficiencies">
-                                <tr>
-                                    <td class="col-xs-4">
-                                        <select data-bind="options: proficiencyTypeList, optionsText: 'Name', value:ProficiencytypeId, optionsValue: 'Value'  "></select>
-                                    </td>
-                                    <td class="col-xs-4">
-                                        <input type="text" class="form-control" data-bind='textInput: Name' />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <br/>
-                    <div>
-                        <button class="btn btn-default" data-bind='click: addProf'>Add Feature Row</button>
-                        <button class="btn btn-default" data-bind='click: save'>Save Features</button>
-                    </div>
-                </div>
-            </div>
+        <ul class="nav nav-tabs" data-bind="foreach: router.navigationModel">
+            <li data-bind="css: { active: isActive }"><a data-bind="attr: { href: dynamicHash }, text: title" /></li>
+        </ul>
+
+        <div class="tab-content" id="content">
+            <!--ko router: {router: router}--><!--/ko-->
         </div>
 
     </div>

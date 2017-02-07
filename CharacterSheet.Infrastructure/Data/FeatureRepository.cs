@@ -24,6 +24,22 @@ namespace CharacterSheet.Infrastructure.Data
             return features.ToList();
         }
 
+        public void AddProficiencies(IList<Feature> features)
+        {
+            _db.Features.AddRange(features);
+            _db.SaveChanges();
+        }
+
+        public void AddProficiency(Feature feature)
+        {
+            if (feature.FeatureId == 0)
+            {
+                _db.Features.Add(feature);
+            }
+
+            _db.SaveChanges();
+        }
+
 
     }
 }

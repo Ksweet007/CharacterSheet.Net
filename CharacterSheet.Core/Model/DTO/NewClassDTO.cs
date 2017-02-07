@@ -15,6 +15,7 @@ namespace CharacterSheet.Core.Model.DTO
         public IList<Skill> skills { get; set; }
         public IList<Skill> ClassSkills { get; set; }
         public IList<Proficiency> Proficiencies { get; set; }
+        public string ProficiencyType { get; set; }
 
     }
 }

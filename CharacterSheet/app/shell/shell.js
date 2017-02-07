@@ -58,15 +58,13 @@ define(['plugins/router', 'durandal/app'], function(router, app, vemod) {
 					hash: '#classdetails',
 					ident: "classdetails"
 				},
-				{
-					route: 'addclass(/:id)',
-					title: 'Add Class',
-					moduleId: 'addclass/addclass',
-					nav: true,
-					hash: '#addclass',
-					ident: 'addclass'
-				}
-
+		        {
+		            route: 'addclass/:id*details',
+		            title: 'Add Class',
+		            moduleId: 'addclass/addclass',
+		            hash: '#addclass/:id',
+		            ident: 'addclass'
+		        }
 			]).buildNavigationModel();
 
 			return router.activate();
