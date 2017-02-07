@@ -22,16 +22,18 @@
                         <th>Prof Type</th>
                         <th>Name</th>
                     </tr>
-                    <tbody data-bind="foreach:proficiencies">
-                        <tr>
-                            <td class="col-xs-2">
-                                <label data-bind="text:Name"></label>
-                                <select data-bind="options: proficiencyTypeList, optionsText: 'Name', value:ProficiencytypeId, optionsValue: 'Value'  "></select>
-                            </td>
-                            <td class="col-xs-4">
-                                <input type="text" class="form-control" data-bind='textInput: Name' />
-                            </td>
-                        </tr>
+                    <tbody>
+                    <!-- ko if:armorProfList().length > 0 -->
+                    <tr>
+                        <td class="col-xs-2">
+                            
+                            <select data-bind="options: armorProfList, optionsText: 'Name'  "></select>
+                        </td>
+                        <td class="col-xs-4">
+                            <label>Armor</label>
+                        </td>
+                    </tr>
+                    <!-- /ko -->
                     </tbody>
                 </table>
             </div>

@@ -17,7 +17,6 @@
         self.classId = null;
         self.name = _i.ko.observable('');
 
-        /*NEED TO ADD CLASS-PROFICIENCY INFORMATION*/
         /*PROFICIENCIES*/
         self.proficiencies = _i.ko.observableArray([]);
         self.skills = _i.ko.observableArray([]);
