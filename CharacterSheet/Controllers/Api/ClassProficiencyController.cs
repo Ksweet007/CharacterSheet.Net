@@ -1,40 +1,22 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
-using CharacterSheet.Core.Interfaces;
 using CharacterSheet.Core.Model;
 using CharacterSheet.Core.Model.DTO;
 using CharacterSheet.Infrastructure.Data;
 
-
 namespace CharacterSheet.Controllers.Api
 {
-    public class ClassController : ApiController
+    public class ClassProficiencyController : ApiController
     {
-
         private readonly CharacterClassRepository _characterClassRepository;
         
-        public ClassController()
+        public ClassProficiencyController()
         {
             _characterClassRepository = new CharacterClassRepository();
         }
 
         [HttpGet]
-        [Route("api/GetClassList")]
-        public IHttpActionResult GetClassList()
-        {
-            return Ok(_characterClassRepository.GetClassList());
-        }
-
-        [HttpGet]
-        [Route("api/GetClass/{classId}")]
-        public IHttpActionResult GetClass(int classId)
-        {
-            return Ok(_characterClassRepository.GetClassById(classId));
-        }
-
-        [HttpGet]
-        [Route("api/GetSheetFields/{classId}")]
+        [Route("api/GetClassProficiencies/{classId}")]
         public IHttpActionResult GetSheetFields(int classId)
         {
             var cls = _characterClassRepository.GetClassById(classId);
@@ -58,35 +40,17 @@ namespace CharacterSheet.Controllers.Api
             return Ok(mappedClass);
         }
 
-        [HttpPost]
-        [Route("api/EditClass")]
-        public IHttpActionResult EditClass([FromBody]string value)
-        {
-            return Ok();
-        }
-
         [HttpPut]
-        [Route("api/AddClass")]
-        public IHttpActionResult AddNewClass(Class classToAdd)
+        [Route("api/AddProficiencies")]
+        public IHttpActionResult AddNewProficiencies(IList<Proficiency> profsToAdd)
         {
-            var addedClass = _characterClassRepository.CreateClass(classToAdd);
-
-            return Ok(addedClass);
-        }
-
-        [HttpPut]
-        [Route("api/AddClassList")]
-        public IHttpActionResult AddNewClassList(IList<Class> classesToAdd)
-        {
-            foreach (var item in classesToAdd)
+            foreach (var item in profsToAdd)
             {
-                _characterClassRepository.CreateClass(item);
+                _characterClassRepository.AddProficiency(item);
             }
 
-            return Ok(classesToAdd);
+            return Ok(profsToAdd);
         }
-
-
 
 
     }

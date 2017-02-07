@@ -10,23 +10,16 @@ define(function(require) {
 		router: require('plugins/router'),
 		system: require('durandal/system')
 	};
-	return function() {
+	return function () {
 		var self = this;
 		self.masterVm = _i.ko.observable();
 		self.router = _i.router
 			.createChildRouter()
-			.makeRelative({
-				moduleId: 'addclass',
-				fromParent: true,
-				dynamicHash: ':id'
-			})
+			.makeRelative({moduleId: 'addclass', fromParent: true, dynamicHash: ':id'})
 			.map([{
-				route: ['features', ''],
-				moduleId: 'features',
-				title: 'Features',
-				nav: true,
-				hash: '#features'
-			}]).buildNavigationModel();
+			    route: ['features', ''], moduleId: 'features', title: 'Features', nav: true, hash: '#features'},
+			    { route: ['proficiencies'], moduleId: 'proficiencies', title: 'Proficiencies', nav: true }
+			]).buildNavigationModel();
 
 		self.data = null;
 		self.classId = null;
@@ -187,21 +180,18 @@ define(function(require) {
 			self.classId = id;
 			return self.getPageData().done(function(response) {
 				_i.system.log('Master View ' + id + ' Activated');
-				loadObservables(id);
+				self.loadObservables(id);
 			});
-
-			// _i.system.log('Master View ' + id + ' Activated');
-			// return loadObservables(id);
 		}
 
-		function deactivate() {
-			_i.system.log('Master View ' + self.masterVm().id + ' Deactivated');
+		self.deactivate = function() {
+			return _i.system.log('Master View ' + self.masterVm().id + ' Deactivated');
 		}
 
-		function loadObservables(id) {
+		self.loadObservables = function(id) {
 			self.masterVm({
 				id: id,
-				name: 'Master'
+				name: 'Add Class - ' + self.name
 			});
 		}
 
