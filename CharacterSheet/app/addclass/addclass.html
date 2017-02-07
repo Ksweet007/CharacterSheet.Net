@@ -57,7 +57,7 @@
                                 <th>Prof Type</th>
                                 <th>Name</th>
                             </tr>
-                            <tbody data-bind = "foreach:proficienciesListToBind">
+                            <tbody data-bind = "foreach:proficiencies">
                                 <tr>
                                     <td class="col-xs-4">
                                         <select data-bind="options: proficiencyTypeList, optionsText: 'Name', value:ProficiencytypeId, optionsValue: 'Value'  "></select>
@@ -77,5 +77,37 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-2">
+            <div>
+                <h1>Add Features</h1>
+                <div class="well">
+                    <div>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Prof Type</th>
+                                <th>Name</th>
+                            </tr>
+                            <tbody data-bind = "foreach:proficiencies">
+                                <tr>
+                                    <td class="col-xs-4">
+                                        <select data-bind="options: proficiencyTypeList, optionsText: 'Name', value:ProficiencytypeId, optionsValue: 'Value'  "></select>
+                                    </td>
+                                    <td class="col-xs-4">
+                                        <input type="text" class="form-control" data-bind='textInput: Name' />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br/>
+                    <div>
+                        <button class="btn btn-default" data-bind='click: addProf'>Add Feature Row</button>
+                        <button class="btn btn-default" data-bind='click: save'>Save Features</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>

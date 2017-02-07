@@ -59,7 +59,7 @@ define(['plugins/router', 'durandal/app'], function(router, app, vemod) {
 					ident: "classdetails"
 				},
 				{
-					route: 'addclass',
+					route: 'addclass(/:id)',
 					title: 'Add Class',
 					moduleId: 'addclass/addclass',
 					nav: true,
