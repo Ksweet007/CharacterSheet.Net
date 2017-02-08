@@ -35,7 +35,6 @@
             Value: 5, Name: "Skill"
         }];
 
-
         self.activate = function (id) {
             self.classId = id;
             return self.getClassData().done(function (response) {
@@ -62,10 +61,15 @@
                 }
                 _i.list.sortAlphabetically(self.skills());
 
+                self.armorProfList = _i.ko.observableArray(self.proficiencies().filter(function(item) {
+                    return item.ProficiencytypeId === 1;
+                }));
+                
 
                 self.armorProfList = _i.ko.observableArray(self.proficiencies().filter(function(item) {
                     return item.ProficiencytypeId === 1;
                 }));
+
                 self.weaponProfList = _i.ko.observableArray(self.proficiencies().filter(function (item) {
                     return item.ProficiencytypeId === 2;
                 }));
@@ -79,15 +83,12 @@
                     return item.ProficiencytypeId === 5;
                 }));
 
-                
+
                 deferred.resolve();
             });
 
             return deferred;
         };
-
-
-
 
         self.deactivate = function () {
             return _i.system.log('Second Tab Deactivated');

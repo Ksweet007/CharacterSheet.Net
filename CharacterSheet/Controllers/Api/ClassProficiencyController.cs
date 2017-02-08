@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using CharacterSheet.Core.Model;
 using CharacterSheet.Core.Model.DTO;
@@ -19,22 +20,13 @@ namespace CharacterSheet.Controllers.Api
         [Route("api/GetClassProficiencies/{classId}")]
         public IHttpActionResult GetSheetFields(int classId)
         {
-            var cls = _characterClassRepository.GetClassById(classId);
-            var allSkills = _characterClassRepository.GetAllSkills();
-            var proficiencyList = _characterClassRepository.GetAllProfs();
-
+            var clsSkills = _characterClassRepository.GetClassSkills(classId);
+            var clsProficiencies = _characterClassRepository.GetClassProficiencies(classId);
+            
             var mappedClass = new NewClassDTO
             {
-                classId = cls.classId,
-                name = cls.name,
-                description = cls.description,
-                primaryability = cls.primaryability,
-                hitdieperlevel = cls.hitdieperlevel,
-                hpatfirstlevel = cls.hpatfirstlevel,
-                hpathigherlevels = cls.hpathigherlevels,
-                skills = allSkills,
-                ClassSkills = cls.Skills,
-                Proficiencies = proficiencyList
+                ClassSkills = clsSkills,
+                Proficiencies = clsProficiencies
             };
 
             return Ok(mappedClass);

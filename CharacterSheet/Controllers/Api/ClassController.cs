@@ -33,14 +33,33 @@ namespace CharacterSheet.Controllers.Api
             return Ok(_characterClassRepository.GetClassById(classId));
         }
 
+
+        [HttpGet]
+        [Route("api/GetClassDetails/{classId}")]
+        public IHttpActionResult GetClassDetails(int classId)
+        {
+            var cls = _characterClassRepository.GetClassById(classId);
+            var mappedClass = new NewClassDTO
+            {
+                classId = cls.classId,
+                name = cls.name,
+                description = cls.description,
+                primaryability = cls.primaryability,
+                hitdieperlevel = cls.hitdieperlevel,
+                hpatfirstlevel = cls.hpatfirstlevel,
+                hpathigherlevels = cls.hpathigherlevels,
+            };
+
+            return Ok(mappedClass);
+        }
+
         [HttpGet]
         [Route("api/GetSheetFields/{classId}")]
         public IHttpActionResult GetSheetFields(int classId)
         {
             var cls = _characterClassRepository.GetClassById(classId);
             var allSkills = _characterClassRepository.GetAllSkills();
-            var proficiencyList = _characterClassRepository.GetAllProfs();
-
+            
             var mappedClass = new NewClassDTO
             {
                 classId = cls.classId,
@@ -52,7 +71,7 @@ namespace CharacterSheet.Controllers.Api
                 hpathigherlevels = cls.hpathigherlevels,
                 skills = allSkills,
                 ClassSkills = cls.Skills,
-                Proficiencies = proficiencyList
+                Proficiencies = cls.Proficiencies
             };
 
             return Ok(mappedClass);

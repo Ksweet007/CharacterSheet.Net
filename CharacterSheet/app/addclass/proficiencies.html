@@ -23,14 +23,14 @@
                         <th>Name</th>
                     </tr>
                     <tbody>
-                    <!-- ko if:armorProfList().length > 0 -->
+                    <!-- ko foreach:profTypeList -->
                     <tr>
                         <td class="col-xs-2">
-                            
-                            <select data-bind="options: armorProfList, optionsText: 'Name'  "></select>
+                            <label data-bind='text: Name'></label>
+                            <!-- <select data-bind="options: armorProfList, optionsText: 'Name'  "></select> -->
                         </td>
                         <td class="col-xs-4">
-                            <label>Armor</label>
+                            <label data-bind='text: Name'></label>
                         </td>
                     </tr>
                     <!-- /ko -->
