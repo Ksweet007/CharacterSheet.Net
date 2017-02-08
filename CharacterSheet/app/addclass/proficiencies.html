@@ -8,7 +8,7 @@
                 <li class="nav-header">Skills</li>
                 <!-- ko foreach: skills-->
                 <li>
-                    <input type="checkbox" data-bind="checkedValue:$data, checked:$root.chosenSkills">
+                    <input type="checkbox" value="" data-bind="checkedValue:$data.skillId, checked:$parent.chosenSkills">
                     <span data-bind="text:name"></span>
                 </li>
                 <!-- /ko -->
@@ -30,10 +30,8 @@
                                 <span data-bind="text:ProficiencyType"></span>
                             </td>
                             <td class="col-xs-2">
-                                <!--ko foreach: ProficiencyList-->
-                                <input type="checkbox" data-bind="checkedValue:$data, checked:$root.chosenProficiencies">
-                                <span data-bind="text:Name"></span>
-                                <!--/ko-->
+                                <!-- <input type="checkbox" data-bind="checkedValue:$data, checked:$root.chosenProficiencies"> -->
+                                <span data-bind="text:ProficiencyList"></span>
                             </td>
                         </tr>
                         <!-- /ko -->

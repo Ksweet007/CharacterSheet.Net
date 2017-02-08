@@ -38,7 +38,20 @@ namespace CharacterSheet.Infrastructure
         public IList<Skill> GetClassSkillsById(int classId)
         {
             return  _characterClassRepository.GetClassSkills(classId);
-        } 
+        }
+
+        public ClassSkillViewModel GetClassSkillsAndAllSkills(int classId)
+        {
+            var clsSkills = classId > 0 ? _characterClassRepository.GetClassSkills(classId) : new List<Skill>();
+            var allSkills = _characterClassRepository.GetAllSkills();
+
+            return new ClassSkillViewModel
+            {
+                ClassSkills = clsSkills,
+                AllSkills = allSkills
+            };
+        }
+
 
     }
 }
