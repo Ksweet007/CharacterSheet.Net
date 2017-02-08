@@ -23,15 +23,18 @@
                         <th>Name</th>
                     </tr>
                     <tbody>
-                    <!-- ko foreach:classProficiencies -->
+                    <!-- ko foreach:proficiencies() -->
                     <tr>
                         <td class="col-xs-2">
-                            <label data-bind='text: Name'></label>
+                          <!--ko foreach: $data-->
+                            <span data-bind="text:Name"></span>
+                            <input type="checkbox" data-bind="checkedValue:$data, checked:$root.chosenProficiencies">
+                            <!--/ko-->
                         </td>
                         <td class="col-xs-4">
-                          <!--ko foreach: proficiencyList-->
-                            <label data-bind='text: Name'></label>
-                          <!--/ko-->
+                          <!--ko foreach: $data-->
+                            <span data-bind="text:Name"></span>
+                            <!--/ko-->
                         </td>
                     </tr>
                     <!-- /ko -->

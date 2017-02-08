@@ -22,10 +22,14 @@ define(function(require) {
 		self.proficiencies = _i.ko.observableArray([]);
 		self.skills = _i.ko.observableArray([]);
 		self.chosenSkills = _i.ko.observableArray([]);
+    self.chosenProficiencies = _i.ko.observableArray([]);
 		self.classSkills = _i.ko.observableArray([]);
 		self.classProfs = _i.ko.observableArray([]);
 		self.classProfList = _i.ko.observableArray([]);
 		self.armorProfList = _i.ko.observableArray([]);
+    self.weaponProfList = _i.ko.observableArray([]);
+    self.saveProfList = _i.ko.observableArray([]);
+    self.toolProfList = _i.ko.observableArray([]);
 
 		self.profTypeList = [{
 			Value: 1,
@@ -85,11 +89,10 @@ define(function(require) {
 			_i.charajax.getJSON('api/GetClassProficiencies/' + self.classId).done(function(response) {
 				self.data = response;
 				self.name = response.name;
-				self.proficiencies(response);
-				// self.proficiencies().forEach(function(item) {
-				// 	item.proficiencyTypeList = self.profTypeList;
-				// });
-
+				self.proficiencies.push(response.ArmorProficiencies);
+        self.proficiencies.push(response.SaveProficiencies);
+        self.proficiencies.push(response.WeaponProficiencies);
+        self.proficiencies.push(response.ToolProficiencies);
 
 				deferred.resolve();
 			});
