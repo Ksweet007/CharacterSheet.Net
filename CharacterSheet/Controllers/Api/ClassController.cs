@@ -39,6 +39,7 @@ namespace CharacterSheet.Controllers.Api
         public IHttpActionResult GetClassDetails(int classId)
         {
             var cls = _characterClassRepository.GetClassById(classId);
+            
             var mappedClass = new NewClassDTO
             {
                 classId = cls.classId,

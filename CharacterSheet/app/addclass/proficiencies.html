@@ -23,14 +23,15 @@
                         <th>Name</th>
                     </tr>
                     <tbody>
-                    <!-- ko foreach:profTypeList -->
+                    <!-- ko foreach:classProficiencies -->
                     <tr>
                         <td class="col-xs-2">
                             <label data-bind='text: Name'></label>
-                            <!-- <select data-bind="options: armorProfList, optionsText: 'Name'  "></select> -->
                         </td>
                         <td class="col-xs-4">
+                          <!--ko foreach: proficiencyList-->
                             <label data-bind='text: Name'></label>
+                          <!--/ko-->
                         </td>
                     </tr>
                     <!-- /ko -->
