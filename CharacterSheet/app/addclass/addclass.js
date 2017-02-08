@@ -18,8 +18,10 @@ define(function(require) {
 			.makeRelative({moduleId: 'addclass', fromParent: true, dynamicHash: ':id'})
 			.map([{
 			    route: ['features', ''], moduleId: 'features', title: 'Features', nav: true, hash: '#features'},
-			    { route: ['proficiencies'], moduleId: 'proficiencies', title: 'Proficiencies', nav: true }
+			    { route: ['proficiencies'], moduleId: 'proficiencies', title: 'Proficiencies', nav: true },
+				{ route: ['classinfo'], moduleId: 'classinfo', title: 'Class Info', nav: true }
 			]).buildNavigationModel();
+
 
 		self.data = null;
 		self.classId = null;
@@ -33,7 +35,7 @@ define(function(require) {
 
 		/*PROFICIENCIES*/
 		self.proficiencies = _i.ko.observableArray([]);
-
+		
 		/*FEATURES*/
 		self.features = _i.ko.observableArray([]);
 		self.levelCount = _i.ko.observableArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
@@ -68,23 +70,12 @@ define(function(require) {
 
 		self.getClassData = function() {
 			var deferred = _i.deferred.create();
-			_i.charajax.getJSON('api/GetSheetFields/' + self.classId).done(function(response) {
+			_i.charajax.getJSON('api/GetClassDetails/' + self.classId).done(function(response) {
 				self.classData = response;
 				self.data = response;
 				self.name = response.name;
 				self.classId = response.classId;
-				self.proficiencies(self.classData.Proficiencies);
-				self.proficiencies().forEach(function(item) {
-					item.proficiencyTypeList = self.profTypeList;
-				});
 
-				if (response.ClassSkills.length > 0) {
-					self.skills(response.ClassSkills);
-				} else {
-					self.skills(response.skills);
-				}
-
-				_i.list.sortAlphabetically(self.skills());
 				deferred.resolve();
 			});
 

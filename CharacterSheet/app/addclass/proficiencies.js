@@ -1,102 +1,144 @@
-﻿define(function (require) {
-    var _i = {
-        ko: require('knockout'),
-        $: require('jquery'),
-        search: require('_custom/services/search'),
-        charajax: require('_custom/services/WebAPI'),
-        app: require('durandal/app'),
-        list: require('_custom/services/listmanager'),
-        deferred: require('_custom/deferred'),
-        system: require('durandal/system')
-    };
+﻿
+define(function(require) {
+	var _i = {
+		ko: require('knockout'),
+		$: require('jquery'),
+		search: require('_custom/services/search'),
+		charajax: require('_custom/services/WebAPI'),
+		app: require('durandal/app'),
+		list: require('_custom/services/listmanager'),
+		deferred: require('_custom/deferred'),
+		system: require('durandal/system')
+	};
 
-    return function () {
-        var self = this;
-        self.secondVm = _i.ko.observable();
-        self.data = null;
-        self.classId = null;
-        self.name = _i.ko.observable('');
+	return function() {
+		var self = this;
+		self.secondVm = _i.ko.observable();
+		self.data = null;
+		self.classId = null;
+		self.name = _i.ko.observable('');
 
-        /*PROFICIENCIES*/
-        self.proficiencies = _i.ko.observableArray([]);
-        self.skills = _i.ko.observableArray([]);
-        self.chosenSkills = _i.ko.observableArray([]);
-        self.classSkills = _i.ko.observableArray([]);
+		/*PROFICIENCIES*/
+		self.proficiencies = _i.ko.observableArray([]);
+		self.skills = _i.ko.observableArray([]);
+		self.chosenSkills = _i.ko.observableArray([]);
+		self.chosenProficiencies = _i.ko.observableArray([]);
+		self.classSkills = _i.ko.observableArray([]);
+		self.classProfs = _i.ko.observableArray([]);
+		self.classProfList = _i.ko.observableArray([]);
+		self.armorProfList = _i.ko.observableArray([]);
+		self.weaponProfList = _i.ko.observableArray([]);
+		self.saveProfList = _i.ko.observableArray([]);
+		self.toolProfList = _i.ko.observableArray([]);
 
-        self.profTypeList = [{
-            Value: 1, Name: "Armor"
-        }, {
-            Value: 2, Name: "Weapon"
-        }, {
-            Value: 3, Name: "Tool"
-        }, {
-            Value: 4, Name: "Save"
-        }, {
-            Value: 5, Name: "Skill"
-        }];
+		self.profTypeList = [{
+			Value: 1,
+			Name: "Armor",
+		}, {
+			Value: 2,
+			Name: "Weapon"
+		}, {
+			Value: 3,
+			Name: "Tool"
+		}, {
+			Value: 4,
+			Name: "Save"
+		}, {
+			Value: 5,
+			Name: "Skill"
+		}];
 
+		self.activate = function(id) {
+			self.classId = id;
+			return self.getProficiencyData().done(function(response) {
+				_i.system.log('First Tab Activated');
+				self.loadObservables(id);
+			});
+		}
 
-        self.activate = function (id) {
-            self.classId = id;
-            return self.getClassData().done(function (response) {
-                _i.system.log('First Tab Activated');
-                self.loadObservables(id);
-            });
-        }
+		self.getProficiencyData = function() {
+			var deferred = _i.deferred.create();
+			var promise = _i.deferred.waitForAll(
+				self.getSkillData()
+			);
 
-        self.getClassData = function () {
-            var deferred = _i.deferred.create();
-            _i.charajax.getJSON('api/GetClassProficiencies/' + self.classId).done(function (response) {
-                self.classData = response;
-                self.data = response;
-                self.name = response.name;
-                self.classId = response.classId;
-                self.proficiencies(self.classData.Proficiencies);
-                self.proficiencies().forEach(function (item) {
-                    item.proficiencyTypeList = self.profTypeList;
-                });
-                if (response.ClassSkills.length > 0) {
-                    self.skills(response.ClassSkills);
-                } else {
-                    self.skills(response.skills);
+			promise.done(function() {
+				self.getClassData().done(function() {
+					deferred.resolve();
+				});
+			});
+
+			return deferred;
+		};
+
+		self.getSkillData = function() {
+			var promise = _i.deferred.create();
+			_i.charajax.getJSON('api/GetClassSkills/' + self.classId).done(function(response) {
+
+				self.skills(response);
+				_i.list.sortAlphabetically(self.skills());
+
+				promise.resolve();
+			});
+
+			return promise;
+		};
+
+		self.getClassData = function() {
+			var deferred = _i.deferred.create();
+			_i.charajax.getJSON('api/GetClassProficiencies/' + self.classId).done(function(response) {
+				self.data = response;
+				self.name = response.name;
+
+				if (response.ArmorProficiencies.length > 0) {
+					//self.proficiencies.push(response.ArmorProficiencies);
+					self.proficiencies.push({
+                        ProficiencyType: "Armor",
+                        ProficiencyList: response.ArmorProficiencies
+					});
+				}
+
+                if (response.SaveProficiencies.length > 0) {
+                    // self.proficiencies.push(response.SaveProficiencies);
+                    self.proficiencies.push({
+                        ProficiencyType: "Save",
+                        ProficiencyList: response.SaveProficiencies
+                    });
                 }
-                _i.list.sortAlphabetically(self.skills());
 
+                if (response.WeaponProficiencies.length > 0) {
+                    // self.proficiencies.push(response.WeaponProficiencies);
+                    self.proficiencies.push({
+                        ProficiencyType: "Weapon",
+                        ProficiencyList: response.WeaponProficiencies
+                    });
+                }
 
-                self.armorProfList = _i.ko.observableArray(self.proficiencies().filter(function(item) {
-                    return item.ProficiencytypeId === 1;
-                }));
-                self.weaponProfList = _i.ko.observableArray(self.proficiencies().filter(function (item) {
-                    return item.ProficiencytypeId === 2;
-                }));
-                self.toolProfList = _i.ko.observableArray(self.proficiencies().filter(function (item) {
-                    return item.ProficiencytypeId === 3;
-                }));
-                self.saveProfList = _i.ko.observableArray(self.proficiencies().filter(function (item) {
-                    return item.ProficiencytypeId === 4;
-                }));
-                self.skillProfList = _i.ko.observableArray(self.proficiencies().filter(function (item) {
-                    return item.ProficiencytypeId === 5;
-                }));
+                if (response.ToolProficiencies.length > 0) {
+                    // self.proficiencies.push(response.ToolProficiencies);
+                    self.proficiencies.push({
+                        ProficiencyType: "Tool",
+                        ProficiencyList: response.ToolProficiencies
+                    });
+                }
 
-                
-                deferred.resolve();
-            });
+				deferred.resolve();
+			});
 
-            return deferred;
-        };
+			return deferred;
+		};
 
+		self.deactivate = function() {
+			return _i.system.log('Second Tab Deactivated');
+		}
 
+		self.loadObservables = function(id) {
+			self.secondVm({
+				id: id,
+				name: 'Proficiencies'
+			});
+		}
 
-
-        self.deactivate = function () {
-            return _i.system.log('Second Tab Deactivated');
-        }
-
-        self.loadObservables = function (id) {
-            self.secondVm({ id: id, name: 'Proficiencies' });
-        }
-
-    };
+	};
 
 });

@@ -27,7 +27,10 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator','knockout','_c
 
     app.configurePlugins({
         router:true,
-        dialog: true
+        dialog: true,
+        widget:{
+            kinds:['expander']
+        }
     });
 
     app.start().then(function() {

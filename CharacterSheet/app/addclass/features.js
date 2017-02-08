@@ -18,7 +18,6 @@ define(function(require) {
 		self.displayName = "Add Class";
 		self.name = _i.ko.observable('');
 
-
         self.activate = function(id) {
             self.classId = id;
             return self.getClassData().done(function(response) {

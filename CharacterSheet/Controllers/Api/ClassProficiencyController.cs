@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 using CharacterSheet.Core.Model;
-using CharacterSheet.Core.Model.DTO;
+using CharacterSheet.Infrastructure;
 using CharacterSheet.Infrastructure.Data;
 
 namespace CharacterSheet.Controllers.Api
@@ -9,35 +9,30 @@ namespace CharacterSheet.Controllers.Api
     public class ClassProficiencyController : ApiController
     {
         private readonly CharacterClassRepository _characterClassRepository;
-        
+        private readonly ProficiencyService _proficiencyService;
+
         public ClassProficiencyController()
         {
             _characterClassRepository = new CharacterClassRepository();
+            _proficiencyService = new ProficiencyService();
         }
 
         [HttpGet]
         [Route("api/GetClassProficiencies/{classId}")]
-        public IHttpActionResult GetSheetFields(int classId)
+        public IHttpActionResult GetClassProficiencyList(int classId)
         {
-            var cls = _characterClassRepository.GetClassById(classId);
-            var allSkills = _characterClassRepository.GetAllSkills();
-            var proficiencyList = _characterClassRepository.GetAllProfs();
+            var classProficiencies = _proficiencyService.GetProficienciesByClassId(classId);
 
-            var mappedClass = new NewClassDTO
-            {
-                classId = cls.classId,
-                name = cls.name,
-                description = cls.description,
-                primaryability = cls.primaryability,
-                hitdieperlevel = cls.hitdieperlevel,
-                hpatfirstlevel = cls.hpatfirstlevel,
-                hpathigherlevels = cls.hpathigherlevels,
-                skills = allSkills,
-                ClassSkills = cls.Skills,
-                Proficiencies = proficiencyList
-            };
+            return Ok(classProficiencies);
+        }
 
-            return Ok(mappedClass);
+        [HttpGet]
+        [Route("api/GetClassSkills/{classId}")]
+        public IHttpActionResult GetClassSkillList(int classId)
+        {
+            var skills = _proficiencyService.GetClassSkillsById(classId);
+
+            return Ok(skills);
         }
 
         [HttpPut]

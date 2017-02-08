@@ -6,7 +6,6 @@ namespace CharacterSheet.Core.Model
     {
         public int ProficiencyId { get; set; }
         public ProficiencyTypeId ProficiencytypeId { get; set; }
-        //public string ProficiencytypeId { get; set; }
         public string Name { get; set; }
     }
 }
