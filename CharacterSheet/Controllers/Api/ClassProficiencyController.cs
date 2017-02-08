@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
-using CharacterSheet.Core.Enums;
 using CharacterSheet.Core.Model;
-using CharacterSheet.Core.Model.DTO;
 using CharacterSheet.Infrastructure;
 using CharacterSheet.Infrastructure.Data;
 

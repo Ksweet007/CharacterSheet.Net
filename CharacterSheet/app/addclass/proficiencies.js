@@ -22,31 +22,31 @@ define(function(require) {
 		self.proficiencies = _i.ko.observableArray([]);
 		self.skills = _i.ko.observableArray([]);
 		self.chosenSkills = _i.ko.observableArray([]);
-    self.chosenProficiencies = _i.ko.observableArray([]);
+		self.chosenProficiencies = _i.ko.observableArray([]);
 		self.classSkills = _i.ko.observableArray([]);
 		self.classProfs = _i.ko.observableArray([]);
 		self.classProfList = _i.ko.observableArray([]);
 		self.armorProfList = _i.ko.observableArray([]);
-    self.weaponProfList = _i.ko.observableArray([]);
-    self.saveProfList = _i.ko.observableArray([]);
-    self.toolProfList = _i.ko.observableArray([]);
+		self.weaponProfList = _i.ko.observableArray([]);
+		self.saveProfList = _i.ko.observableArray([]);
+		self.toolProfList = _i.ko.observableArray([]);
 
 		self.profTypeList = [{
 			Value: 1,
 			Name: "Armor",
-        }, {
+		}, {
 			Value: 2,
 			Name: "Weapon"
-        }, {
+		}, {
 			Value: 3,
 			Name: "Tool"
-        }, {
+		}, {
 			Value: 4,
 			Name: "Save"
-        }, {
+		}, {
 			Value: 5,
 			Name: "Skill"
-        }];
+		}];
 
 		self.activate = function(id) {
 			self.classId = id;
@@ -75,10 +75,10 @@ define(function(require) {
 			var promise = _i.deferred.create();
 			_i.charajax.getJSON('api/GetClassSkills/' + self.classId).done(function(response) {
 
-          self.skills(response.Skills);
-		      _i.list.sortAlphabetically(self.skills());
+				self.skills(response);
+				_i.list.sortAlphabetically(self.skills());
 
-          promise.resolve();
+				promise.resolve();
 			});
 
 			return promise;
@@ -89,10 +89,38 @@ define(function(require) {
 			_i.charajax.getJSON('api/GetClassProficiencies/' + self.classId).done(function(response) {
 				self.data = response;
 				self.name = response.name;
-				self.proficiencies.push(response.ArmorProficiencies);
-        self.proficiencies.push(response.SaveProficiencies);
-        self.proficiencies.push(response.WeaponProficiencies);
-        self.proficiencies.push(response.ToolProficiencies);
+
+				if (response.ArmorProficiencies.length > 0) {
+					//self.proficiencies.push(response.ArmorProficiencies);
+					self.proficiencies.push({
+                        ProficiencyType: "Armor",
+                        ProficiencyList: response.ArmorProficiencies
+					});
+				}
+
+                if (response.SaveProficiencies.length > 0) {
+                    // self.proficiencies.push(response.SaveProficiencies);
+                    self.proficiencies.push({
+                        ProficiencyType: "Save",
+                        ProficiencyList: response.SaveProficiencies
+                    });
+                }
+
+                if (response.WeaponProficiencies.length > 0) {
+                    // self.proficiencies.push(response.WeaponProficiencies);
+                    self.proficiencies.push({
+                        ProficiencyType: "Weapon",
+                        ProficiencyList: response.WeaponProficiencies
+                    });
+                }
+
+                if (response.ToolProficiencies.length > 0) {
+                    // self.proficiencies.push(response.ToolProficiencies);
+                    self.proficiencies.push({
+                        ProficiencyType: "Tool",
+                        ProficiencyList: response.ToolProficiencies
+                    });
+                }
 
 				deferred.resolve();
 			});
