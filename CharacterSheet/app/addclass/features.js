@@ -15,12 +15,16 @@ define(function(require) {
 		self.thirdVm = _i.ko.observable();
 		self.data = null;
 		self.classId = null;
-        self.RestTypeList =["Long Rest", "Short Rest"];
+        self.RestTypeList =[
+			{
+				Name:"Long Rest"
+			},{
+				Name:"Short Rest"
+			}];
 
 		/*FEATURES*/
 		self.features = _i.ko.observableArray([]);
-
-        self.features = _i.ko.observableArray(_i.ko.utils.arrayMap(self.features(), function(prof) {
+        self.featuresList = _i.ko.observableArray(_i.ko.utils.arrayMap(self.features(), function(prof) {
             return {
                 FeatureId : 0,
                 Name : '',
@@ -45,7 +49,12 @@ define(function(require) {
 		self.getFeatureData = function() {
             var deferred = _i.deferred.create();
 			return _i.charajax.getJSON('api/GetClassFeatures/' + self.classId).done(function(response) {
-                self.features(response);
+				response.forEach(function(item){
+					item.RestTypeList = self.RestTypeList;
+					item.RecoveryType = _i.ko.observable('');
+					self.features().push(item);
+				});
+
 
                 deferred.resolve();
 			});
@@ -70,7 +79,7 @@ define(function(require) {
             newObj.RecoveryType = '';
             newObj.Levelgained = 0;
             newObj.ClassId = self.classId;
-            newObj.RestTypeList = self.restTypeList;
+            newObj.RestTypeList = self.RestTypeList;
 
             self.features.push(newObj);
 		};
