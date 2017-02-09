@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
 using CharacterSheet.Core.Model;
 using CharacterSheet.Infrastructure.Data;
@@ -28,9 +24,8 @@ namespace CharacterSheet.Controllers
             return Ok(featureList);
         }
 
-
         [HttpPut]
-        [Route("api/AddFeatureList")]
+        [Route("api/AddFeatureList/")]
         public IHttpActionResult AddNewFeatureList(IList<Feature> featuresToAdd)
         {
             foreach (var item in featuresToAdd)

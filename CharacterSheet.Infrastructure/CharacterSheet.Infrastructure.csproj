@@ -52,7 +52,7 @@
     <Compile Include="Data\CharacterClassRepository.cs" />
     <Compile Include="Data\Contexts\CharacterSheetDbContext.cs" />
     <Compile Include="Data\FeatureRepository.cs" />
-    <Compile Include="ProficiencyService.cs" />
+    <Compile Include="Data\Services\ProficiencyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

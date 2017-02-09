@@ -9,23 +9,21 @@
                         <th>Name</th>
                     </tr>
                     <tbody>
-                        <!-- ko foreach:proficiencies() -->
+                        <!--ko foreach:features()-->
                         <tr>
-                            <td class="col-xs-1">
-                                <span data-bind="text:ProficiencyType"></span>
-                            </td>
-                            <td class="col-xs-2">
-                                <!-- <input type="checkbox" data-bind="checkedValue:$data, checked:$root.chosenProficiencies"> -->
+                            <!-- <td class="col-xs-1"><select class="form-control"data-bind="options: ProficiencyTypeList, optionsText:'Name', value:ProficiencyTypeId, optionsValue:'ProficiencyTypeId' "></select></td> -->
+                            <td class="col-xs-1"><select class="form-control"data-bind="options:RestTypeList, optionsText: 'Name', value: RestType, optionsValue: 'RestType' "></select></td>
+                            <!-- <td class="col-xs-2">
                                 <span data-bind="text:ProficiencyList"></span>
-                            </td>
+                            </td> -->
                         </tr>
-                        <!-- /ko -->
+                        <!--/ko-->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <div class="col-md-5" style="padding: 15px;">
+    <!-- <div class="col-md-5" style="padding: 15px;">
         <div class="well">
             <div>
                 <table class="table table-bordered">
@@ -34,13 +32,13 @@
                         <th>Name</th>
                     </tr>
                     <tbody>
-                        <!--ko foreach:proficienciesToAdd()-->
+
                         <tr>
                             <td class="col-xs-1"><select class="form-control"data-bind="options: ProficiencyTypeList, optionsText:'Name', value:ProficiencyTypeId, optionsValue:'ProficiencyTypeId' "></select></td>
 
                             <td class="col-xs-2"><input type="text" class="form-control" data-bind="value: Name" /></td>
                         </tr>
-                        <!--/ko-->
+
                     </tbody>
                 </table>
             </div>
@@ -50,5 +48,5 @@
                 <button class="btn btn-default" data-bind='click: addProficiencies'>Save</button>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
