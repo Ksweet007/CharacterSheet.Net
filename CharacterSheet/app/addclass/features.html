@@ -1,11 +1,54 @@
 <div>
-    <!--<h4><span data-bind="text: firstVm().name" /></h4>-->
-    <!--<h5>Master Id <span data-bind="text: firstVm().id" /></h5>-->
-    <div class="col-md-2">
-        <div>
-            <h1>Add Features</h1>
-
+    <!-- <h4><span data-bind="text: thirdVm().name" /></h4> -->
+    <div class="col-md-5" style="padding: 15px;">
+        <div class="well">
+            <div>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Prof Type</th>
+                        <th>Name</th>
+                    </tr>
+                    <tbody>
+                        <!-- ko foreach:proficiencies() -->
+                        <tr>
+                            <td class="col-xs-1">
+                                <span data-bind="text:ProficiencyType"></span>
+                            </td>
+                            <td class="col-xs-2">
+                                <!-- <input type="checkbox" data-bind="checkedValue:$data, checked:$root.chosenProficiencies"> -->
+                                <span data-bind="text:ProficiencyList"></span>
+                            </td>
+                        </tr>
+                        <!-- /ko -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+    <div class="col-md-5" style="padding: 15px;">
+        <div class="well">
+            <div>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Prof Type</th>
+                        <th>Name</th>
+                    </tr>
+                    <tbody>
+                        <!--ko foreach:proficienciesToAdd()-->
+                        <tr>
+                            <td class="col-xs-1"><select class="form-control"data-bind="options: ProficiencyTypeList, optionsText:'Name', value:ProficiencyTypeId, optionsValue:'ProficiencyTypeId' "></select></td>
 
+                            <td class="col-xs-2"><input type="text" class="form-control" data-bind="value: Name" /></td>
+                        </tr>
+                        <!--/ko-->
+                    </tbody>
+                </table>
+            </div>
+            <br />
+            <div>
+                <button class="btn btn-default" data-bind='click: addProf'>Add Row</button>
+                <button class="btn btn-default" data-bind='click: addProficiencies'>Save</button>
+            </div>
+        </div>
+    </div>
 </div>
