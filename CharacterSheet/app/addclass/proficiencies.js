@@ -1,4 +1,3 @@
-﻿
 define(function(require) {
 	var _i = {
 		ko: require('knockout'),
@@ -30,23 +29,15 @@ define(function(require) {
 		self.weaponProfList = _i.ko.observableArray([]);
 		self.saveProfList = _i.ko.observableArray([]);
 		self.toolProfList = _i.ko.observableArray([]);
+		self.proficienciesToAdd = _i.ko.observableArray([]);
 
-		self.profTypeList = [{
-			Value: 1,
-			Name: "Armor",
-		}, {
-			Value: 2,
-			Name: "Weapon"
-		}, {
-			Value: 3,
-			Name: "Tool"
-		}, {
-			Value: 4,
-			Name: "Save"
-		}, {
-			Value: 5,
-			Name: "Skill"
-		}];
+		self.proficienciesToAdd = _i.ko.observableArray(_i.ko.utils.arrayMap(self.proficienciesToAdd(), function(prof) {
+			return {
+				ProficiencyId:0,
+				Name:'',
+				ProficiencyTypeList:self.profTypeList
+			};
+		}));
 
 		self.activate = function(id) {
 			self.classId = id;
@@ -58,9 +49,7 @@ define(function(require) {
 
 		self.getProficiencyData = function() {
 			var deferred = _i.deferred.create();
-			var promise = _i.deferred.waitForAll(
-				self.getSkillData()
-			);
+			var promise = _i.deferred.waitForAll(self.getSkillData());
 
 			promise.done(function() {
 				self.getClassData().done(function() {
@@ -78,11 +67,11 @@ define(function(require) {
 				self.skills(response.AllSkills);
 				_i.list.sortAlphabetically(self.skills());
 
-                if(response.ClassSkills.length > 0){
-                    response.ClassSkills.forEach(function(item){
-                        self.chosenSkills().push(item.skillId);
-                    });
-                }
+				if (response.ClassSkills.length > 0) {
+					response.ClassSkills.forEach(function(item) {
+						self.chosenSkills().push(item.skillId);
+					});
+				}
 
 				promise.resolve();
 			});
@@ -97,52 +86,40 @@ define(function(require) {
 				self.name = response.name;
 
 				if (response.ArmorProficiencies.length > 0) {
-                    var classProfs =[];
-                    response.ArmorProficiencies.forEach(function(item){
-                        classProfs.push(item.Name);
-                    });
-
-					self.proficiencies.push({
-                        ProficiencyType: "Armor",
-                        ProficiencyList: classProfs.join(', ')
+					var classProfs = [];
+					response.ArmorProficiencies.forEach(function(item) {
+						classProfs.push(item.Name);
 					});
+
+					self.proficiencies.push({ProficiencyType: "Armor", ProficiencyList: classProfs.join(', ')});
 				}
 
-                if (response.SaveProficiencies.length > 0) {
-                    var classProfs =[];
-                    response.SaveProficiencies.forEach(function(item){
-                        classProfs.push(item.Name);
-                    });
+				if (response.SaveProficiencies.length > 0) {
+					var classProfs = [];
+					response.SaveProficiencies.forEach(function(item) {
+						classProfs.push(item.Name);
+					});
 
-                    self.proficiencies.push({
-                        ProficiencyType: "Save",
-                        ProficiencyList: classProfs.join(', ')
-                    });
-                }
+					self.proficiencies.push({ProficiencyType: "Save", ProficiencyList: classProfs.join(', ')});
+				}
 
-                if (response.WeaponProficiencies.length > 0) {
-                    var classProfs =[];
-                    response.WeaponProficiencies.forEach(function(item){
-                        classProfs.push(item.Name);
-                    });
+				if (response.WeaponProficiencies.length > 0) {
+					var classProfs = [];
+					response.WeaponProficiencies.forEach(function(item) {
+						classProfs.push(item.Name);
+					});
 
-                    self.proficiencies.push({
-                        ProficiencyType: "Weapon",
-                        ProficiencyList: classProfs.join(', ')
-                    });
-                }
+					self.proficiencies.push({ProficiencyType: "Weapon", ProficiencyList: classProfs.join(', ')});
+				}
 
-                if (response.ToolProficiencies.length > 0) {
-                    var classProfs =[];
-                    response.ToolProficiencies.forEach(function(item){
-                        classProfs.push(item.Name);
-                    });
+				if (response.ToolProficiencies.length > 0) {
+					var classProfs = [];
+					response.ToolProficiencies.forEach(function(item) {
+						classProfs.push(item.Name);
+					});
 
-                    self.proficiencies.push({
-                        ProficiencyType: "Tool",
-                        ProficiencyList: classProfs.join(', ')
-                    });
-                }
+					self.proficiencies.push({ProficiencyType: "Tool", ProficiencyList: classProfs.join(', ')});
+				}
 
 				deferred.resolve();
 			});
@@ -150,15 +127,50 @@ define(function(require) {
 			return deferred;
 		};
 
+		self.profTypeList = [
+			{
+				ProficiencyTypeId: 1,
+				Name: "Armor"
+			}, {
+				ProficiencyTypeId: 2,
+				Name: "Weapon"
+			}, {
+				ProficiencyTypeId: 3,
+				Name: "Tool"
+			}, {
+				ProficiencyTypeId: 4,
+				Name: "Save"
+			}, {
+				ProficiencyTypeId: 5,
+				Name: "Skill"
+			}
+		];
+
+		self.addProficiencies = function(obj, evt) {
+			//After saving update our list with return value
+			var profsToSave = self.proficiencies();
+
+			// _i.charajax.put('/api/AddProficiencies', profsToSave).done(function(response) {
+			// 	console.log('Added Proficiency ---> ' + response);
+			// });
+		};
+
+
+
+		self.addProf = function() {
+			var newObj = {};
+			newObj.ProficiencyId = 0;
+			newObj.ProficiencyTypeList = self.profTypeList;
+			newObj.Name = '';
+			self.proficienciesToAdd.push({ProficiencyId: 0,ProficiencyTypeId:0, ProficiencyTypeList: self.profTypeList, Name: ""});
+		};
+
 		self.deactivate = function() {
 			return _i.system.log('Second Tab Deactivated');
 		}
 
 		self.loadObservables = function(id) {
-			self.secondVm({
-				id: id,
-				name: 'Proficiencies'
-			});
+			self.secondVm({id: id, name: 'Proficiencies'});
 		}
 
 	};

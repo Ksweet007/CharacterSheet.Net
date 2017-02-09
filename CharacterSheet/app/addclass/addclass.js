@@ -103,13 +103,13 @@ define(function(require) {
 			});
 		};
 
-		self.save = function() {
-			var profsToSave = self.proficiencies();
-
-			_i.charajax.put('/api/AddProficiencies', profsToSave).done(function(response) {
-				console.log('Added Proficiency ---> ' + response);
-			});
-		};
+		// self.save = function() {
+		// 	var profsToSave = self.proficiencies();
+		//
+		// 	_i.charajax.put('/api/AddProficiencies', profsToSave).done(function(response) {
+		// 		console.log('Added Proficiency ---> ' + response);
+		// 	});
+		// };
 
 		self.saveFeature = function() {
 			var featuresToSave = self.features();
