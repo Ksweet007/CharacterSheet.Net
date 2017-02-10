@@ -15,7 +15,7 @@ define(function(require) {
 		self.masterVm = _i.ko.observable();
 		self.router = _i.router
 			.createChildRouter()
-			.makeRelative({moduleId: 'addclass', fromParent: true, dynamicHash: ':id'})
+			.makeRelative({moduleId: 'manageclass', fromParent: true, dynamicHash: ':id'})
 			.map([{
 			    route: ['features', ''], moduleId: 'features', title: 'Features', nav: true, hash: '#features'},
 			    { route: ['proficiencies'], moduleId: 'proficiencies', title: 'Proficiencies', nav: true },
@@ -25,17 +25,11 @@ define(function(require) {
 
 		self.data = null;
 		self.classId = null;
-		self.displayName = "Add Class";
+		self.displayName = "Manage Class";
 		self.name = _i.ko.observable('');
-		self.skills = _i.ko.observableArray([]);
-		self.chosenSkills = _i.ko.observableArray([]);
-		self.classSkills = _i.ko.observableArray([]);
-		self.profChoice = _i.ko.observable('');
 		self.lastSavedJson = ko.observable("");
 
-		/*PROFICIENCIES*/
-		self.proficiencies = _i.ko.observableArray([]);
-		
+
 		/*FEATURES*/
 		self.features = _i.ko.observableArray([]);
 		self.levelCount = _i.ko.observableArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
@@ -96,48 +90,6 @@ define(function(require) {
 
 		self.addClassForm = function() {}
 
-
-		self.profTypeList = [{
-				Value: 1,
-				Name: "Armor"
-			},
-			{
-				Value: 2,
-				Name: "Weapon"
-			},
-			{
-				Value: 3,
-				Name: "Tool"
-			},
-			{
-				Value: 4,
-				Name: "Save"
-			},
-			{
-				Value: 5,
-				Name: "Skill"
-			}
-		];
-
-		self.proficiencies = _i.ko.observableArray(
-			_i.ko.utils.arrayMap(self.proficiencies(), function(prof) {
-				return {
-					proficiencyId: prof.proficiencyId,
-					profTypeId: prof.profTypeId,
-					profName: prof.profName,
-					proficiencyTypeList: _i.ko.observableArray(prof.proficiencyTypeList)
-				};
-			}));
-
-		self.addProf = function(item, event) {
-			self.proficiencies.push({
-				ProficiencyId: 0,
-				ProficiencytypeId: 0,
-				Name: "",
-				proficiencyTypeList: self.profTypeList
-			});
-		};
-
 		self.addFeature = function() {
 			self.features.push({
 				FeatureId: 0,
@@ -151,13 +103,13 @@ define(function(require) {
 			});
 		};
 
-		self.save = function() {
-			var profsToSave = self.proficiencies();
-
-			_i.charajax.put('/api/AddProficiencies', profsToSave).done(function(response) {
-				console.log('Added Proficiency ---> ' + response);
-			});
-		};
+		// self.save = function() {
+		// 	var profsToSave = self.proficiencies();
+		//
+		// 	_i.charajax.put('/api/AddProficiencies', profsToSave).done(function(response) {
+		// 		console.log('Added Proficiency ---> ' + response);
+		// 	});
+		// };
 
 		self.saveFeature = function() {
 			var featuresToSave = self.features();
@@ -182,7 +134,7 @@ define(function(require) {
 		self.loadObservables = function(id) {
 			self.masterVm({
 				id: id,
-				name: 'Add Class - ' + self.name
+				name: 'Manage Class - ' + self.name
 			});
 		}
 

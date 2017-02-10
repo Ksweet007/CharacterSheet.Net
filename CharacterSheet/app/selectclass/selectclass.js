@@ -21,6 +21,7 @@ define(function(require) {
 		self.classFadeIn = function(elem) {
 			if (elem.nodeType === 1) _i.$(elem).hide().slideDown()
 		}
+		
 		self.classFadeOut = function(elem) {
 			if (elem.nodeType === 1) _i.$(elem).slideUp(function() {
 				$(elem).remove();

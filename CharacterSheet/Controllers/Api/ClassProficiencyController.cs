@@ -30,9 +30,9 @@ namespace CharacterSheet.Controllers.Api
         [Route("api/GetClassSkills/{classId}")]
         public IHttpActionResult GetClassSkillList(int classId)
         {
-            var skills = _proficiencyService.GetClassSkillsById(classId);
+            var clsSkills = _proficiencyService.GetClassSkillsAndAllSkills(classId);   
 
-            return Ok(skills);
+            return Ok(clsSkills);
         }
 
         [HttpPut]

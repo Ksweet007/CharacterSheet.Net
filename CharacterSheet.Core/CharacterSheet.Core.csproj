@@ -48,6 +48,7 @@
     <Compile Include="Model\AbilityScore.cs" />
     <Compile Include="Model\Class.cs" />
     <Compile Include="Model\ClassSkillAssoc.cs" />
+    <Compile Include="Model\DTO\ClassSkillViewModel.cs" />
     <Compile Include="Model\DTO\NewClassDTO.cs" />
     <Compile Include="Model\ClassProficiencyAssoc.cs" />
     <Compile Include="Model\DTO\ClassProficiencyViewModel.cs" />

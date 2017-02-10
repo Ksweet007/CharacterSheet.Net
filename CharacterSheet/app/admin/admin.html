@@ -2,10 +2,10 @@
   <div>
     <div class="col-md-2">
         <ul class="well nav nav-pills nav-stacked">
-            <li class="nav-header">Home</li>
+            <li class="nav-header">Admin</li>
             <!--ko foreach: classList-->
             <li>
-                <!-- <a href="#" data-bind="attr:{href: '#addclass/'+id}"></a> -->
+                <a href="#" data-bind="attr:{href: '#manageclass/'+classId}, text:name"></a>
             </li>
             <!--/ko-->
         </ul>

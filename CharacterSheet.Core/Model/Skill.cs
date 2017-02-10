@@ -12,6 +12,5 @@ namespace CharacterSheet.Core.Model
         public int skillId { get; set; }
         public string name { get; set; }
         public virtual AbilityScoreTypeValues abilityScoreId { get; set; }
-        //public virtual Class Class { get; set; }
     }
 }
