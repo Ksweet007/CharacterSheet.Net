@@ -243,4 +243,10 @@ panel-body.details{
 .navbar-toggle .icon-bar{
     background-color: white;
 }
+.desc{
+    white-space: pre-wrap;
+}
 
+#descriptiontable>tr>td{
+    padding:8px !important;
+}

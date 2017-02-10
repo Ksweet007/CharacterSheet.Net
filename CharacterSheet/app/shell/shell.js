@@ -43,13 +43,13 @@ define(['plugins/router', 'durandal/app'], function(router, app, vemod) {
 					nav: true,
 					ident: "classlist"
 				},
-				{
-					route: 'selectrace',
-					title: 'Race List',
-					moduleId: 'selectrace/selectrace',
-					nav: true,
-					ident: "selectrace"
-				},
+				// {
+				// 	route: 'selectrace',
+				// 	title: 'Race List',
+				// 	moduleId: 'selectrace/selectrace',
+				// 	nav: true,
+				// 	ident: "selectrace"
+				// },
 				{
 					route: 'classdetails/:id',
 					title: 'Class Details',
@@ -64,7 +64,15 @@ define(['plugins/router', 'durandal/app'], function(router, app, vemod) {
 		            moduleId: 'addclass/addclass',
 		            hash: '#addclass/:id',
 		            ident: 'addclass'
-		        }
+		        },
+				{
+					route: 'admin',
+					title: 'Admin',
+					moduleId: 'admin/admin',
+					nav:true,
+					hash:"#admin",
+					ident: 'admin'
+				}
 			]).buildNavigationModel();
 
 			return router.activate();

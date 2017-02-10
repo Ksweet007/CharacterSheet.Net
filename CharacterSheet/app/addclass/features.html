@@ -1,21 +1,19 @@
 <div>
-    <!-- <h4><span data-bind="text: thirdVm().name" /></h4> -->
     <div class="col-md-5" style="padding: 15px;">
         <div class="well">
             <div>
                 <table class="table table-bordered">
                     <tr>
-                        <th>Prof Type</th>
                         <th>Name</th>
+                        <th>Recovery</th>
                     </tr>
                     <tbody>
                         <!--ko foreach:features()-->
                         <tr>
-                            <!-- <td class="col-xs-1"><select class="form-control"data-bind="options: ProficiencyTypeList, optionsText:'Name', value:ProficiencyTypeId, optionsValue:'ProficiencyTypeId' "></select></td> -->
+                            <td class="col-xs-2">
+                                <span data-bind="text:Name"></span>
+                            </td>
                             <td class="col-xs-1"><select class="form-control"data-bind="options:RestTypeList, optionsText: 'Name', value: RecoveryType, optionsValue: 'Name' "></select></td>
-                            <!-- <td class="col-xs-2">
-                                <span data-bind="text:ProficiencyList"></span>
-                            </td> -->
                         </tr>
                         <!--/ko-->
                     </tbody>
@@ -23,30 +21,23 @@
             </div>
         </div>
     </div>
-    <!-- <div class="col-md-5" style="padding: 15px;">
+    <div class="col-md-5">
+        <!-- <h3 data-bind="text:Name"></h3> -->
         <div class="well">
             <div>
                 <table class="table table-bordered">
-                    <tr>
-                        <th>Prof Type</th>
-                        <th>Name</th>
-                    </tr>
-                    <tbody>
-
+                    <!--ko foreach:featuresknown()-->
+                    <tbody id="descriptiontable">
+                        <!--ko foreach: $data-->
                         <tr>
-                            <td class="col-xs-1"><select class="form-control"data-bind="options: ProficiencyTypeList, optionsText:'Name', value:ProficiencyTypeId, optionsValue:'ProficiencyTypeId' "></select></td>
-
-                            <td class="col-xs-2"><input type="text" class="form-control" data-bind="value: Name" /></td>
+                            <th data-bind="text:$data.key"></th>
+                            <td class="desc" data-bind="html:value"></td>
                         </tr>
-
+                        <!--/ko-->
                     </tbody>
+                    <!--/ko-->
                 </table>
             </div>
-            <br />
-            <div>
-                <button class="btn btn-default" data-bind='click: addProf'>Add Row</button>
-                <button class="btn btn-default" data-bind='click: addProficiencies'>Save</button>
-            </div>
         </div>
-    </div> -->
+    </div>
 </div>
