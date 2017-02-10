@@ -5,6 +5,7 @@ using CharacterSheet.Infrastructure.Data;
 
 namespace CharacterSheet.Controllers
 {
+    [Authorize]
     public class ClassFeatureController : ApiController
     {
         private readonly CharacterClassRepository _characterClassRepository;
