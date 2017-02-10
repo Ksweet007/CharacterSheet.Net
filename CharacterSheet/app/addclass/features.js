@@ -15,24 +15,33 @@ define(function(require) {
 		self.thirdVm = _i.ko.observable();
 		self.data = null;
 		self.classId = null;
-        self.RestTypeList =["Long Rest", "Short Rest"];
+		self.RestTypeList = [
+			{
+				Name: "Long Rest"
+			}, {
+				Name: "Short Rest"
+			}, {
+				Name: "N/A"
+			}
+		];
 
 		/*FEATURES*/
 		self.features = _i.ko.observableArray([]);
-
-        self.features = _i.ko.observableArray(_i.ko.utils.arrayMap(self.features(), function(prof) {
-            return {
-                FeatureId : 0,
-                Name : '',
-                Description : '',
-                ActionType : '',
-                RecoveryType : '',
-                Levelgained : 0,
-                ClassId : self.classId,
-                RestType: _i.ko.observable(),
-                RestTypeList : self.RestTypeList
-            };
-        }));
+		self.featuresknown = _i.ko.observableArray([]);
+		self.readonlyFeatures = _i.ko.observableArray();
+		// self.featuresList = _i.ko.observableArray(_i.ko.utils.arrayMap(self.features(), function(prof) {
+		//     return {
+		//         FeatureId : 0,
+		//         Name : '',
+		//         Description : '',
+		//         ActionType : '',
+		//         RecoveryType : '',
+		//         Levelgained : 0,
+		//         ClassId : self.classId,
+		//         RestType: _i.ko.observable(),
+		//         RestTypeList : self.RestTypeList
+		//     };
+		// }));
 
 		self.activate = function(id) {
 			self.classId = id;
@@ -43,22 +52,43 @@ define(function(require) {
 		}
 
 		self.getFeatureData = function() {
-            var deferred = _i.deferred.create();
+			var deferred = _i.deferred.create();
 			return _i.charajax.getJSON('api/GetClassFeatures/' + self.classId).done(function(response) {
-                self.features(response);
+				response.forEach(function(item) {
+					item.RestTypeList = self.RestTypeList;
+					item.RecoveryType = _i.ko.observable('');
+					self.features().push(item);
+				});
 
-                deferred.resolve();
+				response.forEach(function(item) {
+					var mappedItem = {
+						"Name": item.Name,
+						"Description": item.Description.replace(/\\n/g, "\n"),
+						"Action": item.ActionType,
+						"Recovery": item.RecoveryType,
+						"Level Gained": item.Levelgained
+					};
+					var list = [];
+					for (var i in mappedItem) {
+						if (mappedItem.hasOwnProperty(i)) {
+							list.push({"key": i, "value": mappedItem[i]});
+						}
+					}
+
+					self.featuresknown().push(list);
+				});
+
+				deferred.resolve();
 			});
-            return deferred;
+			return deferred;
 		};
 
 		self.addFeature = function(obj, evt) {
-
 			var deaturesToSave = self.proficiencies();
 
-			// _i.charajax.put('/api/AddProficiencies', profsToSave).done(function(response) {
-			// 	console.log('Added Proficiency ---> ' + response);
-			// });
+			_i.charajax.put('/api/AddProficiencies', profsToSave).done(function(response) {
+				console.log('Added Proficiency ---> ' + response);
+			});
 		};
 
 		self.addFeature = function() {
@@ -66,23 +96,23 @@ define(function(require) {
 			newObj.FeatureId = 0;
 			newObj.Name = self.profTypeList;
 			newObj.Description = '';
-            newObj.ActionType = '';
-            newObj.RecoveryType = '';
-            newObj.Levelgained = 0;
-            newObj.ClassId = self.classId;
-            newObj.RestTypeList = self.restTypeList;
+			newObj.ActionType = '';
+			newObj.RecoveryType = '';
+			newObj.Levelgained = 0;
+			newObj.ClassId = self.classId;
+			newObj.RestTypeList = self.RestTypeList;
 
-            self.features.push(newObj);
+			self.features.push(newObj);
 		};
 
-        // self.addProf = function() {
-        //     var newObj = {};
-        //     newObj.ProficiencyId = 0;
-        //     newObj.ProficiencyTypeList = self.profTypeList;
-        //     newObj.Name = '';
-        //
-        //     self.proficienciesToAdd.push({ProficiencyId: 0,ProficiencyTypeId:0, ProficiencyTypeList: self.profTypeList, Name: ""});
-        // };
+		// self.addProf = function() {
+		//     var newObj = {};
+		//     newObj.ProficiencyId = 0;
+		//     newObj.ProficiencyTypeList = self.profTypeList;
+		//     newObj.Name = '';
+		//
+		//     self.proficienciesToAdd.push({ProficiencyId: 0,ProficiencyTypeId:0, ProficiencyTypeList: self.profTypeList, Name: ""});
+		// };
 
 		self.deactivate = function() {
 			return _i.system.log('Second Tab Deactivated');
