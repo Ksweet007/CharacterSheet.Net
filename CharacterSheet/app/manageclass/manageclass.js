@@ -15,7 +15,7 @@ define(function(require) {
 		self.masterVm = _i.ko.observable();
 		self.router = _i.router
 			.createChildRouter()
-			.makeRelative({moduleId: 'addclass', fromParent: true, dynamicHash: ':id'})
+			.makeRelative({moduleId: 'manageclass', fromParent: true, dynamicHash: ':id'})
 			.map([{
 			    route: ['features', ''], moduleId: 'features', title: 'Features', nav: true, hash: '#features'},
 			    { route: ['proficiencies'], moduleId: 'proficiencies', title: 'Proficiencies', nav: true },
@@ -25,7 +25,7 @@ define(function(require) {
 
 		self.data = null;
 		self.classId = null;
-		self.displayName = "Add Class";
+		self.displayName = "Manage Class";
 		self.name = _i.ko.observable('');
 		self.lastSavedJson = ko.observable("");
 
@@ -134,7 +134,7 @@ define(function(require) {
 		self.loadObservables = function(id) {
 			self.masterVm({
 				id: id,
-				name: 'Add Class - ' + self.name
+				name: 'Manage Class - ' + self.name
 			});
 		}
 

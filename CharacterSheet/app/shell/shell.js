@@ -29,12 +29,21 @@ define(['plugins/router', 'durandal/app'], function(router, app, vemod) {
 
 		},
 		activate: function(foo) {
+
 			router.map([{
 					route: '',
 					title: 'Class List',
 					moduleId: 'landingpage/landingpage',
 					nav: false,
 					ident: "classlist"
+				},
+				{
+					route: 'admin',
+					title: 'Admin',
+					moduleId: 'admin/admin',
+					nav: true,
+					hash: "#admin",
+					ident: 'admin'
 				},
 				{
 					route: 'classlist',
@@ -58,22 +67,17 @@ define(['plugins/router', 'durandal/app'], function(router, app, vemod) {
 					hash: '#classdetails',
 					ident: "classdetails"
 				},
-		        {
-		            route: 'addclass/:id*details',
-		            title: 'Add Class',
-		            moduleId: 'addclass/addclass',
-		            hash: '#addclass/:id',
-		            ident: 'addclass'
-		        },
 				{
-					route: 'admin',
-					title: 'Admin',
-					moduleId: 'admin/admin',
-					nav:true,
-					hash:"#admin",
-					ident: 'admin'
-				}
+					route: 'manageclass/:id*details',
+					title: 'Manage Class',
+					moduleId: 'manageclass/manageclass',
+					nav:false,
+					hash: '#manageclass/:id',
+					ident: 'manageclass'
+        }
 			]).buildNavigationModel();
+
+
 
 			return router.activate();
 		},

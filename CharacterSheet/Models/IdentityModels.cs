@@ -23,7 +23,7 @@ namespace CharacterSheet.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("SweetCharacterSheets", throwIfV1Schema: false)
         {
         }
 
