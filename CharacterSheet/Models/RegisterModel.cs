@@ -14,5 +14,8 @@ namespace CharacterSheet.Models
 
         [Required]
         public string Country { get; set; }
+
+        [Required]
+        public int Age { get; set; }
     }
 }

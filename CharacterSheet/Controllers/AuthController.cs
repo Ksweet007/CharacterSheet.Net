@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using CharacterSheet.Models;
@@ -49,10 +45,10 @@ namespace CharacterSheet.Controllers
 
             if (user != null)
             {
-                var identity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+                //var identity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+                //GetAuthenticationManager().SignIn(identity);
 
-                GetAuthenticationManager().SignIn(identity);
-
+                await SignIn(user);
                 return Redirect(GetRedirectUrl(model.ReturnUrl));
             }
 
@@ -62,12 +58,22 @@ namespace CharacterSheet.Controllers
 
         }
 
+        public ActionResult LogOut()
+        {
+            //var ctx = Request.GetOwinContext();
+            //var authManager = ctx.Authentication;
+
+            //authManager.SignOut("ApplicationCookie");
+            GetAuthenticationManager().SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return RedirectToAction("Index", "Home");
+        }
+
         [HttpGet]
         public ActionResult Register()
         {
             return View();
         }
-        //http://benfoster.io/blog/aspnet-identity-stripped-bare-mvc-part-2
+        
         [HttpPost]
         public async Task<ActionResult> Register(RegisterModel model)
         {
@@ -79,7 +85,8 @@ namespace CharacterSheet.Controllers
             var user = new AppUser
             {
                 UserName = model.Email,
-                Country = model.Country
+                Country = model.Country,
+                Age = model.Age
             };
 
             var result = await userManager.CreateAsync(user, model.Password);
@@ -98,34 +105,6 @@ namespace CharacterSheet.Controllers
             return View();
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                userManager?.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-
-
-        public ActionResult LogOut()
-        {
-            var ctx = Request.GetOwinContext();
-            var authManager = ctx.Authentication;
-
-            authManager.SignOut("ApplicationCookie");
-            return RedirectToAction("Index","Home");
-        }
-
-        private async Task SignIn(AppUser user)
-        {
-            var identity = await userManager.CreateIdentityAsync(
-                user, DefaultAuthenticationTypes.ApplicationCookie);
-            
-            GetAuthenticationManager().SignIn(identity);
-        }
-
         private string GetRedirectUrl(string returnUrl)
         {
             if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
@@ -136,6 +115,21 @@ namespace CharacterSheet.Controllers
             return returnUrl;
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                userManager?.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private async Task SignIn(AppUser user)
+        {
+            var identity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            
+            GetAuthenticationManager().SignIn(identity);
+        }
 
         private IAuthenticationManager GetAuthenticationManager()
         {

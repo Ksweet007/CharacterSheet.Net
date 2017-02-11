@@ -6,8 +6,6 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 
-//[assembly: OwinStartup(typeof(CharacterSheet.Startup))]
-
 namespace CharacterSheet
 {
     public class Startup
@@ -15,7 +13,6 @@ namespace CharacterSheet
         public static Func<UserManager<AppUser>> UserManagerFactory { get; private set; }
         public void Configuration(IAppBuilder app)
         {
-            //ConfigureAuth(app);
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
@@ -33,8 +30,8 @@ namespace CharacterSheet
                     AllowOnlyAlphanumericUserNames = false
                 };
 
+                usermanager.ClaimsIdentityFactory = new AppUserClaimsIdentityFactory();
                 
-
                 return usermanager;
             };
 
