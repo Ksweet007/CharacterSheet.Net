@@ -41,7 +41,7 @@ namespace CharacterSheet.Controllers
                 return View();
             }
 
-            var user = await userManager.FindAsync(model.Email, model.Password);
+            var user = await userManager.FindAsync(model.UserName, model.Password);
 
             if (user != null)
             {
