@@ -30,6 +30,7 @@ namespace CharacterSheet.Controllers
                 ReturnUrl = returnUrl
             };
 
+            //return new RedirectResult(Url.Action("index","CharacterSheet") + "#login");
             return View(model);
         }
 
@@ -46,7 +47,7 @@ namespace CharacterSheet.Controllers
             if (user != null)
             {
                 await SignIn(user);
-                return Redirect(GetRedirectUrl(model.ReturnUrl));
+                return RedirectToAction("index", "CharacterSheet");
             }
             
             //User Auth failed
@@ -58,7 +59,7 @@ namespace CharacterSheet.Controllers
         public ActionResult LogOut()
         {
             GetAuthenticationManager().SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("index", "CharacterSheet");
         }
 
         [HttpGet]
@@ -86,7 +87,7 @@ namespace CharacterSheet.Controllers
             if (result.Succeeded)
             {
                 await SignIn(user);
-                return RedirectToAction("index", "home");
+                return RedirectToAction("index", "CharacterSheet");
             }
 
             foreach (var error in result.Errors)
@@ -101,7 +102,7 @@ namespace CharacterSheet.Controllers
         {
             if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
             {
-                return Url.Action("Index", "Home");
+                return Url.Action("Index", "CharacterSheet");
             }
 
             return returnUrl;

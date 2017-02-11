@@ -35,6 +35,13 @@ define(['plugins/router', 'durandal/app'], function(router, app, vemod) {
 					hash: "#admin"
 				},
 				{
+					route: 'home',
+					title: 'Home',
+					moduleId: 'landingpage/landingpage',
+					nav: true,
+					hash: "#home"
+				},
+				{
 					route: 'classlist',
 					title: 'Class List',
 					moduleId: 'selectclass/selectclass',
@@ -65,8 +72,8 @@ define(['plugins/router', 'durandal/app'], function(router, app, vemod) {
 					route: 'logout',
 					title: 'Logout',
 					moduleId: 'logout/logout',
-					nav:false,
-					hash: '#logout'
+					nav:false
+
 				}
 			]).buildNavigationModel();
 

@@ -9,7 +9,6 @@ namespace CharacterSheet.Controllers
         public ActionResult Index()
         {
             return View();
-            //return Redirect( Url.Content( "~/index.htm" ) );
         }
 
         protected override void OnException(ExceptionContext context)

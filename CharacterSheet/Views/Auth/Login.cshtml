@@ -2,17 +2,44 @@
 @{
     ViewBag.Title = "Log In";
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/authpages.css" />
+    <link rel="stylesheet" href="~/Content/main.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/lib/durandal/css/durandal.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Eagle+Lake|IM+Fell+English+SC|Jim+Nightshade|Metamorphous|Milonga|Pirata+One|MedievalSharp" rel="stylesheet">
+</head>
+<body>
 
-<h2>Log In</h2>
+<div class="container">            
+    @Html.ValidationSummary(true)
 
-@Html.ValidationSummary(true)
+    @using (Html.BeginForm("login", "Auth", FormMethod.Post, FormMethod.Post, new { @class = "form-signin", role = "form" }))
+    {
+        <h2 class="form-signin-heading">Login</h2>
+        @*<div class="imgcontainer">
+        <img src="img_avatar2.png" alt="Avatar" class="avatar">
+            </div>*@
+  
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" id="inputUsername" class="form-control" placeholder="Username" name="uname" required autofocus>
 
-@using (Html.BeginForm())
-{
-    @Html.EditorForModel()
-    <p>
-        <button type="submit">Log In</button>
-    </p>
-}
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="psw" required>
 
-<p>Don't have an account? <a href="@Url.Action("register")">Register</a></p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        
+    }
+    
+    <div class="form-signin">
+        <p>Don't have an account? <a href="#" onclick="location.href='@Url.Action("Register")'">Register</a></p>    
+    </div>
+    
+
+</div>
+
+</body>
+</html>

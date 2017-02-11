@@ -11,8 +11,9 @@ define(function(require) {
 		self.displayName = "Logout";
 
 		self.activate = function() {
-      _i.auth.removeAuthToken;
-			return _i.charajax.post('/Account/LogOff',{});
+		    return _i.charajax.post('/auth/logout', {}).done(function(){
+				location.href = '#';
+			});
 		};
 
 	};
