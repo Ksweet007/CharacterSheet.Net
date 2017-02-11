@@ -16,7 +16,7 @@ namespace CharacterSheet.Controllers
             : this(Startup.UserManagerFactory.Invoke())
         {   
         }
-
+        
         public AuthController(UserManager<AppUser> userManager)
         {
             this.userManager = userManager;
@@ -45,13 +45,10 @@ namespace CharacterSheet.Controllers
 
             if (user != null)
             {
-                //var identity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-                //GetAuthenticationManager().SignIn(identity);
-
                 await SignIn(user);
                 return Redirect(GetRedirectUrl(model.ReturnUrl));
             }
-
+            
             //User Auth failed
             ModelState.AddModelError("", "Invalid Email or Password");
             return View();
@@ -60,10 +57,6 @@ namespace CharacterSheet.Controllers
 
         public ActionResult LogOut()
         {
-            //var ctx = Request.GetOwinContext();
-            //var authManager = ctx.Authentication;
-
-            //authManager.SignOut("ApplicationCookie");
             GetAuthenticationManager().SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
@@ -84,9 +77,8 @@ namespace CharacterSheet.Controllers
 
             var user = new AppUser
             {
-                UserName = model.Email,
-                Country = model.Country,
-                Age = model.Age
+                UserName = model.UserName,
+                Email = model.Email
             };
 
             var result = await userManager.CreateAsync(user, model.Password);

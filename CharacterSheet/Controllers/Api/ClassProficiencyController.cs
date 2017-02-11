@@ -6,8 +6,8 @@ using CharacterSheet.Infrastructure.Data;
 
 namespace CharacterSheet.Controllers.Api
 {
-    [Authorize]
-    public class ClassProficiencyController : ApiController
+    
+    public class ClassProficiencyController : BaseApiController
     {
         private readonly CharacterClassRepository _characterClassRepository;
         private readonly ProficiencyService _proficiencyService;

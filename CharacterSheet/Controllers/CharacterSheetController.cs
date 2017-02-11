@@ -1,10 +1,11 @@
 ﻿using System.Web.Mvc;
+using CharacterSheet.Controllers.Api;
 
 namespace CharacterSheet.Controllers
 {
-    public class CharacterSheetController : Controller
+    [Authorize]
+    public class CharacterSheetController : BaseController
     {
-
         public ActionResult Index()
         {
             return View();

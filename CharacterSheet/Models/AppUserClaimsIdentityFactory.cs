@@ -10,7 +10,6 @@ namespace CharacterSheet.Models
             AppUser user,string authenticationType)
         {
             var identity = await base.CreateAsync(manager, user, authenticationType);
-            identity.AddClaim(new Claim(ClaimTypes.Country, user.Country));
             
             return identity;
         }

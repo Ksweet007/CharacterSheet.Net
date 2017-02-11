@@ -9,7 +9,7 @@ using CharacterSheet.Infrastructure.Data;
 
 namespace CharacterSheet.Controllers.Api
 {
-    [Authorize]
+    
     public class ClassController : ApiController
     {
 

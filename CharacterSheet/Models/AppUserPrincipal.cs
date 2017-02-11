@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Web;
+﻿using System.Security.Claims;
 
 namespace CharacterSheet.Models
 {
@@ -14,7 +10,5 @@ namespace CharacterSheet.Models
         }
 
         public string Name => FindFirst(ClaimTypes.Name).Value;
-
-        public string Country => FindFirst(ClaimTypes.Country).Value;
     }
 }

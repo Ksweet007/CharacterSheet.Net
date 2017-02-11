@@ -6,7 +6,8 @@ namespace CharacterSheet.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            //AutomaticMigrationsEnabled = true;
+            //AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(CharacterSheet.Models.AppUserDbContext context)

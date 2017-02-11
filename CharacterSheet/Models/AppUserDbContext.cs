@@ -5,7 +5,7 @@ namespace CharacterSheet.Models
     public class AppUserDbContext : IdentityDbContext<AppUser>
     {
         public AppUserDbContext()
-            : base("Users")
+            : base("SweetCharacterSheets")
         {
         }
 
