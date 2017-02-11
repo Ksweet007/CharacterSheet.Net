@@ -18,5 +18,6 @@ namespace CharacterSheet.Controllers
             base.OnException(context);
             context.HttpContext.Response.TrySkipIisCustomErrors = true;
         }
+
     }
 }

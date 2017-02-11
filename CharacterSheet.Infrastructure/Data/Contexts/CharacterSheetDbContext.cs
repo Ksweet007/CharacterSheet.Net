@@ -4,7 +4,7 @@ using CharacterSheet.Core.Model;
 
 namespace CharacterSheet.Infrastructure.Data.Contexts
 {
-    public class CharacterSheetDbContext : DbContext
+    public class CharacterSheetDbContext : DbContext 
     {
         public CharacterSheetDbContext()
             : base("SweetCharacterSheets")

@@ -1,7 +1,13 @@
-﻿@section SPAViews {
-    @Html.Partial("_Home")
+﻿@{
+    ViewBag.Title = "Home";
 }
-@section Scripts{
-    @Scripts.Render("~/bundles/knockout")
-    @Scripts.Render("~/bundles/app")
-}
+
+<h2>Home</h2>
+<p>
+    Hello @CurrentUserPrincipal.Name. How's the weather in @CurrentUserPrincipal.Country?
+</p>
+
+
+<p>
+    <a href="@Url.Action("logout","Auth")">Log Out</a>
+</p>
