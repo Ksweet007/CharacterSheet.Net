@@ -1,22 +1,5 @@
-﻿
 define(['plugins/router', 'durandal/app'], function(router, app, vemod) {
-	var self = this;
-	// self.searchTerm = ko.observable();
-	// self.classDetailsComplete = ko.observable(false);
-	// self.classSelected = ko.observable(false);
-	// self.raceSelected = ko.observable(false);
-	// self.classAdded = ko.observable(true);
-	//
-	// app.on('view:done').then(function(viewname) {
-	// 	if (viewname === 'Race List') {
-	// 		self.classDetailsComplete(true);
-	// 	} else if (viewname === 'Class List') {
-	// 		self.classSelected(true);
-	// 	} else if (viewname === 'Details') {
-	// 		self.classDetailsComplete(true);
-	// 	}
-	// });
-
+	
 	return {
 		router: router,
 		activate: function(foo) {

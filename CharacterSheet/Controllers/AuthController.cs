@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 using CharacterSheet.Models;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
@@ -30,7 +31,6 @@ namespace CharacterSheet.Controllers
                 ReturnUrl = returnUrl
             };
 
-            //return new RedirectResult(Url.Action("index","CharacterSheet") + "#login");
             return View(model);
         }
 
@@ -83,6 +83,8 @@ namespace CharacterSheet.Controllers
             };
 
             var result = await userManager.CreateAsync(user, model.Password);
+
+            var userRole = await userManager.AddToRoleAsync(user.UserName, "User");
 
             if (result.Succeeded)
             {

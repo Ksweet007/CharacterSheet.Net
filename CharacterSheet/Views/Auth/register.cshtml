@@ -3,14 +3,49 @@
     ViewBag.Title = "Register";
 }
 
-<h2>Register</h2>
 
-@Html.ValidationSummary(false)
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/authpages.css" />
+    <link rel="stylesheet" href="~/Content/main.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/lib/durandal/css/durandal.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Eagle+Lake|IM+Fell+English+SC|Jim+Nightshade|Metamorphous|Milonga|Pirata+One|MedievalSharp" rel="stylesheet">
+</head>
+<body>
 
-@using (Html.BeginForm())
-{
-    @Html.EditorForModel()
-    <p>
-        <button type="submit">Register</button>
-    </p>
-}
+    <div class="container">
+        @*@Html.ValidationSummary(false)*@
+
+        @using (Html.BeginForm("register", "Auth", FormMethod.Post, new { @class = "form-signin", role = "form" }))
+        {
+            <h2 class="form-signin-heading">Register</h2>
+            
+            @*<label for="inputUsername" class="sr-only">Username</label>*@
+            @Html.LabelFor(model => model.UserName, new { @class = "sr-only"})
+            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @placeholder="Username" } })
+            @Html.ValidationMessageFor(model => model.UserName)
+            @*<input type="text" id="inputUsername" class="form-control" placeholder="Username" name="uname" required autofocus>*@
+
+            @*<label for="inputEmail" class="sr-only">Email</label>*@
+            @Html.LabelFor(model => model.Email, new { @class = "sr-only" })
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" , @placeholder="Email"} })
+            @Html.ValidationMessageFor(model => model.Email)
+            @*<input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email" required>*@
+
+            @*<label for="inputPassword" class="sr-only">Password</label>*@
+            @Html.LabelFor(model => model.Password, new { @class = "sr-only" })
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password" } })
+            @Html.ValidationMessageFor(model => model.Password)
+            @*<input type="Password" id="inputPassword" class="form-control" placeholder="Password" name="psw" required>*@
+            
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+
+        }
+
+    </div>
+
+</body>
+</html>
