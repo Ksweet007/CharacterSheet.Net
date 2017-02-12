@@ -84,7 +84,7 @@ namespace CharacterSheet.Controllers
 
             var result = await userManager.CreateAsync(user, model.Password);
 
-            var userRole = await userManager.AddToRoleAsync(user.UserName, "User");
+            var userRole = await userManager.AddToRoleAsync(user.Id, "User");
 
             if (result.Succeeded)
             {
