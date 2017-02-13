@@ -8,7 +8,7 @@ namespace CharacterSheet.Core.Model
         public Class()
         {
             Skills = new HashSet<Skill>();
-            //Proficiencies = new HashSet<Proficiency>();
+            Proficiencies = new HashSet<Proficiency>();
         }
         public int classId { get; set; }
         public string name { get; set; }
@@ -18,6 +18,6 @@ namespace CharacterSheet.Core.Model
         public string hpatfirstlevel { get; set; }
         public string hpathigherlevels { get; set; }
         public virtual ICollection<Skill> Skills { get; set; }
-        public IList<Proficiency> Proficiencies { get; set; }
+        public ICollection<Proficiency> Proficiencies { get; set; }
     }
 }

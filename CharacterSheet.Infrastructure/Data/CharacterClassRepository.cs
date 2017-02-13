@@ -29,8 +29,14 @@ namespace CharacterSheet.Infrastructure.Data
 
         public IList<Skill> GetClassSkills(int classId)
         {
-            var cls = _db.Classes.Include(x=>x.Skills).SingleOrDefault(x => x.classId == classId);
-            return cls?.Skills.ToList() ?? new List<Skill>();
+            var cls = _db.Classes.FirstOrDefault(c => c.classId == classId);
+            var skills = _db.Entry(cls).Collection(s => s.Skills);
+            return skills?.CurrentValue.ToList() ?? new List<Skill>();
+            //var listop = skills.CurrentValue.ToList();
+            //var retObj = _db.Classes.Include(x => x.Skills).Include(x=>x.Proficiencies).Single(n => n.classId == classId);
+
+            //var cls = _db.Classes.Include(x=>x.Skills).SingleOrDefault(x => x.classId == classId);
+            //return cls?.Skills.ToList() ?? new List<Skill>();
         }
 
         public IList<Proficiency> GetClassProficiencies(int classId)

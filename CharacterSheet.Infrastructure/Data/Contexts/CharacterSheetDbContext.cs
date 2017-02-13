@@ -43,6 +43,7 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             var cls = modelBuilder.Entity<Class>();
             cls.ToTable("classes");
             cls.HasKey(k => k.classId);
+
             cls.HasMany<Skill>(s => s.Skills)
                 .WithMany(c => c.Classes)
                 .Map(cs =>
@@ -51,6 +52,16 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
                     cs.MapRightKey("SkillId");
                     cs.ToTable("ClassSkill");
                 });
+
+            cls.HasMany<Proficiency>(p => p.Proficiencies)
+                .WithMany(c => c.Classes)
+                .Map(cp =>
+                {
+                    cp.MapLeftKey("ClassId");
+                    cp.MapRightKey("ProficiencyId");
+                    cp.ToTable("ClassProficiency");
+                });
+
         }
 
         private static void EfMapSkills(DbModelBuilder modelBuilder)
