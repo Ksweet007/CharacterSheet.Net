@@ -75,21 +75,14 @@ namespace CharacterSheet.Infrastructure.Data
         }
 
         public void AddSkillList(Skill skill, int classId)
-        {
-            
+        {           
             var cls = _db.Classes.Include(x => x.Skills).Single(c => c.classId == classId);
             var skillToAdd = GetAllSkills().Single(s => s.skillId == skill.skillId);
 
             cls?.Skills.Add(skillToAdd);
-
-            //if (_db.Entry(skill).State == EntityState.Detached)
-            //{
-            //    _db.Skills.Attach(skill);
-            //}
             
             _db.SaveChanges();
         }
-
 
     }
 }

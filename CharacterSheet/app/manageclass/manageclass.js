@@ -10,6 +10,7 @@ define(function(require) {
 		router: require('plugins/router'),
 		system: require('durandal/system')
 	};
+
 	return function () {
 		var self = this;
 		self.masterVm = _i.ko.observable();
@@ -102,14 +103,6 @@ define(function(require) {
 				LevelCount: self.levelCount()
 			});
 		};
-
-		// self.save = function() {
-		// 	var profsToSave = self.proficiencies();
-		//
-		// 	_i.charajax.put('/api/AddProficiencies', profsToSave).done(function(response) {
-		// 		console.log('Added Proficiency ---> ' + response);
-		// 	});
-		// };
 
 		self.saveFeature = function() {
 			var featuresToSave = self.features();

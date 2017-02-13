@@ -28,6 +28,15 @@ namespace CharacterSheet.Controllers.Api
         }
 
         [HttpGet]
+        [Route("api/GetUserName")]
+        public IHttpActionResult GetUserName()
+        {
+            var userName = CurrentUser.Name;
+
+            return Ok(userName);
+        }
+
+        [HttpGet]
         [Route("api/GetClassList")]
         public IHttpActionResult GetClassList()
         {
