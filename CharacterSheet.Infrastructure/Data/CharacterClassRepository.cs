@@ -31,6 +31,7 @@ namespace CharacterSheet.Infrastructure.Data
         {
             var tstcls = _db.Classes.Include(s=>s.Skills).Single(c => c.classId == classId);
             var tstskl = tstcls?.Skills.ToList() ?? new List<Skill>();
+            
             return tstskl;
 
             //var cls = _db.Classes.Include(x => x.Skills).FirstOrDefault(s => s.classId == classId);

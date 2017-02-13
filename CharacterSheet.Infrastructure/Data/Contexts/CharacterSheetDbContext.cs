@@ -69,8 +69,9 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             var skill = modelBuilder.Entity<Skill>();
             skill.ToTable("skills");
             skill.HasKey(k => k.skillId);
-            skill.HasRequired(a => a.AbilityScore)
-                .WithRequiredPrincipal(s => s.Skill);
+
+            //skill.HasRequired()
+                
         }
 
         private static void EfMapProficiency(DbModelBuilder modelBuilder)
@@ -91,7 +92,11 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
         {
             var abil = modelBuilder.Entity<AbilityScore>();
             abil.ToTable("AbilityScores");
-            abil.HasKey(k => k.AbilityScoreId);
+            abil.HasMany(e=>e.Skills)
+                .WithRequired(e=>e.AbilityScore)
+                .WillCascadeOnDelete(false);
+
+            //abil.HasKey(k => k.AbilityScoreId);
         }
 
 
