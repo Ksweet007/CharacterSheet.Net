@@ -18,23 +18,23 @@ namespace CharacterSheet.Controllers.Api
             _characterClassRepository = new CharacterClassRepository();
         }
 
-        [HttpGet]
-        [Route("api/IsAdmin")]
-        public IHttpActionResult IsUserAdmin()
-        {
-            var isAdmin = CurrentUser.IsInRole("Admin");
+        //[HttpGet]
+        //[Route("api/IsAdmin")]
+        //public IHttpActionResult IsUserAdmin()
+        //{
+        //    var isAdmin = CurrentUser.IsInRole("Admin");
 
-            return Ok(isAdmin);
-        }
+        //    return Ok(isAdmin);
+        //}
 
-        [HttpGet]
-        [Route("api/GetUserName")]
-        public IHttpActionResult GetUserName()
-        {
-            var userName = CurrentUser.Name;
-
-            return Ok(userName);
-        }
+        //[HttpGet]
+        //[Route("api/GetUserName")]
+        //public IHttpActionResult GetUserName()
+        //{
+        //    var userName = CurrentUser.Name;
+            
+        //    return Ok(userName);
+        //}
 
         [HttpGet]
         [Route("api/GetClassList")]

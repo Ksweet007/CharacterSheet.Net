@@ -62,6 +62,11 @@ namespace CharacterSheet.Infrastructure.Data
             return _db.Proficiencies.ToList();
         }
 
+        public IList<ProficiencyType> GetallProficiencyTypes()
+        {
+            return _db.ProficiencyTypes.ToList();
+        }
+
         public void AddProficiencies(IList<Proficiency> profs)
         {
             _db.Proficiencies.AddRange(profs);

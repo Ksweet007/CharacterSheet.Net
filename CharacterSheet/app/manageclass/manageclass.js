@@ -30,7 +30,6 @@ define(function(require) {
 		self.name = _i.ko.observable('');
 		self.lastSavedJson = ko.observable("");
 
-
 		/*FEATURES*/
 		self.features = _i.ko.observableArray([]);
 		self.levelCount = _i.ko.observableArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);

@@ -20,6 +20,36 @@ namespace CharacterSheet.Controllers.Api
         }
 
         [HttpGet]
+        [Route("api/GetAllProficiencies")]
+        public IHttpActionResult GetAllProficiencies()
+        {
+            var allProfs = _characterClassRepository.GetAllProfs();
+
+            return Ok(allProfs);
+        }
+
+        [HttpGet]
+        [Route("api/GetAllProficiencyTypes")]
+        public IHttpActionResult GetAllProficiencyTypes()
+        {
+            var allProfTypes = _characterClassRepository.GetallProficiencyTypes();
+
+            return Ok(allProfTypes);
+        }
+
+        [HttpGet]
+        [Route("api/GetAllSkills")]
+        public IHttpActionResult GetAllSkills()
+        {
+            var allSkills = _characterClassRepository.GetAllSkills();
+
+            return Ok(allSkills);
+        }
+
+
+
+
+        [HttpGet]
         [Route("api/GetClassProficiencies/{classId}")]
         public IHttpActionResult GetClassProficiencyList(int classId)
         {

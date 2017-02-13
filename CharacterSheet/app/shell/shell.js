@@ -10,7 +10,7 @@ define(['plugins/router', 'durandal/app', '_custom/deferred', '_custom/services/
 					router.map([{
 							route: '',title: 'Class List',moduleId: 'landingpage/landingpage',nav: false
 						},{
-							route: 'admin',	title: 'Admin',	moduleId: 'admin/admin',nav: true,hash: "#admin"
+							route: 'admin*details',	title: 'Admin',	moduleId: 'admin/admin',nav: true,hash: "#admin"
 						},{
 							route: 'home',title: 'Home',moduleId: 'landingpage/landingpage',nav: true,hash: "#home"
 						},{
