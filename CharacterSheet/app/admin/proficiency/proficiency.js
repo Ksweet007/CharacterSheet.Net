@@ -13,11 +13,12 @@ define(function(require) {
     return function() {
         var self = this;
         self.data = null;
+        self.proficiencies = _i.ko.observableArray([]);
         self.proficiencyTypes = _i.ko.observableArray([]);
         self.skills = _i.ko.observableArray([]);
 
         self.activate = function() {
-            return charajax.universal('api/GetAllProficiencies', '', 'GET').done(function(result) {
+            return self.getProficiencyData().done(function(response) {
 
             });
         };
@@ -27,7 +28,7 @@ define(function(require) {
     			var promise = _i.deferred.waitForAll(self.getSkillData(),self.getProficiencyTypes());
 
     			promise.done(function() {
-    				self.getClassData().done(function() {
+    				self.getProficiencies().done(function() {
     					deferred.resolve();
     				});
     			});
@@ -35,9 +36,20 @@ define(function(require) {
     			return deferred;
     		};
 
+        self.getProficiencies = function(){
+          var promise = _i.deferred.create();
+          _i.charajax.universal('api/GetAllProficiencies','','GET').done(function(response){
+            self.proficiencies(response);
+            _i.list.sortAlphabetically(self.proficiencies());
+
+            promise.resolve();
+          });
+          return promise;
+        };
+
         self.getSkillData = function(){
             var promise = _i.deferred.create();
-            _i.charajax.universal('api/GetAllSkills','','GET').done(function(result){
+            _i.charajax.universal('api/GetAllSkills','','GET').done(function(response){
               self.skills(response);
               _i.list.sortAlphabetically(self.skills());
 
@@ -48,7 +60,7 @@ define(function(require) {
 
         self.getProficiencyTypes = function(){
           var promise = _i.deferred.create();
-          _i.charajax.universal('api/GetAllProficiencyTypes','','GET').done(function(result){
+          _i.charajax.universal('api/GetAllProficiencyTypes','','GET').done(function(response){
             self.proficiencyTypes(response);
             _i.list.sortAlphabetically(self.proficiencyTypes());
 

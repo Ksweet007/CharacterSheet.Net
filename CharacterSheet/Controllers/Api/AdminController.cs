@@ -34,12 +34,5 @@ namespace CharacterSheet.Controllers.Api
 
             return Ok(userName);
         }
-
-        [HttpGet]
-        [Route("api/GetClassList")]
-        public IHttpActionResult GetClassList()
-        {
-            return Ok(_characterClassRepository.GetClassList());
-        }
     }
 }
