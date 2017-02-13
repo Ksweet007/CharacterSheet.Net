@@ -33,15 +33,6 @@ namespace CharacterSheet.Infrastructure.Data
             var tstskl = tstcls?.Skills.ToList() ?? new List<Skill>();
             
             return tstskl;
-
-            //var cls = _db.Classes.Include(x => x.Skills).FirstOrDefault(s => s.classId == classId);
-            //var skills = _db.Entry(cls).Collection(s => s.Skills);
-            //return skills?.CurrentValue.ToList() ?? new List<Skill>();
-            //var listop = skills.CurrentValue.ToList();
-            //var retObj = _db.Classes.Include(x => x.Skills).Include(x=>x.Proficiencies).Single(n => n.classId == classId);
-
-            //var cls = _db.Classes.Include(x=>x.Skills).SingleOrDefault(x => x.classId == classId);
-            //return cls?.Skills.ToList() ?? new List<Skill>();
         }
 
         public IList<Proficiency> GetClassProficiencies(int classId)
@@ -57,10 +48,6 @@ namespace CharacterSheet.Infrastructure.Data
 
         public Class GetClassById(int classId)
         {
-            //var retObj = _db.Classes.FirstOrDefault(c => c.classId == classId);
-            //var skills = _db.Entry(retObj).Collection(s => s.Skills);
-            //var listop = skills.CurrentValue.ToList();
-            //var retObj = _db.Classes.Include(x => x.Skills).Include(x=>x.Proficiencies).Single(n => n.classId == classId);
             var retObj = _db.Classes.Include(x => x.Skills).FirstOrDefault(s => s.classId == classId);
             return retObj;
         }
@@ -89,12 +76,16 @@ namespace CharacterSheet.Infrastructure.Data
 
         public void AddSkillList(Skill skill, int classId)
         {
-            var cls = _db.Classes.FirstOrDefault(c => c.classId == classId);
-            cls?.Skills.Add(skill);
-            if (_db.Entry(skill).State == EntityState.Detached)
-            {
-                _db.Skills.Attach(skill);
-            }
+            
+            var cls = _db.Classes.Include(x => x.Skills).Single(c => c.classId == classId);
+            var skillToAdd = GetAllSkills().Single(s => s.skillId == skill.skillId);
+
+            cls?.Skills.Add(skillToAdd);
+
+            //if (_db.Entry(skill).State == EntityState.Detached)
+            //{
+            //    _db.Skills.Attach(skill);
+            //}
             
             _db.SaveChanges();
         }

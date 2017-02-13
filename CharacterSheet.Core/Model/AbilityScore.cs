@@ -13,6 +13,5 @@ namespace CharacterSheet.Core.Model
         public string Name { get; set; }
         public virtual ICollection<Skill> Skills { get; set; }
 
-
     }
 }

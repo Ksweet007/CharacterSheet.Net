@@ -12,6 +12,6 @@ namespace CharacterSheet.Core.Model
         public string name { get; set; }
         public int AbilityScoreId { get; set; }
         public virtual AbilityScore AbilityScore { get; set; }
-        public ICollection<Class> Classes { get; set; }
+        public virtual ICollection<Class> Classes { get; set; }
     }
 }

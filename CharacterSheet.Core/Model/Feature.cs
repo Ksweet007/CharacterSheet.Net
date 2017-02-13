@@ -9,5 +9,6 @@
         public string RecoveryType { get; set; }
         public int Levelgained { get; set; }
         public int ClassId { get; set; }
+        public virtual Class Class { get; set; }
     }
 }
