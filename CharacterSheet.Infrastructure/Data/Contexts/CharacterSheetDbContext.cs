@@ -83,6 +83,7 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
         {
             var profType = modelBuilder.Entity<ProficiencyType>();
             profType.ToTable("ProficiencyTypes").HasKey(p=>p.ProficiencyTypeId);
+            profType.Property(p => p.Name).HasColumnName("proficiencytype");
             profType.HasMany(e => e.Proficiencies)
                 .WithRequired(e => e.ProficiencyType)
                 .WillCascadeOnDelete(false);

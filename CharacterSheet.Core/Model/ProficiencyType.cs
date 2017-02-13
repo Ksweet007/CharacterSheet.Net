@@ -11,7 +11,7 @@ namespace CharacterSheet.Core.Model
         }
 
         public int ProficiencyTypeId { get; set; }
-        public string ProficiencyTypeName { get; set; }
+        public string Name { get; set; }
         public ICollection<Proficiency> Proficiencies { get; set; }
         public ICollection<Class> Classes { get; set; }
     }

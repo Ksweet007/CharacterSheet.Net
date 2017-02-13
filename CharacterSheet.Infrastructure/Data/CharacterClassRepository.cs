@@ -59,7 +59,7 @@ namespace CharacterSheet.Infrastructure.Data
 
         public IList<Proficiency> GetAllProfs()
         {
-            return _db.Proficiencies.ToList();
+            return _db.Proficiencies.Include(p => p.ProficiencyType).ToList();
         }
 
         public IList<ProficiencyType> GetallProficiencyTypes()

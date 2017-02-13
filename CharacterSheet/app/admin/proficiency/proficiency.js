@@ -20,6 +20,11 @@ define(function(require) {
         self.activate = function() {
             return self.getProficiencyData().done(function(response) {
 
+                self.proficiencies = _i.ko.utils.arrayMap(self.proficiencies(),function(prof){
+                    prof.ProficiencyTypeList = self.proficiencyTypes;
+                    return prof;
+                });
+
             });
         };
 
@@ -40,7 +45,7 @@ define(function(require) {
           var promise = _i.deferred.create();
           _i.charajax.universal('api/GetAllProficiencies','','GET').done(function(response){
             self.proficiencies(response);
-            _i.list.sortAlphabetically(self.proficiencies());
+            _i.list.sortByProficiencyTypeName(self.proficiencies());
 
             promise.resolve();
           });
@@ -67,6 +72,25 @@ define(function(require) {
             promise.resolve();
           });
           return promise;
+        };
+
+        self.addProficiency = function() {
+			var newObj = _i.ko.observable();
+			newObj.ProficiencyId = 0;
+			newObj.ProficiencyTypeList = self.proficiencyTypes;
+			newObj.Name = '';
+			self.proficiencies.push(newObj);
+		};
+
+        self.removeProficiency = function (prof) {
+            self.proficiencies.remove(prof);
+        };
+
+        self.addContact = function () {
+            self.proficiencies.push({
+                Name: "",
+                phones: ko.observableArray()
+            });
         };
 
 
