@@ -17,7 +17,7 @@ namespace CharacterSheet.Core.Model
         public string hitdieperlevel { get; set; }
         public string hpatfirstlevel { get; set; }
         public string hpathigherlevels { get; set; }
-        public virtual ICollection<Skill> Skills { get; set; }
+        public ICollection<Skill> Skills { get; set; }
         public ICollection<Proficiency> Proficiencies { get; set; }
     }
 }

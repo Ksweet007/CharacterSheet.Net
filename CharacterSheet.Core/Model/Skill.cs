@@ -10,7 +10,7 @@ namespace CharacterSheet.Core.Model
         }
         public int skillId { get; set; }
         public string name { get; set; }
-        public virtual ICollection<Class> Classes { get; set; }
-        public virtual AbilityScore AbilityScore { get; set; }
+        public ICollection<Class> Classes { get; set; }
+        public AbilityScore AbilityScore { get; set; }
     }
 }

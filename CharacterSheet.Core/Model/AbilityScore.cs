@@ -9,7 +9,7 @@
 
         public int AbilityScoreId { get; set; }
         public string Name { get; set; }
-        public virtual Skill Skill { get; set; }
+        public Skill Skill { get; set; }
 
 
     }

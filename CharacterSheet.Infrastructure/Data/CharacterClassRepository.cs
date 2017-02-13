@@ -7,7 +7,7 @@ using CharacterSheet.Core.Interfaces;
 using CharacterSheet.Core.Model;
 using CharacterSheet.Infrastructure.Data.Contexts;
 
-
+//https://msdn.microsoft.com/en-us/data/jj591620.aspx
 namespace CharacterSheet.Infrastructure.Data
 {
     public class CharacterClassRepository
@@ -29,7 +29,7 @@ namespace CharacterSheet.Infrastructure.Data
 
         public IList<Skill> GetClassSkills(int classId)
         {
-            var cls = _db.Classes.FirstOrDefault(c => c.classId == classId);
+            var cls = _db.Classes.Include(x => x.Skills).FirstOrDefault(s => s.classId == classId);
             var skills = _db.Entry(cls).Collection(s => s.Skills);
             return skills?.CurrentValue.ToList() ?? new List<Skill>();
             //var listop = skills.CurrentValue.ToList();
@@ -82,12 +82,13 @@ namespace CharacterSheet.Infrastructure.Data
             _db.SaveChanges();
         }
 
-        public void AddSkillList(IList<Skill> skills, int classId)
+        public void AddSkillList(Skill skill, int classId)
         {
-            var cls = GetClassById(classId);
-            foreach (var item in skills)
+            var cls = _db.Classes.FirstOrDefault(c => c.classId == classId);
+            cls?.Skills.Add(skill);
+            if (_db.Entry(skill).State == EntityState.Detached)
             {
-                cls.Skills.Add(item);
+                _db.Skills.Attach(skill);
             }
             
             _db.SaveChanges();

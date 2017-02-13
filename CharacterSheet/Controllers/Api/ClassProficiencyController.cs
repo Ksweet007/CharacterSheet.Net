@@ -52,8 +52,11 @@ namespace CharacterSheet.Controllers.Api
         [Route("api/AddSkills/{classId}")]
         public IHttpActionResult AddSkillList(IList<Skill> skills, int classId)
         {
-            _characterClassRepository.AddSkillList(skills,classId);
-
+            foreach (var item in skills)
+            {
+                _characterClassRepository.AddSkillList(item, classId);
+            }
+            
             return Ok(skills);
         }
 
