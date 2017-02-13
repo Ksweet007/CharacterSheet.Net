@@ -4,7 +4,7 @@ using CharacterSheet.Core.Model;
 
 namespace CharacterSheet.Infrastructure.Data.Contexts
 {
-    public class CharacterSheetDbContext : DbContext
+    public class CharacterSheetDbContext : DbContext 
     {
         public CharacterSheetDbContext()
             : base("SweetCharacterSheets")
@@ -12,11 +12,17 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             Configuration.LazyLoadingEnabled = false;
         }
 
+        //public DbSet<Class> Classes { get; set; }
+        //public DbSet<Skill> Skills { get; set; }
+        //public DbSet<Proficiency> Proficiencies { get; set; }
+        //public DbSet<Feature> Features { get; set; }
+
         public DbSet<Class> Classes { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Proficiency> Proficiencies { get; set; }
+        public DbSet<AbilityScore> AbilityScores { get; set; }
         public DbSet<Feature> Features { get; set; }
-
+        
         //Fluent API
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -27,6 +33,7 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             EfMapClass(modelBuilder);
             EfMapSkills(modelBuilder);
             EfMapFeature(modelBuilder);
+            EfMapAbilityScore(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }
@@ -36,22 +43,25 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             var cls = modelBuilder.Entity<Class>();
             cls.ToTable("classes");
             cls.HasKey(k => k.classId);
-            cls.HasMany(u => u.Skills)
-                .WithMany()
-                .Map(m =>
+
+            cls.HasMany<Skill>(s => s.Skills)
+                .WithMany(c => c.Classes)
+                .Map(cs =>
                 {
-                    m.MapLeftKey("ClassId");
-                    m.MapRightKey("SkillId");
-                    m.ToTable("ClassSkillAssoc");
+                    cs.MapLeftKey("ClassId");
+                    cs.MapRightKey("SkillId");
+                    cs.ToTable("ClassSkill");
                 });
-            cls.HasMany(u => u.Proficiencies)
-                .WithMany()
-                .Map(m =>
+
+            cls.HasMany<Proficiency>(p => p.Proficiencies)
+                .WithMany(c => c.Classes)
+                .Map(cp =>
                 {
-                    m.MapLeftKey("ClassId");
-                    m.MapRightKey("ProficiencyId");
-                    m.ToTable("ClassProficiencyAssoc");
+                    cp.MapLeftKey("ClassId");
+                    cp.MapRightKey("ProficiencyId");
+                    cp.ToTable("ClassProficiency");
                 });
+
         }
 
         private static void EfMapSkills(DbModelBuilder modelBuilder)
@@ -59,6 +69,8 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             var skill = modelBuilder.Entity<Skill>();
             skill.ToTable("skills");
             skill.HasKey(k => k.skillId);
+            skill.HasRequired(a => a.AbilityScore)
+                .WithRequiredPrincipal(s => s.Skill);
         }
 
         private static void EfMapProficiency(DbModelBuilder modelBuilder)
@@ -73,6 +85,13 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             var feature = modelBuilder.Entity<Feature>();
             feature.ToTable("features");
             feature.HasKey(k => k.FeatureId);
+        }
+
+        private static void EfMapAbilityScore(DbModelBuilder modelBuilder)
+        {
+            var abil = modelBuilder.Entity<AbilityScore>();
+            abil.ToTable("AbilityScores");
+            abil.HasKey(k => k.AbilityScoreId);
         }
 
 

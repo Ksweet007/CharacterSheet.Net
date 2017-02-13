@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using CharacterSheet.Core.Interfaces;
 using CharacterSheet.Core.Model;
 using CharacterSheet.Core.Model.DTO;
 using CharacterSheet.Infrastructure.Data;
 
-
 namespace CharacterSheet.Controllers.Api
 {
+    
     public class ClassController : ApiController
     {
 
@@ -71,8 +70,8 @@ namespace CharacterSheet.Controllers.Api
                 hpatfirstlevel = cls.hpatfirstlevel,
                 hpathigherlevels = cls.hpathigherlevels,
                 skills = allSkills,
-                ClassSkills = cls.Skills,
-                Proficiencies = cls.Proficiencies
+                ClassSkills = cls.Skills.ToList(),
+                Proficiencies = cls.Proficiencies.ToList()
             };
 
             return Ok(mappedClass);

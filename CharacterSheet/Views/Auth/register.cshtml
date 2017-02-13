@@ -1,0 +1,44 @@
+﻿@model CharacterSheet.Models.RegisterModel
+@{
+    ViewBag.Title = "Register";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/authpages.css" />
+    <link rel="stylesheet" href="~/Content/main.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/lib/durandal/css/durandal.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Eagle+Lake|IM+Fell+English+SC|Jim+Nightshade|Metamorphous|Milonga|Pirata+One|MedievalSharp" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        
+        @using (Html.BeginForm("register", "Auth", FormMethod.Post, new { @class = "form-signin", role = "form" }))
+        {
+            <h2 class="form-signin-heading">Register</h2>
+            
+            @Html.LabelFor(model => model.UserName, new { @class = "sr-only"})
+            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @placeholder="Username" } })
+            @Html.ValidationMessageFor(model => model.UserName)
+            
+            @Html.LabelFor(model => model.Email, new { @class = "sr-only" })
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" , @placeholder="Email"} })
+            @Html.ValidationMessageFor(model => model.Email)
+            
+            @Html.LabelFor(model => model.Password, new { @class = "sr-only" })
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password" } })
+            @Html.ValidationMessageFor(model => model.Password)
+            
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+
+        }
+
+    </div>
+
+</body>
+</html>

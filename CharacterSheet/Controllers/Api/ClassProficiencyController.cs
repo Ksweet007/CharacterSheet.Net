@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using CharacterSheet.Core.Model;
 using CharacterSheet.Infrastructure;
@@ -6,7 +7,8 @@ using CharacterSheet.Infrastructure.Data;
 
 namespace CharacterSheet.Controllers.Api
 {
-    public class ClassProficiencyController : ApiController
+    
+    public class ClassProficiencyController : BaseApiController
     {
         private readonly CharacterClassRepository _characterClassRepository;
         private readonly ProficiencyService _proficiencyService;
@@ -39,14 +41,24 @@ namespace CharacterSheet.Controllers.Api
         [Route("api/AddProficiencies")]
         public IHttpActionResult AddNewProficiencies(IList<Proficiency> profsToAdd)
         {
-            foreach (var item in profsToAdd)
-            {
-                _characterClassRepository.AddProficiency(item);
-            }
+            var itemsToAdd = profsToAdd.Where(item => item.ProficiencyId == 0).ToList();
+
+            _characterClassRepository.AddProficiencyList(itemsToAdd);
 
             return Ok(profsToAdd);
         }
 
+        [HttpPut]
+        [Route("api/AddSkills/{classId}")]
+        public IHttpActionResult AddSkillList(IList<Skill> skills, int classId)
+        {
+            foreach (var item in skills)
+            {
+                _characterClassRepository.AddSkillList(item, classId);
+            }
+            
+            return Ok(skills);
+        }
 
     }
 }

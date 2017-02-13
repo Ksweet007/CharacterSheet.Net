@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using CharacterSheet.Controllers.Api;
 using CharacterSheet.Core.Model;
 using CharacterSheet.Infrastructure.Data;
 
 namespace CharacterSheet.Controllers
 {
-    public class ClassFeatureController : ApiController
+    
+    public class ClassFeatureController : BaseApiController
     {
         private readonly CharacterClassRepository _characterClassRepository;
         private readonly FeatureRepository _featureRepository;
