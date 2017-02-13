@@ -8,7 +8,7 @@ using CharacterSheet.Infrastructure.Data;
 namespace CharacterSheet.Controllers.Api
 {
     
-    public class ClassController : ApiController
+    public class ClassController : BaseApiController
     {
 
         private readonly CharacterClassRepository _characterClassRepository;
@@ -16,6 +16,15 @@ namespace CharacterSheet.Controllers.Api
         public ClassController()
         {
             _characterClassRepository = new CharacterClassRepository();
+        }
+
+        [HttpGet]
+        [Route("api/IsAdmin")]
+        public IHttpActionResult IsUserAdmin()
+        {
+            var isAdmin = CurrentUser.IsInRole("Admin");
+
+            return Ok(isAdmin);
         }
 
         [HttpGet]
