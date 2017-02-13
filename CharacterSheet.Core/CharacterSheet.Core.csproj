@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CharacterSheet.Core</RootNamespace>
     <AssemblyName>CharacterSheet.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,13 +48,14 @@
     <Compile Include="Interfaces\ICharacterClassRepository.cs" />
     <Compile Include="Model\AbilityScore.cs" />
     <Compile Include="Model\Class.cs" />
-    <Compile Include="Model\ClassSkillAssoc.cs" />
+    <Compile Include="Model\ClassSkill.cs" />
     <Compile Include="Model\DTO\ClassSkillViewModel.cs" />
     <Compile Include="Model\DTO\NewClassDTO.cs" />
     <Compile Include="Model\ClassProficiencyAssoc.cs" />
     <Compile Include="Model\DTO\ClassProficiencyViewModel.cs" />
     <Compile Include="Model\Feature.cs" />
     <Compile Include="Model\Proficiency.cs" />
+    <Compile Include="Model\ProficiencyType.cs" />
     <Compile Include="Model\Skill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

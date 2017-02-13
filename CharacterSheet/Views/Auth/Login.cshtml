@@ -24,11 +24,13 @@
         <img src="img_avatar2.png" alt="Avatar" class="avatar">
             </div>*@
   
-        <label for="inputUsername" class="sr-only">Username</label>
-        <input type="text" id="inputUsername" class="form-control" placeholder="Username" name="uname" required autofocus>
+        @Html.LabelFor(model => model.UserName, new { @class = "sr-only" })
+        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Username", @autofocus = "autofocus" } })
+        @Html.ValidationMessageFor(model => model.UserName)
 
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="psw" required>
+        @Html.LabelFor(model => model.Password, new { @class = "sr-only" })
+        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password" } })
+        @Html.ValidationMessageFor(model => model.Password)
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
         

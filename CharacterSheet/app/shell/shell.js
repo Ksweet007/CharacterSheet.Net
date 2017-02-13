@@ -1,5 +1,5 @@
 define(['plugins/router', 'durandal/app'], function(router, app, vemod) {
-	
+
 	return {
 		router: router,
 		activate: function(foo) {
@@ -30,13 +30,6 @@ define(['plugins/router', 'durandal/app'], function(router, app, vemod) {
 					moduleId: 'selectclass/selectclass',
 					nav: true
 				},
-				// {
-				// 	route: 'selectrace',
-				// 	title: 'Race List',
-				// 	moduleId: 'selectrace/selectrace',
-				// 	nav: true,
-				// 	ident: "selectrace"
-				// },
 				{
 					route: 'classdetails/:id',
 					title: 'Class Details',
@@ -50,7 +43,7 @@ define(['plugins/router', 'durandal/app'], function(router, app, vemod) {
 					moduleId: 'manageclass/manageclass',
 					nav:false,
 					hash: '#manageclass/:id'
-        },
+        		},
 				{
 					route: 'logout',
 					title: 'Logout',

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using CharacterSheet.Core.Model;
 using CharacterSheet.Infrastructure;
@@ -40,14 +41,21 @@ namespace CharacterSheet.Controllers.Api
         [Route("api/AddProficiencies")]
         public IHttpActionResult AddNewProficiencies(IList<Proficiency> profsToAdd)
         {
-            foreach (var item in profsToAdd)
-            {
-                _characterClassRepository.AddProficiency(item);
-            }
+            var itemsToAdd = profsToAdd.Where(item => item.ProficiencyId == 0).ToList();
+
+            _characterClassRepository.AddProficiencyList(itemsToAdd);
 
             return Ok(profsToAdd);
         }
 
+        [HttpPut]
+        [Route("api/AddSkills/{classId}")]
+        public IHttpActionResult AddSkillList(IList<Skill> skills, int classId)
+        {
+            _characterClassRepository.AddSkillList(skills,classId);
+
+            return Ok(skills);
+        }
 
     }
 }

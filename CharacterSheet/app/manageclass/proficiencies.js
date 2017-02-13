@@ -148,13 +148,36 @@ define(function(require) {
 
 		self.addProficiencies = function(obj, evt) {
 			//After saving update our list with return value
-			var profsToSave = self.proficiencies();
+			var profsToSave = self.proficienciesToAdd();
 
-			// _i.charajax.put('/api/AddProficiencies', profsToSave).done(function(response) {
-			// 	console.log('Added Proficiency ---> ' + response);
-			// });
+			_i.charajax.put('/api/AddProficiencies', profsToSave).done(function(response) {
+				console.log('Added Proficiency ---> ' + response);
+			});
 		};
 
+		self.addSkills = function(obj, evt) {
+			//After saving update our list with return value
+			var skillstoSave = _i.ko.observableArray([]); //self.chosenSkills();
+
+			self.chosenSkills().forEach(function(id){
+				self.skills().forEach(function(skill){
+					if(skill.skillId === id){
+						var newSkl = {};
+						newSkl.abilityScoreId = skill.abilityScoreId;
+						newSkl.name = skill.name;
+						newSkl.skillId = skill.skillId;
+
+						skillstoSave().push(newSkl);
+					}
+				});
+			});
+
+
+
+			_i.charajax.put('/api/AddSkills/' + self.classId, skillstoSave()).done(function(response) {
+				console.log('Added Skils ---> ' + response);
+			});
+		};
 
 
 		self.addProf = function() {

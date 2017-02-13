@@ -8,4 +8,6 @@ namespace CharacterSheet.Controllers
     {
         public AppUserPrincipal CurrentUser => new AppUserPrincipal(User as ClaimsPrincipal);
     }
+
+
 }

@@ -12,5 +12,13 @@ namespace CharacterSheet.Controllers
         {
             return View();
         }
+
+        protected override void OnException(ExceptionContext context)
+        {
+            context.ExceptionHandled = true;
+            context.Result = View("ServerError");
+            base.OnException(context);
+            context.HttpContext.Response.TrySkipIisCustomErrors = true;
+        }
     }
 }

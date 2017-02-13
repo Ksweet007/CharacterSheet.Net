@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using CharacterSheet.Models;
-using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
@@ -130,6 +130,14 @@ namespace CharacterSheet.Controllers
         {
             var ctx = Request.GetOwinContext();
             return ctx.Authentication;
+        }
+
+        protected override void OnException(ExceptionContext context)
+        {
+            context.ExceptionHandled = true;
+            context.Result = View("ServerError");
+            base.OnException(context);
+            context.HttpContext.Response.TrySkipIisCustomErrors = true;
         }
 
 
