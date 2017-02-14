@@ -68,6 +68,24 @@ namespace CharacterSheet.Controllers.Api
         }
 
         [HttpPut]
+        [Route("api/AddProficiency")]
+        public IHttpActionResult AddNewProficiency(Proficiency proficiencyToAdd)
+        {
+            _characterClassRepository.AddProficiency(proficiencyToAdd);
+
+            return Ok(proficiencyToAdd);
+        }
+
+        [HttpDelete]
+        [Route("api/RemoveProficiency/{proficiencyId}")]
+        public IHttpActionResult RemoveProficiency(int proficiencyId)
+        {
+            _characterClassRepository.RemoveProficiency(proficiencyId);
+
+            return Ok();
+        }
+
+        [HttpPut]
         [Route("api/AddProficiencies")]
         public IHttpActionResult AddNewProficiencies(IList<Proficiency> profsToAdd)
         {

@@ -1,6 +1,5 @@
 <div>
     <h1>Proficiency Management</h1>
-
       <div class="well">
           <div>
             <table class="table table-bordered">
@@ -8,14 +7,22 @@
                     <th>Proficiency</th>
                     <th>Proficiency Type</th>
                 </tr>
-                <tbody data-bind="foreach: proficiencies">
+                <tbody>
+                    <!--ko foreach: proficiencies-->
                     <tr>
                         <td class="col-xs-4">
                             <div class="input-group">
                                 <span class="input-group-btn">
+                                    <!--ko if:ProficiencyId > 0-->
                                     <a class="btn btn-danger" href='#' data-bind='click: $root.removeProficiency'>
                                         <span class="fa fa-trash-o"></span>
                                     </a>
+                                    <!--/ko-->
+                                    <!--ko if:ProficiencyId == 0-->
+                                    <a class="btn btn-success" href='#' data-bind='click: $root.saveProficiency'>
+                                        <span class="fa fa-check"></span>
+                                    </a>
+                                    <!--/ko-->
                                 </span>
                                 <input type="text" class="form-control" data-bind='value: Name' />
                             </div>
@@ -24,9 +31,37 @@
                             <select class="form-control"data-bind="options: ProficiencyTypeList, optionsText:'Name', value:ProficiencytypeId, optionsValue:'ProficiencyTypeId' "></select>
                         </td>
                     </tr>
+                    <!--/ko-->
+                    <!--ko foreach: newproficiencies-->
+                    <tr>
+                        <td class="col-xs-4">
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <a class="btn btn-success" href='#' data-bind='click: $root.saveProficiency'>
+                                        <span class="fa fa-check"></span>
+                                    </a>    
+                                </span>
+                                <input type="text" class="form-control" data-bind='value: Name' />
+                            </div>
+                        </td>
+                        <td class="col-xs-4">
+                            <select class="form-control"data-bind="options: ProficiencyTypeList, optionsText:'Name', value:ProficiencytypeId, optionsValue:'ProficiencyTypeId' "></select>
+                        </td>
+                    </tr>
+                    <!--/ko-->
                 </tbody>
+                <tr>
+                    <td class="col-xs-4">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default fa fa-plus" data-bind='click: addProficiency'></button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
             </table>
           </div>
       </div>
-
 </div>

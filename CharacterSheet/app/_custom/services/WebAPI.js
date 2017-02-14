@@ -77,7 +77,7 @@ define(function(require) {
 			url: url,
 			data: JSON.stringify(data),
 			method: 'DELETE',
-			dataType: 'text'
+			dataType: 'json'
 		});
 	};
 

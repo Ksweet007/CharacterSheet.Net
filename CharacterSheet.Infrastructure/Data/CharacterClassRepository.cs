@@ -67,9 +67,21 @@ namespace CharacterSheet.Infrastructure.Data
             return _db.ProficiencyTypes.ToList();
         }
 
-        public void AddProficiencies(IList<Proficiency> profs)
+        public void AddProficiency(Proficiency proficiencyToAdd)
         {
-            _db.Proficiencies.AddRange(profs);
+            if (proficiencyToAdd.ProficiencyId == 0)
+            {
+                _db.Proficiencies.Add(proficiencyToAdd);
+            }
+            
+            _db.SaveChanges();
+        }
+
+        public void RemoveProficiency(int proficiencyId)
+        {
+            var profToDelete = _db.Proficiencies.Single(p => p.ProficiencyId == proficiencyId);
+
+            _db.Proficiencies.Remove(profToDelete);
             _db.SaveChanges();
         }
 

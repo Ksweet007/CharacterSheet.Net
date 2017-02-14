@@ -178,7 +178,6 @@ define(function(require) {
 
 		};
 
-
 		self.addProf = function() {
 			var newObj = {};
 			newObj.ProficiencyId = 0;
