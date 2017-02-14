@@ -58,8 +58,8 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
                 .Map(m=>m.ToTable("ClassProficiency").MapLeftKey("ClassId").MapRightKey("ProficiencyId"));
 
             cls.HasMany(e => e.Features)
-                .WithRequired(e => e.Class)
-                .WillCascadeOnDelete(false);
+                .WithMany(e => e.Classes)
+                .Map(m => m.ToTable("ClassFeature").MapLeftKey("ClassId").MapRightKey("FeatureId"));
 
             cls.HasMany(e => e.ProficiencyTypes)
                 .WithMany(e => e.Classes)

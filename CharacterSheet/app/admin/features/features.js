@@ -9,7 +9,7 @@ define(function (require) {
 
     return function () {
         var self = this;
-        self.data = null;
+        self.levels = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
         self.typeToShow = _i.ko.observable("all");
         self.features = _i.ko.observableArray([]);
         self.newfeatures = _i.ko.observableArray([]);
@@ -19,14 +19,13 @@ define(function (require) {
             return self.features();
           }
 
-          return _i.ko.utils.arrayFilter(self.features(), function(feature) {
-            return feature.Name === desiredType;
-            });
+        return _i.ko.utils.arrayFilter(self.features(), function(feature) {
+          return feature.Name === desiredType;
+          });
         });
 
         self.activate = function () {
             return self.getFeatures().done(function (response) {
-
             });
         };
 
@@ -34,11 +33,22 @@ define(function (require) {
             var promise = _i.deferred.create();
             _i.charajax.universal('api/GetAllFeatures', '', 'GET').done(function (response) {
                 self.features(response);
-                _i.list.sortByProficiencyTypeName(self.features());
+                _i.list.sortAlphabetically(self.features());
 
                 promise.resolve();
             });
             return promise;
+        };
+
+        self.addFeature = function () {
+            self.newfeatures.push({
+              Name:'',
+              FeatureId : 0,
+              Levelgained : 1,
+              Description : '',
+              RecoveryType : '',
+              ActionType : ''
+            });
         };
 
         self.showFeatureElement = function(elem) {
@@ -59,21 +69,12 @@ define(function (require) {
           self.typeToShow = obj.Name;
         };
 
-        // self.addProficiency = function () {
-        //     var newObj = _i.ko.observable();
-        //     var obj = {};
-        //     obj.ProficiencyId = 0;
-        //     obj.ProficiencyTypeList = self.proficiencyTypes;
-        //     obj.ProficiencytypeId = 0;
-        //     obj.Name = '';
-        //     newObj(obj);
-        //     self.newproficiencies.push({
-        //         ProficiencyId: 0,
-        //         ProficiencyTypeList: self.proficiencyTypes,
-        //         ProficiencytypeId: 0,
-        //         Name: ''
-        //     });
-        // };
+        // var val = replacementObj[replacementKey];
+        // if (localizeReplacementValues) {
+        //     val = self.localize(replacementObj[replacementKey]);
+        // }
+        // text = text.replace('||' + replacementKey + '||', val);
+
         //
         // self.removeProficiency = function (prof) {
         //     var profToDelete = prof;

@@ -3,34 +3,94 @@
     <div class="well">
         <div>
             <table class="table table-bordered">
-                <tr>
-                    <th>Feature</th>
-                    
+              <tr>
+                  <th>Feature</th>
+              </tr>
+              <tbody id="accordion" class="panel-group">
+              <!--ko foreach: features-->
+                <tr data-toggle="collapse" data-parent="#accordion">
+                  <td>
+                    <a data-toggle="collapse" class="btn" data-bind="attr:{href:'#collapse'+FeatureId}">
+                      <span class="fa fa-caret-square-o-down"></span>
+                    </a>
+                    <span data-bind="text:Name"></span>
+                    <div data-bind="attr:{id:'collapse'+FeatureId}" class="panel-collapse collapse">
+                      <div class="featureBody details">
+                        <table class="table table-bordered">
+                          <tr>
+                              <td class="col-xs-4">Level Gained</td>
+                              <td class="col-xs-4"><select class="form-control" data-bind="options: $parent.levels, value: Levelgained"></select></td>
+                          </tr>
+                          <tr>
+                              <td class="col-xs-4">Description</td>
+                              <td class="col-xs-4"><textarea class="form-control" data-bind="value: Description"></textarea></td>
+                          </tr>
+                          <tr>
+                              <td class="col-xs-4">Recovery Type</td>
+                              <td class="col-xs-4"><input type="text" class="form-control" data-bind='value: RecoveryType, valueUpdate: "afterkeydown"' /></td>
+                          </tr>
+                          <tr>
+                              <td class="col-xs-4">Action Type</td>
+                              <td class="col-xs-4"><input type="text" class="form-control" data-bind='value: ActionType, valueUpdate: "afterkeydown"' /></td>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                  </td>
                 </tr>
-                <tbody data-bind="foreach: {data: featuresToShow, afterAdd:showFeatureElement, beforeRemove: hideFeatureElement }" class="panel-group" id="accordion">
-                    <tr>
-                        <td class="col-xs-4">
-                          <div class="panel panel-collapse">
-                            <div class="panel-heading">
-                              <h4 class="panel-title">
-                              <a data-toggle="collapse" data-parent="#accordion" data-bind="attr:{href:'#'+FeatureId}, text:Name"></a>
-                              </h4>
+              <!--/ko-->
+              <!--ko foreach: newfeatures-->
+              <tr>
+                <td class="col-xs-4">
+                  <div class="panel panel-collapse">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <div class="form-inline">
+                                <a data-toggle="collapse" data-parent="#accordion" class="btn" data-bind="attr:{href:'#'+FeatureId},click: $root.showFeatureDetails">
+                                    <span class="fa fa-caret-square-o-down"></span>
+                                </a>
+                                <span data-bind="text:Name"></span>
                             </div>
-                            <div data-bind="attr:{id:FeatureId}" class="panel-collapse collapse">
-                              <div class="panel-body details">
-                                <div class="form-inline">
-                                    <a class="btn btn-success" href='#' data-bind='click: $root.showFeatureDetails'>
-                                        <span class="fa fa-check"></span>
-                                    </a>
-                                    <input type="text" class="form-control" data-bind='value: Name' />
-                                </div>
-                                <div><span data-bind="text:Description"></span></div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                    </tr>
-                </tbody>
+                        </h4>
+                    </div>
+                    <div data-bind="attr:{id:FeatureId}" class="panel-collapse collapse">
+                        <div class="featureBody details">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td class="col-xs-4">Level Gained</td>
+                                    <td class="col-xs-4"><select class="form-control" data-bind="options: $parent.levels, value: Levelgained"></select></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-4">Description</td>
+                                    <td class="col-xs-4"><textarea class="form-control" data-bind="value: Description"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-4">Recovery Type</td>
+                                    <td class="col-xs-4"><input type="text" class="form-control" data-bind='value: RecoveryType, valueUpdate: "afterkeydown"' /></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-4">Action Type</td>
+                                    <td class="col-xs-4"><input type="text" class="form-control" data-bind='value: ActionType, valueUpdate: "afterkeydown"' /></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <!--/ko-->
+            </tbody>
+
+              <tr>
+                  <td class="col-xs-4">
+                      <div class="input-group">
+                          <span class="input-group-btn">
+                              <button class="btn btn-default fa fa-plus" data-bind='click: addFeature'></button>
+                          </span>
+                      </div>
+                  </td>
+              </tr>
+
             </table>
         </div>
     </div>

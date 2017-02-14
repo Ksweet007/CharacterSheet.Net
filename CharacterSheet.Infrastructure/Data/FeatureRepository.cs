@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using CharacterSheet.Core.Model;
 using CharacterSheet.Infrastructure.Data.Contexts;
@@ -17,16 +18,16 @@ namespace CharacterSheet.Infrastructure.Data
 
         public IList<Feature> GetFeatureByClassId(int classId)
         {
-            var features = _db.Features.Where(f => f.ClassId == classId);
+            var cls = _db.Classes.Include(f => f.Features).Single(c => c.classId == classId);
+            var features = cls?.Features.ToList() ?? new List<Feature>();
 
-            return features.ToList();
+            return features;
         }
 
         public IList<Feature> GetAllFeatures()
         {
-            var features = _db.Features.Include(c => c.Class);
 
-            return features.ToList();
+            return _db.Features.Include(c => c.Classes).ToList();
         }
 
         public void AddProficiencies(IList<Feature> features)

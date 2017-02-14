@@ -249,10 +249,14 @@
   <ItemGroup>
     <Content Include="app\admin\admin.html" />
     <Content Include="app\admin\admin.js" />
+    <Content Include="app\admin\features\features.html" />
+    <Content Include="app\admin\features\features.js" />
     <Content Include="app\admin\landing\landing.html" />
     <Content Include="app\admin\landing\landing.js" />
     <Content Include="app\admin\proficiency\proficiency.html" />
     <Content Include="app\admin\proficiency\proficiency.js" />
+    <Content Include="app\admin\skills\skills.html" />
+    <Content Include="app\admin\skills\skills.js" />
     <Content Include="app\classdetails\classdetails.html" />
     <Content Include="app\classdetails\classdetails.js" />
     <Content Include="app\domainmanipulations\LockScroll.js" />
