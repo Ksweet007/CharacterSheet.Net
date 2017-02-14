@@ -54,7 +54,7 @@ namespace CharacterSheet.Infrastructure.Data
 
         public IList<Skill> GetAllSkills()
         {
-            return _db.Skills.ToList();
+            return _db.Skills.Include(s => s.AbilityScore).ToList();
         }
 
         public IList<Proficiency> GetAllProfs()

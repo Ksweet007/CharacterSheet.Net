@@ -123,37 +123,37 @@ button.list-group-item:hover{
 
 /* Large desktops and laptops */
 @media (min-width: 1200px) {
-    section{
+    /*section{
         width:1500px;
-    }
+    }*/
 }
 
 /* Landscape tablets and medium desktops */
 @media (min-width: 992px) and (max-width: 1199px) {
-    section{
+    /*section{
         width:1150px;
-    }
+    }*/
 }
 
 /* Portrait tablets and small desktops */
 @media (min-width: 768px) and (max-width: 991px) {
-    section{
+    /*section{
         width:800px;
-    }
+    }*/
 }
 
 /* Landscape phones and portrait tablets */
 @media (max-width: 767px) {
-    section{
+    /*section{
         width:750px;
-    }
+    }*/
 }
 
 /* Portrait phones and smaller */
 @media (max-width: 480px) {
-    section{
+    /*section{
         width:450px;
-    }
+    }*/
 }
 
 .progressNav{
@@ -244,4 +244,39 @@ panel-body.details{
 
 #descriptiontable>tr>td{
     padding:8px !important;
+}
+.skill.Dexterity{
+    background-color: #EECCAA;
+}
+.skill.Wisdom{
+    background-color: #AAEECC;
+}
+.skill.Strength{
+    background-color: #EECCAA;
+}
+.skill.Constitution{
+    background-color: #EECCAA;
+}
+.skill.Intelligence{
+    background-color: #EECCAA;
+}
+.skill {
+    background-color: #AAEECC;
+    padding: 0.35em;
+    border: 1px solid silver;
+    margin-bottom: 0.5em;
+    font-size: 0.95em;
+}
+section{
+    margin:0 20px;
+}
+.knockout-samples {
+    margin-top: 20px;
+}
+.adminradio{
+    display: block;
+    min-height: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 20px;
 }

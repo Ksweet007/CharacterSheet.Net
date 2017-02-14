@@ -38,7 +38,7 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
         private static void EfMapAbilityScores(DbModelBuilder modelBuilder)
         {
             var abil = modelBuilder.Entity<AbilityScore>();
-            abil.ToTable("AbilityScores");
+            abil.ToTable("AbilityScore");
             abil.HasMany(e => e.Skills)
                 .WithRequired(e => e.AbilityScore)
                 .WillCascadeOnDelete(false);
