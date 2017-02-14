@@ -14,7 +14,7 @@ define(function(require) {
 		var self = this;
 		self.skills = _i.ko.observableArray([]);
 		self.typeToShow = _i.ko.observable("all");
-        self.displayAdvancedOptions = _i.ko.observable(false);
+    self.displayAdvancedOptions = _i.ko.observable(false);
 		self.newskills = _i.ko.observableArray([]);
 		self.skillsToShow = _i.ko.computed(function() {
 			var desiredType = self.typeToShow();
@@ -24,8 +24,8 @@ define(function(require) {
 
 			return _i.ko.utils.arrayFilter(self.skills(), function(skill) {
 				return skill.AbilityScore.Name === desiredType;
+				});
 			});
-		});
 
         self.addSkill = function (type) {
             self.skills.push({
@@ -64,7 +64,7 @@ define(function(require) {
 			return promise;
 		};
 
-		// self.addProficiency = function() {
+		// self.addSkill = function() {
 		// 	var newObj = _i.ko.observable();
 		// 	var obj = {};
 		// 	obj.ProficiencyId = 0;

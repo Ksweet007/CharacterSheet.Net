@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CharacterSheet.Core.Model;
 using CharacterSheet.Infrastructure.Data.Contexts;
 
@@ -21,6 +18,13 @@ namespace CharacterSheet.Infrastructure.Data
         public IList<Feature> GetFeatureByClassId(int classId)
         {
             var features = _db.Features.Where(f => f.ClassId == classId);
+
+            return features.ToList();
+        }
+
+        public IList<Feature> GetAllFeatures()
+        {
+            var features = _db.Features.Include(c => c.Class);
 
             return features.ToList();
         }

@@ -38,6 +38,15 @@ namespace CharacterSheet.Controllers
             return Ok(featuresToAdd);
         }
 
+        [HttpGet]
+        [Route("api/GetAllFeatures/")]
+        public IHttpActionResult GetAllFeatures()
+        {
+            var featureList = _featureRepository.GetAllFeatures();
+
+            return Ok(featureList);
+        }
+
 
 
     }

@@ -20,7 +20,8 @@ define(function (require) {
             .map([
                 { route: ['', 'landing'], moduleId: 'landing/landing', title: 'Admin Landing', type: 'global', nav: false },
                 { route: 'proficiency', moduleId: 'proficiency/proficiency', title: 'Proficiencies', type: 'global', nav: true },
-                { route: 'skills', moduleId: 'skills/skills', title: 'Skills', type: 'global', nav: true }
+                { route: 'skills', moduleId: 'skills/skills', title: 'Skills', type: 'global', nav: true },
+                { route: 'features', moduleId: 'features/features', title: 'Features', type: 'global', nav: true }
             ]).buildNavigationModel();
 
         self.globaladmin = _i.ko.computed(function () {

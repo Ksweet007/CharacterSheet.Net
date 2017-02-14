@@ -1,0 +1,38 @@
+<div>
+    <h1>Feature Management</h1>
+      <div class="well">
+          <div>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Feature</th>
+                    <th>Classes</th>
+                </tr>
+                <tbody>
+
+                    <tr data-bind="foreach: {data: featuresToShow, afterAdd:showFeatureElement, beforeRemove: hideFeatureElement }">
+                        <td class="col-xs-4">
+                            <div class="form-inline">
+                              <a class="btn btn-success" href='#' data-bind='click: $root.showFeatureDetails'>
+                                  <span class="fa fa-check"></span>
+                              </a>
+                              <input type="text" class="form-control" data-bind='value: Name' />
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+                <!-- <tr>
+                    <td class="col-xs-4">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default fa fa-plus" data-bind='click: addProficiency'></button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                    </td>
+                </tr> -->
+            </table>
+          </div>
+      </div>
+</div>

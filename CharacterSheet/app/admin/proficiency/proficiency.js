@@ -16,7 +16,6 @@ define(function (require) {
         self.proficiencies = _i.ko.observableArray([]);
         self.newproficiencies = _i.ko.observableArray([]);
         self.proficiencyTypes = _i.ko.observableArray([]);
-        self.skills = _i.ko.observableArray([]);
 
         self.activate = function () {
             return self.getProficiencyData().done(function (response) {
@@ -32,7 +31,7 @@ define(function (require) {
 
         self.getProficiencyData = function () {
             var deferred = _i.deferred.create();
-            var promise = _i.deferred.waitForAll(self.getSkillData(), self.getProficiencyTypes());
+            var promise = _i.deferred.waitForAll(self.getProficiencyTypes());
 
             promise.done(function () {
                 self.getProficiencies().done(function () {
@@ -48,17 +47,6 @@ define(function (require) {
             _i.charajax.universal('api/GetAllProficiencies', '', 'GET').done(function (response) {
                 self.proficiencies(response);
                 _i.list.sortByProficiencyTypeName(self.proficiencies());
-
-                promise.resolve();
-            });
-            return promise;
-        };
-
-        self.getSkillData = function () {
-            var promise = _i.deferred.create();
-            _i.charajax.universal('api/GetAllSkills', '', 'GET').done(function (response) {
-                self.skills(response);
-                _i.list.sortAlphabetically(self.skills());
 
                 promise.resolve();
             });
