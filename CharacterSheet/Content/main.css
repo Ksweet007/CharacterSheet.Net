@@ -245,20 +245,23 @@ panel-body.details{
 #descriptiontable>tr>td{
     padding:8px !important;
 }
-.skill.Dexterity{
-    background-color: #EECCAA;
-}
-.skill.Wisdom{
-    background-color: #AAEECC;
-}
 .skill.Strength{
-    background-color: #EECCAA;
+    background-color: #d9534f;
+}
+.skill.Dexterity{
+    background-color: #AAEECC;
 }
 .skill.Constitution{
     background-color: #EECCAA;
 }
+.skill.Wisdom{
+    background-color: #eaeeaa;
+}
 .skill.Intelligence{
-    background-color: #EECCAA;
+    background-color: #9690f1;
+}
+.skill.Charisma{
+    background-color: #b3aeaa;
 }
 .skill {
     background-color: #AAEECC;

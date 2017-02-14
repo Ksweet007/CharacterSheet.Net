@@ -11,24 +11,24 @@
                     <!--ko foreach: proficiencies-->
                     <tr>
                         <td class="col-xs-4">
-                            <div class="input-group">
-                                <span class="input-group-btn">
-                                    <!--ko if:ProficiencyId > 0-->
-                                    <a class="btn btn-danger" href='#' data-bind='click: $root.removeProficiency'>
-                                        <span class="fa fa-trash-o"></span>
-                                    </a>
-                                    <!--/ko-->
-                                    <!--ko if:ProficiencyId == 0-->
-                                    <a class="btn btn-success" href='#' data-bind='click: $root.saveProficiency'>
-                                        <span class="fa fa-check"></span>
-                                    </a>
-                                    <!--/ko-->
-                                </span>
+                            <div class="form-inline">
+                                  <!--ko if:ProficiencyId == 0-->
+                                  <a class="btn btn-success" href='#' data-bind='click: $root.saveProficiency'>
+                                      <span class="fa fa-check"></span>
+                                  </a>
+                                  <!--/ko-->
                                 <input type="text" class="form-control" data-bind='value: Name' />
                             </div>
                         </td>
                         <td class="col-xs-4">
+                          <div class="form-inline">
                             <select class="form-control"data-bind="options: ProficiencyTypeList, optionsText:'Name', value:ProficiencytypeId, optionsValue:'ProficiencyTypeId' "></select>
+                              <!--ko if:ProficiencyId > 0-->
+                              <a class="btn btn-danger" href='#' data-bind='click: $root.removeProficiency'>
+                                  <span class="fa fa-trash-o"></span>
+                              </a>
+                              <!--/ko-->
+                          </div>
                         </td>
                     </tr>
                     <!--/ko-->
@@ -39,7 +39,7 @@
                                 <span class="input-group-btn">
                                     <a class="btn btn-success" href='#' data-bind='click: $root.saveProficiency'>
                                         <span class="fa fa-check"></span>
-                                    </a>    
+                                    </a>
                                 </span>
                                 <input type="text" class="form-control" data-bind='value: Name' />
                             </div>
