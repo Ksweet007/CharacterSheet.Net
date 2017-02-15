@@ -21,10 +21,7 @@ namespace CharacterSheet.Controllers
         [Route("api/AddFeature/")]
         public IHttpActionResult AddNewFeature(Feature featureToAdd)
         {
-            foreach (var item in featureToAdd.Classes)
-            {
-                _featureRepository.AddFeatureToClass(featureToAdd,item.classId);
-            }
+            _featureRepository.AddFeature(featureToAdd);
 
             return Ok(featureToAdd);
         }

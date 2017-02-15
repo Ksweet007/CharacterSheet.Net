@@ -11,7 +11,6 @@ define(function (require) {
         var self = this;
         self.levels = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
         self.typeToShow = _i.ko.observable("all");
-        self.classes = _i.ko.observableArray([]);
         self.idToShow = _i.ko.observable(0);
         self.features = _i.ko.observableArray([]);
         self.newfeatures = _i.ko.observableArray([]);
@@ -29,7 +28,7 @@ define(function (require) {
         self.selectedFeature = _i.ko.computed(function(){
             var desiredId = self.idToShow();
             if(desiredId === 0){
-              return {Name:'', FeatureId : 0, Levelgained : 1, Description : '', RecoveryType : '', ActionType : '', isSelected: _i.ko.observable(false), classes: self.classes(),selectedClasses:[]}
+              return {Name:'', FeatureId : 0, Levelgained : 1, Description : '', RecoveryType : '', ActionType : '', isSelected: _i.ko.observable(false)}
             }
 
            return _i.ko.utils.arrayFilter(self.features(), function(feature) {
@@ -39,7 +38,7 @@ define(function (require) {
         });
 
         self.activate = function () {
-            return self.getFeatureData().done(function (response) {
+            return self.getFeatures().done(function (response) {
             });
         };
 
@@ -47,45 +46,19 @@ define(function (require) {
             var promise = _i.deferred.create();
             _i.charajax.universal('api/GetAllFeatures', '', 'GET').done(function (response) {
               response.forEach(function(item){
+                var clsCombined = '';
                 if(item.Classes.length > 0){
                   var clsList = [];
                   item.Classes.forEach(function(cls){
                     clsList.push(cls.Name);
                   });
-                  item.classList = clsList.join(', ');
+                  clsCombined = ' - ' + clsList.join(', ');
                 }
+                item.classList = clsCombined;
               });
 
               self.features(response);
               _i.list.sortAlphabetically(self.features());
-
-              promise.resolve();
-            });
-            return promise;
-        };
-
-        self.getFeatureData = function () {
-            var deferred = _i.deferred.create();
-            var promise = _i.deferred.waitForAll(self.getFeatures());
-
-            promise.done(function () {
-                self.getClassList().done(function () {
-                    deferred.resolve();
-                });
-            });
-
-            return deferred;
-        };
-
-        self.getClassList = function () {
-            var promise = _i.deferred.create();
-            _i.charajax.universal('api/GetClassList', '', 'GET').done(function (response) {
-              response.forEach(function(cls){
-                cls.isSelected = _i.ko.observable(false);
-              });
-
-              self.classes(response);
-              _i.list.sortAlphabetically(self.classes());
 
               promise.resolve();
             });
@@ -121,17 +94,7 @@ define(function (require) {
         };
 
         self.saveFeature = function(feature){
-          feature.classes = _i.ko.utils.arrayFilter(feature.classes, function(cls){
-            for(var i = 0; i < feature.selectedClasses.length; i++){
-              if(cls.classId ===  feature.selectedClasses[i]){
-                return true;
-              }
-              return false;
-            }
-          });
-
-          _i.charajax.put('api/AddFeature/', feature).done(function (response) {
-
+          _i.charajax.put('api/AddFeature', feature).done(function (response) {
             self.idToShow(0);
             self.features.push(response);
             self.typeToShow("all");

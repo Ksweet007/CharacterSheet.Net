@@ -26,14 +26,6 @@
             <td class="col-xs-4">Action Type</td>
             <td class="col-xs-4"><input type="text" class="form-control" data-bind='value: ActionType, valueUpdate: "afterkeydown"' /></td>
           </tr>
-          <tr>
-            <td class="col-xs-4">Class</td>
-            <td>
-            <!--ko foreach: classes-->
-            <input type="checkbox" data-bind="checkedValue: classId, checked: $parent.selectedClasses" /><span data-bind="text: Name"></span></br>            
-            <!--/ko-->
-          </td>
-          </tr>
         </table>
         <tr>
             <td class="col-xs-4">
@@ -51,7 +43,7 @@
           foreach: featuresToList,
           beforeRemove: hideFeatureElement,
           afterAdd: showFeatureElement }'>
-          <div class="feature" data-bind='text: Name + " - " + classList, click: $parent.selectFeature'> </div>
+            <div class="feature" data-bind='text: Name + classList, click: $parent.selectFeature'> </div>
         </div>
       </div>
 
