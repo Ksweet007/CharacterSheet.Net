@@ -352,7 +352,6 @@
     <Content Include="app\_custom\bindinghandlers\sidebarcollapse.js" />
     <Content Include="app\_custom\cls.js" />
     <Content Include="app\_custom\deferred.js" />
-    <Content Include="app\_custom\services\charajax.js" />
     <Content Include="app\_custom\services\databaseutils.js" />
     <Content Include="app\_custom\services\indexeddb.js" />
     <Content Include="app\_custom\services\listmanager.js" />
