@@ -1,16 +1,17 @@
-﻿namespace CharacterSheet.Core.Model
+﻿using System.Collections.Generic;
+
+namespace CharacterSheet.Core.Model
 {
     public class AbilityScore
     {
         public AbilityScore()
         {
-            Skill = new Skill();
+            Skills = new HashSet<Skill>();
         }
 
         public int AbilityScoreId { get; set; }
         public string Name { get; set; }
-        public Skill Skill { get; set; }
-
+        public virtual ICollection<Skill> Skills { get; set; }
 
     }
 }

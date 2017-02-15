@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CharacterSheet.Core.Model;
 using CharacterSheet.Infrastructure.Data.Contexts;
 
@@ -18,29 +16,45 @@ namespace CharacterSheet.Infrastructure.Data
             _db = new CharacterSheetDbContext();
         }
 
-        public IList<Feature> GetFeatureByClassId(int classId)
+        public void AddFeature(Feature featureToAdd)
         {
-            var features = _db.Features.Where(f => f.ClassId == classId);
-
-            return features.ToList();
-        }
-
-        public void AddProficiencies(IList<Feature> features)
-        {
-            _db.Features.AddRange(features);
-            _db.SaveChanges();
-        }
-
-        public void AddProficiency(Feature feature)
-        {
-            if (feature.FeatureId == 0)
+            if (featureToAdd.FeatureId == 0)
             {
-                _db.Features.Add(feature);
+                _db.Features.Add(featureToAdd);
             }
 
             _db.SaveChanges();
         }
 
+        public void AddFeatureToClass(Feature featureToAdd, int classId)
+        {
+            var cls = _db.Classes.Include(x => x.Features).Single(c => c.classId == classId);
+            cls.Features.Add(featureToAdd);
 
+            _db.SaveChanges();
+
+        }
+
+        public IList<Feature> GetAllFeatures()
+        {
+
+            return _db.Features.Include(c => c.Classes).ToList();
+        }
+
+        public IList<Feature> GetFeatureByClassId(int classId)
+        {
+            var cls = _db.Classes.Include(f => f.Features).Single(c => c.classId == classId);
+            var features = cls?.Features.ToList() ?? new List<Feature>();
+
+            return features;
+        }
+
+        public void RemoveFeature(int featureId)
+        {
+            var featureToDelete = _db.Features.Single(f => f.FeatureId == featureId);
+
+            _db.Features.Remove(featureToDelete);
+            _db.SaveChanges();
+        }
     }
 }

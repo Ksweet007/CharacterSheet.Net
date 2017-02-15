@@ -9,7 +9,7 @@ using Microsoft.Owin.Security;
 namespace CharacterSheet.Controllers
 {
     [AllowAnonymous]
-    public class AuthController : Controller
+    public class AuthController : BaseController
     {
         private readonly UserManager<AppUser> userManager;
 

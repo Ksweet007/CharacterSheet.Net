@@ -10,6 +10,7 @@ define(function(require) {
 		router: require('plugins/router'),
 		system: require('durandal/system')
 	};
+
 	return function () {
 		var self = this;
 		self.masterVm = _i.ko.observable();
@@ -28,7 +29,6 @@ define(function(require) {
 		self.displayName = "Manage Class";
 		self.name = _i.ko.observable('');
 		self.lastSavedJson = ko.observable("");
-
 
 		/*FEATURES*/
 		self.features = _i.ko.observableArray([]);
@@ -67,7 +67,7 @@ define(function(require) {
 			_i.charajax.getJSON('api/GetClassDetails/' + self.classId).done(function(response) {
 				self.classData = response;
 				self.data = response;
-				self.name = response.name;
+				self.name = response.Name;
 				self.classId = response.classId;
 
 				deferred.resolve();
@@ -102,14 +102,6 @@ define(function(require) {
 				LevelCount: self.levelCount()
 			});
 		};
-
-		// self.save = function() {
-		// 	var profsToSave = self.proficiencies();
-		//
-		// 	_i.charajax.put('/api/AddProficiencies', profsToSave).done(function(response) {
-		// 		console.log('Added Proficiency ---> ' + response);
-		// 	});
-		// };
 
 		self.saveFeature = function() {
 			var featuresToSave = self.features();

@@ -8,7 +8,7 @@ using CharacterSheet.Infrastructure.Data;
 namespace CharacterSheet.Controllers.Api
 {
     
-    public class ClassController : ApiController
+    public class ClassController : BaseApiController
     {
 
         private readonly CharacterClassRepository _characterClassRepository;
@@ -42,7 +42,7 @@ namespace CharacterSheet.Controllers.Api
             var mappedClass = new NewClassDTO
             {
                 classId = cls.classId,
-                name = cls.name,
+                name = cls.Name,
                 description = cls.description,
                 primaryability = cls.primaryability,
                 hitdieperlevel = cls.hitdieperlevel,
@@ -63,7 +63,7 @@ namespace CharacterSheet.Controllers.Api
             var mappedClass = new NewClassDTO
             {
                 classId = cls.classId,
-                name = cls.name,
+                name = cls.Name,
                 description = cls.description,
                 primaryability = cls.primaryability,
                 hitdieperlevel = cls.hitdieperlevel,

@@ -23,7 +23,7 @@ define(function(require) {
 
 		return this.ajax({
 			type: 'GET',
-			url: 'https://ksweet007.cloudant.com/' + url,
+			url: url,
 			headers: {
 				"Authorization": "Basic " + btoa('ksweet007' + ":" + '@Manda!!o5'),
 				"Content-Type": "application/json"
@@ -77,7 +77,7 @@ define(function(require) {
 			url: url,
 			data: JSON.stringify(data),
 			method: 'DELETE',
-			dataType: 'text'
+			dataType: 'json'
 		});
 	};
 

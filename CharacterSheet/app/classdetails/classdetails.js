@@ -43,7 +43,7 @@ define(function(require) {
 				var data = classDetails;
 				//classDetails.features[0].description = classDetails.features[0].description.replace(/\\n/g, "\n");
 				self.data = classDetails;
-				self.displayName(data.name);
+				self.displayName(data.Name);
 				self.primaryAbility(data.primaryability);
 				self.hitdieperlevel(data.hitdieperlevel);
 				self.hpatfirstlevel(data.hpatfirstlevel);

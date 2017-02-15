@@ -83,7 +83,7 @@ define(function(require) {
 			var deferred = _i.deferred.create();
 			_i.charajax.getJSON('api/GetClassProficiencies/' + self.classId).done(function(response) {
 				self.data = response;
-				self.name = response.name;
+				self.name = response.Name;
 
 				if (response.ArmorProficiencies.length > 0) {
 					var classProfs = [];
@@ -163,7 +163,7 @@ define(function(require) {
 				self.skills().forEach(function(skill){
 					if(skill.skillId === id){
 						var newSkl = {};
-						newSkl.abilityScoreId = skill.abilityScoreId;
+						newSkl.abilityScoreId = skill.AbilityScoreId;
 						newSkl.name = skill.name;
 						newSkl.skillId = skill.skillId;
 
@@ -172,13 +172,11 @@ define(function(require) {
 				});
 			});
 
-
-
 			_i.charajax.put('/api/AddSkills/' + self.classId, skillstoSave()).done(function(response) {
 				console.log('Added Skils ---> ' + response);
 			});
-		};
 
+		};
 
 		self.addProf = function() {
 			var newObj = {};

@@ -17,6 +17,24 @@ namespace CharacterSheet.Controllers
             _featureRepository = new FeatureRepository();
         }
 
+        [HttpPut]
+        [Route("api/AddFeature/")]
+        public IHttpActionResult AddNewFeature(Feature featureToAdd)
+        {
+            _featureRepository.AddFeature(featureToAdd);
+
+            return Ok(featureToAdd);
+        }
+
+        [HttpGet]
+        [Route("api/GetAllFeatures/")]
+        public IHttpActionResult GetAllFeatures()
+        {
+            var featureList = _featureRepository.GetAllFeatures();
+
+            return Ok(featureList);
+        }
+
         [HttpGet]
         [Route("api/GetClassFeatures/{classId}")]
         public IHttpActionResult GetClassFeatures(int classId)
@@ -26,19 +44,14 @@ namespace CharacterSheet.Controllers
             return Ok(featureList);
         }
 
-        [HttpPut]
-        [Route("api/AddFeatureList/")]
-        public IHttpActionResult AddNewFeatureList(IList<Feature> featuresToAdd)
+        [HttpDelete]
+        [Route("api/RemoveFeature/{featureId}")]
+        public IHttpActionResult RemoveProficiency(int featureId)
         {
-            foreach (var item in featuresToAdd)
-            {
-                _featureRepository.AddProficiency(item);
-            }
+            _featureRepository.RemoveFeature(featureId);
 
-            return Ok(featuresToAdd);
+            return Ok();
         }
-
-
 
     }
 }

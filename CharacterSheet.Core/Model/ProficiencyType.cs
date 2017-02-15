@@ -7,10 +7,12 @@ namespace CharacterSheet.Core.Model
         public ProficiencyType()
         {
             Proficiencies = new HashSet<Proficiency>();
+            Classes = new HashSet<Class>();
         }
 
-        public int Id { get; set; }
+        public int ProficiencyTypeId { get; set; }
         public string Name { get; set; }
         public ICollection<Proficiency> Proficiencies { get; set; }
+        public ICollection<Class> Classes { get; set; }
     }
 }
