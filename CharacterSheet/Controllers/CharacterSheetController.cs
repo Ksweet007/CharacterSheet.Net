@@ -1,18 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using CharacterSheet.Controllers.Api;
 
 namespace CharacterSheet.Controllers
 {
-    public class CharacterSheetController : Controller
+    [Authorize]
+    public class CharacterSheetController : BaseController
     {
-
         public ActionResult Index()
         {
-
-            return Redirect( Url.Content( "~/index.htm" ) );
+            return View();
         }
+
+        protected override void OnException(ExceptionContext context)
+        {
+            context.ExceptionHandled = true;
+            context.Result = View("ServerError");
+            base.OnException(context);
+            context.HttpContext.Response.TrySkipIisCustomErrors = true;
+        }
+
     }
 }

@@ -1,0 +1,47 @@
+﻿@model CharacterSheet.Models.LogInModel
+@{
+    ViewBag.Title = "Log In";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/authpages.css" />
+    <link rel="stylesheet" href="~/Content/main.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/lib/durandal/css/durandal.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Eagle+Lake|IM+Fell+English+SC|Jim+Nightshade|Metamorphous|Milonga|Pirata+One|MedievalSharp" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">            
+    @Html.ValidationSummary(true)
+
+    @using (Html.BeginForm("login", "Auth", FormMethod.Post, new { @class = "form-signin", role = "form" }))
+    {
+        <h2 class="form-signin-heading">Login</h2>
+        @*<div class="imgcontainer">
+        <img src="img_avatar2.png" alt="Avatar" class="avatar">
+            </div>*@
+  
+        @Html.LabelFor(model => model.UserName, new { @class = "sr-only" })
+        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Username", @autofocus = "autofocus" } })
+        @Html.ValidationMessageFor(model => model.UserName)
+
+        @Html.LabelFor(model => model.Password, new { @class = "sr-only" })
+        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password" } })
+        @Html.ValidationMessageFor(model => model.Password)
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        
+    }
+    
+    <div class="form-signin">
+        <p>Don't have an account? <a href="#" onclick="location.href='@Url.Action("Register")'">Register</a></p>    
+    </div>
+    
+
+</div>
+
+</body>
+</html>

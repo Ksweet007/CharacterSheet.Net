@@ -1,4 +1,4 @@
-define('services/listmanager', function(require) {
+define(function(require) {
     var _i = {
         ko: require('knockout')
     };
@@ -50,8 +50,30 @@ define('services/listmanager', function(require) {
                 element.disable = _i.ko.observable(false);
             });
             list.sort(function (a, b) {
-                var nameA = a.name.toUpperCase(); // ignore upper and lowercase
-                var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+                var nameA = a.Name.toUpperCase(); // ignore upper and lowercase
+                var nameB = b.Name.toUpperCase(); // ignore upper and lowercase
+                if (nameA < nameB) {
+                    return -1;
+                }
+                if (nameA > nameB) {
+                    return 1;
+                }
+
+                return 0;
+            });
+            return list;
+    };
+
+    ListManagerCls.prototype.sortByProficiencyTypeName = function(list) {
+        if (!list || list.length ===0) {
+            return [];
+        }
+        list.forEach(function (element) {
+                element.disable = _i.ko.observable(false);
+            });
+            list.sort(function (a, b) {
+                var nameA = a.ProficiencyType.Name.toUpperCase(); // ignore upper and lowercase
+                var nameB = b.ProficiencyType.Name.toUpperCase(); // ignore upper and lowercase
                 if (nameA < nameB) {
                     return -1;
                 }

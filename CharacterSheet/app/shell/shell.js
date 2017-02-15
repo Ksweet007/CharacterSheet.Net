@@ -1,47 +1,54 @@
-﻿define(['plugins/router', 'durandal/app'], function (router, app,vemod) {
-    var self = this;
-    self.searchTerm = ko.observable();
-    self.classDetailsComplete = ko.observable(false);
-    self.classSelected = ko.observable(false);
-    self.raceSelected = ko.observable(false);
+define(['plugins/router', 'durandal/app', '_custom/deferred', '_custom/services/WebAPI'], function(router, app, deferred, charajax) {
 
-    app.on('view:done').then(function(viewname){
-        if(viewname === 'Race List'){
-            self.classDetailsComplete(true);
-        }
-        else if (viewname === 'Class List') {
-            self.classSelected(true);
-        }
-        else if (viewname === 'Details') {
-            self.classDetailsComplete(true);
-        }
-    });
+	return {
+		router: router,
+		activate: function(foo) {
 
-    return {
-        router: router,
-        search: function(data,event) {
+			return charajax.universal('api/IsAdmin', '', 'GET').done(function(result) {
+				var res = result;
+				if(res){
+					router.map([{
+							route: '',title: 'Class List',moduleId: 'landingpage/landingpage',nav: false
+						},{
+							route: 'admin*details',	title: 'Admin',	moduleId: 'admin/admin',nav: true,hash: "#admin"
+						},{
+							route: 'home',title: 'Home',moduleId: 'landingpage/landingpage',nav: true,hash: "#home"
+						},{
+							route: 'classlist',	title: 'Class List',moduleId: 'selectclass/selectclass',nav: true
+						},{
+							route: 'classdetails/:id',title: 'Class Details',moduleId: 'classdetails/classdetails',nav: false,	hash: '#classdetails'
+						},{
+							route: 'manageclass/:id*details',	title: 'Manage Class',	moduleId: 'manageclass/manageclass',	nav: false,	hash: '#manageclass/:id'
+						},{
+							route: 'logout',title: 'Logout',	moduleId: 'logout/logout',nav: false
+						}
+					]).buildNavigationModel();
+				}
+				else{
+					router.map([{
+							route: '',title: 'Class List',moduleId: 'landingpage/landingpage',nav: false
+						},{
+							route: 'home',title: 'Home',moduleId: 'landingpage/landingpage',nav: true,hash: "#home"
+						},{
+							route: 'classlist',	title: 'Class List',moduleId: 'selectclass/selectclass',nav: true
+						},{
+							route: 'classdetails/:id',title: 'Class Details',moduleId: 'classdetails/classdetails',nav: false,	hash: '#classdetails'
+						},{
+							route: 'manageclass/:id*details',	title: 'Manage Class',	moduleId: 'manageclass/manageclass',	nav: false,	hash: '#manageclass/:id'
+						},{
+							route: 'logout',title: 'Logout',	moduleId: 'logout/logout',nav: false
+						}
+					]).buildNavigationModel();
+				}
 
-            if(router.activeItem() && router.activeItem().search){
-                var searchResults = router.activeItem().search(self.searchTerm());
-            }
-            else{
-                app.showMessage('Search not implemented for this view.');
-            }
+				return router.activate();
 
-        },
-        activate: function (foo) {
-            router.map([
-                { route: '', title:'Class List', moduleId: 'selectclass/selectclass', nav: true, isComplete:self.classSelected,ident:"classlist" },
-								{ route: 'SelectRace', title: 'Race List', moduleId: 'selectrace/selectrace', nav: true, isComplete:self.raceSelected,ident:"selectrace" },
-                { route: 'classdetails/:id', title: 'Class Details', moduleId: 'classdetails/classdetails', hash:'#classdetails', nav: false, isComplete:self.classDetailsComplete,ident:"classdetails" }
+			});
 
-            ]).buildNavigationModel();
-
-            return router.activate();
-        },
-        canDeactivate: function (arg) {
-            var foo = arg;
-            return app.showMessage('Are you sure you want to leave this page?', 'Navigate', ['Yes', 'No']);
-        }
-    };
+		},
+		canDeactivate: function(arg) {
+			var foo = arg;
+			return app.showMessage('Are you sure you want to leave this page?', 'Navigate', ['Yes', 'No']);
+		}
+	};
 });

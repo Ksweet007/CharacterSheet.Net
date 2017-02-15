@@ -1,12 +1,10 @@
-<div class="container">
+<section>
 	<div class="page-header">
 		<h2 data-bind="text:displayName"></h2>
 	</div>
-
 	<ul data-bind="foreach: {data: classListToBind, afterAdd:classFadeIn, beforeRemove: classFadeOut }" class="list-group">
 		<li class="list-group">
-			<a href="#" data-bind="attr:{href: '#classdetails/'+id}"><button type="button" class="list-group-item list-group-item-action" data-bind="text:name, css:{selectionTitlebar: $data.id === $parent.selectedClassId()}, click: $parent.selectClass"></button></a>
+			<a href="#" data-bind="attr:{href: '#classdetails/'+name}"><button type="button" class="list-group-item list-group-item-action" data-bind="text:name, css:{selectionTitlebar: $data.id === $parent.selectedClassId()}, click: $parent.selectClass"></button></a>
 		</li>
 	</ul>
-
-</div>
+</section>

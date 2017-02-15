@@ -2,12 +2,6 @@ body{
     font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell English SC','Metamorphous','Milonga','Pirata One', cursive !important;
     background-color: rgba(128, 128, 128, 0.96) !important;
 }
-
-html {
-    /*background-size: cover;*/
-    overflow-y: scroll;
-}
-
 .noselect, body .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor, body .ui-tabs .ui-tabs-nav li.ui-state-disabled .ui-tabs-anchor, body .ui-tabs .ui-tabs-nav li.ui-tabs-loading .ui-tabs-anchor {
     cursor: default;
     -webkit-touch-callout: none;
@@ -39,20 +33,9 @@ html {
     margin-top: 50px;
 }
 
-.container {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
-section {
-    margin: 0 auto;
-}
 
 .navbar-nav li.loader {
-    margin: 12px 6px 0 6px;
+    padding-top: 15px;
     visibility: hidden;
 }
 
@@ -92,6 +75,9 @@ section {
 .navbar-dark a{
   color: grey;
 }
+.nav-tabs {
+    border-bottom: grey !important;
+}
 
 button.list-group-item:hover{
   background-color: #222 !important;
@@ -109,9 +95,7 @@ button.list-group-item:hover{
 	padding:1px !important;
 	list-style: none;
 }
-.list-group:hover{
 
-}
 .list-group-item{
     background-color: rgba(34, 34, 34, 0.55) !important;
     border-color: #222 !important;
@@ -139,41 +123,37 @@ button.list-group-item:hover{
 
 /* Large desktops and laptops */
 @media (min-width: 1200px) {
-    section{
+    /*section{
         width:1500px;
-    }
+    }*/
 }
 
 /* Landscape tablets and medium desktops */
 @media (min-width: 992px) and (max-width: 1199px) {
-    section{
+    /*section{
         width:1150px;
-    }
+    }*/
 }
 
 /* Portrait tablets and small desktops */
 @media (min-width: 768px) and (max-width: 991px) {
-    section{
+    /*section{
         width:800px;
-    }
+    }*/
 }
 
 /* Landscape phones and portrait tablets */
 @media (max-width: 767px) {
-    section{
+    /*section{
         width:750px;
-    }
+    }*/
 }
 
 /* Portrait phones and smaller */
 @media (max-width: 480px) {
-    section{
+    /*section{
         width:450px;
-    }
-}
-.nav > li{
-    margin-left: 2px;
-    margin-right:2px;
+    }*/
 }
 
 .progressNav{
@@ -189,50 +169,28 @@ button.list-group-item:hover{
 	background-color: #fff;
 }
 
-ul .progress-header.inactive {
+ul .progress-header.inactive, .btn.btn-default.inactive {
     display: none;
 }
 
-ul .progress-header.active {
+ul .progress-header.active, .btn.btn-default.active {
     display: block;
 }
 
-.scrollerfade{
-    background: transparent url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAUCAYAAABMDlehAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDphZTMwNTNmYS0yOTAzLWQ3NGUtOGEyNi03YWMwODc4NmY4MDIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QUIzQUMxMUE3Rjg3MTFFM0IxRDA5NjUzQzg2NEM3QkUiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QUIzQUMxMTk3Rjg3MTFFM0IxRDA5NjUzQzg2NEM3QkUiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjhkZmMzNGY3LTQwMjYtNTk0Mi04ZGFkLWVlNTM2ZTlkZDJjYiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDphZTMwNTNmYS0yOTAzLWQ3NGUtOGEyNi03YWMwODc4NmY4MDIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4NEXSoAAAAQklEQVR42mL4DwQMMOIbiHgLIh6AiMsg4jCI2AIiFoOIiUwMDAzvQaw8EBELInxAhA2I0AUR8iBCCERwgggGgAADAA6BQ7Kl2L+hAAAAAElFTkSuQmCC') /*images/content_scroll_gradient.png*/ repeat-x 0 0;
-		height: 20px;
-    position: fixed;
-    top: 51px;
-    z-index: 1;
+.page-host{
+    position: absolute;
     left: 0;
     right: 0;
-    margin: 0 auto;
-    width: 100%;
-    min-width: 950px;
-    max-width: 1200px;
-    display: none;
-    pointer-events: none;
-}
-
-.page-host {
-	position: absolute;
-	left: 0px;
-	right: 0px;
-	top: 50px;
-	bottom: 0px;
-  z-index: 1;
+    top: 51px;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .pageContent{
 	top: 0;
-    /*position: absolute;*/
     z-index: 4000;
-    /*width: 100%;*/
     margin: 0 auto;
-    /*min-width: 950px;*/
-    /*max-width: 1200px;*/
-    /*left: 0;*/
-    /*right: 0;*/
-    /*height:100%;*/
 }
 
 .pageWrapper{
@@ -249,7 +207,7 @@ ul .progress-header.active {
 	height: 10px !important;
 	margin-bottom:0 !important;
     overflow: hidden !important;
-    background-color: #f5f5f5 !important;
+    background-color: #222 !important;
     border-radius: 0 !important;
     -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1) !important;
     box-shadow: inset 0 1px 2px rgba(0,0,0,.1) !important;
@@ -271,6 +229,75 @@ ul .progress-header.active {
 .panel-group{
     padding: 7px !important;
 }
-span{
+.details{
     white-space: pre-line;
+}
+panel-body.details{
+    white-space: pre-line;
+}
+.navbar-toggle .icon-bar{
+    background-color: white;
+}
+.desc{
+    white-space: pre-wrap;
+}
+
+#descriptiontable>tr>td{
+    padding:8px !important;
+}
+.skill.Strength{
+    background-color: #d9534f;
+}
+.skill.Dexterity{
+    background-color: #AAEECC;
+}
+.skill.Constitution{
+    background-color: #EECCAA;
+}
+.skill.Wisdom{
+    background-color: #eaeeaa;
+}
+.skill.Intelligence{
+    background-color: #9690f1;
+}
+.skill.Charisma{
+    background-color: #b3aeaa;
+}
+.skill {
+    background-color: #AAEECC;
+    padding: 0.35em;
+    border: 1px solid silver;
+    margin-bottom: 0.5em;
+    font-size: 0.95em;
+}
+.feature {
+    background-color: #AAEECC;
+    padding: 0.35em !important;
+    border: 1px solid silver !important;
+    margin-bottom: 0.5em !important;
+    font-size: 0.95em;
+    cursor: pointer !important;
+}
+.feature.delete{
+    background-color: #d9534f;
+}
+section{
+    margin:0 20px;
+}
+.knockout-samples {
+    margin-top: 20px;
+}
+.adminradio{
+    display: block;
+    min-height: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+.editdelete{
+  display: inline-block;
+}
+.featureBody{
+  padding-left: 5px;
+  padding-right: 5px;
 }

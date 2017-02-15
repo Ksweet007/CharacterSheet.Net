@@ -1,0 +1,53 @@
+<section class="knockout-samples">
+    <div>
+        <div class="page-header">
+            <h4><span data-bind="text: masterVm().name"></span></h4>
+        </div>
+
+        <div style="padding: 0">
+            <div>
+                <div class="well-sm row" style="margin: 2px">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Class Name:</label>
+                            <span data-bind="text: name" />
+                        </div>
+                        <div class="form-group">
+                            <label>Description:</label>
+                            <span data-bind="text: data.description" />
+                        </div>
+                        <div class="form-group">
+                            <label>Primary Ability:</label>
+                            <span data-bind="text: data.primaryability" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Hit Die Per Level:</label>
+                            <span data-bind="text: data.hitdieperlevel" />
+                        </div>
+                        <div class="form-group">
+                            <label>HP At First Level:</label>
+                            <span data-bind="text: data.hpatfirstlevel" />
+                        </div>
+                        <div class="form-group">
+                            <label>HP At Higher Levels:</label>
+                            <span data-bind="text: data.hpathigherlevels" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ul class="nav nav-tabs" data-bind="foreach: router.navigationModel">
+            <li data-bind="css: { active: isActive }"><a data-bind="attr: { href: dynamicHash }, text: title" /></li>
+        </ul>
+        <div class="tab-content" id="content">
+            <!--ko router: {router: router}--><!--/ko-->
+        </div>
+
+    </div>
+</section>
