@@ -294,6 +294,9 @@ section{
     margin-bottom: 10px;
     padding-left: 20px;
 }
+.editdelete{
+  display: inline-block;
+}
 .featureBody{
   padding-left: 5px;
   padding-right: 5px;
