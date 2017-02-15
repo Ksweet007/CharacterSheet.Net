@@ -9,21 +9,37 @@
     <title>Character Generator</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="CharacterSheetCreator">
+    <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport">
+   
+    <title>Character Sheet Dashboard</title>
+
+    <!-- Google icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
     
-    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">*@
-    <link rel="stylesheet" href="Content/samples.css" />
-    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="lib/durandal/css/durandal.css" />
-    <link rel="stylesheet" href="Content/main.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Jim+Nightshade" rel="stylesheet">
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css">
+    
+    <!-- Propeller css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/propeller.min.css">
+
+    <!-- Propeller theme css-->
+    <link rel="stylesheet" type="text/css" href="~/themes/css/propeller-theme.css" />
+    
+    <!-- Propeller admin theme css-->
+    <link rel="stylesheet" type="text/css" href="~/themes/css/propeller-admin.css">
+
+    <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Eagle+Lake|IM+Fell+English+SC|Jim+Nightshade|Metamorphous|Milonga|Pirata+One|MedievalSharp" rel="stylesheet">
+
+    <!--Custom Styles-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/main.css">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
 </head>
 
-<body class="noselect">
+<body>
     <div id="applicationHost">
         <div class="splash">
             <div class="message">
@@ -32,25 +48,64 @@
             <i class="fa fa-spinner fa-spin"></i>
         </div>
     </div>
+    
+    <!-- Scripts Starts -->
+    <script src="~/assets/js/jquery-1.12.2.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    
 
     <script>
-		window.jQuery || document.write('<script src="js/jquery-2.2.1.min.js">\x3C/script>')
+        //window.jQuery || document.write('<script src="js/jquery-2.2.1.min.js">\x3C/script>')
+        window.jQuery || document.write('<script src="js/jquery-3.1.1.min.js">\x3C/script>')
     </script>
-    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="lib/knockout/knockout-3.4.0.js"></script>
-    <script src="lib/knockout/knockout-es5.js"></script>
-    <script src="lib/knockout/knockout.punches.js"></script>
-    <script src="lib/knockout/ko.plus.js"></script>
-    <script src="lib/knockout/knockout.reactor.js"></script>
-    <script src="lib/knockout/knockout.mapping.js"></script>
-    <script src="lib/fuse.js"></script>
-    <script src="lib/fuse.min.js"></script>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="~/lib/knockout/knockout-3.4.0.js"></script>
+    <script src="~/lib/knockout/knockout-es5.js"></script>
+    <script src="~/lib/knockout/knockout.punches.js"></script>
+    <script src="~/lib/knockout/ko.plus.js"></script>
+    <script src="~/lib/knockout/knockout.reactor.js"></script>
+    <script src="~/lib/knockout/knockout.mapping.js"></script>
+    <script src="~/lib/fuse.js"></script>
+    <script src="~/lib/fuse.min.js"></script>
 
-    <script src="lib/require/require.js" data-main="app/main"></script>
+    
+    
+<script>
+    
+    $(document).ready(function() {
+        var sPath=window.location.pathname;
+        var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+        $(".pmd-sidebar-nav").each(function(){
+            $(this).find("a[href='#']").parents(".dropdown").addClass("open");
+            $(this).find("a[href='#']").parents(".dropdown").find('.dropdown-menu').css("display", "block");
+            $(this).find("a[href='#']").parents(".dropdown").find('a.dropdown-toggle').addClass("active");
+            $(this).find("a[href='#']").addClass("active");
+        });
+    });
+</script>
+    <script type="text/javascript">
+        (function() {
+            "use strict";
+            var toggles = document.querySelectorAll(".c-hamburger");
+            for (var i = toggles.length - 1; i >= 0; i--) {
+                var toggle = toggles[i];
+                toggleHandler(toggle);
+            };
+            function toggleHandler(toggle) {
+                toggle.addEventListener( "click", function(e) {
+                    e.preventDefault();
+                    (this.classList.contains("is-active") === true) ? this.classList.remove("is-active") : this.classList.add("is-active");
+                });
+            }
 
+        })();
+    </script>
+    
+    <script src="~/assets/js/propeller.min.js"></script> 
+    <script src="~/lib/require/require.js" data-main="app/main"></script>
+    
+
+<!-- Scripts Ends -->
 </body>
 
 </html>

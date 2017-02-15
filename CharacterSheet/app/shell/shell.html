@@ -1,33 +1,45 @@
-<div>
-	<nav class="navbar navbar-default navbar-fixed-top " role="navigation">
+<!-- Header Starts -->
+<!--Start Nav bar -->
+<nav class="navbar navbar-inverse navbar-fixed-top pmd-navbar pmd-z-depth">
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle Navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-			<a class="navbar-brand" href="#">
-				<i class="fa fa-home"></i>
-				<span>Character Sheets</span>
+			<a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect pull-left margin-r8 pmd-sidebar-toggle" data-bind="sidebarcollapse"><i class="material-icons">menu</i></a>
+		  <a href="#" class="navbar-brand">Character Sheet</a>
+		</div>
+	</div>
+</nav><!--End Nav bar -->
+<!-- Header Ends -->
+
+<!-- Sidebar Starts -->
+<!-- Left sidebar -->
+<aside class="pmd-sidebar sidebar-default pmd-sidebar-slide-push pmd-sidebar-left pmd-sidebar-open bg-fill-darkblue sidebar-with-icons" role="navigation">
+	<ul class="nav pmd-sidebar-nav">
+		<!-- User info -->
+		<li class="dropdown pmd-dropdown pmd-user-info visible-xs visible-md visible-sm visible-lg" data-bind="dropdown">
+			<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media" data-sidebar="true" aria-expandedhref="javascript:void(0);">
+				<div class="media-left">
+					<img src="themes/images/user-icon.png" alt="New User">
+				</div>
+				<div class="media-body media-middle">User</div>
+				<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
 			</a>
-		</div>
-
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav" data-bind="foreach: router.navigationModel">
-				<li data-bind="css: { active: isActive }">
-					<a data-bind="attr: { href: hash }, text: title"></a>
-				</li>
+			<ul class="dropdown-menu">
+				<li><a href="auth/logout"><div class="media-body media-middle">Logout</div></a></li>
 			</ul>
+		</li><!-- End user info -->
 
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href = "auth/logout">Log out</a></li>
-				<li class="loader" data-bind="css: { active: router.isNavigating }">
-					<i class="fa fa-spinner fa-spin fa-2x"></i>
-				</li>
-			</ul>
-		</div>
-	</nav>
+    <!--ko foreach: router.navigationModel-->
+		<li data-bind="dropdown">
+			<a class="pmd-ripple-effect" data-bind="attr: { href: hash }">
+				<i class="media-left media-middle"></i>
+				<span class="media-body" data-bind="text: title"></span>
+			</a>
+		</li>
+    <!--/ko-->
 
-	<div class="page-host" data-bind="router: { transition:'entrance'}"></div>
-</div>
+	</ul>
+</aside><!-- End Left sidebar -->
+<!-- Sidebar Ends -->
+
+<div id="content" class="pmd-content content-area dashboard" data-bind="router: { transition:'entrance'}"></div>

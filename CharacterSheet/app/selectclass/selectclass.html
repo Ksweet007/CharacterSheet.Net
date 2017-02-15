@@ -1,10 +1,19 @@
-<section>
-	<div class="page-header">
-		<h2 data-bind="text:displayName"></h2>
-	</div>
-	<ul data-bind="foreach: {data: classListToBind, afterAdd:classFadeIn, beforeRemove: classFadeOut }" class="list-group">
-		<li class="list-group">
-			<a href="#" data-bind="attr:{href: '#classdetails/'+name}"><button type="button" class="list-group-item list-group-item-action" data-bind="text:name, css:{selectionTitlebar: $data.id === $parent.selectedClassId()}, click: $parent.selectClass"></button></a>
-		</li>
-	</ul>
-</section>
+<div class="container-fluid">
+  <div class="row" id="card-masonry">
+
+    <!--ko foreach:classListToBind-->
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+      <div class="pmd-card pmd-z-depth">
+        <div class="pmd-card-title">
+          <h2 class="pmd-card-title-text typo-fill-secondary propeller-title" data-bind="text:Name"></h2>
+        </div>
+        <div class="pmd-card-body">
+          <p data-bind="text: description"></p>
+          <a href="#" type="button" data-bind="attr:{href: '#classdetails/'+classId}" class="btn btn-primary pmd-ripple-effect btn-services">Select</a>          
+        </div>
+      </div>
+    </div>
+<!--/ko-->
+
+  </div>
+</div>

@@ -8,5 +8,7 @@ define(function(require) {
 	require('./bindinghandlers/columnbuilder');
 	require('./bindinghandlers/LockScroll');
 	require('./bindinghandlers/fadeVisible');
+  require('./bindinghandlers/sidebarcollapse');
+  require('./bindinghandlers/dropdown');
 
 });
