@@ -14,6 +14,6 @@ namespace CharacterSheet.Core.Model
         public int ProficiencytypeId { get; set; }
         public string Name { get; set; }
         public virtual ProficiencyType ProficiencyType { get; set; }
-        public ICollection<Class> Classes { get; set; }
+        public virtual ICollection<Class> Classes { get; set; }
     }
 }

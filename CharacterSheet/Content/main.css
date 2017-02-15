@@ -270,6 +270,14 @@ panel-body.details{
     margin-bottom: 0.5em;
     font-size: 0.95em;
 }
+.feature {
+    background-color: #AAEECC;
+    padding: 0.35em !important;
+    border: 1px solid silver !important;
+    margin-bottom: 0.5em !important;
+    font-size: 0.95em;
+    cursor: pointer !important;
+}
 section{
     margin:0 20px;
 }

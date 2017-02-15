@@ -13,13 +13,13 @@ namespace CharacterSheet.Core.Model
             ProficiencyTypes = new HashSet<ProficiencyType>();
         }
         public int classId { get; set; }
-        public string name { get; set; }
+        public string Name { get; set; }
         public string description { get; set; }
         public string primaryability { get; set; }
         public string hitdieperlevel { get; set; }
         public string hpatfirstlevel { get; set; }
         public string hpathigherlevels { get; set; }
-        public virtual ICollection<Feature> Features { get; set; }
+        public ICollection<Feature> Features { get; set; }
         public virtual ICollection<Skill> Skills { get; set; }
         public ICollection<Proficiency> Proficiencies { get; set; }
         public virtual ICollection<ProficiencyType> ProficiencyTypes { get; set; }

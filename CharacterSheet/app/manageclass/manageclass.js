@@ -67,7 +67,7 @@ define(function(require) {
 			_i.charajax.getJSON('api/GetClassDetails/' + self.classId).done(function(response) {
 				self.classData = response;
 				self.data = response;
-				self.name = response.name;
+				self.name = response.Name;
 				self.classId = response.classId;
 
 				deferred.resolve();

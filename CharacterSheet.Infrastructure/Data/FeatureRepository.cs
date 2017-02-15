@@ -16,12 +16,23 @@ namespace CharacterSheet.Infrastructure.Data
             _db = new CharacterSheetDbContext();
         }
 
-        public IList<Feature> GetFeatureByClassId(int classId)
+        public void AddFeature(Feature featureToAdd)
         {
-            var cls = _db.Classes.Include(f => f.Features).Single(c => c.classId == classId);
-            var features = cls?.Features.ToList() ?? new List<Feature>();
+            if (featureToAdd.FeatureId == 0)
+            {
+                _db.Features.Add(featureToAdd);
+            }
 
-            return features;
+            _db.SaveChanges();
+        }
+
+        public void AddFeatureToClass(Feature featureToAdd, int classId)
+        {
+            var cls = _db.Classes.Include(x => x.Features).Single(c => c.classId == classId);
+            cls.Features.Add(featureToAdd);
+
+            _db.SaveChanges();
+
         }
 
         public IList<Feature> GetAllFeatures()
@@ -30,22 +41,12 @@ namespace CharacterSheet.Infrastructure.Data
             return _db.Features.Include(c => c.Classes).ToList();
         }
 
-        public void AddProficiencies(IList<Feature> features)
+        public IList<Feature> GetFeatureByClassId(int classId)
         {
-            _db.Features.AddRange(features);
-            _db.SaveChanges();
+            var cls = _db.Classes.Include(f => f.Features).Single(c => c.classId == classId);
+            var features = cls?.Features.ToList() ?? new List<Feature>();
+
+            return features;
         }
-
-        public void AddProficiency(Feature feature)
-        {
-            if (feature.FeatureId == 0)
-            {
-                _db.Features.Add(feature);
-            }
-
-            _db.SaveChanges();
-        }
-
-
     }
 }

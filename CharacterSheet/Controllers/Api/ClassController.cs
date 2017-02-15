@@ -18,24 +18,6 @@ namespace CharacterSheet.Controllers.Api
             _characterClassRepository = new CharacterClassRepository();
         }
 
-        //[HttpGet]
-        //[Route("api/IsAdmin")]
-        //public IHttpActionResult IsUserAdmin()
-        //{
-        //    var isAdmin = CurrentUser.IsInRole("Admin");
-
-        //    return Ok(isAdmin);
-        //}
-
-        //[HttpGet]
-        //[Route("api/GetUserName")]
-        //public IHttpActionResult GetUserName()
-        //{
-        //    var userName = CurrentUser.Name;
-            
-        //    return Ok(userName);
-        //}
-
         [HttpGet]
         [Route("api/GetClassList")]
         public IHttpActionResult GetClassList()
@@ -60,7 +42,7 @@ namespace CharacterSheet.Controllers.Api
             var mappedClass = new NewClassDTO
             {
                 classId = cls.classId,
-                name = cls.name,
+                name = cls.Name,
                 description = cls.description,
                 primaryability = cls.primaryability,
                 hitdieperlevel = cls.hitdieperlevel,
@@ -81,7 +63,7 @@ namespace CharacterSheet.Controllers.Api
             var mappedClass = new NewClassDTO
             {
                 classId = cls.classId,
-                name = cls.name,
+                name = cls.Name,
                 description = cls.description,
                 primaryability = cls.primaryability,
                 hitdieperlevel = cls.hitdieperlevel,

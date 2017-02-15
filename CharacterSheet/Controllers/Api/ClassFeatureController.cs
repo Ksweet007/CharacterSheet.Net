@@ -17,25 +17,16 @@ namespace CharacterSheet.Controllers
             _featureRepository = new FeatureRepository();
         }
 
-        [HttpGet]
-        [Route("api/GetClassFeatures/{classId}")]
-        public IHttpActionResult GetClassFeatures(int classId)
-        {
-            var featureList = _featureRepository.GetFeatureByClassId(classId);
-
-            return Ok(featureList);
-        }
-
         [HttpPut]
-        [Route("api/AddFeatureList/")]
-        public IHttpActionResult AddNewFeatureList(IList<Feature> featuresToAdd)
+        [Route("api/AddFeature/")]
+        public IHttpActionResult AddNewFeature(Feature featureToAdd)
         {
-            foreach (var item in featuresToAdd)
+            foreach (var item in featureToAdd.Classes)
             {
-                _featureRepository.AddProficiency(item);
+                _featureRepository.AddFeatureToClass(featureToAdd,item.classId);
             }
 
-            return Ok(featuresToAdd);
+            return Ok(featureToAdd);
         }
 
         [HttpGet]
@@ -47,7 +38,14 @@ namespace CharacterSheet.Controllers
             return Ok(featureList);
         }
 
+        [HttpGet]
+        [Route("api/GetClassFeatures/{classId}")]
+        public IHttpActionResult GetClassFeatures(int classId)
+        {
+            var featureList = _featureRepository.GetFeatureByClassId(classId);
 
-
+            return Ok(featureList);
+        }
+        
     }
 }

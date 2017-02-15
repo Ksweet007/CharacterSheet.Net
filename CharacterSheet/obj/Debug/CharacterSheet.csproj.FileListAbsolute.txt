@@ -240,3 +240,5 @@ C:\ForFunDev\ServerSideProjects\CharacterSheet.Net\CharacterSheet\obj\Debug\Char
 C:\ForFunDev\ServerSideProjects\CharacterSheet.Net\CharacterSheet\obj\Debug\CharacterSheet.csproj.GenerateResource.Cache
 C:\ForFunDev\ServerSideProjects\CharacterSheet.Net\CharacterSheet\obj\Debug\CharacterSheet.dll
 C:\ForFunDev\ServerSideProjects\CharacterSheet.Net\CharacterSheet\obj\Debug\CharacterSheet.pdb
+C:\Git\ServerSideProjects\CharacterSheet\CharacterSheet\bin\itextsharp.dll
+C:\Git\ServerSideProjects\CharacterSheet\CharacterSheet\bin\itextsharp.xml

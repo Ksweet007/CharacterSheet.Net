@@ -83,7 +83,7 @@ define(function(require) {
 			var deferred = _i.deferred.create();
 			_i.charajax.getJSON('api/GetClassProficiencies/' + self.classId).done(function(response) {
 				self.data = response;
-				self.name = response.name;
+				self.name = response.Name;
 
 				if (response.ArmorProficiencies.length > 0) {
 					var classProfs = [];
