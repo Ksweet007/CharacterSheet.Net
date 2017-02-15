@@ -39,12 +39,25 @@
       </div>
 
       <div class="col-md-6">
+        <div>
+          <label class="adminradio"><input type='radio' name="type" value='Edit' data-bind='checked: featureState' />Edit</label>
+          <label class="adminradio"><input type='radio' name="type" value='Delete' data-bind='checked: featureState' />Delete</label>
+        </div>
+
         <div data-bind='template: {
           foreach: featuresToList,
           beforeRemove: hideFeatureElement,
-          afterAdd: showFeatureElement }'>
-            <div class="feature" data-bind='text: Name + classList, click: $parent.selectFeature'> </div>
+          afterAdd: showFeatureElement }, visible : $data.isEdit() '>
+            <div class="feature" data-bind='text: Name + classList, click: $parent.selectFeature'></div>
         </div>
+
+        <div data-bind='template: {
+          foreach: featuresToList,
+          beforeRemove: hideFeatureElement,
+          afterAdd: showFeatureElement }, visible : !$data.isEdit() '>
+            <div class="feature delete" data-bind='text: Name + classList, click: $parent.deleteFeature'></div>
+        </div>
+
       </div>
 
     </div>

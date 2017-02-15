@@ -11,9 +11,19 @@ define(function (require) {
         var self = this;
         self.levels = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
         self.typeToShow = _i.ko.observable("all");
+        self.featureState = _i.ko.observable("Edit");
         self.idToShow = _i.ko.observable(0);
         self.features = _i.ko.observableArray([]);
         self.newfeatures = _i.ko.observableArray([]);
+
+        self.isEdit = _i.ko.computed(function(){
+          var state = self.featureState();
+          if(state === "Edit"){
+            return true;
+          }
+          return false;
+        });
+
         self.featuresToList = _i.ko.computed(function() {
           var desiredType = self.typeToShow();
           var desiredId = self.idToShow();
@@ -65,10 +75,6 @@ define(function (require) {
             return promise;
         };
 
-        self.addFeature = function () {
-            self.newfeatures.push({Name:'', FeatureId : 0, Levelgained : 1, Description : '', RecoveryType : '', ActionType : '' });
-        };
-
         self.showFeatureElement = function(elem) {
           if (elem.nodeType === 1) {
             $(elem).hide().slideDown()
@@ -91,6 +97,12 @@ define(function (require) {
             self.typeToShow(obj.Name);
             self.idToShow(obj.FeatureId);
           }
+        };
+
+        self.deleteFeature = function(feature){
+          _i.charajax.delete('api/RemoveFeature/' + feature.FeatureId,'').done(function (response) {
+            self.features.remove(feature);
+          });
         };
 
         self.saveFeature = function(feature){

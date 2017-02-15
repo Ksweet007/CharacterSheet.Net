@@ -43,6 +43,15 @@ namespace CharacterSheet.Controllers
 
             return Ok(featureList);
         }
-        
+
+        [HttpDelete]
+        [Route("api/RemoveFeature/{featureId}")]
+        public IHttpActionResult RemoveProficiency(int featureId)
+        {
+            _featureRepository.RemoveFeature(featureId);
+
+            return Ok();
+        }
+
     }
 }

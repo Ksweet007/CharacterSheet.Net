@@ -48,5 +48,13 @@ namespace CharacterSheet.Infrastructure.Data
 
             return features;
         }
+
+        public void RemoveFeature(int featureId)
+        {
+            var featureToDelete = _db.Features.Single(f => f.FeatureId == featureId);
+
+            _db.Features.Remove(featureToDelete);
+            _db.SaveChanges();
+        }
     }
 }

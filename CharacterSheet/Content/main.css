@@ -278,6 +278,9 @@ panel-body.details{
     font-size: 0.95em;
     cursor: pointer !important;
 }
+.feature.delete{
+    background-color: #d9534f;
+}
 section{
     margin:0 20px;
 }
