@@ -36,12 +36,14 @@
 		</li><!-- End user info -->
 
   <!--ko foreach: router.navigationModel-->
+    <!--ko if: !adminLink -->
 		<li data-bind="dropdown">
 			<a class="pmd-ripple-effect" data-bind="attr: { href: hash }">
 				<i class="media-left media-middle"></i>
 				<span class="media-body" data-bind="text: title"></span>
 			</a>
 		</li>
+    <!--/ko-->
   <!--/ko-->
 	</ul>
 </aside><!-- End Left sidebar -->

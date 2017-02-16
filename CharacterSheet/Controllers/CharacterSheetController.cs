@@ -4,13 +4,14 @@ using CharacterSheet.Controllers.Api;
 
 namespace CharacterSheet.Controllers
 {
-    [Authorize]
+    
     public class CharacterSheetController : BaseController
     {
         public ActionResult Index()
         {
             return View();
         }
+
 
         protected override void OnException(ExceptionContext context)
         {

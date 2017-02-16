@@ -824,6 +824,7 @@
     <Content Include="themes\fonts\roboto\RobotoCondensed-Regular-webfont.woff" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\addclass\" />
     <Folder Include="App_Data\" />
     <Folder Include="components\" />
     <Folder Include="Views\Base\" />

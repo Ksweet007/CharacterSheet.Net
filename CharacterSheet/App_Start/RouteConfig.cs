@@ -21,24 +21,6 @@ namespace CharacterSheet
                 defaults: new { controller = "Auth", action = "index" }
             );
 
-            //routes.MapRoute(
-            //    name: "LogOut",
-            //    url: "auth/logout",
-            //    defaults: new { controller = "Auth", action = "logout" }
-            //);
-
-            //routes.MapRoute(
-            //    name: "LogIn",
-            //    url: "auth/login",
-            //    defaults: new { controller = "Auth", action = "login" }
-            //);
-
-            //routes.MapRoute(
-            //    name: "Register",
-            //    url: "auth/register",
-            //    defaults: new { controller = "Auth", action = "login" }
-            //);
-
             routes.MapRoute(
                 name: "EmptyDefault",
                 url: "",

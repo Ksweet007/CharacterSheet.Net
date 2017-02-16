@@ -5,42 +5,50 @@ using System.Web.Optimization;
 
 namespace CharacterSheet
 {
-    public class BundleConfig
+    internal static class BundleConfig
     {
-        // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
-        public static void RegisterBundles(BundleCollection bundles)
+        private class BundleConfigOrderer : IBundleOrderer
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                "~/Scripts/jquery-{version}.js"));
+            IEnumerable<BundleFile> IBundleOrderer.OrderFiles(BundleContext context, IEnumerable<BundleFile> files)
+            {
+                return files;
+            }
+        }
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                "~/Scripts/jquery.unobtrusive*",
-                "~/Scripts/jquery.validate*"));
+        internal static void RegisterBundles(BundleCollection bundles)
+        {
+            var minifyJs = Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["MinifyJs"] ?? "true");
+            var vendorBundle = new ScriptBundle("~/scripts/vendor")
+                .Include("~/assets/js/jquery-1.12.2.min.js")
+                .Include("~/assets/js/bootstrap.js")
+                .Include("~/lib/propeller/js/propeller.js")
+                .Include("~/lib/knockout/knockout-{version}.js")
+                .Include("~/lib/knockout/knockout-es5.js")
+                .Include("~/lib/knockout/knockout.punches.js")
+                .Include("~/lib/knockout/ko.plus.js")
+                .Include("~/lib/knockout/knockout.reactor.js")
+                .Include("~/lib/knockout/knockout.mapping.js")
+                .Include("~/lib/fuse.js");
 
-            bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
-                "~/Scripts/knockout-{version}.js",
-                "~/Scripts/knockout.validation.js"));
+            if (!minifyJs)
+            {
+                vendorBundle.Transforms.Clear(); //disables minification
+            }
+            vendorBundle.Orderer = new BundleConfigOrderer();
+            bundles.Add(vendorBundle);
 
-            bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                "~/Scripts/sammy-{version}.js",
-                "~/Scripts/app/common.js",
-                "~/Scripts/app/app.datamodel.js",
-                "~/Scripts/app/app.viewmodel.js",
-                "~/Scripts/app/home.viewmodel.js",
-                "~/Scripts/app/_run.js"));
 
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                "~/Scripts/modernizr-*"));
+            var styleBundle = new StyleBundle("~/content/css")
+                .Include("~/assets/css/bootstrap.css")
+                .Include("~/assets/css/propeller.min.css")
+                .Include("~/assets/css/sidebar.css")
+                .Include("~/themes/css/propeller-theme.css")
+                .Include("~/assets/css/main.css");
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                "~/Scripts/bootstrap.js",
-                "~/Scripts/respond.js"));
+            styleBundle.Orderer = new BundleConfigOrderer();
+            bundles.Add(styleBundle);
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                 "~/Content/bootstrap.css",
-                 "~/Content/Site.css"));
+
         }
     }
 }
