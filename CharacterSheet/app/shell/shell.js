@@ -12,7 +12,7 @@ define(['plugins/router', 'durandal/app', '_custom/deferred', '_custom/services/
                     self.isAdmin(true);
                     router.map([
                     {route: '', title: 'Class List', moduleId: 'landingpage/landingpage', nav: false},
-                    {route: 'admin*details', title: 'Admin', moduleId: 'admin/admin', nav: true, hash: "#admin"},
+                    {route: 'admin*details', title: 'Admin', moduleId: 'admin/admin', nav: true, hash: "#admin", adminLink:true},
                     {route: 'home', title: 'Home', moduleId: 'landingpage/landingpage', nav: true, hash: "#home"},
                     {route: 'classlist', title: 'Class List', moduleId: 'selectclass/selectclass', nav: true},
                     {route: 'classdetails/:id', title: 'Class Details', moduleId: 'classdetails/classdetails', nav: false, hash: '#classdetails'},
@@ -21,7 +21,8 @@ define(['plugins/router', 'durandal/app', '_custom/deferred', '_custom/services/
                     ]).buildNavigationModel();
                 }
                 else {
-                    router.map([{route: '', title: 'Class List', moduleId: 'landingpage/landingpage', nav: false},
+                    router.map([
+                     {route: '', title: 'Class List', moduleId: 'landingpage/landingpage', nav: false},
                      {route: 'home', title: 'Home', moduleId: 'landingpage/landingpage', nav: true, hash: "#home"},
                      {route: 'classlist', title: 'Class List', moduleId: 'selectclass/selectclass', nav: true},
                      {route: 'classdetails/:id', title: 'Class Details', moduleId: 'classdetails/classdetails', nav: false, hash: '#classdetails'},
