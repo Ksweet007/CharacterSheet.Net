@@ -30,12 +30,6 @@ define(function() {
         }
     })
   };
-  // var requestTokenVal = _i.csrftoken.getCsrfToken();
-  // if (requestTokenVal) {
-  //     config.headers = config.headers || {};
-  //     config.headers["X-RequestVerificationField"] = requestTokenVal;
-  // }
-//return _i.$("[name='__RequestVerificationToken']").val();
 
 return new AuthCls();
 

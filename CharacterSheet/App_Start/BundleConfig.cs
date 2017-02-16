@@ -43,8 +43,8 @@ namespace CharacterSheet
                 .Include("~/assets/css/propeller.min.css")
                 .Include("~/assets/css/sidebar.css")
                 .Include("~/themes/css/propeller-theme.css")
-                .Include("~/assets/css/main.css");
-
+                .Include("~/themes/css/propeller-admin.css");
+                
             styleBundle.Orderer = new BundleConfigOrderer();
             bundles.Add(styleBundle);
 

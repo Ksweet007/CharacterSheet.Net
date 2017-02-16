@@ -1,9 +1,9 @@
-body  {font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell English SC','Metamorphous','Milonga','Pirata One', cursive !important;background-color: #4d575d !important;}
+body  {font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell English SC','Metamorphous','Milonga','Pirata One', cursive !important;background-color: #4d575d !important; font-size: 14px !important;}
 body .pmd-sidebar .pmd-sidebar-nav li a {font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell English SC','Metamorphous','Milonga','Pirata One', cursive !important;}
 h1, h2, h3, h4, h5, h6  {font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell English SC','Metamorphous','Milonga','Pirata One', cursive !important;}
 
-.pmd-card, .navbar-inverse,
-.pmd-sidebar  {background-color: #333 !important;}
+.pmd-card, .navbar-inverse  {background-color: #333 !important; border-color: #333 !important}
+.pmd-sidebar  {background-color: rgba(16, 16, 16, 0.34) !important; border-color: rgba(16, 16, 16, 0.34) !important}
 .login-card   {background-color: #333 !important;}
 .btn-primary  {background-color: rgba(51, 122, 183, 0.65) !important;}
 

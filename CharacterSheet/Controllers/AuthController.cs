@@ -23,20 +23,32 @@ namespace CharacterSheet.Controllers
             this.userManager = userManager;
         }
 
+        //[HttpGet]
+        //public ActionResult Login(string returnUrl)
+        //{
+        //    var model = new LogInModel
+        //    {
+        //        ReturnUrl = returnUrl
+        //    };
+
+        //    return View(model);
+        //}
+
         [HttpGet]
         public ActionResult Login(string returnUrl)
         {
-            var model = new LogInModel
+            var model = new AuthenticationModel();
             {
-                ReturnUrl = returnUrl
+                var LoginModel = new LogInModel {ReturnUrl = returnUrl};
             };
 
             return View(model);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Login(LogInModel model)
+        public async Task<ActionResult> Login(AuthenticationModel authModel)
         {
+            var model = authModel.LogInModel;
             if (!ModelState.IsValid)
             {
                 return View();
@@ -69,8 +81,9 @@ namespace CharacterSheet.Controllers
         }
         
         [HttpPost]
-        public async Task<ActionResult> Register(RegisterModel model)
+        public async Task<ActionResult> Register(AuthenticationModel authModel)
         {
+            var model = authModel.RegisterModel;
             if (!ModelState.IsValid)
             {
                 return View();

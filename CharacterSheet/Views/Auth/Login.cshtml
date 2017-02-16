@@ -1,6 +1,8 @@
-﻿@model CharacterSheet.Models.LogInModel
+﻿@model CharacterSheet.Models.AuthenticationModel
+
 @{
     ViewBag.Title = "Log In";
+    
 }
 <!DOCTYPE html>
 <html>
@@ -15,18 +17,14 @@
 
     <!-- Google icon -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Bootstrap css -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
-    <!-- Propeller css -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/propeller.min.css">
-    <!-- Propeller theme css-->
-    <link rel="stylesheet" type="text/css" href="/themes/css/propeller-theme.css" />
-    <!-- Propeller admin theme css-->
-    <link rel="stylesheet" type="text/css" href="/themes/css/propeller-admin.css">
+
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Eagle+Lake|IM+Fell+English+SC|Jim+Nightshade|Metamorphous|Milonga|Pirata+One|MedievalSharp" rel="stylesheet">
+
     <!--Custom Styles-->
-    <link rel="stylesheet" type="text/css" href="~/assets/css/main.css">
+    <link href="~/assets/css/main.css" rel="stylesheet" />
+
+    @Styles.Render("~/Content/css")
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
@@ -42,92 +40,147 @@
                         </h3>
                     </div>
 
-                <div class="pmd-card-body">                    
-                    @if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Count > 0)
-                    {
-                        <div class="alert-danger" role="alert">Critical Failure!</div>
-                    }
-                    <div class="form-group pmd-textfield pmd-textfield-floating-label">      
-                        @Html.LabelFor(model => model.UserName, new { @class = "control-label pmd-input-group-label" })                        
+                    <div class="pmd-card-body">
+                        @if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Count > 0)
+                        {
+                            <div class="alert-danger" role="alert">Critical Failure!</div>
+                        }
+                        <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                            @Html.LabelFor(model => model.LogInModel.UserName, new { @class = "control-label pmd-input-group-label" })
                             <div class="input-group">
                                 <div class="input-group-addon">
-                                <i class="material-icons md-dark pmd-sm">perm_identity</i>
+                                    <i class="material-icons md-dark pmd-sm">perm_identity</i>
+                                </div>
+                                @Html.EditorFor(model => model.LogInModel.UserName, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
-                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
-                    </div>
 
-                    <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                        @Html.LabelFor(model => model.Password, new { @class = "control-label pmd-input-group-label" })
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="material-icons md-dark pmd-sm">lock_outline</i>
+                        <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                            @Html.LabelFor(model => model.LogInModel.Password, new { @class = "control-label pmd-input-group-label" })
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="material-icons md-dark pmd-sm">lock_outline</i>
+                                </div>
+                                @Html.EditorFor(model => model.LogInModel.Password, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
-                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                     </div>
-                </div>
                     <div class="pmd-card-footer card-footer-no-border card-footer-p16 text-center">
-                        <button type="submit" class="btn pmd-ripple-effect btn-primary btn-block">Sign In</button>
-                        <p class="redirection-link">Don't have an account? <a href="#" class="login-register" onclick="location.href = '@Url.Action("Register")'">Sign Up</a>
-                        </p>
-                    </div>
+                        <div class="form-group clearfix">
+                            <div class="checkbox pull-left">
+                                <label class="pmd-checkbox checkbox-pmd-ripple-effect">
+                                    <input type="checkbox" checked="" value="">
+                                    <span class="pmd-checkbox"> Remember me</span>
+                                </label>
+                            </div>
+                            <span class="pull-right forgot-password">
+                                <a href="javascript:void(0);">Forgot password?</a>
+                            </span>
+                        </div>
+                    <button type="submit" class="btn pmd-ripple-effect btn-primary btn-block">Sign In</button>
+                    <p class="redirection-link">Don't have an account? <a href="#" class="login-register">Sign Up</a>.</p>
+                </div>
                 }
-            </div>
+            </div>            
+            <div class="register-card">
+
+                    @using (Html.BeginForm("register", "Auth", FormMethod.Post))
+                    {
+                        <div class="pmd-card-title card-header-border text-center">
+                            <h3>
+                                Sign Up <span>for you <strong>Adventure!</strong></span>
+                            </h3>
+                        </div>
+                        <div class="pmd-card-body">
+                            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                @Html.LabelFor(model => model.RegisterModel.UserName, new { @class = "control-label pmd-input-group-label" })
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="material-icons md-dark pmd-sm">perm_identity</i>
+                                    </div>
+                                    @Html.EditorFor(model => model.RegisterModel.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                @Html.LabelFor(model => model.RegisterModel.Email, new { @class = "control-label pmd-input-group-label" })
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="material-icons md-dark pmd-sm">email</i>
+                                    </div>
+                                    @Html.EditorFor(model => model.RegisterModel.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                @Html.LabelFor(model => model.RegisterModel.Password, new { @class = "control-label pmd-input-group-label" })
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="material-icons md-dark pmd-sm">lock_outline</i>
+                                    </div>
+                                    @Html.EditorFor(model => model.RegisterModel.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pmd-card-footer card-footer-no-border card-footer-p16 text-center">
+                            <button type="submit" class="btn pmd-ripple-effect btn-primary btn-block">Sign up</button>
+                            <p class="redirection-link">
+                                Already have an account? <a href="/#login" class="login-register">Sign In</a>
+                            </p>
+                        </div>
+                    }
+                </div>           
         </div>
     </div>
-    
+
     <!-- Scripts Starts -->
     <script src="~/assets/js/jquery-1.12.2.min.js"></script>
     <script src="~/assets/js/bootstrap.min.js"></script>
     <script src="~/assets/js/propeller.min.js"></script>
     <script>
-	$(document).ready(function() {
-		var sPath=window.location.pathname;
-		var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
-		$(".pmd-sidebar-nav").each(function(){
-			$(this).find("a[href='"+sPage+"']").parents(".dropdown").addClass("open");
-			$(this).find("a[href='"+sPage+"']").parents(".dropdown").find('.dropdown-menu').css("display", "block");
-			$(this).find("a[href='"+sPage+"']").parents(".dropdown").find('a.dropdown-toggle').addClass("active");
-			$(this).find("a[href='"+sPage+"']").addClass("active");
-		});
-	});
+        $(document).ready(function () {
+            var sPath = window.location.pathname;
+            var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+            $(".pmd-sidebar-nav").each(function () {
+                $(this).find("a[href='" + sPage + "']").parents(".dropdown").addClass("open");
+                $(this).find("a[href='" + sPage + "']").parents(".dropdown").find('.dropdown-menu').css("display", "block");
+                $(this).find("a[href='" + sPage + "']").parents(".dropdown").find('a.dropdown-toggle').addClass("active");
+                $(this).find("a[href='" + sPage + "']").addClass("active");
+            });
+        });
     </script>
     <!-- login page sections show hide -->
     <script type="text/javascript">
-	$(document).ready(function(){
-	 $('.app-list-icon li a').addClass("active");
-		$(".login-for").click(function(){
-			$('.login-card').hide()
-			$('.forgot-password-card').show();
-		});
-		$(".signin").click(function(){
-			$('.login-card').show()
-			$('.forgot-password-card').hide();
-		});
-	});
+        $(document).ready(function () {
+            $('.app-list-icon li a').addClass("active");
+            $(".login-for").click(function () {
+                $('.login-card').hide();
+                $('.forgot-password-card').show();
+            });
+            $(".signin").click(function () {
+                $('.login-card').show()
+                $('.forgot-password-card').hide();
+            });
+        });
     </script>
     <script type="text/javascript">
-$(document).ready(function(){
-		$(".login-register").click(function(){
-			$('.login-card').hide()
-			$('.forgot-password-card').hide();
-			$('.register-card').show();
-		});
+        $(document).ready(function () {
+            $(".login-register").click(function () {
+                $('.login-card').hide();               
+                $('.register-card').show();
+            });
 
-		$(".register-login").click(function(){
-			$('.register-card').hide()
-			$('.forgot-password-card').hide();
-			$('.login-card').show();
-		});
-		$(".forgot-password").click(function(){
-			$('.login-card').hide()
-			$('.register-card').hide()
-			$('.forgot-password-card').show();
-		});
-});
+            $(".register-login").click(function () {
+                $('.register-card').hide();                
+                $('.login-card').show();
+            });
+            $(".forgot-password").click(function () {
+                $('.login-card').hide();
+                $('.register-card').hide();
+                $('.forgot-password-card').show();
+            });
+        });
     </script>
-
     <!-- Scripts Ends -->
 
 

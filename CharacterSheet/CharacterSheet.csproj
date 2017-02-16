@@ -232,6 +232,7 @@
     <Compile Include="Models\AppUserDbContext.cs" />
     <Compile Include="Models\AppUserPrincipal.cs" />
     <Compile Include="Models\AppViewPage.cs" />
+    <Compile Include="Models\AuthenticationModel.cs" />
     <Compile Include="Models\LogInModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\User.cs" />
