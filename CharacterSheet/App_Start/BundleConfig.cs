@@ -5,42 +5,60 @@ using System.Web.Optimization;
 
 namespace CharacterSheet
 {
-    public class BundleConfig
+    internal static class BundleConfig
     {
-        // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
-        public static void RegisterBundles(BundleCollection bundles)
+        private class BundleConfigOrderer : IBundleOrderer
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                "~/Scripts/jquery-{version}.js"));
+            IEnumerable<BundleFile> IBundleOrderer.OrderFiles(BundleContext context, IEnumerable<BundleFile> files)
+            {
+                return files;
+            }
+        }
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                "~/Scripts/jquery.unobtrusive*",
-                "~/Scripts/jquery.validate*"));
+        internal static void RegisterBundles(BundleCollection bundles)
+        {
+            var minifyJs = Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["MinifyJs"] ?? "true");
+            var vendorBundle = new ScriptBundle("~/scripts/vendor")
+                .Include("~/assets/js/jquery-1.12.2.min.js")
+                .Include("~/assets/js/bootstrap.min.js")
+                .Include("~/assets/js/bootstrap.js")
+                .Include("~/lib/propeller/js/propeller.js");
+            
+            if (!minifyJs)
+            {
+                vendorBundle.Transforms.Clear(); //disables minification
+            }
+            vendorBundle.Orderer = new BundleConfigOrderer();
+            bundles.Add(vendorBundle);
 
-            bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
-                "~/Scripts/knockout-{version}.js",
-                "~/Scripts/knockout.validation.js"));
+            var vendorBundleTwo = new ScriptBundle("~/scripts/vendortwo")
+                .Include("~/lib/knockout/knockout-3.4.0.js")                
+                .Include("~/lib/knockout/knockout-es5.js")
+                .Include("~/lib/knockout/knockout.punches.js")
+                .Include("~/lib/knockout/ko.plus.js")
+                .Include("~/lib/knockout/knockout.reactor.js")
+                .Include("~/lib/knockout/knockout.mapping.js")
+                .Include("~/lib/fuse.js");
+                
+            if (!minifyJs)
+            {
+                vendorBundleTwo.Transforms.Clear(); //disables minification
+            }
+            vendorBundleTwo.Orderer = new BundleConfigOrderer();
+            bundles.Add(vendorBundleTwo);
 
-            bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                "~/Scripts/sammy-{version}.js",
-                "~/Scripts/app/common.js",
-                "~/Scripts/app/app.datamodel.js",
-                "~/Scripts/app/app.viewmodel.js",
-                "~/Scripts/app/home.viewmodel.js",
-                "~/Scripts/app/_run.js"));
+            var styleBundle = new StyleBundle("~/content/css")
+                .Include("~/assets/css/bootstrap.min.css")
+                .Include("~/assets/css/propeller.min.css")
+                .Include("~/themes/css/propeller-theme.css")
+                .Include("~/themes/css/propeller-admin.css")
+                .Include("~/assets/css/sidebar.css");
+                
+                
+            styleBundle.Orderer = new BundleConfigOrderer();
+            bundles.Add(styleBundle);
 
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                "~/Scripts/bootstrap.js",
-                "~/Scripts/respond.js"));
-
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                 "~/Content/bootstrap.css",
-                 "~/Content/Site.css"));
         }
     }
 }

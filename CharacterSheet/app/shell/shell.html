@@ -7,13 +7,19 @@
 			<a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect pull-left margin-r8 pmd-sidebar-toggle" data-bind="sidebarcollapse"><i class="material-icons">menu</i></a>
 		  <a href="#" class="navbar-brand">Character Sheet</a>
 		</div>
+    <div class="pmd-navbar-right-icon pull-right">
+      <a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect"><i class="material-icons pmd-sm md-light">search</i></a>
+      <a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect topbar-toggle visible-xs-inline-block" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><i class="material-icons pmd-sm md-light">more_vert</i></a>
+      <a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect pmd-sidebar-toggle-right"><i class="material-icons md-light">more_horiz</i></a>
+    </div>
 	</div>
 </nav><!--End Nav bar -->
 <!-- Header Ends -->
 
 <!-- Sidebar Starts -->
+<div class="pmd-sidebar-overlay"></div>
 <!-- Left sidebar -->
-<aside class="pmd-sidebar sidebar-default pmd-sidebar-slide-push pmd-sidebar-left pmd-sidebar-open bg-fill-darkblue sidebar-with-icons" role="navigation">
+<aside class="pmd-sidebar sidebar-default pmd-sidebar-left bg-fill-darkblue sidebar-with-icons pmd-sidebar-slide-push pmd-sidebar-open" role="navigation">
 	<ul class="nav pmd-sidebar-nav">
 		<!-- User info -->
 		<li class="dropdown pmd-dropdown pmd-user-info visible-xs visible-md visible-sm visible-lg" data-bind="dropdown">
@@ -29,7 +35,8 @@
 			</ul>
 		</li><!-- End user info -->
 
-    <!--ko foreach: router.navigationModel-->
+  <!--ko foreach: router.navigationModel-->
+    <!--ko if: !adminLink -->
 		<li data-bind="dropdown">
 			<a class="pmd-ripple-effect" data-bind="attr: { href: hash }">
 				<i class="media-left media-middle"></i>
@@ -37,9 +44,27 @@
 			</a>
 		</li>
     <!--/ko-->
-
+  <!--/ko-->
 	</ul>
 </aside><!-- End Left sidebar -->
-<!-- Sidebar Ends -->
 
 <div id="content" class="pmd-content content-area dashboard" data-bind="router: { transition:'entrance'}"></div>
+
+<!--ko if: isAdmin() == true -->
+  <aside class="pmd-sidebar sidebar-custom sidebar-default pmd-sidebar-right-fixed pmd-z-depth pmd-sidebar-right" role="navigation">
+      <ul class="nav pmd-sidebar-nav">
+        <!--ko foreach: router.navigationModel-->
+            <!--ko if: adminLink-->
+      		<li data-bind="dropdown">
+      			<a class="pmd-ripple-effect" data-bind="attr: { href: hash }">
+      				<i class="media-left media-middle"></i>
+      				<span class="media-body" data-bind="text: title"></span>
+      			</a>
+      		</li>
+            <!--/ko-->
+        <!--/ko-->
+      </ul>
+  </aside>
+<!--/ko-->
+
+<!-- Sidebar Ends -->
