@@ -12,9 +12,8 @@
 <!-- Header Ends -->
 
 <!-- Sidebar Starts -->
+<div class="pmd-sidebar-overlay"></div>
 <!-- Left sidebar -->
-              <!-- pmd-sidebar sidebar-default pmd-sidebar-left bg-fill-darkblue sidebar-with-icons pmd-sidebar-left-fixed -->
-              <!-- pmd-sidebar sidebar-default pmd-sidebar-left bg-fill-darkblue sidebar-with-icons pmd-sidebar-slide-push pmd-sidebar-open -->
 <aside class="pmd-sidebar sidebar-default pmd-sidebar-left bg-fill-darkblue sidebar-with-icons pmd-sidebar-slide-push pmd-sidebar-open " role="navigation">
 	<ul class="nav pmd-sidebar-nav">
 		<!-- User info -->
@@ -44,4 +43,17 @@
 </aside><!-- End Left sidebar -->
 <!-- Sidebar Ends -->
 
+<!--ko if: isAdmin() == true -->
+<!-- Sidebar Starts -->
+<aside class="pmd-sidebar sidebar-custom sidebar-default pmd-sidebar-right-fixed pmd-z-depth pmd-sidebar-right pmd-sidebar-open" role="navigation">
+          <!-- Sidebar navigation -->
+          <ul class="nav pmd-sidebar-nav">
+              <li> <a class="pmd-ripple-effect" href="javascript:void(0);"> Trash</a> </li>
+              <li> <a class="pmd-ripple-effect" href="javascript:void(0);"> Spam</a> </li>
+              <li> <a class="pmd-ripple-effect" href="javascript:void(0);"> Follow Up</a> </li>
+          </ul>
+      </aside>
+      <!-- http://propeller.in/components/sidebar.php -->
+<!-- Sidebar Ends -->
+<!--/ko-->
 <div id="content" class="pmd-content content-area dashboard" data-bind="router: { transition:'entrance'}"></div>

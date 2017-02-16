@@ -49,7 +49,7 @@ namespace CharacterSheet.Controllers
                 await SignIn(user);
                 return RedirectToAction("index", "CharacterSheet");
             }
-            
+
             //User Auth failed
             ModelState.AddModelError("", "Invalid Email or Password");
             return View();

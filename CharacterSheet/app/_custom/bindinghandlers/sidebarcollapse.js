@@ -7,98 +7,98 @@ define(function (require) {
     _i.ko.bindingHandlers.sidebarcollapse = {
         init: function (element, valueAccessor) {
             var value = valueAccessor();
-            var $element = $(element);
-            var overlay = $('.pmd-sidebar-overlay');
-            var sidebar = $('.pmd-sidebar');
-            var lsidebar = $('.pmd-sidebar-left');
-            var rsidebar = $('.pmd-sidebar-right-fixed');
-            var pmdnavbarsidebar = $('.pmd-navbar-sidebar');
-            var sidebar = $('.pmd-sidebar');
-            var sidebarHeader = $('#sidebar .sidebar-header');
+            var $element = _i.$(element);
+            var overlay = _i.$('.pmd-sidebar-overlay');
+            var sidebar = _i.$('.pmd-sidebar');
+            var lsidebar = _i.$('.pmd-sidebar-left');
+            var rsidebar = _i.$('.pmd-sidebar-right-fixed');
+            var pmdnavbarsidebar = _i.$('.pmd-navbar-sidebar');
+            var sidebar = _i.$('.pmd-sidebar');
+            var sidebarHeader = _i.$('#sidebar .sidebar-header');
             var sidebarImg = sidebarHeader.css('background-image');
-            var toggleButtons = $('.pmd-sidebar-toggle');
-            var pmdtopbartoggle = $('.topbar-fixed');
+            var toggleButtons = _i.$('.pmd-sidebar-toggle');
+            var pmdtopbartoggle = _i.$('.topbar-fixed');
 
-            $element.on('click', function (e) {
+            _i.$('.pmd-sidebar-toggle').on('click', function (e) {
                 lsidebar.toggleClass('pmd-sidebar-open');
                 if ((lsidebar.hasClass('pmd-sidebar-left-fixed') || lsidebar.hasClass('pmd-sidebar-right-fixed')) && lsidebar.hasClass('pmd-sidebar-open')) {
                     overlay.addClass('pmd-sidebar-overlay-active');
-                    $('body').addClass("pmd-body-open");
+                    _i.$('body').addClass("pmd-body-open");
                 } else {
                     overlay.removeClass('pmd-sidebar-overlay-active');
-                    $('body').removeClass("pmd-body-open");
+                    _i.$('body').removeClass("pmd-body-open");
                 }
             });
 
-            $(".pmd-sidebar .dropdown-menu, .pmd-navbar-sidebar .dropdown-menu").click(function (event) {
+            _i.$(".pmd-sidebar .dropdown-menu, .pmd-navbar-sidebar .dropdown-menu").click(function (event) {
                 event.stopPropagation();
             });
 
             // Right Sidebar
-            $('.pmd-sidebar-toggle-right').on('click', function (e) {
+            _i.$('.pmd-sidebar-toggle-right').on('click', function (e) {
                 rsidebar.toggleClass('pmd-sidebar-open');
                 if ((rsidebar.hasClass('pmd-sidebar-right')) && rsidebar.hasClass('pmd-sidebar-open')) {
                     overlay.addClass('pmd-sidebar-overlay-active');
-                    $('body').addClass("pmd-body-open");
+                    _i.$('body').addClass("pmd-body-open");
                 } else {
                     overlay.removeClass('pmd-sidebar-overlay-active');
-                    $('body').removeClass("pmd-body-open");
+                    _i.$('body').removeClass("pmd-body-open");
                 }
             });
 
             // Right Sidebar
-            $('.pmd-topbar-toggle').on('click', function (e) {
+            _i.$('.pmd-topbar-toggle').on('click', function (e) {
                 pmdtopbartoggle.toggleClass('pmd-sidebar-open');
             });
 
-            $('.topbar-close').on('click', function () {
+            _i.$('.topbar-close').on('click', function () {
                 pmdtopbartoggle.removeClass('pmd-sidebar-open');
             });
 
             // Nave bar in Sidebar
-            $('.pmd-navbar-toggle').on('click', function (e) {
+            _i.$('.pmd-navbar-toggle').on('click', function (e) {
                 pmdnavbarsidebar.toggleClass('pmd-sidebar-open');
                 if ((pmdnavbarsidebar.hasClass('pmd-navbar-sidebar')) && pmdnavbarsidebar.hasClass('pmd-sidebar-open')) {
                     overlay.addClass('pmd-sidebar-overlay-active');
-                    $('body').addClass("pmd-body-open");
+                    _i.$('body').addClass("pmd-body-open");
                 } else {
                     overlay.removeClass('pmd-sidebar-overlay-active');
-                    $('body').removeClass("pmd-body-open");
+                    _i.$('body').removeClass("pmd-body-open");
                 }
             });
 
             // Overlay
             overlay.on('click', function (e) {
-                $(this).removeClass('pmd-sidebar-overlay-active');
-                $('.pmd-sidebar').removeClass('pmd-sidebar-open');
-                $('.pmd-navbar-sidebar').removeClass('pmd-sidebar-open');
-                $('body').removeClass("pmd-body-open");
+                _i.$(this).removeClass('pmd-sidebar-overlay-active');
+                _i.$('.pmd-sidebar').removeClass('pmd-sidebar-open');
+                _i.$('.pmd-navbar-sidebar').removeClass('pmd-sidebar-open');
+                _i.$('body').removeClass("pmd-body-open");
                 event.stopPropagation();
             });
 
             // Window load browser resize position
-            if ($(window).width() < 1200) {
+            if (_i.$(window).width() < 1200) {
                 sidebar.removeClass('pmd-sidebar-open pmd-sidebar-slide-push');
                 lsidebar.addClass('pmd-sidebar-left-fixed');
                 rsidebar.addClass('pmd-sidebar-right');
                 toggleButtons.css('display', 'inherit');
-                $('body').removeClass("pmd-body-open");
+                _i.$('body').removeClass("pmd-body-open");
             }
             
             // window resize position
-            $(window).resize(function () {
-                if ($(window).width() < 1200) {
+            _i.$(window).resize(function () {
+                if (_i.$(window).width() < 1200) {
                     sidebar.removeClass('pmd-sidebar-open pmd-sidebar-slide-push');
                     lsidebar.addClass('pmd-sidebar-left-fixed');
                     rsidebar.addClass('pmd-sidebar-right');
                     toggleButtons.css('display', 'inherit');
                     overlay.removeClass('pmd-sidebar-overlay-active');
-                    $('body').removeClass("pmd-body-open");
+                    _i.$('body').removeClass("pmd-body-open");
                 } else {
                     lsidebar.removeClass('pmd-sidebar-left-fixed').addClass('pmd-sidebar-open pmd-sidebar-slide-push');
                     rsidebar.removeClass('pmd-sidebar-right');
                     overlay.removeClass('pmd-sidebar-overlay-active');
-                    $('body').removeClass("pmd-body-open");
+                    _i.$('body').removeClass("pmd-body-open");
                 }
             });
 

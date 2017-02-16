@@ -1,9 +1,17 @@
-body{
-  font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell English SC','Metamorphous','Milonga','Pirata One', cursive !important;
-}
-body .pmd-sidebar .pmd-sidebar-nav li a{
-  font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell English SC','Metamorphous','Milonga','Pirata One', cursive !important;
-}
-h1, h2, h3, h4, h5, h6{
-  font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell English SC','Metamorphous','Milonga','Pirata One', cursive !important;
-}
+body  {font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell English SC','Metamorphous','Milonga','Pirata One', cursive !important;background-color: #4d575d !important;}
+body .pmd-sidebar .pmd-sidebar-nav li a {font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell English SC','Metamorphous','Milonga','Pirata One', cursive !important;}
+h1, h2, h3, h4, h5, h6  {font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell English SC','Metamorphous','Milonga','Pirata One', cursive !important;}
+
+.pmd-card, .navbar-inverse,
+.pmd-sidebar  {background-color: #333 !important;}
+.login-card   {background-color: #333 !important;}
+.btn-primary  {background-color: rgba(51, 122, 183, 0.65) !important;}
+
+.pmd-card-body,
+.pmd-textfield-floating-label label,
+.login-register,.material-icons.md-dark {color:#c1b4b4 !important;}
+
+h2.typo-fill-secondary,
+.navbar-brand, .pmd-card-title strong,
+.pmd-card-footer  {color: rgba(255, 215, 0, 0.68) !important;}
+.pmd-textfield-floating-label.pmd-textfield-floating-label-completed label  {color: #c1b4b4 !important;}

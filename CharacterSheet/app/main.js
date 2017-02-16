@@ -8,6 +8,7 @@ requirejs.config({
         'plugins' : '../lib/durandal/js/plugins',
         'transitions' : '../lib/durandal/js/transitions',
         'bootstrap': '../lib/bootstrap/js/bootstrap',
+        'propeller': '../lib/propeller/js/propeller'
       }
 });
 
