@@ -20,16 +20,10 @@ namespace CharacterSheet
             var minifyJs = Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["MinifyJs"] ?? "true");
             var vendorBundle = new ScriptBundle("~/scripts/vendor")
                 .Include("~/assets/js/jquery-1.12.2.min.js")
+                .Include("~/assets/js/bootstrap.min.js")
                 .Include("~/assets/js/bootstrap.js")
-                .Include("~/lib/propeller/js/propeller.js")
-                .Include("~/lib/knockout/knockout-{version}.js")
-                .Include("~/lib/knockout/knockout-es5.js")
-                .Include("~/lib/knockout/knockout.punches.js")
-                .Include("~/lib/knockout/ko.plus.js")
-                .Include("~/lib/knockout/knockout.reactor.js")
-                .Include("~/lib/knockout/knockout.mapping.js")
-                .Include("~/lib/fuse.js");
-
+                .Include("~/lib/propeller/js/propeller.js");
+            
             if (!minifyJs)
             {
                 vendorBundle.Transforms.Clear(); //disables minification
@@ -37,13 +31,29 @@ namespace CharacterSheet
             vendorBundle.Orderer = new BundleConfigOrderer();
             bundles.Add(vendorBundle);
 
+            var vendorBundleTwo = new ScriptBundle("~/scripts/vendortwo")
+                .Include("~/lib/knockout/knockout-3.4.0.js")                
+                .Include("~/lib/knockout/knockout-es5.js")
+                .Include("~/lib/knockout/knockout.punches.js")
+                .Include("~/lib/knockout/ko.plus.js")
+                .Include("~/lib/knockout/knockout.reactor.js")
+                .Include("~/lib/knockout/knockout.mapping.js")
+                .Include("~/lib/fuse.js");
+                
+            if (!minifyJs)
+            {
+                vendorBundleTwo.Transforms.Clear(); //disables minification
+            }
+            vendorBundleTwo.Orderer = new BundleConfigOrderer();
+            bundles.Add(vendorBundleTwo);
 
             var styleBundle = new StyleBundle("~/content/css")
-                .Include("~/assets/css/bootstrap.css")
+                .Include("~/assets/css/bootstrap.min.css")
                 .Include("~/assets/css/propeller.min.css")
-                .Include("~/assets/css/sidebar.css")
                 .Include("~/themes/css/propeller-theme.css")
-                .Include("~/themes/css/propeller-admin.css");
+                .Include("~/themes/css/propeller-admin.css")
+                .Include("~/assets/css/sidebar.css");
+                
                 
             styleBundle.Orderer = new BundleConfigOrderer();
             bundles.Add(styleBundle);
