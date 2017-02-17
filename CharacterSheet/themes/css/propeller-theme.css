@@ -4,10 +4,10 @@
  * Licensed under MIT (http://propeller.in/LICENSE)
  */
 
-/* 
+/*
 ---------------------------------------
 	Propeller Style Guide Version 1.0.0
----------------------------------------	
+---------------------------------------
 * 	Primary Color : #001E80
 * 	Secondary Color : #4acc8e
 * 	Highlighted Text (Title) Color & Fonts : #333c4e, 'Roboto', sans-serif
@@ -47,7 +47,7 @@ h5{font-size:16px;}
 .fw-bold{font-weight:700;}
 
 /* Color & Weight style */
-h1, h2, h3, h4, h5, h6{ color:#333c4e; font-family:'Roboto', sans-serif;}
+h1, h2, h3, h4, h5, h6{ color: #c1b4b4;}
 h1 strong, h2 strong, h3 strong, h4 strong, h5 strong{font-weight:700;}
 
 /* Other Element Style */

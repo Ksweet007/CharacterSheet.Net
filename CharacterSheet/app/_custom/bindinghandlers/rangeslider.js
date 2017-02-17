@@ -17,7 +17,7 @@
 
             noUiSlider.create(sliderElement,
                 {
-                    start: [ 1 ],
+                    start: settings.valueInput(),
                     connect: 'lower',
                     tooltips: [wNumb({ decimals: 0 }) ],
                     format: wNumb({ decimals: 0}),
