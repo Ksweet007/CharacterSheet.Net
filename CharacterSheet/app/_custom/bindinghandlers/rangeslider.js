@@ -12,25 +12,31 @@
             }, _i.ko.unwrap(valueAccessor()))
             var sliderElement = _i.$(element)[0];
 
-            if(settings.type === 'input'){
-                //var pmdSlider = _i.$('#pmd-slider-value-input')[0];
-                noUiSlider.create(sliderElement,
-                    {
-                        start: [ 1 ],
-                        connect: 'lower',
-                        tooltips: [wNumb({ decimals: 0 }) ],
-                        range: {'min': 1, 'max': 20 },
-                        step: 1,
-                        pips: {mode: 'steps', density: 1}
-                    }
-                );
+            //Input field
+            var valueInput = _i.$('#value-input')[0];
 
-            	sliderElement.noUiSlider.on('update', function( values, handle ) {
-                    sliderElement.value  = values[handle];
-                    settings.valueInput(sliderElement.value);
-            	});
-            }
+            noUiSlider.create(sliderElement,
+                {
+                    start: [ 1 ],
+                    connect: 'lower',
+                    tooltips: [wNumb({ decimals: 0 }) ],
+                    range: {'min': 1, 'max': 20 },
+                    step: 1,
+                    pips: {mode: 'steps', density: 1}
+                }
+            );
 
+            // When the slider value changes, update the input and span
+        	sliderElement.noUiSlider.on('update', function( values, handle ) {
+                valueInput.value  = values[handle];
+                settings.valueInput(valueInput.value);
+        	});
+
+            // When the input changes, set the slider value
+            valueInput.addEventListener('change', function(){
+                sliderElement.noUiSlider.set([this.value]);
+                settings.valueInput([this.value]);
+            });
 
         }//END INIT
     };
