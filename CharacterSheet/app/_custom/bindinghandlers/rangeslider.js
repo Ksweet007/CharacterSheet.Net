@@ -12,9 +12,6 @@
             }, _i.ko.unwrap(valueAccessor()))
             var sliderElement = _i.$(element)[0];
 
-            //Input field
-            var valueInput = _i.$('#value-input')[0];
-
             noUiSlider.create(sliderElement,
                 {
                     start: settings.valueInput(),
@@ -32,12 +29,6 @@
                 var newInput = values[handle];
                 settings.valueInput(newInput);
         	});
-
-            // When the input changes, set the slider value
-            // valueInput.addEventListener('change', function(){
-            //     sliderElement.noUiSlider.set([this.value]);
-            //     settings.valueInput([this.value]);
-            // });
 
         }//END INIT
     };
