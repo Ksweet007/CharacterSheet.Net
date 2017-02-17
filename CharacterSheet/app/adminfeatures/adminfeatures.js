@@ -56,12 +56,14 @@ define(function (require) {
         self.getFeatures = function () {
             var promise = _i.deferred.create();
             _i.charajax.universal('api/GetAllFeatures', '', 'GET').done(function (response) {
-                var features = _i.ko.observableArray(_i.ko.utils.arrayMap(response, function(item){
-                    return {Name:item.Name, FeatureId : item.FeatureId, Levelgained : _i.ko.observable(item.Levelgained), Description : item.Description, RecoveryType : item.RecoveryType, ActionType : item.ActionType, isSelected: _i.ko.observable(false)};
-                }));
+                // var features = _i.ko.observableArray(_i.ko.utils.arrayMap(response, function(item){
+                //     return {Name:item.Name, FeatureId : item.FeatureId, Levelgained : _i.ko.observable(item.Levelgained), Description : item.Description, RecoveryType : item.RecoveryType, ActionType : item.ActionType, isSelected: _i.ko.observable(false)};
+                // }));
 
-              self.features(features());
-              _i.list.sortAlphabetically(self.features());
+            var mapped = ko.mapping.fromJS(response)
+
+          self.features(mapped());
+          _i.list.sortAlphabeticallyObservables(self.features());
 
               promise.resolve();
             });

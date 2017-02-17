@@ -7,7 +7,7 @@
     _i.ko.bindingHandlers.rangeslider = {
         init: function(element, valueAccessor) {
             var settings = _i.$.extend({
-                valueInput  : 0,
+                valueInput  : _i.ko.observable(0),
                 type: 'input'
             }, _i.ko.unwrap(valueAccessor()))
 
@@ -21,12 +21,19 @@
                 range: {
                     'min': 1,
                     'max': 20
-                }
+                },
+        		step: 1,
+        		pips: {
+        			mode: 'steps',
+        			density: 1
+        		}
             });
 
         	pmdSlider.noUiSlider.on('update', function( values, handle ) {
+                // pmdSlider.value  = values[handle];
+                // settings.valueInput = pmdSlider.value;
                 pmdSlider.value  = values[handle];
-                settings.valueInput = pmdSlider.value;
+                settings.valueInput(pmdSlider.value);
         	});
         }
 
@@ -51,7 +58,7 @@
 
             pmdSliderStep.noUiSlider.on('update', function( values, handle ) {
                 pmdSliderStep.value  = values[handle];
-                settings.valueInput = pmdSliderStep.value;
+                settings.valueInput(pmdSliderStep.value);
         	});
 
         }

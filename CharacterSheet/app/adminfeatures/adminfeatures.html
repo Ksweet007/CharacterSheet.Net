@@ -18,7 +18,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-6">
-            	<div class="pmd-card pmd-z-depth pmd-card-custom-form" data-bind="with:selectedFeature">
+            	<div class="pmd-card pmd-z-depth pmd-card-custom-form" data-bind="with : selectedFeature()">
             		<div class="pmd-card-body">
 
             			<div class="form-group pmd-textfield pmd-textfield">
@@ -37,7 +37,7 @@
                                     <div class="col-md-12">
                                         <div class="pmd-card pmd-z-depth">
                                             <div class="pmd-card-body">
-                                                <div id="pmd-slider-value-input" class="pmd-range-slider" data-bind="rangeslider:{valueInput : Levelgained, type : 'input' }"></div>
+                                                <div id="pmd-slider-value-input" class="pmd-range-slider" data-bind="rangeslider:{valueInput : $parent.Levelgained, type : 'input' }"></div>
                                                 <div class="row">
                                                     <div class="range-slider-input">
                                                         <div class="col-sm-2">
@@ -50,15 +50,16 @@
                                                 <div class="clearfix"></div>
                                                 <!-- <div id="pmd-slider" class="pmd-range-slider pmd-range-tooltip-bottom" data-bind="rangeslider:{valueInput : Levelgained }"></div> -->
                                             </div>
-                                            <div class="row">
+                                            <!-- <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="pmd-card pmd-z-depth">
                                                         <div class="pmd-card-body">
-                                                            <div id="pmd-slider-step" class="pmd-range-slider" data-bind="rangeslider:{valueInput : Levelgained, type: 'step' }"></div>
+
+                                                            <div id="pmd-slider-step" class="pmd-range-slider" data-bind="rangeslider:{valueInput : $parent.Levelgained, type: 'step' }"></div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                         </div>
                                     </div>
