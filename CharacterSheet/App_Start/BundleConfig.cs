@@ -19,7 +19,8 @@ namespace CharacterSheet
         {
             var minifyJs = Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["MinifyJs"] ?? "true");
             var vendorBundle = new ScriptBundle("~/scripts/vendor")                
-                .Include("~/assets/js/jquery.js")                
+                //.Include("~/assets/js/jquery.js")
+                .Include("~/assets/js/jquery-1.12.2.min.js")
                 .Include("~/assets/js/bootstrap.js")
                 .Include("~/lib/propeller/js/propeller.js");
                 
@@ -37,10 +38,12 @@ namespace CharacterSheet
                 .Include("~/lib/knockout/knockout.punches.js")
                 .Include("~/lib/knockout/ko.plus.js")
                 .Include("~/lib/knockout/knockout.reactor.js")
-                .Include("~/lib/knockout/knockout.mapping.js")
-                .Include("~/components/custom-scrollbar/js/jquery.mCustomScrollbar.js")
-                .Include("~/lib/fuse.js");
-                
+                .Include("~/lib/knockout/knockout.mapping.js")                
+                .Include("~/lib/fuse.js")
+                .Include("~/assets/js/wNumb.js")
+                .Include("~/assets/js/nouislider.js");
+
+
             if (!minifyJs)
             {
                 vendorBundleTwo.Transforms.Clear(); //disables minification
@@ -53,13 +56,10 @@ namespace CharacterSheet
                 .Include("~/assets/css/bootstrap.css")
                 .Include("~/assets/css/propeller.css")
                 .Include("~/themes/css/propeller-theme.css")
-                .Include("~/assets/css/sidebar.css")
-                .Include("~/components/custom-scrollbar/css/jquery.mCustomScrollbar.css")
-                .Include("~/components/custom-scrollbar/css/pmd-scrollbar.css");
-                
-                
-            styleBundle.Orderer = new BundleConfigOrderer();
-            bundles.Add(styleBundle);
+                .Include("~/assets/css/sidebar.css");
+
+                styleBundle.Orderer = new BundleConfigOrderer();
+                bundles.Add(styleBundle);
 
 
         }

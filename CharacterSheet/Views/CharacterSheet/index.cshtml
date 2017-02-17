@@ -17,6 +17,12 @@
     
     @Styles.Render("~/content/css")
 
+    <!-- Range Slider css -->
+    <link href="~/assets/css/nouislider.min.css" rel="stylesheet" />
+    
+    <!-- Nouislider css-->
+    <link href="/assets/css/range-slider.css" type="text/css" rel="stylesheet" />
+
     <link href="https://fonts.googleapis.com/css?family=Eagle+Lake|IM+Fell+English+SC|Jim+Nightshade|Metamorphous|Milonga|Pirata+One|MedievalSharp" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="~/assets/css/main.css">
@@ -38,61 +44,147 @@
 <!-- Scripts Starts -->
     @Scripts.Render("~/scripts/vendor")
 
-    <script>        
-        window.jQuery || document.write('<script src="js/jquery-3.1.1.min.js">\x3C/script>')
-    </script>
+<script>        
+    window.jQuery || document.write('<script src="js/jquery-3.1.1.min.js">\x3C/script>')
+</script>
+
     @Scripts.Render("~/scripts/vendortwo")
+      
     <script>
-	(function($){
-		$(window).load(function(){
-			$(".content").mCustomScrollbar({
-				theme:"minimal"
-			});
-		});
-	})(jQuery);
 
-	(function($){
-		$(window).load(function(){
-			$("#content-3").mCustomScrollbar({
-				scrollButtons:{enable:true},
-				theme:"dark-thick",
-				scrollbarPosition:"outside"
-			});
-		});
-	})(jQuery);
+	/*********/
 
-	(function($){
-		$(window).load(function(){
-			$("#content-4").mCustomScrollbar({
-				theme:"rounded-dots",
-				scrollInertia:400
-			});
-		});
-	})(jQuery);
+	// single range slider
+	var pmdVerticleSlider = document.getElementById('pmd-ver-slider');
+	noUiSlider.create(pmdVerticleSlider, {
+		start: [ 30 ],
+		connect: 'lower',
+		direction: 'rtl', // Put '0' at the bottom of the slider
+		orientation: 'vertical', // Orient the slider vertically
+		tooltips: [wNumb({ decimals: 0 }) ],
+		range: {
+			'min': [  0 ],
+			'max': [ 100 ]
+		}
+	});
 
-	(function($){
-		$(window).load(function(){
-			$("#content-7").mCustomScrollbar({
-				scrollButtons:{enable:true},
-				theme:"3d-thick"
-			});
-		});
-	})(jQuery);
+	// single range slider with step
+	var pmdVerticleSliderStep = document.getElementById('pmd-ver-slider-step');
+	noUiSlider.create(pmdVerticleSliderStep, {
+		start: [ 30 ],
+		connect: 'lower',
+		direction: 'rtl', // Put '0' at the bottom of the slider
+		tooltips: [wNumb({ decimals: 0 }) ],
+		orientation: 'vertical', // Orient the slider vertically
+		range: {
+			'min': [  0 ],
+			'max': [ 100 ]
+		},
+		step: 10,
+		pips: { // Show a scale with the slider
+			mode: 'steps',
+			density: 10
+		}
 
-	(function($){
-		$(window).load(function(){
-			$("#content-9").mCustomScrollbar({
-				scrollButtons:{enable:true,scrollType:"stepped"},
-				keyboard:{scrollType:"stepped"},
-				mouseWheel:{scrollAmount:188},
-				theme:"rounded-light",
-				autoExpandScrollbar:true,
-				snapAmount:188,
-				snapOffset:65
-			});
-		});
-	})(jQuery);
-    </script>
+	});
+
+	// multiple range slider
+	var pmdVerticleSliderRange = document.getElementById('pmd-ver-slider-range');
+	noUiSlider.create(pmdVerticleSliderRange, {
+		start: [30, 75],
+		connect: true,
+		tooltips: [ wNumb({ decimals: 0 }), wNumb({ decimals: 0 }) ],
+		direction: 'rtl', // Put '0' at the bottom of the slider
+		orientation: 'vertical', // Orient the slider vertically
+		range: {
+			'min': 0,
+			'max': 100
+		}
+	});
+
+
+	// single range slider with default tooltip open
+	var pmdVerSliderTooltip = document.getElementById('pmd-ver-slider-tooltip');
+	noUiSlider.create(pmdVerSliderTooltip, {
+		start: [ 25 ],
+		connect: 'lower',
+		tooltips: [wNumb({ decimals: 0 }) ],
+		direction: 'rtl', // Put '0' at the bottom of the slider
+		orientation: 'vertical', // Orient the slider vertically
+		range: {
+			'min': [  0 ],
+			'max': [ 100 ]
+		}
+	});
+
+	// multiple range slider with default tooltip open
+	var pmdVerSliderRangeTooltip = document.getElementById('pmd-ver-slider-range-tooltip');
+	noUiSlider.create(pmdVerSliderRangeTooltip, {
+		start: [10, 50],
+		connect: true,
+		tooltips: [ wNumb({ decimals: 0 }), wNumb({ decimals: 0 }) ],
+		direction: 'rtl', // Put '0' at the bottom of the slider
+		orientation: 'vertical', // Orient the slider vertically
+		range: {
+			'min': 0,
+			'max': 100
+		}
+	});
+
+	// multiple range slider with default tooltip open
+	var pmdVerSliderTooltipBottom = document.getElementById('pmd-range-tooltip-bottom');
+	noUiSlider.create(pmdVerSliderTooltipBottom, {
+		start: [ 30 ],
+		connect: 'lower',
+		tooltips: [wNumb({ decimals: 0 }) ],
+		range: {
+			'min': [  0 ],
+			'max': [ 100 ]
+		}
+	});
+
+	// multiple range slider with default tooltip open
+	var pmdVerSliderTooltipRight = document.getElementById('pmd-ver-slider-tooltip-right');
+	noUiSlider.create(pmdVerSliderTooltipRight, {
+		start: [ 30 ],
+		connect: 'lower',
+		direction: 'rtl', // Put '0' at the bottom of the slider
+		orientation: 'vertical', // Orient the slider vertically
+		tooltips: [wNumb({ decimals: 0 }) ],
+		range: {
+			'min': [  0 ],
+			'max': [ 100 ]
+		}
+	});
+
+	// multiple range slider with default tooltip open
+	var pmdVerSliderTooltipLowerRight = document.getElementById('pmd-ver-slider-range-tooltip-lower-right');
+	noUiSlider.create(pmdVerSliderTooltipLowerRight, {
+		start: [10, 50],
+		connect: true,
+		tooltips: [ wNumb({ decimals: 0 }), wNumb({ decimals: 0 }) ],
+		direction: 'rtl', // Put '0' at the bottom of the slider
+		orientation: 'vertical', // Orient the slider vertically
+		range: {
+			'min': 0,
+			'max': 100
+		}
+	});
+
+	// multiple range slider with default tooltip open
+	var pmdVerSliderTooltipUpperRight = document.getElementById('pmd-ver-slider-range-tooltip-upper-right');
+	noUiSlider.create(pmdVerSliderTooltipUpperRight, {
+		start: [10, 50],
+		connect: true,
+		tooltips: [ wNumb({ decimals: 0 }), wNumb({ decimals: 0 }) ],
+		direction: 'rtl', // Put '0' at the bottom of the slider
+		orientation: 'vertical', // Orient the slider vertically
+		range: {
+			'min': 0,
+			'max': 100
+		}
+	});
+    </script> 
 <script>    
     $(document).ready(function() {
         var sPath=window.location.pathname;
