@@ -1,6 +1,6 @@
 <!-- Header Starts -->
 <!--Start Nav bar -->
-<nav class="navbar navbar-inverse navbar-fixed-top pmd-navbar pmd-z-depth">
+<nav class="navbar navbar-inverse navbar-fixed-top pmd-navbar pmd-z-depth" data-bind="rippleeffect">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -20,7 +20,7 @@
 <!-- Sidebar Starts -->
 <div class="pmd-sidebar-overlay"></div>
 <!-- Left sidebar -->
-<aside class="pmd-sidebar sidebar-default pmd-sidebar-left bg-fill-darkblue sidebar-with-icons pmd-sidebar-slide-push pmd-sidebar-open" role="navigation">
+<aside class="pmd-sidebar sidebar-default pmd-sidebar-left bg-fill-darkblue sidebar-with-icons pmd-sidebar-slide-push pmd-sidebar-open" role="navigation" data-bind="rippleeffect">
 	<ul class="nav pmd-sidebar-nav">
 		<!-- User info -->
 		<li class="dropdown pmd-dropdown pmd-user-info visible-xs visible-md visible-sm visible-lg" data-bind="dropdown">
@@ -49,10 +49,10 @@
 	</ul>
 </aside><!-- End Left sidebar -->
 
-<div id="content" class="pmd-content content-area dashboard" data-bind="router: { transition:'entrance'}"></div>
+<div id="content" class="pmd-content content-area dashboard" data-bind="router: { transition:'entrance'}, rippleeffect"></div>
 
 <!--ko if: isAdmin() == true -->
-  <aside class="pmd-sidebar sidebar-custom sidebar-default pmd-sidebar-right-fixed pmd-z-depth pmd-sidebar-right" role="navigation">
+  <aside class="pmd-sidebar sidebar-custom sidebar-default pmd-sidebar-right-fixed pmd-z-depth pmd-sidebar-right" role="navigation" data-bind="rippleeffect">
       <ul class="nav pmd-sidebar-nav">
     		<!-- Class Admin -->
     		<li class="dropdown pmd-dropdown pmd-user-info visible-xs visible-md visible-sm visible-lg" data-bind="dropdown">

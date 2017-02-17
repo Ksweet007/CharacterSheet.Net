@@ -248,6 +248,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\adminfeatures\adminfeatures.html" />
+    <Content Include="app\adminfeatures\adminfeatures.js" />
     <Content Include="app\admin\admin.html" />
     <Content Include="app\admin\admin.js" />
     <Content Include="app\admin\features\features.html" />
@@ -352,7 +354,9 @@
     <Content Include="app\_custom\bindinghandlers\dropdown.js" />
     <Content Include="app\_custom\bindinghandlers\fadeVisible.js" />
     <Content Include="app\_custom\bindinghandlers\LockScroll.js" />
+    <Content Include="app\_custom\bindinghandlers\rangeslider.js" />
     <Content Include="app\_custom\bindinghandlers\sidebarcollapse.js" />
+    <Content Include="app\_custom\bindinghandlers\sliderValue.js" />
     <Content Include="app\_custom\cls.js" />
     <Content Include="app\_custom\deferred.js" />
     <Content Include="app\_custom\services\databaseutils.js" />

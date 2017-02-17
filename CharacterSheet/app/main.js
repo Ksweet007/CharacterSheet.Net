@@ -1,6 +1,8 @@
 /* global jQuery:false, $:false, ko:false, require:false, requirejs:false, moment:false */
 define('jquery', function () { return jQuery; });
 define('knockout', ko);
+define('propeller', function() { return propeller; });
+
 requirejs.config({
     paths: {
         'text': '../lib/require/text',
@@ -17,12 +19,12 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator','knockout','_c
     system.debug(true);
     //>>excludeEnd("build");
 
-		requirejs.config(require.config);
-		window.require = require;
-		window.requirejs = requirejs;
-		window.define = define;
+	requirejs.config(require.config);
+	window.require = require;
+	window.requirejs = requirejs;
+	window.define = define;
 
-		ko.punches.enableAll();
+	ko.punches.enableAll();
 
     app.title = 'Character Builder';
 

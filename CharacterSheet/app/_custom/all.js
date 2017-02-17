@@ -11,5 +11,6 @@ define(function(require) {
     require('./bindinghandlers/sidebarcollapse');
     require('./bindinghandlers/dropdown');
     require('./bindinghandlers/rangeslider');
+    require('./bindinghandlers/rippleeffect');
 
 });

@@ -22,7 +22,7 @@ namespace CharacterSheet
                 //.Include("~/assets/js/jquery.js")
                 .Include("~/assets/js/jquery-1.12.2.min.js")
                 .Include("~/assets/js/bootstrap.js")
-                .Include("~/lib/propeller/js/propeller.js");
+                .Include("~/assets/js/propeller.js");
                 
 
             if (!minifyJs)

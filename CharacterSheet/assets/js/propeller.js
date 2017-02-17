@@ -4,9 +4,9 @@
  * Licensed under MIT (http://propeller.in/LICENSE)
  */
 
-$( document ).ready(function() { 
+!(function($) {
 
-	// ------- Propeller Textfield component js function ------- // 
+	// ------- Propeller Textfield component js function ------- //
 	// paper input
 	$(".pmd-textfield-focused").remove();
 	$(".pmd-textfield .form-control").after('<span class="pmd-textfield-focused"></span>');
@@ -61,11 +61,11 @@ $( document ).ready(function() {
 		  top: y+'px',
 		  left:x+'px'
 		}).addClass("animate");
-		setTimeout(function(){ 
+		setTimeout(function(){
 			ink.remove();
 		}, 1500);
 	})
-	
+
 	// ------- Propeller Radio component js function ------- //
 	$('.pmd-radio input').after('<span class="pmd-radio-label">&nbsp;</span>');
 	//-- Radio Ripple Effect --//
@@ -93,11 +93,11 @@ $( document ).ready(function() {
 		  top: y+'px',
 		  left:x+'px'
 		}).addClass("animate");
-		setTimeout(function(){ 
+		setTimeout(function(){
 			ink.remove();
 		}, 1500);
 	})
-	
+
 	// ------- Propeller Dropdown component js function ------- //
 	$('.pmd-dropdown .dropdown-menu').wrap( "<div class='pmd-dropdown-menu-container'></div>" );
 	$('.pmd-dropdown .dropdown-menu').before('<div class="pmd-dropdown-menu-bg"></div>');
@@ -133,7 +133,7 @@ $( document ).ready(function() {
 					} else if (that.hasClass('pmd-dropdown-menu-top-right')){
 						dcdmbg.addClass('pmd-dropdown-menu-bg-bottom-right');
 						dcdmc.css({"right":"0", "left":"auto"})
-					} 
+					}
 				}
 			});
 			// Add slideup animation to dropdown
@@ -159,7 +159,7 @@ $( document ).ready(function() {
 						that.css("clip","rect(0 "+w+"px 0 "+w+"px)");
 					} else if (that.hasClass('pmd-dropdown-menu-top-right')){
 						that.css("clip","rect(0 "+w+"px 0 "+w+"px)");
-					} 
+					}
 				}
 			});
 		} else {
@@ -176,7 +176,7 @@ $( document ).ready(function() {
 				var h = that.outerHeight();
 				var dcdmc = that.closest('.pmd-dropdown-menu-container');
 				var dcdmbg = dcdmc.find('.pmd-dropdown-menu-bg');
-				
+
 				if (hassidebar) {
 					that.first().stop(true, true).slideDown();
 				} else if ( dropdowncenter ) {
@@ -220,14 +220,14 @@ $( document ).ready(function() {
 				}else if($(this).parents("aside").hasClass("pmd-sidebar")){
 					$('.dropdown-menu').slideUp(300);
 				}
-				
-				this.closable = true; 
+
+				this.closable = true;
 			});
 			// Add slideup animation to dropdown
 			dropdown.off('hide.bs.dropdown');
 			dropdown.on('hide.bs.dropdown', function(e){
 				if($(this).parents("aside").hasClass("pmd-sidebar")) {
-					return this.closable;	
+					return this.closable;
 				}
 				else{
 					$dataSidebar = $(this).find('.dropdown-toggle').attr("data-sidebar");
@@ -258,17 +258,17 @@ $( document ).ready(function() {
 							that.css("clip","rect(0 "+w+"px 0 "+w+"px)");
 						} else if (that.hasClass('pmd-dropdown-menu-top-right')){
 							that.css("clip","rect(0 "+w+"px 0 "+w+"px)");
-						} 
+						}
 					}
 				}
-			});	
+			});
 		}
 	}
 	pmdsidebardropdown();
 	$(window).resize(function(){
 		pmdsidebardropdown();
 	});
-	
+
 	// ------- Propeller Ripple Effect component js function ------- //
 	$(".pmd-ripple-effect").on('mousedown touchstart', function(e) {
 		var rippler = $(this);
@@ -294,12 +294,12 @@ $( document ).ready(function() {
 		  top: y+'px',
 		  left:x+'px'
 		}).addClass("animate");
-		
-		setTimeout(function(){ 
+
+		setTimeout(function(){
 			ink.remove();
 		}, 1500);
 	})
-	
+
 	// ------- Propeller Modal component js function ------- //
 	function reposition() {
 		var modal = $(this),
@@ -312,10 +312,10 @@ $( document ).ready(function() {
 	$(window).on('resize', function() {
 		$('.modal:visible').each(reposition);
 	});
-	
+
 	// ------- Propeller Accordion component js function ------- //
 	//custom function to add and remove active class
-	$(function () {			
+	$(function () {
 		$(".collapse.in").parents(".panel").addClass("active");
 
 		$('a[data-toggle="collapse"]').on('click',function(){
@@ -355,8 +355,8 @@ $( document ).ready(function() {
 				}
 			}
 		});
-				
-		//  custom function for expand all and collapse all button 
+
+		//  custom function for expand all and collapse all button
 		$('#expandAll').on('click',function(){
 			var GetID = $(this).attr("data-target");
 			$('#' + GetID +' '+'a[data-toggle="collapse"]').each(function(){
@@ -368,7 +368,7 @@ $( document ).ready(function() {
 				}
 			});
 		});
-		//     
+		//
 		$('#collapseAll').on('click',function(){
 			var GetID = $(this).attr("data-target");
 			$('#' + GetID +' '+ 'a[data-toggle="collapse"]').each(function(){
@@ -377,10 +377,10 @@ $( document ).ready(function() {
 				$(objectID).parent().removeClass("active");
 			});
 		});
-				
+
 	});
-	
-	
+
+
 	// ------- Propeller Alert component js function ------- //
 	$(".pmd-alert-toggle").click(function(){
 		$positionX = $(this).attr("data-positionX");
@@ -390,36 +390,36 @@ $( document ).ready(function() {
 		$dataMessage = $(this).attr("data-message");
 		$dataType = $(this).attr("data-type");
 		$actionText = $(this).attr("data-action-text");
-		$action = $(this).attr("data-action");		
+		$action = $(this).attr("data-action");
 
 		if(!$(".pmd-alert-container."+ $positionX +"."+ $positionY).length){
 			$('body').append("<div class='pmd-alert-container "+$positionX+" "+$positionY+"'></div>");
 		}
-			
+
 		$currentPath = $(".pmd-alert-container."+ $positionX +"."+ $positionY);
-		
+
 		$notification = notificationValue();
-		
+
 		function notificationValue(){
 			if($action == "true"){
 				if($actionText == null){
 					$notification =  "<div class='pmd-alert' data-action='true'>"+$dataMessage+"<a href='javascript:void(0)' class='pmd-alert-close'>×</a></div>";
 				}else{
-					$notification =  "<div class='pmd-alert' data-action='true'>"+$dataMessage+"<a href='javascript:void(0)' class='pmd-alert-close'>"+$actionText+"</a></div>";	
+					$notification =  "<div class='pmd-alert' data-action='true'>"+$dataMessage+"<a href='javascript:void(0)' class='pmd-alert-close'>"+$actionText+"</a></div>";
 				}
 				return $notification;
 			}else {
 				if($actionText == null){
 					$notification = "<div class='pmd-alert' data-action='false'>"+$dataMessage+"</div>";
 				}else{
-					$notification =  "<div class='pmd-alert' data-action='false'>"+$dataMessage+"<a href='javascript:void(0)' class='pmd-alert-close'>"+$actionText+"</a></div>";	
+					$notification =  "<div class='pmd-alert' data-action='false'>"+$dataMessage+"<a href='javascript:void(0)' class='pmd-alert-close'>"+$actionText+"</a></div>";
 				}
 				return $notification;
 			}
 		}
-		
+
 		var boxLength = $(".pmd-alert-container."+ $positionX +"."+ $positionY + " .pmd-alert").length;
-		
+
 		if (boxLength > 0) {
 			if ($positionY == 'top') {
 				$currentPath.append($notification);
@@ -429,35 +429,35 @@ $( document ).ready(function() {
 			}
 			$currentPath.width($(".pmd-alert").outerWidth());
 			if($action == "true"){
-				$currentPath.children("[data-action='true']").addClass("visible" +" "+ $dataEffect);	
+				$currentPath.children("[data-action='true']").addClass("visible" +" "+ $dataEffect);
 			}else{
 				$currentPath.children("[data-action='false']").addClass("visible" +" "+ $dataEffect).delay(3000).slideUp(
 					function(){
 						$(this).removeClass("visible" +" "+ $dataEffect).remove();
-					});	
+					});
 			}
 			$currentPath.children(".pmd-alert").eq(boxLength).addClass($dataType);
 		}else {
 			$currentPath.append($notification);
 			$currentPath.width($(".pmd-alert").outerWidth());
 			if($action == "true"){
-				$currentPath.children("[data-action='true']").addClass("visible" +" "+ $dataEffect);	
+				$currentPath.children("[data-action='true']").addClass("visible" +" "+ $dataEffect);
 			}else{
 				$currentPath.children("[data-action='false']").addClass("visible" +" "+ $dataEffect).delay(3000).slideUp(
 					function(){
 						$(this).removeClass("visible" +" "+ $dataEffect).remove();
-					});	
+					});
 			}
 			$currentPath.children(".pmd-alert").eq(boxLength).addClass($dataType);
 		}
-		$middle = $(".pmd-alert").outerWidth() / 2;  
+		$middle = $(".pmd-alert").outerWidth() / 2;
 		$(".pmd-alert-container.center").css("marginLeft","-" + $middle+"px");
 	});
-	
+
 	$(document).on("click",".pmd-alert-close",function(){
-		$(this).parents(".pmd-alert").slideUp(function(){$(this).removeClass("visible" +" "+ $dataEffect).remove();});	
+		$(this).parents(".pmd-alert").slideUp(function(){$(this).removeClass("visible" +" "+ $dataEffect).remove();});
 	});
-	
+
 	// ------- Propeller Popover component js function ------- //
 	$('.popover-html[data-toggle="popover"]').popover({
 		html: true,
@@ -467,7 +467,7 @@ $( document ).ready(function() {
 			return currentHTML;
 		},
 		placement: function(pop, dom_el){
-			var range = 200; 
+			var range = 200;
 			var curPlacement = $(dom_el).attr("data-placement");
 			var scrolled = $(window).scrollTop();
 			var winWidth = $(window).width();
@@ -481,16 +481,16 @@ $( document ).ready(function() {
 			var curPosRight = winWidth - curPosLeft - elWidth;
 			var curPosBottom = winHeight - curPosTop - elHeight;
 			if(curPlacement == "left" && curPosLeft <= range){
-				return 'right';	
+				return 'right';
 			}
 			else if(curPlacement == "right" && curPosRight <= range){
-				return 'left';	
+				return 'left';
 			}
 			else if(curPlacement == "top" && curPosTop <= range){
-				return 'bottom';	
+				return 'bottom';
 			}
 			if(curPlacement == "bottom" && curPosBottom <= range){
-				return 'top';	
+				return 'top';
 			}else {
 				return curPlacement;
 			}
@@ -499,7 +499,7 @@ $( document ).ready(function() {
 
 	var options = {
 		placement: function(pop, dom_el){
-			var range = 200; 
+			var range = 200;
 			var curPlacement = $(dom_el).attr("data-placement");
 			var scrolled = $(window).scrollTop();
 			var winWidth = $(window).width();
@@ -513,32 +513,32 @@ $( document ).ready(function() {
 			var curPosRight = winWidth - curPosLeft - elWidth;
 			var curPosBottom = winHeight - curPosTop - elHeight;
 			if(curPlacement == "left" && curPosLeft <= range){
-				return 'right';	
+				return 'right';
 			}
 			else if(curPlacement == "right" && curPosRight <= range){
-				return 'left';	
+				return 'left';
 			}
 			else if(curPlacement == "top" && curPosTop <= range){
-				return 'bottom';	
+				return 'bottom';
 			}
 			if(curPlacement == "bottom" && curPosBottom <= range){
-				return 'top';	
+				return 'top';
 			}else {
 				return curPlacement;
 			}
 		}
 	};
 	$('[data-toggle="popover"]').popover(options);
-	
+
 	$('[data-toggle="popover"]').on('shown.bs.popover', function () {
 		var colorClass = $(this).attr("data-color");
 		$(".popover").addClass(colorClass);
 	}).on('hidden.bs.popover', function () {
 		var colorClass = $(this).attr("data-color");
 		$(".popover").removeClass(colorClass);
-		
+
 	});
-	
+
 });
 	// ------- Propeller Tab component js function ------- //
 	(function($) {
@@ -552,7 +552,7 @@ $( document ).ready(function() {
 			}, options);
 			return this.each( function() {
 				var hidWidth;
-				//var scrollBarWidths = 40;	
+				//var scrollBarWidths = 40;
 				var $this = $(this);
 				var widthOfList = function(){
 					var itemsWidth = 0;
@@ -563,7 +563,7 @@ $( document ).ready(function() {
 					return itemsWidth;
 				};
 				/* width Of Hidden */
-				var widthOfHidden = function(){ 
+				var widthOfHidden = function(){
 					return ( widthOfList()-($this.outerWidth()))
 				};
 				$this.find('ul.nav-tabs').width(widthOfList())
@@ -591,7 +591,7 @@ $( document ).ready(function() {
 					}
 				}
 				reAdjust();
-				$(window).on('resize',function(e){  
+				$(window).on('resize',function(e){
 					reAdjust();
 				});
 				$scrollLeft = '';
@@ -607,7 +607,7 @@ $( document ).ready(function() {
 				$wrapperRight = $this.offset().left + $navCotainer;
 				$tabLeft = $NavTabs.offset().left;
 				$buttonWidth = $('.pmd-tabs-scroll-right').outerWidth();
-				
+
 				/*******************/
 				var sliderLoad = function(){
 					var $slider = $this.find('.pmd-tab-active-bar'),
@@ -618,9 +618,9 @@ $( document ).ready(function() {
 						$wrapperLeft = $this.offset().left;
 						$sliderLeft = $isX - $wrapperLeft,
 						$wrapPadLeft = $this.css("padding-left"),
-						$paddingAmount = parseInt($wrapPadLeft, 10); 
+						$paddingAmount = parseInt($wrapPadLeft, 10);
 						$finalPossion =  $wrapperLeft + $paddingAmount - $navX + $isX - $wrapperLeft;
-						
+
 					if ($navX < $paddingAmount + $wrapperLeft){
 						$slider.width($sliderActive.width() + "px").css("left",$finalPossion + "px");
 					}else {
@@ -635,49 +635,49 @@ $( document ).ready(function() {
 							//$slider.d();
 					});
 				};
-				
+
 				sliderLoad();
 				$(window).on("load resize",function(){
-					sliderLoad();	
+					sliderLoad();
 				});
-				
-				
+
+
 				/*******************/
 				$this.find('.pmd-tabs-scroll-right').click(function() {
 				//	alert("yes");
 					$wrapper = $(this).prev(".pmd-tabs-scroll-container");
 					$tab = $wrapper.find(".nav-tabs li");
-					
+
 					$navWidth = $wrapper.children(".nav").width();
 					$thisWidht = $(this).outerWidth();
-					
+
 					$tab.each(function() {
 						var SuspectTabLeft = $(this).offset().left;
 						var SuspectTabRight = $(this).offset().left + $(this).outerWidth();
 						$(this).removeClass('prev-tab');
-						
+
 						if (SuspectTabLeft < $wrapperRight && SuspectTabRight > $wrapperRight){
 							$tabSet =  SuspectTabRight - $wrapperRight + $thisWidht;
-							$(this).addClass('last-tab');	
+							$(this).addClass('last-tab');
 							$(this).prev().removeClass('last-tab');
 						}
 					});
-					
+
 					var finalTab = $wrapper.find('.last-tab').next().length;
 					if ( finalTab == 0) {
 						var lastTabRight = $wrapper.find('.last-tab').offset().left + $wrapper.find('.last-tab').outerWidth();
 						var NewScrollAmount = lastTabRight - $wrapperRight ;
 						$wrapper.animate({scrollLeft: '+='+ NewScrollAmount })
-						$(this).fadeOut('slow');	
+						$(this).fadeOut('slow');
 					}
 					else {
-						$wrapper.animate({scrollLeft: '+='+ $tabSet});			
+						$wrapper.animate({scrollLeft: '+='+ $tabSet});
 					}
 					$(this).parents('.pmd-tabs').find('.pmd-tabs-scroll-left').fadeIn('slow');
-			
+
 				});
 				/*******************/
-				
+
 				/*******************/
 				$this.find('.pmd-tabs-scroll-left').click(function() {
 					$wrapper = $(this).next(".pmd-tabs-scroll-container");
@@ -688,7 +688,7 @@ $( document ).ready(function() {
 						$(this).removeClass('last-tab');
 						if (SuspectTabLeft < $wrapperLeft && SuspectTabRight > $wrapperLeft){
 							$tabSetLeft =  $wrapperLeft - SuspectTabLeft + $thisWidht;
-							$(this).addClass('prev-tab');	
+							$(this).addClass('prev-tab');
 							$(this).next().removeClass('prev-tab');
 						}
 					});
@@ -697,14 +697,14 @@ $( document ).ready(function() {
 						var lastTableft = $wrapper.find('.prev-tab').offset().left;
 						var NewScrollAmount = $wrapperLeft - lastTableft ;
 						$wrapper.animate({scrollLeft: '-='+ NewScrollAmount })
-						$(this).fadeOut('slow');	
+						$(this).fadeOut('slow');
 					}
 					else {
-						$wrapper.animate({scrollLeft: '-='+ $tabSetLeft});			
+						$wrapper.animate({scrollLeft: '-='+ $tabSetLeft});
 					}
 					$(this).parents('.pmd-tabs').find('.pmd-tabs-scroll-right').fadeIn('slow');
 				});
-				
+
 				$this.find('ul li').click(function(){
 					$wrapper = $(this).closest(".pmd-tabs-scroll-container");
 						//setTabActive()
@@ -714,7 +714,7 @@ $( document ).ready(function() {
 					var cuttleft = $wrapperLeft + $buttonWidth;
 					if (activeLeft < cuttleft && activeRight > cuttleft){
 						var setLeft = $wrapperLeft - activeLeft + $buttonWidth;
-						$wrapper.animate({scrollLeft: '-=' + setLeft });			
+						$wrapper.animate({scrollLeft: '-=' + setLeft });
 						$(this).parents('.pmd-tabs').find('.pmd-tabs-scroll-right').fadeIn('slow');
 					}
 					if (activeLeft < cuttRight && activeRight > cuttRight) {
@@ -725,8 +725,8 @@ $( document ).ready(function() {
 				});
 			});
 		};
-	}(jQuery));
-	
+	}(window.jQuery));
+
 	// ------- Propeller Sidebar component js function ------- //
 	var overlay = $('.pmd-sidebar-overlay');
 	var sidebar = $('.pmd-sidebar');
@@ -738,11 +738,11 @@ $( document ).ready(function() {
 	var sidebarImg = sidebarHeader.css('background-image');
 	var toggleButtons = $('.pmd-sidebar-toggle');
 	var pmdtopbartoggle = $('.topbar-fixed');
-	
+
 	$(document).ready(function() {
-	
+
 		// toggleButtons.css('display', 'none');
-	
+
 		// Left Sidebar
 		$('.pmd-sidebar-toggle').on( 'click', function(e) {
 			lsidebar.toggleClass('pmd-sidebar-open');
@@ -754,11 +754,11 @@ $( document ).ready(function() {
 				$('body').removeClass("pmd-body-open")
 			}
 		});
-	
+
 		$( ".pmd-sidebar .dropdown-menu, .pmd-navbar-sidebar .dropdown-menu" ).click(function(event) {
 			event.stopPropagation();
 		});
-	
+
 		// Right Sidebar
 		$('.pmd-sidebar-toggle-right').on( 'click', function(e) {
 			rsidebar.toggleClass('pmd-sidebar-open');
@@ -770,16 +770,16 @@ $( document ).ready(function() {
 				$('body').removeClass("pmd-body-open")
 			}
 		});
-	
+
 		// Right Sidebar
 		$('.pmd-topbar-toggle').on( 'click', function(e) {
 			pmdtopbartoggle.toggleClass('pmd-sidebar-open');
 		});
-	
+
 		$('.topbar-close').on('click', function() {
 			pmdtopbartoggle.removeClass('pmd-sidebar-open');
 		});
-	
+
 		// Nave bar in Sidebar
 		$('.pmd-navbar-toggle').on('click', function(e) {
 			pmdnavbarsidebar.toggleClass('pmd-sidebar-open');
@@ -791,7 +791,7 @@ $( document ).ready(function() {
 				$('body').removeClass("pmd-body-open")
 			}
 		});
-	
+
 		// Overlay
 		overlay.on( 'click', function(e) {
 			$(this).removeClass('pmd-sidebar-overlay-active');
@@ -800,7 +800,7 @@ $( document ).ready(function() {
 			$('body').removeClass("pmd-body-open")
 			 event.stopPropagation();
 		});
-	
+
 		// Window load browser resize position
 		if($(window).width() < 1200){
 			sidebar.removeClass('pmd-sidebar-open pmd-sidebar-slide-push');
@@ -809,9 +809,9 @@ $( document ).ready(function() {
 			toggleButtons.css('display', 'inherit');
 			$('body').removeClass("pmd-body-open")
 		}
-	
+
 	});
-	
+
 	// window resize position
 	$(window).resize(function(){
 		if($(window).width() < 1200){
@@ -828,7 +828,7 @@ $( document ).ready(function() {
 			$('body').removeClass("pmd-body-open")
 		}
 	});
-	
+
 	(function(removeClass){
 		jQuery.fn.removeClass = function( value ) {
 			if ( value && typeof value.test === "function" ) {
@@ -836,7 +836,7 @@ $( document ).ready(function() {
 					var elem = this[i];
 					if ( elem.nodeType === 1 && elem.className ) {
 						var classNames = elem.className.split( /\s+/ );
-	
+
 						for ( var n = classNames.length; n--; ) {
 							if ( value.test(classNames[n]) ) {
 								classNames.splice(n, 1);
