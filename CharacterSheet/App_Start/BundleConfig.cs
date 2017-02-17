@@ -18,13 +18,11 @@ namespace CharacterSheet
         internal static void RegisterBundles(BundleCollection bundles)
         {
             var minifyJs = Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["MinifyJs"] ?? "true");
-            var vendorBundle = new ScriptBundle("~/scripts/vendor")
-                //.Include("~/assets/js/jquery-1.12.2.min.js")
-                .Include("~/assets/js/jquery.js")
-                //.Include("~/assets/js/bootstrap.min.js")
+            var vendorBundle = new ScriptBundle("~/scripts/vendor")                
+                .Include("~/assets/js/jquery.js")                
                 .Include("~/assets/js/bootstrap.js")
                 .Include("~/lib/propeller/js/propeller.js");
-                //.Include("~/lib/propeller/js/propeller.min.js");
+                
 
             if (!minifyJs)
             {
@@ -50,12 +48,10 @@ namespace CharacterSheet
             bundles.Add(vendorBundleTwo);
 
             var styleBundle = new StyleBundle("~/content/css")
-                //.Include("~/assets/css/bootstrap.min.css")
+                .Include("~/lib/font-awesome/css/font-awesome.css")
                 .Include("~/assets/css/bootstrap.css")
-                //.Include("~/assets/css/propeller.min.css")
                 .Include("~/assets/css/propeller.css")
                 .Include("~/themes/css/propeller-theme.css")
-                //.Include("~/themes/css/propeller-admin.css")
                 .Include("~/assets/css/sidebar.css");
                 
                 

@@ -2,6 +2,14 @@ body  {font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell Engl
 body .pmd-sidebar .pmd-sidebar-nav li a {font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell English SC','Metamorphous','Milonga','Pirata One', cursive !important;}
 h1, h2, h3, h4, h5, h6  {font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell English SC','Metamorphous','Milonga','Pirata One', cursive !important;}
 
+.splash { text-align: center; margin: 10% 0 0 0;}
+.splash .message {font-size: 5em; line-height: 1.5em; -webkit-text-shadow: rgba(0, 0, 0, 0.5) 0 0 15px; text-shadow: rgba(0, 0, 0, 0.5) 0 0 15px; text-transform: uppercase; background-color: rgba(128, 128, 128, 0.96);}
+.splash .fa-spinner { text-align: center; display: inline-block; font-size: 5em; margin-top: 50px;}
+/*.navbar-nav a.loader { padding-top: 15px; visibility: hidden; }*/
+/*.navbar-nav a.loader.active { visibility: visible; }*/
+a.loader { margin: 12px 6px 0 6px; visibility: hidden; }
+a.loader.active { visibility: visible; }
+
 .nav>li>a:hover{background-color: #4d575d !important;}
 .pmd-card, .navbar-inverse  {background-color: #333 !important; border-color: #333 !important}
 .pmd-sidebar  {background-color: rgba(16, 16, 16, 0.34) !important; border-color: rgba(16, 16, 16, 0.34) !important}
