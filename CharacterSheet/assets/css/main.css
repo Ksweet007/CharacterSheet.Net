@@ -2,6 +2,7 @@ body  {font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell Engl
 body .pmd-sidebar .pmd-sidebar-nav li a {font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell English SC','Metamorphous','Milonga','Pirata One', cursive !important;}
 h1, h2, h3, h4, h5, h6  {font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell English SC','Metamorphous','Milonga','Pirata One', cursive !important;}
 
+.nav>li>a:hover{background-color: #4d575d !important;}
 .pmd-card, .navbar-inverse  {background-color: #333 !important; border-color: #333 !important}
 .pmd-sidebar  {background-color: rgba(16, 16, 16, 0.34) !important; border-color: rgba(16, 16, 16, 0.34) !important}
 .login-card   {background-color: #333 !important;}
@@ -12,6 +13,5 @@ h1, h2, h3, h4, h5, h6  {font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightsh
 .login-register,.material-icons.md-dark {color:#c1b4b4 !important;}
 
 h2.typo-fill-secondary,
-.navbar-brand, .pmd-card-title strong,
-.pmd-card-footer  {color: rgba(255, 215, 0, 0.68) !important;}
+.navbar-brand, .pmd-card-title strong, .pmd-card-footer, .pmd-sidebar a, .navbar-header .btn:hover  {color: rgba(255, 215, 0, 0.68) !important;}
 .pmd-textfield-floating-label.pmd-textfield-floating-label-completed label  {color: #c1b4b4 !important;}
