@@ -10,7 +10,6 @@
                 valueInput  : 0,
                 type: 'input'
             }, _i.ko.unwrap(valueAccessor()))
-            //var pmdSlider = _i.$(element)[0];
 
         if(settings.type === 'input'){
             //Single range with input
