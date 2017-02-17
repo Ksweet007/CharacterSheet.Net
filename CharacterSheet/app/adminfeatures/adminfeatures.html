@@ -29,21 +29,42 @@
             			<div class="form-group pmd-textfield pmd-textfield">
             				<label for="regular1" class="control-label">Level Gained</label>
                             <input type="text" class="slider form-control" data-bind="sliderValue: selectedValue" style="display: none;">
-                                            <!--Horizontal Single Handle Slider with steps code,example -->
-                <div class="component-box">
-                    <!-- slider example -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="pmd-card pmd-z-depth">
-                                <div class="pmd-card-body">
-                                    <div id="pmd-slider-step" class="pmd-range-slider"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="component-desc"><strong>Single Handle Slider with steps</strong></p><!-- slider example end-->
 
-                </div><!--Horizontal Single Handler Slider with steps code,example end -->
+                            <!--Horizontal single handler slider code, example -->
+                            <div class="component-box">
+                                <!-- slider example -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="pmd-card pmd-z-depth">
+                                            <div class="pmd-card-body">
+                                                <div id="pmd-slider-value-input" class="pmd-range-slider" data-bind="rangeslider:{valueInput : Levelgained, type : 'input' }"></div>
+                                                <div class="row">
+                                                    <div class="range-slider-input">
+                                                        <div class="col-sm-2">
+                                                            <div class="form-group pmd-textfield">
+                                                                <input type="text" id="value-input" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <!-- <div id="pmd-slider" class="pmd-range-slider pmd-range-tooltip-bottom" data-bind="rangeslider:{valueInput : Levelgained }"></div> -->
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="pmd-card pmd-z-depth">
+                                                        <div class="pmd-card-body">
+                                                            <div id="pmd-slider-step" class="pmd-range-slider" data-bind="rangeslider:{valueInput : Levelgained, type: 'step' }"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!--Horizontal single handler slider code, example end-->
+
             				<!-- <input type="text" id="regular1" class="form-control"> -->
             			</div>
 

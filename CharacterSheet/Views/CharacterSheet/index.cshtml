@@ -49,142 +49,9 @@
 </script>
 
     @Scripts.Render("~/scripts/vendortwo")
-      
-    <script>
 
-	/*********/
+    <script src="~/lib/require/require.js" data-main="app/main"></script>
 
-	// single range slider
-	var pmdVerticleSlider = document.getElementById('pmd-ver-slider');
-	noUiSlider.create(pmdVerticleSlider, {
-		start: [ 30 ],
-		connect: 'lower',
-		direction: 'rtl', // Put '0' at the bottom of the slider
-		orientation: 'vertical', // Orient the slider vertically
-		tooltips: [wNumb({ decimals: 0 }) ],
-		range: {
-			'min': [  0 ],
-			'max': [ 100 ]
-		}
-	});
-
-	// single range slider with step
-	var pmdVerticleSliderStep = document.getElementById('pmd-ver-slider-step');
-	noUiSlider.create(pmdVerticleSliderStep, {
-		start: [ 30 ],
-		connect: 'lower',
-		direction: 'rtl', // Put '0' at the bottom of the slider
-		tooltips: [wNumb({ decimals: 0 }) ],
-		orientation: 'vertical', // Orient the slider vertically
-		range: {
-			'min': [  0 ],
-			'max': [ 100 ]
-		},
-		step: 10,
-		pips: { // Show a scale with the slider
-			mode: 'steps',
-			density: 10
-		}
-
-	});
-
-	// multiple range slider
-	var pmdVerticleSliderRange = document.getElementById('pmd-ver-slider-range');
-	noUiSlider.create(pmdVerticleSliderRange, {
-		start: [30, 75],
-		connect: true,
-		tooltips: [ wNumb({ decimals: 0 }), wNumb({ decimals: 0 }) ],
-		direction: 'rtl', // Put '0' at the bottom of the slider
-		orientation: 'vertical', // Orient the slider vertically
-		range: {
-			'min': 0,
-			'max': 100
-		}
-	});
-
-
-	// single range slider with default tooltip open
-	var pmdVerSliderTooltip = document.getElementById('pmd-ver-slider-tooltip');
-	noUiSlider.create(pmdVerSliderTooltip, {
-		start: [ 25 ],
-		connect: 'lower',
-		tooltips: [wNumb({ decimals: 0 }) ],
-		direction: 'rtl', // Put '0' at the bottom of the slider
-		orientation: 'vertical', // Orient the slider vertically
-		range: {
-			'min': [  0 ],
-			'max': [ 100 ]
-		}
-	});
-
-	// multiple range slider with default tooltip open
-	var pmdVerSliderRangeTooltip = document.getElementById('pmd-ver-slider-range-tooltip');
-	noUiSlider.create(pmdVerSliderRangeTooltip, {
-		start: [10, 50],
-		connect: true,
-		tooltips: [ wNumb({ decimals: 0 }), wNumb({ decimals: 0 }) ],
-		direction: 'rtl', // Put '0' at the bottom of the slider
-		orientation: 'vertical', // Orient the slider vertically
-		range: {
-			'min': 0,
-			'max': 100
-		}
-	});
-
-	// multiple range slider with default tooltip open
-	var pmdVerSliderTooltipBottom = document.getElementById('pmd-range-tooltip-bottom');
-	noUiSlider.create(pmdVerSliderTooltipBottom, {
-		start: [ 30 ],
-		connect: 'lower',
-		tooltips: [wNumb({ decimals: 0 }) ],
-		range: {
-			'min': [  0 ],
-			'max': [ 100 ]
-		}
-	});
-
-	// multiple range slider with default tooltip open
-	var pmdVerSliderTooltipRight = document.getElementById('pmd-ver-slider-tooltip-right');
-	noUiSlider.create(pmdVerSliderTooltipRight, {
-		start: [ 30 ],
-		connect: 'lower',
-		direction: 'rtl', // Put '0' at the bottom of the slider
-		orientation: 'vertical', // Orient the slider vertically
-		tooltips: [wNumb({ decimals: 0 }) ],
-		range: {
-			'min': [  0 ],
-			'max': [ 100 ]
-		}
-	});
-
-	// multiple range slider with default tooltip open
-	var pmdVerSliderTooltipLowerRight = document.getElementById('pmd-ver-slider-range-tooltip-lower-right');
-	noUiSlider.create(pmdVerSliderTooltipLowerRight, {
-		start: [10, 50],
-		connect: true,
-		tooltips: [ wNumb({ decimals: 0 }), wNumb({ decimals: 0 }) ],
-		direction: 'rtl', // Put '0' at the bottom of the slider
-		orientation: 'vertical', // Orient the slider vertically
-		range: {
-			'min': 0,
-			'max': 100
-		}
-	});
-
-	// multiple range slider with default tooltip open
-	var pmdVerSliderTooltipUpperRight = document.getElementById('pmd-ver-slider-range-tooltip-upper-right');
-	noUiSlider.create(pmdVerSliderTooltipUpperRight, {
-		start: [10, 50],
-		connect: true,
-		tooltips: [ wNumb({ decimals: 0 }), wNumb({ decimals: 0 }) ],
-		direction: 'rtl', // Put '0' at the bottom of the slider
-		orientation: 'vertical', // Orient the slider vertically
-		range: {
-			'min': 0,
-			'max': 100
-		}
-	});
-    </script> 
 <script>    
     $(document).ready(function() {
         var sPath=window.location.pathname;
@@ -216,7 +83,7 @@
     </script>
 
        
-    <script src="~/lib/require/require.js" data-main="app/main"></script>
+    
     
 
 <!-- Scripts Ends -->

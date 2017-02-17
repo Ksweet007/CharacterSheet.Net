@@ -57,15 +57,7 @@ define(function (require) {
             var promise = _i.deferred.create();
             _i.charajax.universal('api/GetAllFeatures', '', 'GET').done(function (response) {
               response.forEach(function(item){
-                var clsCombined = '';
-                if(item.Classes.length > 0){
-                  var clsList = [];
-                  item.Classes.forEach(function(cls){
-                    clsList.push(cls.Name);
-                  });
-                  clsCombined = ' - ' + clsList.join(', ');
-                }
-                item.classList = clsCombined;
+                
               });
 
               self.features(response);
