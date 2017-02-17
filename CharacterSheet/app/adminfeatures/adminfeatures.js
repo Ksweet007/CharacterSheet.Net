@@ -39,11 +39,11 @@ define(function (require) {
         self.selectedFeature = _i.ko.computed(function(){
             var desiredId = self.idToShow();
             if(desiredId === 0){
-              return {Name:'', FeatureId : 0, Levelgained : 1, Description : '', RecoveryType : '', ActionType : '', isSelected: _i.ko.observable(false)}
+              return {Name:'', FeatureId : 0, Levelgained : _i.ko.observable(1), Description : '', RecoveryType : '', ActionType : '', isSelected: _i.ko.observable(false)}
             }
 
            return _i.ko.utils.arrayFilter(self.features(), function(feature) {
-              return feature.FeatureId === desiredId;
+              return feature.FeatureId() === desiredId;
             })[0];
 
         });
@@ -56,14 +56,10 @@ define(function (require) {
         self.getFeatures = function () {
             var promise = _i.deferred.create();
             _i.charajax.universal('api/GetAllFeatures', '', 'GET').done(function (response) {
-                // var features = _i.ko.observableArray(_i.ko.utils.arrayMap(response, function(item){
-                //     return {Name:item.Name, FeatureId : item.FeatureId, Levelgained : _i.ko.observable(item.Levelgained), Description : item.Description, RecoveryType : item.RecoveryType, ActionType : item.ActionType, isSelected: _i.ko.observable(false)};
-                // }));
+            var mapped = _i.ko.mapping.fromJS(response)
 
-            var mapped = ko.mapping.fromJS(response)
-
-          self.features(mapped());
-          _i.list.sortAlphabeticallyObservables(self.features());
+            self.features(mapped());
+            _i.list.sortAlphabeticallyObservables(self.features());
 
               promise.resolve();
             });
@@ -85,13 +81,13 @@ define(function (require) {
         };
 
         self.selectFeature = function(obj,event){
-          if(obj.FeatureId === self.idToShow()){
+          if(obj.FeatureId() === self.idToShow()){
             self.typeToShow("all");
             self.idToShow(0);
             self.selectState('Select');
           }else{
-            self.typeToShow(obj.Name);
-            self.idToShow(obj.FeatureId);
+            self.typeToShow(obj.Name());
+            self.idToShow(obj.FeatureId());
             self.selectState('Show All');
           }
         };
