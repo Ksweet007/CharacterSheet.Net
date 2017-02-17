@@ -42,8 +42,58 @@
         window.jQuery || document.write('<script src="js/jquery-3.1.1.min.js">\x3C/script>')
     </script>
     @Scripts.Render("~/scripts/vendortwo")
-<script>
-    
+    <script>
+	(function($){
+		$(window).load(function(){
+			$(".content").mCustomScrollbar({
+				theme:"minimal"
+			});
+		});
+	})(jQuery);
+
+	(function($){
+		$(window).load(function(){
+			$("#content-3").mCustomScrollbar({
+				scrollButtons:{enable:true},
+				theme:"dark-thick",
+				scrollbarPosition:"outside"
+			});
+		});
+	})(jQuery);
+
+	(function($){
+		$(window).load(function(){
+			$("#content-4").mCustomScrollbar({
+				theme:"rounded-dots",
+				scrollInertia:400
+			});
+		});
+	})(jQuery);
+
+	(function($){
+		$(window).load(function(){
+			$("#content-7").mCustomScrollbar({
+				scrollButtons:{enable:true},
+				theme:"3d-thick"
+			});
+		});
+	})(jQuery);
+
+	(function($){
+		$(window).load(function(){
+			$("#content-9").mCustomScrollbar({
+				scrollButtons:{enable:true,scrollType:"stepped"},
+				keyboard:{scrollType:"stepped"},
+				mouseWheel:{scrollAmount:188},
+				theme:"rounded-light",
+				autoExpandScrollbar:true,
+				snapAmount:188,
+				snapOffset:65
+			});
+		});
+	})(jQuery);
+    </script>
+<script>    
     $(document).ready(function() {
         var sPath=window.location.pathname;
         var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);

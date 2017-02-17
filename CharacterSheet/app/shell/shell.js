@@ -59,8 +59,7 @@ define(function(require) {
                     {route: 'classdetails/:id',title: 'Class Details',moduleId: 'classdetails/classdetails',nav: false,hash: '#classdetails',adminLink: false},
                     {route: 'manageclass/:id*details',title: 'Manage Class',moduleId: 'manageclass/manageclass',nav: false,hash: '#manageclass/:id',adminLink: false}]
 
-				if (self.isAdmin()) {
-					routesToMap.push({route: 'admin*details',title: 'Admin',moduleId: 'admin/admin',nav: true,hash: "#admin",adminLink: true});
+				if (self.isAdmin()) {					
 					routesToMap.push({route: 'adminfeatures',title: 'Features',moduleId: 'adminfeatures/adminfeatures',nav: true,hash: "#adminfeatures",adminLink: true});
 				}
 

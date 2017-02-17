@@ -7,15 +7,46 @@ define('domainmanipulations/LockScroll', function (require) {
     function FixesCls() { }
 
     FixesCls.prototype.runOnBindingHandler = function () {
-        var $fade = _i.$('.scrollerfade');
-        _i.$(window).on('scroll', function () {
-            $fade.toggle((_i.$(window).scrollTop() > 0));
-        });
+        
+        _i.$(window).on("load",function () {
+            $(".content").mCustomScrollbar({
+                theme: "minimal"
+            });
+        })(_i.$);
 
-        //fix for IE9, because the final scroll event is not fired when the page size changes
-        _i.router.on('router:navigation:composition-complete').then(function (instance, instruction, router) {
-            $fade.toggle((_i.$(window).scrollTop() > 0));
-        });
+        _i.$(window).on("load", function () {
+            $(".content-3").mCustomScrollbar({
+                scrollButtons: { enable: true },
+                theme: "dark-thick",
+                scrollbarPosition: "outside"
+            });
+        })(_i.$);
+
+        _i.$(window).on("load", function () {
+            $(".content-4").mCustomScrollbar({
+                theme: "rounded-dots",
+                scrollInertia: 400
+            });
+        })(_i.$);
+
+        _i.$(window).on("load", function () {
+            $(".content-7").mCustomScrollbar({
+                scrollButtons: { enable: true },
+                theme: "3d-thick"
+            });
+        })(_i.$);
+
+        _i.$(window).on("load", function () {
+            $(".content-9").mCustomScrollbar({
+                scrollButtons: { enable: true, scrollType: "stepped" },
+                keyboard: { scrollType: "stepped" },
+                mouseWheel: { scrollAmount: 188 },
+                theme: "rounded-light",
+                autoExpandScrollbar: true,
+                snapAmount: 188,
+                snapOffset: 65
+            });
+        })(_i.$);
     }
 
     return new FixesCls();

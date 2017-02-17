@@ -15,6 +15,7 @@ define(function (require) {
         self.idToShow = _i.ko.observable(0);
         self.features = _i.ko.observableArray([]);
         self.newfeatures = _i.ko.observableArray([]);
+        self.selectState = _i.ko.observable('Select');
 
         self.isEdit = _i.ko.computed(function(){
           var state = self.featureState();
@@ -93,9 +94,11 @@ define(function (require) {
           if(obj.FeatureId === self.idToShow()){
             self.typeToShow("all");
             self.idToShow(0);
+            self.selectState('Select');
           }else{
             self.typeToShow(obj.Name);
             self.idToShow(obj.FeatureId);
+            self.selectState('Show All');
           }
         };
 

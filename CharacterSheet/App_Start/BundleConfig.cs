@@ -38,6 +38,7 @@ namespace CharacterSheet
                 .Include("~/lib/knockout/ko.plus.js")
                 .Include("~/lib/knockout/knockout.reactor.js")
                 .Include("~/lib/knockout/knockout.mapping.js")
+                .Include("~/components/custom-scrollbar/js/jquery.mCustomScrollbar.js")
                 .Include("~/lib/fuse.js");
                 
             if (!minifyJs)
@@ -52,7 +53,9 @@ namespace CharacterSheet
                 .Include("~/assets/css/bootstrap.css")
                 .Include("~/assets/css/propeller.css")
                 .Include("~/themes/css/propeller-theme.css")
-                .Include("~/assets/css/sidebar.css");
+                .Include("~/assets/css/sidebar.css")
+                .Include("~/components/custom-scrollbar/css/jquery.mCustomScrollbar.css")
+                .Include("~/components/custom-scrollbar/css/pmd-scrollbar.css");
                 
                 
             styleBundle.Orderer = new BundleConfigOrderer();

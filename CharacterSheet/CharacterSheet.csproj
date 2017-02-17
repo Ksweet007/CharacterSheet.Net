@@ -401,6 +401,23 @@
     <Content Include="assets\js\jquery.js" />
     <Content Include="assets\js\propeller.js" />
     <Content Include="assets\js\propeller.min.js" />
+    <Content Include="components\custom-scrollbar\css\jquery.mCustomScrollbar.css" />
+    <Content Include="components\custom-scrollbar\css\mCSB_buttons.png" />
+    <Content Include="components\custom-scrollbar\css\pmd-scrollbar.css" />
+    <Content Include="components\custom-scrollbar\custom-scroll.html" />
+    <Content Include="components\custom-scrollbar\js\jquery.mCustomScrollbar.js" />
+    <Content Include="components\custom-scrollbar\snippets\3d-scroll.html" />
+    <Content Include="components\custom-scrollbar\snippets\3d-scroll.js" />
+    <Content Include="components\custom-scrollbar\snippets\custom-scroll.css" />
+    <Content Include="components\custom-scrollbar\snippets\custom-scroll.html" />
+    <Content Include="components\custom-scrollbar\snippets\custom-scroll.js" />
+    <Content Include="components\custom-scrollbar\snippets\hover-scroll.html" />
+    <Content Include="components\custom-scrollbar\snippets\outside-scroll.html" />
+    <Content Include="components\custom-scrollbar\snippets\outside-scroll.js" />
+    <Content Include="components\custom-scrollbar\snippets\rounded-scroll.html" />
+    <Content Include="components\custom-scrollbar\snippets\rounded-scroll.js" />
+    <Content Include="components\custom-scrollbar\snippets\snap-scroll.html" />
+    <Content Include="components\custom-scrollbar\snippets\snap-scroll.js" />
     <Content Include="Content\authpages.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -828,7 +845,6 @@
   <ItemGroup>
     <Folder Include="app\addclass\" />
     <Folder Include="App_Data\" />
-    <Folder Include="components\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
