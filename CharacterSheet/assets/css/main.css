@@ -11,7 +11,9 @@ a.loader.active { visibility: visible; }
 /*END LOAD SPINNERS*/
 
 .nav>li>a:hover{background-color: #161a22 !important;}
-.pmd-card, .navbar-inverse  {background-color: #333 !important; border-color: #333 !important}
+.pmd-card { background-color: rgba(31, 28, 28, 0.75); }
+.navbar-inverse {background-color: #2c3544 !important; border-color: #2c3544 !important}
+
 .pmd-sidebar, .pmd-sidebar-right-fixed  {background-color: #2c3544 !important; border-color: rgba(16, 16, 16, 0.34) !important}
 .login-card   {background-color: #333 !important;}
 .btn-primary  {background-color: rgba(51, 122, 183, 0.65) !important;}

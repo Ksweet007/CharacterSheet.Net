@@ -10,15 +10,15 @@
                 </div>
                 <div class="pmd-card-body">
                   <p data-bind="html: Description"></p>
-                  <button data-bind="click: $parent.selectFeature, text: $parent.selectState" class="btn btn-primary pmd-ripple-effect btn-services"></button>
+                  <button data-bind="click: $parent.selectFeature" class="btn btn-primary pmd-ripple-effect btn-services">Edit</button>
                 </div>
               </div>
             </div>
             <!--/ko-->
         </div>
-        <div class="row">
+        <div class="row"  data-bind="visible: selectState() === 'select' ">
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-6">
-            	<div class="pmd-card pmd-z-depth pmd-card-custom-form" data-bind="with : selectedFeature">
+            	<div class="pmd-card pmd-z-depth-5 pmd-card-custom-form" data-bind="with : selectedFeature">
             		<div class="pmd-card-body">
 
             			<div class="form-group pmd-textfield pmd-textfield">
@@ -33,14 +33,19 @@
 
             			<div class="form-group pmd-textfield pmd-textfield">
             				<label class="control-label">Description</label>
-            				<textarea class="form-control" data-bind="value: Description"></textarea>
+            				<textarea class="form-control" data-bind="html: Description"></textarea>
             			</div>
 
             			<div class="form-group pmd-textfield pmd-textfield">
             				<label for="recType" class="control-label">Recovery Type</label>
             				<input type="text" id="recType" data-bind='value: RecoveryType, valueUpdate: "afterkeydown"' class="form-control">
             			</div>
-                        <button class="btn btn-primary pmd-ripple-effect btn-services" data-bind='click: $parent.saveFeature'>Save</button>
+
+                        <div class="pmd-card-actions">
+                            <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.saveFeature'>Save</button>
+                            <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.cancel'>Cancel</button>
+		               </div>
+
             		</div>
             	</div>
             </div>
