@@ -12,5 +12,7 @@ define(function(require) {
     require('./bindinghandlers/dropdown');
     require('./bindinghandlers/rangeslider');
     require('./bindinghandlers/rippleeffect');
+    require('./bindinghandlers/contentEditable');
+    require('./bindinghandlers/htmlEditable');
 
 });

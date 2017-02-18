@@ -2,6 +2,7 @@
 using CharacterSheet.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
@@ -16,7 +17,8 @@ namespace CharacterSheet
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Auth/Login")
+                LoginPath = new PathString("/Auth/Login"),
+                
             });
 
             //Configure User Manager

@@ -39,7 +39,7 @@ define(function (require) {
         self.selectedFeature = _i.ko.computed(function(){
             var desiredId = self.idToShow();
             if(desiredId === 0){
-              return {Name:'', FeatureId : 0, Levelgained : _i.ko.observable(1), Description : '', RecoveryType : '', ActionType : '', isSelected: _i.ko.observable(false)}
+              return {Name:'', FeatureId : 0, Levelgained : _i.ko.observable(1), Description : _i.ko.observable(''), RecoveryType : '', ActionType : '', isSelected: _i.ko.observable(false)}
             }
 
            return _i.ko.utils.arrayFilter(self.features(), function(feature) {

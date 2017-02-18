@@ -212,6 +212,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\AdminController.cs" />
     <Compile Include="Controllers\Api\BaseApiController.cs" />
     <Compile Include="Controllers\Api\ClassController.cs" />
@@ -227,6 +228,7 @@
     </Compile>
     <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AuthenticationViewModels.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\AppUserClaimsIdentityFactory.cs" />
     <Compile Include="Models\AppUserDbContext.cs" />
