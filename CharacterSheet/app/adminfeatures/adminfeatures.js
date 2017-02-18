@@ -31,12 +31,12 @@ define(function (require) {
         self.getFeatures = function () {
             var promise = _i.deferred.create();
             _i.charajax.universal('api/GetAllFeatures', '', 'GET').done(function (response) {
-            var mapped = _i.ko.mapping.fromJS(response)
+                var mapped = _i.ko.mapping.fromJS(response)
 
-            self.features(mapped());
-            _i.list.sortAlphabeticallyObservables(self.features());
+                self.features(mapped());
+                _i.list.sortAlphabeticallyObservables(self.features());
 
-              promise.resolve();
+                promise.resolve();
             });
             return promise;
         };
