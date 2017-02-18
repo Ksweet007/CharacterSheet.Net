@@ -9,46 +9,18 @@ define(function (require) {
 
     return function () {
         var self = this;
-    // ****Page states**** //
-        //Editing
-        //Add newfeatures
-        //View All Features
         self.features = _i.ko.observableArray([]);
+        self.newFeature = _i.ko.observable();
         self.isEditing = _i.ko.observable(false);
-        self.typeToShow = _i.ko.observable("all");
-        self.featureState = _i.ko.observable("Edit");
-        self.idToShow = _i.ko.observable(0);
-        self.selectState = _i.ko.observable('show all');
-
-        // self.isEdit = _i.ko.computed(function(){
-        //   var state = self.featureState();
-        //   if(state === "Edit"){
-        //     return true;
-        //   }
-        //   return false;
-        // });
+        self.selectedFeature = _i.ko.observable();
+        self.currentState = _i.ko.observable('view');
 
         self.featuresToList = _i.ko.computed(function() {
-          var desiredType = self.typeToShow();
-          var desiredId = self.idToShow();
-          if (desiredType === "all") {
-            return self.features();
-          }
-          return _i.ko.utils.arrayFilter(self.features(), function(feature) {
-            return feature.Name === desiredType;
-          });
-        });
-
-        self.selectedFeature = _i.ko.computed(function(){
-            var desiredId = self.idToShow();
-            if(desiredId === 0){
-              return {Name:_i.ko.observable(''), FeatureId : 0, Levelgained : _i.ko.observable(1), Description : _i.ko.observable(''), RecoveryType : _i.ko.observable(''), ActionType : _i.ko.observable(''), isSelected: _i.ko.observable(false)}
+            var stateToShow = self.currentState();
+            if (stateToShow === "view") {
+                return self.features();
             }
-
-           return _i.ko.utils.arrayFilter(self.features(), function(feature) {
-              return feature.FeatureId() === desiredId;
-            })[0];
-
+                return [];
         });
 
         self.activate = function () {
@@ -69,58 +41,59 @@ define(function (require) {
             return promise;
         };
 
-        self.showFeatureElement = function(elem) {
-          if (elem.nodeType === 1) {
-            $(elem).hide().slideDown()
-          }
+        self.selectFeature = function(obj){
+            self.selectedFeature(obj);
+            self.currentState('edit');
         };
 
-        self.hideFeatureElement = function(elem) {
-          if (elem.nodeType === 1) {
-            $(elem).slideUp(function() {
-              $(elem).remove();
-            })
-          }
-        };
-
-        self.selectFeature = function(obj,event){
-            self.typeToShow(obj.Name());
-            self.idToShow(obj.FeatureId());
-            self.selectState('select');
-
-        };
-
-        self.cancel = function(){
-            self.typeToShow("all");
-            self.idToShow(0);
-            self.selectState('show all');
-        };
-
-        self.addFeature = function(feature){
-            var dataToSave = _i.ko.toJS(feature);
-            //Set page states here
-            _i.charajax.post('api/AddFeature',dataToSave).done(function(response){
-                self.features.push(response);
+        self.createNewFeature = function(feature){
+            self.currentState('new');
+            self.newFeature({
+                Name:_i.ko.observable(''),
+                FeatureId : 0,
+                Levelgained : _i.ko.observable(1),
+                Description : _i.ko.observable(''),
+                RecoveryType : _i.ko.observable(''),
+                ActionType : _i.ko.observable(''),
+                isSelected: _i.ko.observable(false)
             });
-        };
-
-        self.saveEdits = function(feature){
-            var dataToSave = _i.ko.toJS(feature);
-            self.idToShow(-1);
-          _i.charajax.put('api/EditFeature', dataToSave).done(function (response) {
-            self.idToShow(0);
-            self.features.push(response);
-            self.typeToShow("all");
-          });
         };
 
         self.editFeature = function(feature){
             self.isEditing(true);
+            self.currentState('edit');
+        };
+
+        self.returnToSelect = function(feature){
+            self.isEditing(false);
+            self.currentState('view');
+        };
+
+        self.cancelEdit = function(){
+            self.isEditing(false);
+        };
+
+        self.saveEdits = function(feature){
+            var dataToSave = _i.ko.toJS(feature);
+            _i.charajax.put('api/EditFeature', dataToSave).done(function (response) {
+                self.features.push(response);
+                self.currentState('view');
+            });
+        };
+
+        self.saveNewFeature = function(feature){
+            var dataToSave = _i.ko.toJS(feature);
+
+            _i.charajax.post('api/AddFeature',dataToSave).done(function(response){
+                self.features.push(response);
+                self.currentState('view');
+            });
         };
 
         self.deleteFeature = function(feature){
           _i.charajax.delete('api/RemoveFeature/' + feature.FeatureId,'').done(function (response) {
             self.features.remove(feature);
+            self.currentState('view');
           });
         };
 
