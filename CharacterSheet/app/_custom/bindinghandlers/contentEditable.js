@@ -20,7 +20,7 @@ define(function(require){
         update: function (element, valueAccessor) {
             var value = _i.ko.unwrap(valueAccessor());
 
-            element.contentEditable = true;
+            element.contentEditable = value;
 
             if (element.isContentEditable) {
                 _i.$(element).trigger("input");

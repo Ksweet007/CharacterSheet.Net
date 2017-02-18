@@ -1,5 +1,8 @@
 <div class="container-fluid full-width-container">
     <h2 class="section-title" id="services"><span>Feature Management</span></h2>
+    <div class="pmd-card-body">
+        <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.addFeature'>Add New</button>
+    </div>
     <div class="section section-custom">
         <div class="row" id="card-masonry">
             <!--ko foreach:featuresToList-->
@@ -10,7 +13,7 @@
                 </div>
                 <div class="pmd-card-body">
                   <p data-bind="html: Description"></p>
-                  <button data-bind="click: $parent.selectFeature" class="btn btn-primary pmd-ripple-effect btn-services">Edit</button>
+                  <button data-bind="click: $parent.selectFeature" class="btn btn-primary pmd-ripple-effect btn-services">View/Edit</button>
                 </div>
               </div>
             </div>
@@ -33,8 +36,7 @@
 
             			<div class="form-group pmd-textfield pmd-textfield">
             				<label class="control-label">Description</label>
-                                <div class="pmd-card-body" data-bind="contentEditable : true, htmlEditable: Description"></div>
-            				<!-- <div class="form-control" data-bind="html: Description"></div> -->
+                            <div id="desc" class="pmd-card-body" data-bind="contentEditable : $parent.isEditing, htmlEditable: Description"></div>
             			</div>
 
             			<div class="form-group pmd-textfield pmd-textfield">
@@ -43,8 +45,14 @@
             			</div>
 
                         <div class="pmd-card-actions">
+                            <!-- ko if: !$parent.isEditing()-->
+                            <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.editFeature'>Edit</button>
+                            <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.cancel'>Return</button>
+                            <!--/ko-->
+                            <!--ko if: $parent.isEditing()-->
                             <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.editFeature'>Save</button>
-                            <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.cancel'>Cancel</button>
+                            <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.cancel'>Cancel Edit</button>
+                            <!--/ko-->
 		               </div>
 
             		</div>

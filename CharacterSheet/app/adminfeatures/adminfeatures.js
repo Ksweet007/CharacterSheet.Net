@@ -9,21 +9,24 @@ define(function (require) {
 
     return function () {
         var self = this;
-        self.levels = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+    // ****Page states**** //
+        //Editing
+        //Add newfeatures
+        //View All Features
+        self.features = _i.ko.observableArray([]);
+        self.isEditing = _i.ko.observable(false);
         self.typeToShow = _i.ko.observable("all");
         self.featureState = _i.ko.observable("Edit");
         self.idToShow = _i.ko.observable(0);
-        self.features = _i.ko.observableArray([]);
-        self.newfeatures = _i.ko.observableArray([]);
         self.selectState = _i.ko.observable('show all');
 
-        self.isEdit = _i.ko.computed(function(){
-          var state = self.featureState();
-          if(state === "Edit"){
-            return true;
-          }
-          return false;
-        });
+        // self.isEdit = _i.ko.computed(function(){
+        //   var state = self.featureState();
+        //   if(state === "Edit"){
+        //     return true;
+        //   }
+        //   return false;
+        // });
 
         self.featuresToList = _i.ko.computed(function() {
           var desiredType = self.typeToShow();
@@ -81,15 +84,10 @@ define(function (require) {
         };
 
         self.selectFeature = function(obj,event){
-          if(obj.FeatureId() === self.idToShow()){
-            self.typeToShow("all");
-            self.idToShow(0);
-            self.selectState('show all');
-          }else{
             self.typeToShow(obj.Name());
             self.idToShow(obj.FeatureId());
             self.selectState('select');
-          }
+
         };
 
         self.cancel = function(){
@@ -98,19 +96,31 @@ define(function (require) {
             self.selectState('show all');
         };
 
-        self.deleteFeature = function(feature){
-          _i.charajax.delete('api/RemoveFeature/' + feature.FeatureId,'').done(function (response) {
-            self.features.remove(feature);
-          });
+        self.addFeature = function(feature){
+            var dataToSave = _i.ko.toJS(feature);
+            //Set page states here
+            _i.charajax.post('api/AddFeature',dataToSave).done(function(response){
+                self.features.push(response);
+            });
         };
 
-        self.editFeature = function(feature){
+        self.saveEdits = function(feature){
             var dataToSave = _i.ko.toJS(feature);
             self.idToShow(-1);
           _i.charajax.put('api/EditFeature', dataToSave).done(function (response) {
             self.idToShow(0);
             self.features.push(response);
             self.typeToShow("all");
+          });
+        };
+
+        self.editFeature = function(feature){
+            self.isEditing(true);
+        };
+
+        self.deleteFeature = function(feature){
+          _i.charajax.delete('api/RemoveFeature/' + feature.FeatureId,'').done(function (response) {
+            self.features.remove(feature);
           });
         };
 
