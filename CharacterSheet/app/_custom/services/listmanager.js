@@ -69,22 +69,19 @@ define(function(require) {
             return [];
         }
 
-        list.forEach(function (element) {
-                element.disable = _i.ko.observable(false);
-            });
-            list.sort(function (a, b) {
-                var nameA = _i.ko.utils.unwrapObservable(a.Name).toUpperCase(); // ignore upper and lowercase
-                var nameB = _i.ko.utils.unwrapObservable(b.Name).toUpperCase(); // ignore upper and lowercase
-                if (nameA < nameB) {
-                    return -1;
-                }
-                if (nameA > nameB) {
-                    return 1;
-                }
+        list.sort(function (a, b) {
+            var nameA = _i.ko.utils.unwrapObservable(a.Name).toUpperCase(); // ignore upper and lowercase
+            var nameB = _i.ko.utils.unwrapObservable(b.Name).toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) {
+                return -1;
+            }
+            if (nameA > nameB) {
+                return 1;
+            }
 
-                return 0;
-            });
-            return list;
+            return 0;
+        });
+        return list;
     };
 
     ListManagerCls.prototype.sortByProficiencyTypeName = function(list) {

@@ -26,6 +26,21 @@ namespace CharacterSheet.Infrastructure.Data
             _db.SaveChanges();
         }
 
+        public void EditFeature(Feature featureToEdit)
+        {
+            if (featureToEdit.FeatureId <= 0) return;
+
+            var dbFeature = _db.Features.Single(f => f.FeatureId == featureToEdit.FeatureId);
+
+            dbFeature.ActionType = featureToEdit.ActionType;
+            dbFeature.Description = featureToEdit.Description;
+            dbFeature.Levelgained = featureToEdit.Levelgained;
+            dbFeature.RecoveryType = featureToEdit.RecoveryType;
+            dbFeature.Name = featureToEdit.Name;
+
+            _db.SaveChanges();
+        }
+
         public void AddFeatureToClass(Feature featureToAdd, int classId)
         {
             var cls = _db.Classes.Include(x => x.Features).Single(c => c.classId == classId);
@@ -37,7 +52,6 @@ namespace CharacterSheet.Infrastructure.Data
 
         public IList<Feature> GetAllFeatures()
         {
-
             return _db.Features.Include(c => c.Classes).ToList();
         }
 

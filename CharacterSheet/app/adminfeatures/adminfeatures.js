@@ -39,7 +39,7 @@ define(function (require) {
         self.selectedFeature = _i.ko.computed(function(){
             var desiredId = self.idToShow();
             if(desiredId === 0){
-              return {Name:'', FeatureId : 0, Levelgained : _i.ko.observable(1), Description : _i.ko.observable(''), RecoveryType : '', ActionType : '', isSelected: _i.ko.observable(false)}
+              return {Name:_i.ko.observable(''), FeatureId : 0, Levelgained : _i.ko.observable(1), Description : _i.ko.observable(''), RecoveryType : _i.ko.observable(''), ActionType : _i.ko.observable(''), isSelected: _i.ko.observable(false)}
             }
 
            return _i.ko.utils.arrayFilter(self.features(), function(feature) {
@@ -104,9 +104,10 @@ define(function (require) {
           });
         };
 
-        self.saveFeature = function(feature){
-          self.idToShow(-1);
-          _i.charajax.put('api/AddFeature', feature).done(function (response) {
+        self.editFeature = function(feature){
+            var dataToSave = _i.ko.toJS(feature);
+            self.idToShow(-1);
+          _i.charajax.put('api/EditFeature', dataToSave).done(function (response) {
             self.idToShow(0);
             self.features.push(response);
             self.typeToShow("all");

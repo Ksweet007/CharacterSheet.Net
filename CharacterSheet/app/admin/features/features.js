@@ -105,9 +105,9 @@ define(function (require) {
           });
         };
 
-        self.saveFeature = function(feature){
+        self.editFeature = function(feature){
           self.idToShow(-1);
-          _i.charajax.put('api/AddFeature', feature).done(function (response) {
+          _i.charajax.post('api/EditFeature/', feature).done(function (response) {
             self.idToShow(0);
             self.features.push(response);
             self.typeToShow("all");
