@@ -31,13 +31,13 @@
             			</div>
 
             			<div class="form-group pmd-textfield pmd-textfield">
-                            <label for="pmd-slider-value-input" class="control-label">Level Gained</label>
-                            <div id="pmd-slider-value-input" class="pmd-range-slider pmd-range-tooltip" data-bind="rangeslider:{valueInput : Levelgained, type : 'input' }"></div>
+                    <label for="pmd-slider-value-input" class="control-label">Level Gained</label>
+                    <div id="pmd-slider-value-input" class="pmd-range-slider pmd-range-tooltip" data-bind="rangeslider:{valueInput : Levelgained, type : 'input' }"></div>
             			</div>
 
             			<div class="form-group pmd-textfield pmd-textfield">
             				<label class="control-label">Description</label>
-                            <div id="desc" class="pmd-card-body" data-bind="contentEditable : $parent.isEditing, htmlEditable: Description"></div>
+                    <div id="desc" class="pmd-card-body" data-bind="contentEditable : $parent.isEditing, htmlEditable: Description"></div>
             			</div>
 
             			<div class="form-group pmd-textfield pmd-textfield">
@@ -45,16 +45,16 @@
             				<input type="text" id="recType" data-bind='value: RecoveryType, valueUpdate: "afterkeydown"' class="form-control">
             			</div>
 
-                        <div class="pmd-card-actions">
-                            <!-- ko if: !$parent.isEditing()-->
-                            <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.editFeature'>Edit</button>
-                            <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.returnToSelect'>Return</button>
-                            <!--/ko-->
-                            <!--ko if: $parent.isEditing()-->
-                            <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.saveEdits'>Save</button>
-                            <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.cancelEdit'>Cancel Edit</button>
-                            <!--/ko-->
-		               </div>
+                  <div class="pmd-card-actions">
+                    <!-- ko if: !$parent.isEditing()-->
+                    <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.editFeature'>Edit</button>
+                    <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.returnToSelect'>Return</button>
+                    <!--/ko-->
+                    <!--ko if: $parent.isEditing()-->
+                    <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.saveEdits'>Save</button>
+                    <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.cancelEdit'>Cancel Edit</button>
+                    <!--/ko-->
+                  </div>
 
             		</div>
             	</div>

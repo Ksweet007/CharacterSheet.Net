@@ -27,7 +27,7 @@
             // When the slider value changes, update the input and span
         	sliderElement.noUiSlider.on('update', function( values, handle ) {
                 var newInput = values[handle];
-                settings.valueInput(newInput);
+                settings.valueInput(newInput * 1);
         	});
 
         }//END INIT

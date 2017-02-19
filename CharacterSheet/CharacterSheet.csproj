@@ -361,6 +361,8 @@
     <Content Include="app\_custom\bindinghandlers\sliderValue.js" />
     <Content Include="app\_custom\cls.js" />
     <Content Include="app\_custom\deferred.js" />
+    <Content Include="app\_custom\koFunctions\changeTracker.js" />
+    <Content Include="app\_custom\koFunctions\objectBuilder.js" />
     <Content Include="app\_custom\services\databaseutils.js" />
     <Content Include="app\_custom\services\indexeddb.js" />
     <Content Include="app\_custom\services\listmanager.js" />

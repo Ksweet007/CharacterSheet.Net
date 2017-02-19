@@ -8,11 +8,13 @@ define(function(require) {
 	require('./bindinghandlers/columnbuilder');
 	require('./bindinghandlers/LockScroll');
 	require('./bindinghandlers/fadeVisible');
-    require('./bindinghandlers/sidebarcollapse');
-    require('./bindinghandlers/dropdown');
-    require('./bindinghandlers/rangeslider');
-    require('./bindinghandlers/rippleeffect');
-    require('./bindinghandlers/contentEditable');
-    require('./bindinghandlers/htmlEditable');
+  require('./bindinghandlers/sidebarcollapse');
+  require('./bindinghandlers/dropdown');
+  require('./bindinghandlers/rangeslider');
+  require('./bindinghandlers/rippleeffect');
+  require('./bindinghandlers/contentEditable');
+  require('./bindinghandlers/htmlEditable');
+  
+  require('./koFunctions/changeTracker');
 
 });

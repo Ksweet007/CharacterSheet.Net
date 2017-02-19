@@ -2,6 +2,7 @@
 define('jquery', function () { return jQuery; });
 define('knockout', ko);
 define('propeller', function() { return propeller; });
+define('moment', function() { return moment; });
 
 requirejs.config({
     paths: {

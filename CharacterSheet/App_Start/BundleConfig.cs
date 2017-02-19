@@ -21,8 +21,9 @@ namespace CharacterSheet
             var vendorBundle = new ScriptBundle("~/scripts/vendor")                
                 .Include("~/assets/js/jquery-1.12.2.min.js")
                 .Include("~/assets/js/bootstrap.js")
-                .Include("~/assets/js/propeller.js");
-                
+                .Include("~/assets/js/propeller.js")
+                .Include("~/lib/moment/moment.js");
+
 
             if (!minifyJs)
             {
