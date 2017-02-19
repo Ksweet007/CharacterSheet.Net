@@ -46,9 +46,18 @@ define(function (require) {
             var promise = _i.deferred.create();
 
             if (self.isDirty() || self.deleteList().length > 0) {
-              _i.CustomModal.show().then(function(){
-                _i.app.showMessage('Fuck this shit');
-                promise.resolve(true);
+              _i.CustomModal.show().then(function(response){
+                if(response === 'save'){
+                  _i.app.trigger('view:navsave',self.save);
+                  promise.resolve(true);
+                }else if (response === 'continue'){
+                  promise.resolve(true);
+                }
+                else{
+                  promise.resolve(false);
+                }
+                // _i.app.showMessage('Fuck this shit');
+                // promise.resolve(true);
               });
                 // _i.uiblock.showSaveNavModal('You have Pending Changes. Do you want to Save?', 'Navigate', ['Save and Continue', 'Continue']).always(function (response) {
                 //     if (response === 'Save and Continue') {

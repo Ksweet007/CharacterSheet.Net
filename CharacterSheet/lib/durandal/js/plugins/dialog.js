@@ -429,7 +429,6 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
 
             theDialog.host = host.get(0);
 
-
             if (!dialog.isOpen()) {
                 theDialog.oldBodyMarginRight = body.css("margin-right");
                 theDialog.oldInlineMarginRight = body.get(0).style.marginRight;
@@ -469,7 +468,7 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
         },
         attached: function (view) {
             //To prevent flickering in IE8, we set visibility to hidden first, and later restore it
-            $(view).css("visibility", "hidden");
+            //$(view).css("visibility", "hidden");
         },
         /**
          * This function is called after the modal is fully composed into the DOM, allowing your implementation to do any final modifications, such as positioning or animation. You can obtain the original dialog object by using `getDialog` on context.model.
@@ -481,104 +480,29 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
         compositionComplete: function (child, parent, context) {
             var theDialog = dialog.getDialog(context.model);
 
-              var modal = $(this),
-              tdialog = modal.find('.modal-dialog');
-              $('#dlgwrapper').css('display', 'block');
-              $(theDialog.host).css("margin-top", Math.max(0, ($(window).height() - tdialog.height()) / 2));
-              $(".modal .actions").css("margin-top", Math.max(0, ($(window).height() - tdialog.height()) / 2));
+            $('#dlgwrapper').css('display', 'block'); //Show our Modal fade/wrapper
 
-              var $childView = $(child);
-              $childView.css("visibility", "visible");
+            $(theDialog.blockout).click(function () {
+                theDialog.close();
+            });
 
-              $(window).on('resize',
-                function () {
-                  $('.modal:visible').each(reposition);
-              });
-
-            // var $child = $(child);
-            // var loadables = $child.find("img").filter(function () {
-            //     //Remove images with known width and height
-            //     var $this = $(this);
-            //     return !(this.style.width && this.style.height) && !($this.attr("width") && $this.attr("height"));
-            // });
-            //
-            // $child.data("predefinedWidth", $child.get(0).style.width);
-            //
-            // var setDialogPosition = function (childView, objDialog) {
-            //     //Setting a short timeout is need in IE8, otherwise we could do this straight away
-            //     setTimeout(function () {
-            //         var $childView = $(childView);
-            //
-            //         objDialog.context.reposition(childView);
-            //
-            //         $(objDialog.host).css('opacity', 1);
-            //         $childView.css("visibility", "visible");
-            //
-            //         $childView.find('.autofocus').first().focus();
-            //     }, 1);
-            // };
-            //
-            // setDialogPosition(child, theDialog);
-            // loadables.load(function () {
-            //     setDialogPosition(child, theDialog);
-            // });
-            //
-            // if ($child.hasClass('autoclose') || context.model.autoclose) {
-            //     $(theDialog.blockout).click(function () {
-            //         theDialog.close();
-            //     });
-            // }
+            $(window).on('resize',function () {
+                $('.modal:visible').each(theDialog.context.reposition);
+            });
         },
         /**
          * This function is called to reposition the model view.
          * @method reposition
          * @param {DOMElement} view The dialog view.
          */
-        reposition: function (view) {
-            var $view = $(view),
-                $window = $(window);
+        reposition: function () {
+          var modal = $(this)
+          var modalDlg = modal.find('.modal-dialog');
 
-            //We will clear and then set width for dialogs without width set
-            if (!$view.data("predefinedWidth")) {
-                $view.css({ width: '' }); //Reset width
-            }
+          $('#dlgwrapper').css('display', 'block');
+          modalDlg.css("margin-top", Math.max(0, ($(window).height() - modalDlg.height()) / 2));
+          $(".modal .actions").css("margin-top", Math.max(0, ($(window).height() - modalDlg.height()) / 2));
 
-			// clear the height
-            $view.css({ height: '' });
-
-            var width = $view.outerWidth(false),
-                height = $view.outerHeight(false),
-                windowHeight = $window.height() - 2 * this.minYMargin, //leave at least some pixels free
-                windowWidth = $window.width() - 2 * this.minXMargin, //leave at least some pixels free
-                constrainedHeight = Math.min(height, windowHeight),
-                constrainedWidth = Math.min(width, windowWidth);
-
-            $view.css({
-                'margin-top': (-constrainedHeight / 2).toString() + 'px',
-                'margin-left': (-constrainedWidth / 2).toString() + 'px'
-            });
-
-            if (height > windowHeight) {
-                $view.css("overflow-y", "auto").outerHeight(windowHeight);
-            } else {
-                $view.css({
-                    "overflow-y": "",
-                    "height": ""
-                });
-            }
-
-            if (width > windowWidth) {
-                $view.css("overflow-x", "auto").outerWidth(windowWidth);
-            } else {
-                $view.css("overflow-x", "");
-
-                if (!$view.data("predefinedWidth")) {
-                    //Ensure the correct width after margin-left has been set
-                    $view.outerWidth(constrainedWidth);
-                } else {
-                    $view.css("width", $view.data("predefinedWidth"));
-                }
-            }
         }
     });
 
