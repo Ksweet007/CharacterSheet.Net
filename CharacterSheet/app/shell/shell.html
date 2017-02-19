@@ -7,10 +7,12 @@
 			<a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect pull-left margin-r8 pmd-sidebar-toggle" data-bind="sidebarcollapse"><i class="material-icons">menu</i></a>
 		  <a href="#" class="navbar-brand">Character Sheet</a>
 		</div>
+    <!--ko if:sessionHasSaved() == true-->
     <div class="pmd-navbar-right-icon pull-right">
       <span>Last Saved At - <span>
       <label data-bind="text:lastSavedTime"></label>
     </div>
+    <!--/ko-->
     <div class="pmd-navbar-right-icon pull-right">
         <a class="loader" data-bind="css: { active: router.isNavigating || isSaving }"><i class="fa fa-spinner fa-spin fa-2x"></i></a>
         <a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect topbar-toggle visible-xs-inline-block" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><i class="material-icons pmd-sm md-light">more_vert</i></a>
@@ -64,9 +66,9 @@
     				<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
     			</a>
     			<ul class="dropdown-menu">
-                    <!--ko foreach: classList-->
-                      <li><a href="#" data-bind="attr:{href: '#manageclass/'+classId}, text:Name" class="pmd-ripple-effect"></a></li>
-                    <!--/ko-->
+            <!--ko foreach: classList-->
+              <li><a href="#" data-bind="attr:{href: '#manageclass/'+classId}, text:Name" class="pmd-ripple-effect"></a></li>
+            <!--/ko-->
     			</ul>
     		</li><!-- End Class Admin -->
 
@@ -77,11 +79,11 @@
     				<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
     			</a>
     			<ul class="dropdown-menu">
-                    <!--ko foreach: router.navigationModel-->
-                        <!--ko if: adminLink-->
-                  		<li><a class="pmd-ripple-effect" data-bind="attr: { href: hash }, text:title"></a></li>
-                        <!--/ko-->
-                    <!--/ko-->
+            <!--ko foreach: router.navigationModel-->
+                <!--ko if: adminLink-->
+          		<li><a class="pmd-ripple-effect" data-bind="attr: { href: hash }, text:title"></a></li>
+                <!--/ko-->
+            <!--/ko-->
     			</ul>
     		</li><!-- End Global Admin -->
       </ul>

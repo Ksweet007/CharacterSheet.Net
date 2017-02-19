@@ -54,8 +54,9 @@ define(function (require) {
             if (self.isDirty() || self.deleteList().length > 0) {
               _i.CustomModal.show().then(function(response){
                 if(response === 'save'){
-                  _i.app.trigger('view:navsave',self.save);
-                  promise.resolve(true);
+                  self.save().done(function(){
+                    promise.resolve(true);
+                  });
                 }else if (response === 'continue'){
                   promise.resolve(true);
                 }
@@ -114,22 +115,6 @@ define(function (require) {
             self.isEditing(false);
         };
 
-        // self.saveEdits = function (feature) {
-        //     var dataToSave = _i.ko.toJS(feature);
-        //     _i.charajax.put('api/EditFeature', dataToSave).done(function (response) {
-        //         feature.dirtyFlag().reset;
-        //         self.currentState('view');
-        //     });
-        // };
-
-        // self.saveNewFeature = function (feature) {
-        //     var dataToSave = _i.ko.toJS(feature);
-        //     _i.charajax.post('api/AddFeature', dataToSave).done(function (response) {
-        //         self.features.push(response);
-        //         self.currentState('view');
-        //     });
-        // };
-
         self.deleteFeature = function (feature) {
             _i.charajax.delete('api/RemoveFeature/' + feature.FeatureId, '').done(function (response) {
                 self.features.remove(feature);
@@ -138,6 +123,7 @@ define(function (require) {
         };
 
         self.save = function () {
+            var promise = _i.deferred.create();
             var isSaveState = self.isDirty() || self.selectedFeature.FeatureId === 0;
             var isDeleteState = self.deleteList().length > 0;
 
@@ -156,17 +142,23 @@ define(function (require) {
                         self.selectedFeature().dirtyFlag.reset;
                         self.isEditing(false);
                         self.currentState('view');
+
+                        promise.resolve(true);
                     });
                 } else { //ADD
                     return _i.charajax.post('api/AddFeature', dataToSave).done(function (response) {
                         self.features.push(response);
                         self.currentState('view');
+
+                        promise.resolve(true);
                     });
                 }
             } else if (isDeleteState) { //DELETE
                 return _i.charajax.delete('api/RemoveFeature/' + feature.FeatureId, '').done(function (response) {
                     self.features.remove(feature);
                     self.currentState('view');
+
+                    promise.resolve(true);
                 });
             } else {
                 return _i.deferred.createResolved(true);
