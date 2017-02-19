@@ -51,7 +51,7 @@
                     <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.returnToSelect'>Return</button>
                     <!--/ko-->
                     <!--ko if: $parent.isEditing()-->
-                    <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.saveEdits'>Save</button>
+                    <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.save'>Save</button>
                     <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.cancelEdit'>Cancel Edit</button>
                     <!--/ko-->
                   </div>
@@ -86,9 +86,9 @@
             				<input type="text" id="recType" data-bind='value: RecoveryType, valueUpdate: "afterkeydown"' class="form-control">
             			</div>
 
-                        <div class="pmd-card-actions">
-                            <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.saveNewFeature'>Save</button>
-                            <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.returnToSelect'>Return</button>
+                  <div class="pmd-card-actions">
+                    <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.save'>Save</button>
+                    <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.returnToSelect'>Return</button>
 		               </div>
 
             		</div>
@@ -98,3 +98,27 @@
 
     </div>
 </div>
+
+
+
+
+										<!-- <div class="col-md-4">
+											<button data-target="#complete-dialog" data-toggle="modal" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">Alert with title bar</button>
+
+											<div tabindex="-1" class="modal fade" id="complete-dialog" style="display: none;" aria-hidden="true">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h2 class="pmd-card-title-text">Use Google's location service?</h2>
+														</div>
+														<div class="modal-body">
+															<p>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running. </p>
+														</div>
+														<div class="pmd-modal-action pmd-modal-bordered text-right">
+															<button data-dismiss="modal" class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Disagree</button>
+															<button data-dismiss="modal" type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-default">Agree</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div> -->

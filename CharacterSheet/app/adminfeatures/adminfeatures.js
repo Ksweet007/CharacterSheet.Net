@@ -40,9 +40,6 @@ define(function (require) {
             return self.getFeatures();
         };
 
-        // self.deactivate = function() {
-        // };
-
         self.canDeactivate = function () {
             var promise = _i.deferred.create();
 
@@ -105,21 +102,21 @@ define(function (require) {
             self.isEditing(false);
         };
 
-        self.saveEdits = function (feature) {
-            var dataToSave = _i.ko.toJS(feature);
-            _i.charajax.put('api/EditFeature', dataToSave).done(function (response) {
-                feature.dirtyFlag().reset;
-                self.currentState('view');
-            });
-        };
+        // self.saveEdits = function (feature) {
+        //     var dataToSave = _i.ko.toJS(feature);
+        //     _i.charajax.put('api/EditFeature', dataToSave).done(function (response) {
+        //         feature.dirtyFlag().reset;
+        //         self.currentState('view');
+        //     });
+        // };
 
-        self.saveNewFeature = function (feature) {
-            var dataToSave = _i.ko.toJS(feature);
-            _i.charajax.post('api/AddFeature', dataToSave).done(function (response) {
-                self.features.push(response);
-                self.currentState('view');
-            });
-        };
+        // self.saveNewFeature = function (feature) {
+        //     var dataToSave = _i.ko.toJS(feature);
+        //     _i.charajax.post('api/AddFeature', dataToSave).done(function (response) {
+        //         self.features.push(response);
+        //         self.currentState('view');
+        //     });
+        // };
 
         self.deleteFeature = function (feature) {
             _i.charajax.delete('api/RemoveFeature/' + feature.FeatureId, '').done(function (response) {
@@ -144,7 +141,8 @@ define(function (require) {
 
                 if (dataToSave.FeatureId > 0) { //EDIT
                     return _i.charajax.put('api/EditFeature', dataToSave).done(function (response) {
-                        self.selectedFeature().dirtyFlag().reset;
+                        self.selectedFeature().dirtyFlag.reset;
+                        self.isEditing(false);
                         self.currentState('view');
                     });
                 } else { //ADD
