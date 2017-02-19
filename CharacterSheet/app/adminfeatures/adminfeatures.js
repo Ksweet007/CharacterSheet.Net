@@ -30,6 +30,12 @@ define(function (require) {
             return self.dirtyItems().length > 0 || self.deleteList().length > 0;
         });
 
+        self.showCustomModal =function(){
+          _i.CustomModal.show().then(function(respone){
+            var foo = 'respone';
+          });
+        };
+
         self.featuresToList = _i.ko.computed(function () {
             var stateToShow = self.currentState();
             if (stateToShow === "view") {
@@ -56,26 +62,11 @@ define(function (require) {
                 else{
                   promise.resolve(false);
                 }
-                // _i.app.showMessage('Fuck this shit');
-                // promise.resolve(true);
+
               });
-                // _i.uiblock.showSaveNavModal('You have Pending Changes. Do you want to Save?', 'Navigate', ['Save and Continue', 'Continue']).always(function (response) {
-                //     if (response === 'Save and Continue') {
-                //         _i.app.trigger('view:navsave', self.save);
-                //         promise.resolve(true);
-                //     } else if (response === 'Continue') {
-                //         promise.resolve(true);
-                //     }
-                // });
             }
 
             return promise;
-        };
-
-        self.showCustomModal = function(){
-          _i.CustomModal.show().then(function(resposne){
-            _i.app.showMessage('FUCK THIS SHIT')
-          });
         };
 
         self.getFeatures = function () {

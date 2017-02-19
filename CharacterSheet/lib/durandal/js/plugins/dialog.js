@@ -75,8 +75,6 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
      * @static
      */
     MessageBox.defaultOptions = ['Ok'];
-
-
     MessageBox.defaultSettings = { buttonClass: "btn btn-default", primaryButtonClass: "btn-primary autofocus", secondaryButtonClass: "", "class": "modal-content messageBox", style: null };
 
     /**
@@ -422,12 +420,20 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
          */
         addHost: function (theDialog) {
             var body = $('body');
-            var host = $('<div class="modal-dialog" style="margin-top: 396.5px;"></div>')
+            // var host = $('<div class="modal-dialog" style="margin-top: 396.5px;"></div>')
+            //     .css({ 'z-index': dialog.getNextZIndex() })
+            //     .appendTo(body);
+            var blockout = $('<div class="modal-backdrop"></div>')
+                .css({ 'z-index': dialog.getNextZIndex(), 'opacity': this.blockoutOpacity })
+                .appendTo(body);
+            var host = $('<div class="modal fade in" style="display: block;padding-right: 17px;"></div>')
                 .css({ 'z-index': dialog.getNextZIndex() })
                 .appendTo(body);
-            $(host).wrap('<div class="modal fade in" id="dlgwrapper"></div>');
+
+            // $(host).wrap('<div class="modal fade in" id="dlgwrapper"></div>');
 
             theDialog.host = host.get(0);
+            theDialog.blockout = blockout.get(0);
 
             if (!dialog.isOpen()) {
                 theDialog.oldBodyMarginRight = body.css("margin-right");
@@ -449,9 +455,11 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
          */
         removeHost: function (theDialog) {
             $(theDialog.host).css('opacity', 0);
+            $(theDialog.blockout).css('opacity', 0);
 
             setTimeout(function () {
                 ko.removeNode(theDialog.host);
+                ko.removeNode(theDialog.blockout);
             }, this.removeDelay);
 
             if (!dialog.isOpen()) {
@@ -479,9 +487,10 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
          */
         compositionComplete: function (child, parent, context) {
             var theDialog = dialog.getDialog(context.model);
+            var $child = $(child);
 
-            $('#dlgwrapper').css('display', 'block'); //Show our Modal fade/wrapper
-
+            theDialog.context.reposition(child);
+            // $('#dlgwrapper').css('display', 'block'); //Show our Modal fade/wrapper
             $(theDialog.blockout).click(function () {
                 theDialog.close();
             });
@@ -495,15 +504,16 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
          * @method reposition
          * @param {DOMElement} view The dialog view.
          */
-        reposition: function () {
-          var modal = $(this)
+        reposition: function (view) {
+
+          var modal = $(view)
           var modalDlg = modal.find('.modal-dialog');
 
-          $('#dlgwrapper').css('display', 'block');
+          // $('#dlgwrapper').css('display', 'block');
           modalDlg.css("margin-top", Math.max(0, ($(window).height() - modalDlg.height()) / 2));
-          $(".modal .actions").css("margin-top", Math.max(0, ($(window).height() - modalDlg.height()) / 2));
+          //$("#dlgfoot").css("margin-top", Math.max(0, ($(window).height() - modalDlg.height()) / 2));
 
-        }
+        },
     });
 
     return dialog;
