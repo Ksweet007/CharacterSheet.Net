@@ -76,7 +76,7 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
      */
     MessageBox.defaultOptions = ['Ok'];
 
-    
+
     MessageBox.defaultSettings = { buttonClass: "btn btn-default", primaryButtonClass: "btn-primary autofocus", secondaryButtonClass: "", "class": "modal-content messageBox", style: null };
 
     /**
@@ -422,16 +422,13 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
          */
         addHost: function (theDialog) {
             var body = $('body');
-            var blockout = $('<div class="modalBlockout"></div>')
-                .css({ 'z-index': dialog.getNextZIndex(), 'opacity': this.blockoutOpacity })
-                .appendTo(body);
-
-            var host = $('<div class="modalHost"></div>')
+            var host = $('<div class="modal-dialog" style="margin-top: 396.5px;"></div>')
                 .css({ 'z-index': dialog.getNextZIndex() })
                 .appendTo(body);
+            $(host).wrap('<div class="modal fade in" id="dlgwrapper"></div>');
 
             theDialog.host = host.get(0);
-            theDialog.blockout = blockout.get(0);
+
 
             if (!dialog.isOpen()) {
                 theDialog.oldBodyMarginRight = body.css("margin-right");
@@ -453,11 +450,9 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
          */
         removeHost: function (theDialog) {
             $(theDialog.host).css('opacity', 0);
-            $(theDialog.blockout).css('opacity', 0);
 
             setTimeout(function () {
                 ko.removeNode(theDialog.host);
-                ko.removeNode(theDialog.blockout);
             }, this.removeDelay);
 
             if (!dialog.isOpen()) {
@@ -485,39 +480,54 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
          */
         compositionComplete: function (child, parent, context) {
             var theDialog = dialog.getDialog(context.model);
-            var $child = $(child);
-            var loadables = $child.find("img").filter(function () {
-                //Remove images with known width and height
-                var $this = $(this);
-                return !(this.style.width && this.style.height) && !($this.attr("width") && $this.attr("height"));
-            });
 
-            $child.data("predefinedWidth", $child.get(0).style.width);
+              var modal = $(this),
+              tdialog = modal.find('.modal-dialog');
+              $('#dlgwrapper').css('display', 'block');
+              $(theDialog.host).css("margin-top", Math.max(0, ($(window).height() - tdialog.height()) / 2));
+              $(".modal .actions").css("margin-top", Math.max(0, ($(window).height() - tdialog.height()) / 2));
 
-            var setDialogPosition = function (childView, objDialog) {
-                //Setting a short timeout is need in IE8, otherwise we could do this straight away
-                setTimeout(function () {
-                    var $childView = $(childView);
+              var $childView = $(child);
+              $childView.css("visibility", "visible");
 
-                    objDialog.context.reposition(childView);
+              $(window).on('resize',
+                function () {
+                  $('.modal:visible').each(reposition);
+              });
 
-                    $(objDialog.host).css('opacity', 1);
-                    $childView.css("visibility", "visible");
-
-                    $childView.find('.autofocus').first().focus();
-                }, 1);
-            };
-
-            setDialogPosition(child, theDialog);
-            loadables.load(function () {
-                setDialogPosition(child, theDialog);
-            });
-
-            if ($child.hasClass('autoclose') || context.model.autoclose) {
-                $(theDialog.blockout).click(function () {
-                    theDialog.close();
-                });
-            }
+            // var $child = $(child);
+            // var loadables = $child.find("img").filter(function () {
+            //     //Remove images with known width and height
+            //     var $this = $(this);
+            //     return !(this.style.width && this.style.height) && !($this.attr("width") && $this.attr("height"));
+            // });
+            //
+            // $child.data("predefinedWidth", $child.get(0).style.width);
+            //
+            // var setDialogPosition = function (childView, objDialog) {
+            //     //Setting a short timeout is need in IE8, otherwise we could do this straight away
+            //     setTimeout(function () {
+            //         var $childView = $(childView);
+            //
+            //         objDialog.context.reposition(childView);
+            //
+            //         $(objDialog.host).css('opacity', 1);
+            //         $childView.css("visibility", "visible");
+            //
+            //         $childView.find('.autofocus').first().focus();
+            //     }, 1);
+            // };
+            //
+            // setDialogPosition(child, theDialog);
+            // loadables.load(function () {
+            //     setDialogPosition(child, theDialog);
+            // });
+            //
+            // if ($child.hasClass('autoclose') || context.model.autoclose) {
+            //     $(theDialog.blockout).click(function () {
+            //         theDialog.close();
+            //     });
+            // }
         },
         /**
          * This function is called to reposition the model view.
@@ -528,11 +538,11 @@ define(['durandal/system', 'durandal/app', 'durandal/composition', 'durandal/act
             var $view = $(view),
                 $window = $(window);
 
-            //We will clear and then set width for dialogs without width set 
+            //We will clear and then set width for dialogs without width set
             if (!$view.data("predefinedWidth")) {
                 $view.css({ width: '' }); //Reset width
             }
-			
+
 			// clear the height
             $view.css({ height: '' });
 

@@ -5,8 +5,10 @@ define(function (require) {
         utils: require('_custom/services/utils'),
         charajax: require('_custom/services/WebAPI'),
         list: require('_custom/services/listmanager'),
+        uiblock: require('_custom/services/uiblocks'),
         deferred: require('_custom/deferred'),
-        app: require('durandal/app')
+        app: require('durandal/app'),
+        CustomModal: require('./saveblock')
     };
 
     return function () {
@@ -44,17 +46,27 @@ define(function (require) {
             var promise = _i.deferred.create();
 
             if (self.isDirty() || self.deleteList().length > 0) {
-                _i.app.showMessage('You have Pending Changes. Do you want to Save?', 'Navigate', ['Save and Continue', 'Continue']).always(function (response) {
-                    if (response === 'Save and Continue') {
-                        _i.app.trigger('view:navsave', self.save);
-                        promise.resolve(true);
-                    } else if (response === 'Continue') {
-                        promise.resolve(true);
-                    }
-                });
+              _i.CustomModal.show().then(function(){
+                _i.app.showMessage('Fuck this shit');
+                promise.resolve(true);
+              });
+                // _i.uiblock.showSaveNavModal('You have Pending Changes. Do you want to Save?', 'Navigate', ['Save and Continue', 'Continue']).always(function (response) {
+                //     if (response === 'Save and Continue') {
+                //         _i.app.trigger('view:navsave', self.save);
+                //         promise.resolve(true);
+                //     } else if (response === 'Continue') {
+                //         promise.resolve(true);
+                //     }
+                // });
             }
 
             return promise;
+        };
+
+        self.showCustomModal = function(){
+          _i.CustomModal.show().then(function(resposne){
+            _i.app.showMessage('FUCK THIS SHIT')
+          });
         };
 
         self.getFeatures = function () {

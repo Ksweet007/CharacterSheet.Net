@@ -14,7 +14,8 @@ define(function(require) {
   require('./bindinghandlers/rippleeffect');
   require('./bindinghandlers/contentEditable');
   require('./bindinghandlers/htmlEditable');
-  
+  require('./bindinghandlers/modal');
+
   require('./koFunctions/changeTracker');
 
 });
