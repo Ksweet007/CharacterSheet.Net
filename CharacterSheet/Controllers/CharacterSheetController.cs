@@ -4,7 +4,6 @@ using CharacterSheet.Controllers.Api;
 
 namespace CharacterSheet.Controllers
 {
-    
     public class CharacterSheetController : BaseController
     {
         public ActionResult Index()

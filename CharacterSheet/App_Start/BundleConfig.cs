@@ -18,12 +18,13 @@ namespace CharacterSheet
         internal static void RegisterBundles(BundleCollection bundles)
         {
             var minifyJs = Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["MinifyJs"] ?? "true");
-            var vendorBundle = new ScriptBundle("~/scripts/vendor")
+            var vendorBundle = new ScriptBundle("~/scripts/vendor")                
                 .Include("~/assets/js/jquery-1.12.2.min.js")
-                .Include("~/assets/js/bootstrap.min.js")
                 .Include("~/assets/js/bootstrap.js")
-                .Include("~/lib/propeller/js/propeller.js");
-            
+                .Include("~/assets/js/propeller.js")
+                .Include("~/lib/moment/moment.js");
+
+
             if (!minifyJs)
             {
                 vendorBundle.Transforms.Clear(); //disables minification
@@ -37,9 +38,12 @@ namespace CharacterSheet
                 .Include("~/lib/knockout/knockout.punches.js")
                 .Include("~/lib/knockout/ko.plus.js")
                 .Include("~/lib/knockout/knockout.reactor.js")
-                .Include("~/lib/knockout/knockout.mapping.js")
-                .Include("~/lib/fuse.js");
-                
+                .Include("~/lib/knockout/knockout.mapping.js")                
+                .Include("~/lib/fuse.js")
+                .Include("~/assets/js/wNumb.js")
+                .Include("~/assets/js/nouislider.js");
+
+
             if (!minifyJs)
             {
                 vendorBundleTwo.Transforms.Clear(); //disables minification
@@ -48,15 +52,14 @@ namespace CharacterSheet
             bundles.Add(vendorBundleTwo);
 
             var styleBundle = new StyleBundle("~/content/css")
-                .Include("~/assets/css/bootstrap.min.css")
-                .Include("~/assets/css/propeller.min.css")
+                .Include("~/lib/font-awesome/css/font-awesome.css")
+                .Include("~/assets/css/bootstrap.css")
+                .Include("~/assets/css/propeller.css")
                 .Include("~/themes/css/propeller-theme.css")
-                .Include("~/themes/css/propeller-admin.css")
                 .Include("~/assets/css/sidebar.css");
-                
-                
-            styleBundle.Orderer = new BundleConfigOrderer();
-            bundles.Add(styleBundle);
+
+                styleBundle.Orderer = new BundleConfigOrderer();
+                bundles.Add(styleBundle);
 
 
         }

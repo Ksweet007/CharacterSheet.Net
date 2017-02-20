@@ -2,16 +2,25 @@ body  {font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell Engl
 body .pmd-sidebar .pmd-sidebar-nav li a {font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell English SC','Metamorphous','Milonga','Pirata One', cursive !important;}
 h1, h2, h3, h4, h5, h6  {font-family: 'Eagle Lake', 'MedievalSharp','Jim Nightshade','IM Fell English SC','Metamorphous','Milonga','Pirata One', cursive !important;}
 
-.pmd-card, .navbar-inverse  {background-color: #333 !important; border-color: #333 !important}
-.pmd-sidebar  {background-color: rgba(16, 16, 16, 0.34) !important; border-color: rgba(16, 16, 16, 0.34) !important}
+/*LOAD SPINNERS*/
+.splash { text-align: center; margin: 10% 0 0 0;}
+.splash .message {font-size: 5em; line-height: 1.5em; -webkit-text-shadow: rgba(0, 0, 0, 0.5) 0 0 15px; text-shadow: rgba(0, 0, 0, 0.5) 0 0 15px; text-transform: uppercase; background-color: rgba(128, 128, 128, 0.96);}
+.splash .fa-spinner { text-align: center; display: inline-block; font-size: 5em; margin-top: 50px;}
+a.loader { margin: 12px 6px 0 6px; visibility: hidden; }
+a.loader.active { visibility: visible; }
+/*END LOAD SPINNERS*/
+
+.nav>li>a:hover{background-color: #161a22 !important;}
+.pmd-card, .modal-content { background-color: rgba(19, 17, 17, 0.67); }
+.navbar-inverse {background-color: #2c3544 !important; border-color: #2c3544 !important}
+
+.pmd-sidebar, .pmd-sidebar-right-fixed  {background-color: #2c3544 !important; border-color: rgba(16, 16, 16, 0.34) !important}
 .login-card   {background-color: #333 !important;}
 .btn-primary  {background-color: rgba(51, 122, 183, 0.65) !important;}
 
-.pmd-card-body,
-.pmd-textfield-floating-label label,
-.login-register,.material-icons.md-dark {color:#c1b4b4 !important;}
+.pmd-card-body, .pmd-card-body label,.form-control,.modal-body,
+.pmd-textfield-floating-label label,.login-register,.material-icons.md-dark {color:#c1b4b4 !important;}
 
-h2.typo-fill-secondary,
-.navbar-brand, .pmd-card-title strong,
-.pmd-card-footer  {color: rgba(255, 215, 0, 0.68) !important;}
+h2.typo-fill-secondary, .pmd-card-title-text,
+.navbar-brand, .pmd-card-title strong, .pmd-card-footer, .pmd-sidebar a, .navbar-header .btn:hover,.pmd-textfield label  {color: rgba(255, 215, 0, 0.68) !important;}
 .pmd-textfield-floating-label.pmd-textfield-floating-label-completed label  {color: #c1b4b4 !important;}

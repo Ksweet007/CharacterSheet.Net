@@ -18,9 +18,6 @@ define(function(require) {
 	};
 
 	ApiCls.prototype.get = function(url, data) {
-		//https://docs.cloudant.com/document.html https://docs.cloudant.com/database.html#get-documents
-		//  /_all_docs?keys=["somekey","someotherkey"]
-
 		return this.ajax({
 			type: 'GET',
 			url: url,
@@ -50,12 +47,10 @@ define(function(require) {
 
 	ApiCls.prototype.put = function(url, data) {
 		return this.ajax({
-			headers: {
-				"Content-Type": "application/json"
-			},
+            type: 'PUT',
+            contentType: "application/json; charset=utf-8",
 			url: url,
-			data: JSON.stringify(data),
-			method: 'PUT'
+			data: JSON.stringify(data)
 		});
 	};
 
@@ -65,14 +60,13 @@ define(function(require) {
 			headers: {
 				"Content-Type": "application/json"
 			},
-			dataType: 'json',
+			dataType: 'application/json',
 			data: JSON.stringify(data),
 			method: 'POST'
 		});
 	};
 
 	ApiCls.prototype.delete = function(url, data) {
-		//   https://$USERNAME.cloudant.com/$DATABASE/$DOCUMENT_ID?rev=$REV
 		return this.ajax({
 			url: url,
 			data: JSON.stringify(data),

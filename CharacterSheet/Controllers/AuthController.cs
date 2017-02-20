@@ -23,17 +23,6 @@ namespace CharacterSheet.Controllers
             this.userManager = userManager;
         }
 
-        //[HttpGet]
-        //public ActionResult Login(string returnUrl)
-        //{
-        //    var model = new LogInModel
-        //    {
-        //        ReturnUrl = returnUrl
-        //    };
-
-        //    return View(model);
-        //}
-
         [HttpGet]
         public ActionResult Login(string returnUrl)
         {
@@ -97,7 +86,7 @@ namespace CharacterSheet.Controllers
 
             var result = await userManager.CreateAsync(user, model.Password);
 
-            var userRole = await userManager.AddToRoleAsync(user.Id, "User");
+            await userManager.AddToRoleAsync(user.Id, "User");
 
             if (result.Succeeded)
             {
@@ -110,6 +99,11 @@ namespace CharacterSheet.Controllers
                 ModelState.AddModelError("", error);
             }
 
+            return View();
+        }
+            
+        public ActionResult ForgotPasswordConfirmation()
+        {
             return View();
         }
 

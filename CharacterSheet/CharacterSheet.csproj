@@ -212,6 +212,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\AdminController.cs" />
     <Compile Include="Controllers\Api\BaseApiController.cs" />
     <Compile Include="Controllers\Api\ClassController.cs" />
@@ -227,6 +228,7 @@
     </Compile>
     <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AuthenticationViewModels.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\AppUserClaimsIdentityFactory.cs" />
     <Compile Include="Models\AppUserDbContext.cs" />
@@ -248,6 +250,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\adminfeatures\adminfeatures.html" />
+    <Content Include="app\adminfeatures\adminfeatures.js" />
     <Content Include="app\admin\admin.html" />
     <Content Include="app\admin\admin.js" />
     <Content Include="app\admin\features\features.html" />
@@ -352,9 +356,13 @@
     <Content Include="app\_custom\bindinghandlers\dropdown.js" />
     <Content Include="app\_custom\bindinghandlers\fadeVisible.js" />
     <Content Include="app\_custom\bindinghandlers\LockScroll.js" />
+    <Content Include="app\_custom\bindinghandlers\rangeslider.js" />
     <Content Include="app\_custom\bindinghandlers\sidebarcollapse.js" />
+    <Content Include="app\_custom\bindinghandlers\sliderValue.js" />
     <Content Include="app\_custom\cls.js" />
     <Content Include="app\_custom\deferred.js" />
+    <Content Include="app\_custom\koFunctions\changeTracker.js" />
+    <Content Include="app\_custom\koFunctions\objectBuilder.js" />
     <Content Include="app\_custom\services\databaseutils.js" />
     <Content Include="app\_custom\services\indexeddb.js" />
     <Content Include="app\_custom\services\listmanager.js" />
@@ -365,11 +373,15 @@
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="assets\css\bootstrap.css" />
     <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\jquery.nouislider.css" />
     <Content Include="assets\css\main.css" />
+    <Content Include="assets\css\nouislider.min.css" />
     <Content Include="assets\css\propeller-global.css" />
     <Content Include="assets\css\propeller.css" />
     <Content Include="assets\css\propeller.min.css" />
+    <Content Include="assets\css\range-slider.css" />
     <Content Include="assets\css\sidebar.css" />
+    <Content Include="assets\css\testo.css" />
     <Content Include="assets\fonts\roboto\Roboto-Black-webfont.svg" />
     <Content Include="assets\fonts\roboto\Roboto-BlackItalic-webfont.svg" />
     <Content Include="assets\fonts\roboto\Roboto-Bold-webfont.svg" />
@@ -398,8 +410,28 @@
     <Content Include="assets\js\bootstrap.min.js" />
     <Content Include="assets\js\jquery-1.12.2.min.js" />
     <Content Include="assets\js\jquery.js" />
+    <Content Include="assets\js\jquery.nouislider.min.js" />
+    <Content Include="assets\js\nouislider.js" />
     <Content Include="assets\js\propeller.js" />
     <Content Include="assets\js\propeller.min.js" />
+    <Content Include="assets\js\wNumb.js" />
+    <Content Include="components\custom-scrollbar\css\jquery.mCustomScrollbar.css" />
+    <Content Include="components\custom-scrollbar\css\mCSB_buttons.png" />
+    <Content Include="components\custom-scrollbar\css\pmd-scrollbar.css" />
+    <Content Include="components\custom-scrollbar\custom-scroll.html" />
+    <Content Include="components\custom-scrollbar\js\jquery.mCustomScrollbar.js" />
+    <Content Include="components\custom-scrollbar\snippets\3d-scroll.html" />
+    <Content Include="components\custom-scrollbar\snippets\3d-scroll.js" />
+    <Content Include="components\custom-scrollbar\snippets\custom-scroll.css" />
+    <Content Include="components\custom-scrollbar\snippets\custom-scroll.html" />
+    <Content Include="components\custom-scrollbar\snippets\custom-scroll.js" />
+    <Content Include="components\custom-scrollbar\snippets\hover-scroll.html" />
+    <Content Include="components\custom-scrollbar\snippets\outside-scroll.html" />
+    <Content Include="components\custom-scrollbar\snippets\outside-scroll.js" />
+    <Content Include="components\custom-scrollbar\snippets\rounded-scroll.html" />
+    <Content Include="components\custom-scrollbar\snippets\rounded-scroll.js" />
+    <Content Include="components\custom-scrollbar\snippets\snap-scroll.html" />
+    <Content Include="components\custom-scrollbar\snippets\snap-scroll.js" />
     <Content Include="Content\authpages.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -827,7 +859,6 @@
   <ItemGroup>
     <Folder Include="app\addclass\" />
     <Folder Include="App_Data\" />
-    <Folder Include="components\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

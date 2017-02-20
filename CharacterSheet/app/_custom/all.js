@@ -10,5 +10,10 @@ define(function(require) {
 	require('./bindinghandlers/fadeVisible');
   require('./bindinghandlers/sidebarcollapse');
   require('./bindinghandlers/dropdown');
+  require('./bindinghandlers/rangeslider');
+  require('./bindinghandlers/rippleeffect');
+  require('./bindinghandlers/contentEditable');
+  require('./bindinghandlers/htmlEditable');
+  require('./koFunctions/changeTracker');
 
 });

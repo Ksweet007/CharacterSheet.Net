@@ -17,13 +17,31 @@ namespace CharacterSheet.Controllers
             _featureRepository = new FeatureRepository();
         }
 
-        [HttpPut]
+        //[HttpPut]
+        //[Route("api/AddFeature/")]
+        //public IHttpActionResult AddNewFeature(Feature featureToAdd)
+        //{
+        //    _featureRepository.AddFeature(featureToAdd);
+
+        //    return Ok(featureToAdd);
+        //}
+
+        [HttpPost]
         [Route("api/AddFeature/")]
-        public IHttpActionResult AddNewFeature(Feature featureToAdd)
+        public IHttpActionResult AddNewFeature([FromBody] Feature featureToAdd)
         {
             _featureRepository.AddFeature(featureToAdd);
 
             return Ok(featureToAdd);
+        }
+
+        [HttpPut]
+        [Route("api/EditFeature")]
+        public IHttpActionResult EditFeature(Feature featureToEdit)
+        {
+            _featureRepository.EditFeature(featureToEdit);
+
+            return Ok(featureToEdit);
         }
 
         [HttpGet]
