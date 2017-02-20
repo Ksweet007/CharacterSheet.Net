@@ -50,12 +50,8 @@ define(function (require) {
                 _i.list.sortAlphabeticallyObservables(self.features());
             });
         };
-
-        self.selectFeature = function (obj) {
-            self.selectedFeature(obj);
-            self.currentState('edit');
-        };
-
+        
+        /*==================== PAGE ACTIONS ====================*/
         self.createNewFeature = function (feature) {
             self.currentState('new');
             self.newFeature({
@@ -70,49 +66,48 @@ define(function (require) {
             });
         };
 
-        self.resetFromEditState = function () {
+        /* Set the selected feature and put our page in to edit state */
+        self.selectFeature = function (obj) {
+            self.selectedFeature(obj);
+            self.currentState('edit');
+        };
+
+        /* Cancel edit, reset our dirty flag, set page to view state */
+        self.cancelEdit = function () {
             self.selectedFeature().dirtyFlag.reset();
             self.currentState('view');
         };
 
-        self.cancelEdit = function () {
-            self.resetFromEditState();
-        };
-
-        self.returnToSelect = function () {
+        /* Cancel creating new feature. Set page to view state */
+        self.cancelNew = function () {
             self.currentState('view');
         };
-
-        self.showAlertMsg = function (alertType, textToShow) {
-            var alertConfig = { message: alertType, type: textToShow };
-            _i.app.trigger('view:saved');
-            _i.alert.showAlert(alertConfig);
-        };
-
+        
+        /* Set config values for Alert, trigger alert, then change page state */
         self.triggerAlertsAndSetState = function (alertType, textToShow, pageState) {
             var alertConfig = { message: alertType, type: textToShow };
-            _i.app.trigger('view:saved');
             _i.alert.showAlert(alertConfig);
-            if (pageState !== '') {
-                self.currentState(pageState);
-            }
+            self.currentState(pageState);            
         };
 
+        /* Save new Feature with ajax then add the returned feature to our feature list (so it has the newly assigned DB ID value, then alert the user */
         self.saveNewFeature = function (featureToAdd) {
             return _i.charajax.post('api/AddFeature', featureToAdd).then(function (response) {
                 self.features.push(response);
-                self.showAlertMsg("success", "New Feature Saved", "view");
+                self.triggerAlertsAndSetState("success", "New Feature Saved", "view");
             });
         };
 
+        /* Delete the Feature, remove it from our list of Features, then alert the user */
         self.deleteFeature = function (featureToDelete) {
             return _i.charajax.delete('api/RemoveFeature/' + featureToDelete.FeatureId, '').then(function (response) {
                 var alertMsg = "Feature Deleted: " + featureToDelete.Name();                
                 self.features.remove(featureToDelete);
-                self.showAlertMsg("danger", alertMsg, "view");
+                self.triggerAlertsAndSetState("danger", alertMsg, "view");
             });
         };
 
+        /* Save Edits made to a Feature, then reset that Feature's dirtyFlag and alert the user */
         self.save = function () {
             var isSaveState = self.isDirty() && self.selectedFeature.FeatureId > 0;
 
@@ -131,7 +126,7 @@ define(function (require) {
 
             return _i.charajax.put('api/EditFeature', dataToSave).then(function (response) {
                 self.selectedFeature().dirtyFlag.reset();                
-                self.showAlertMsg("success", "Feature Edit Saved", "view");
+                self.triggerAlertsAndSetState("success", "Feature Edit Saved", "view");
             });
 
         };
