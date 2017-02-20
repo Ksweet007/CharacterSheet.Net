@@ -1,11 +1,9 @@
 ﻿define(function (require) {
   var _i = {
       ko: require('knockout'),
+      dialog: require('plugins/dialog')
   };
-    var NavAway = function() {
-      var self = this;
-
-    };
+    var NavAway = function() {};
 
     NavAway.prototype.saveContinue = function() {
         _i.dialog.close(this, 'save');

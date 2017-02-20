@@ -3,8 +3,7 @@
       ko: require('knockout'),
       dialog: require('plugins/dialog')
   };
-    var CustomModal = function() {
-    };
+    var CustomModal = function() {};
 
     CustomModal.prototype.saveContinue = function() {
         _i.dialog.close(this, 'save');

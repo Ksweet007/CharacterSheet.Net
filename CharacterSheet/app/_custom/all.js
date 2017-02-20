@@ -14,8 +14,13 @@ define(function(require) {
   require('./bindinghandlers/sidebarcollapse');
   require('./bindinghandlers/alert');
 
+  require('./dialog/captureDialogKeyEvents');
+
+  require('./events/captureKeyEvents');
+
   require('./koFunctions/changeTracker');
 
-  require('./services/alert');
+ 
+  _i.ko.components.register('nav-header', { require: './_custom/components/navheader/navheader' });
 
 });

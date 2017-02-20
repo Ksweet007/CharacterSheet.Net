@@ -26,13 +26,11 @@ define(function (require) {
         });
 
         self.getAdmin = function () {
-            var promise = _i.deferred.create();
             return _i.charajax.universal('api/IsAdmin', '', 'GET').done(function (response) {
                 if (response) {
                     self.isAdmin(true);
                 }
             });
-            return promise;
         };
 
         self.getClassList = function () {

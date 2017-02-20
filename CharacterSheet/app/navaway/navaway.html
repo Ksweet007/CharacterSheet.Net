@@ -1,13 +1,15 @@
-<div class="modal-content">
-	<div class="modal-header">
-		<h2 class="pmd-card-title-text">Use Google's location service?</h2>
-	</div>
-	<div class="modal-body">
-		<p>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running. </p>
-	</div>
-	<div class="pmd-modal-action pmd-modal-bordered text-right">
-    <button class="btn pmd-btn-flat pmd-ripple-effect btn-default" data-bind="click: nosaveContinue">Save and Contiue</button>
-		<button class="btn pmd-btn-flat pmd-ripple-effect btn-default" data-bind="click: saveContinue">Save and Contiue</button>
-    <button class="btn pmd-btn-flat pmd-ripple-effect btn-default" data-bind="click: cancel">Cancel</button>
-	</div>
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="pmd-card-title-text">Save Changes?</h2>
+        </div>
+        <div class="modal-body">
+            <p>You have unsaved changes. Would you like to Save them? </p>
+        </div>
+        <div id="dlgfoot" class="pmd-modal-action pmd-modal-bordered text-right">
+            <button class="btn pmd-ripple-effect btn-primary" data-bind="click: saveContinue">Save and Contiue</button>
+            <button class="btn pmd-ripple-effect btn-primary" data-bind="click: nosaveContinue">Contiue</button>
+            <button class="btn pmd-ripple-effect btn-primary" data-bind="click: cancel">Cancel</button>
+        </div>
+    </div>
 </div>
