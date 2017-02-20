@@ -2,11 +2,9 @@ define(function (require) {
     var _i = {
         ko: require('knockout'),
         $: require('jquery'),
-        utils: require('_custom/services/utils'),
         charajax: require('_custom/services/WebAPI'),
         list: require('_custom/services/listmanager'),
         deferred: require('_custom/deferred'),
-        alert: require('_custom/services/alert')
     };
 
     return function () {
