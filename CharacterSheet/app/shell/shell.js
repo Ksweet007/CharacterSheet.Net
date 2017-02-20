@@ -101,26 +101,18 @@ define(function (require) {
 					    nav: false,
 					    hash: '#classdetails',
 					    adminLink: false
-					}, {
-					    route: 'manageclass/:id*details',
-					    title: 'Manage Class',
-					    moduleId: 'manageclass/manageclass',
-					    nav: false,
-					    hash: '#manageclass/:id',
-					    adminLink: false
-					}
-                ]
+					}]
 
-                if (self.isAdmin()) {
-                    routesToMap.push({
-                        route: 'adminfeatures',
-                        title: 'Features',
-                        moduleId: 'adminfeatures/adminfeatures',
-                        nav: true,
-                        hash: "#adminfeatures",
-                        adminLink: true
-                    });
-                }
+              if (self.isAdmin()) {
+                  routesToMap.push({
+                      route: 'adminfeatures',
+                      title: 'Features',
+                      moduleId: 'adminfeatures/adminfeatures',
+                      nav: true,
+                      hash: "#adminfeatures",
+                      adminLink: true
+                  });
+              }
 
                 self.router.map(routesToMap).buildNavigationModel();
                 return self.router.activate();
