@@ -1,27 +1,3 @@
-<!-- Header Starts -->
-<!--Start Nav bar -->
-<nav class="navbar navbar-inverse navbar-fixed-top pmd-navbar pmd-z-depth" data-bind="rippleeffect">
-	<div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect pull-left margin-r8 pmd-sidebar-toggle" data-bind="sidebarcollapse"><i class="material-icons">menu</i></a>
-		  <a href="#" class="navbar-brand">Character Sheet</a>
-		</div>
-    <!--ko if:sessionHasSaved() == true-->
-    <div class="pmd-navbar-right-icon pull-right">
-      <span>Last Saved At - <span>
-      <label data-bind="text:lastSavedTime"></label>
-    </div>
-    <!--/ko-->
-    <div class="pmd-navbar-right-icon pull-right">
-        <a class="loader" data-bind="css: { active: router.isNavigating || isSaving }"><i class="fa fa-spinner fa-spin fa-2x"></i></a>
-        <a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect topbar-toggle visible-xs-inline-block" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><i class="material-icons pmd-sm md-light">more_vert</i></a>
-        <a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect pmd-sidebar-toggle-right"><i class="material-icons md-light">more_horiz</i></a>
-    </div>
-	</div>
-</nav><!--End Nav bar -->
-<!-- Header Ends -->
-
 <!-- Sidebar Starts -->
 <div class="pmd-sidebar-overlay"></div>
 <!-- Left sidebar -->

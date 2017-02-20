@@ -1,16 +1,33 @@
 define(function(require) {
 	var _i = {
 		$: require('jquery'),
-		deferred: require('_custom/deferred')
+		deferred: require('_custom/deferred'),
+        events: require('_custom/services/event')
 	};
 
 	function ApiCls() {}
-	ApiCls.prototype.ajax = function(config) {
+	ApiCls.prototype.ajax = function (config) {
+	    config = _i.$.extend({
+	        contentType: 'application/json',
+	        dataType: 'json'
+	    }, config);
+
+	    _i.events.publish('sheet:AjaxStart', config);
+
 		var dfd = _i.$.Deferred();
 		var promise = _i.$.ajax(config);
 		promise.done(function() {
-			dfd.resolve.apply(this, arguments);
-		}).fail(function(jqXHR, textStatus, errorThrown) {
+		    dfd.resolve.apply(this, arguments);
+		    _i.events.publish('sheet:AjaxComplete', config);
+		}).fail(function (jqXHR, textStatus, errorThrown) {
+		    try {
+		        var failData = JSON.parse(jqXHR.responseText);
+		        if (failData.errorCode) {
+		            debug.log(failData.errorCode);
+		        }
+		    } catch (e) { }
+
+		    _i.events.publish('sheet:AjaxError',config);
 			dfd.reject.apply(this, arguments);
 		});
 
@@ -21,9 +38,6 @@ define(function(require) {
 		return this.ajax({
 			type: 'GET',
 			url: url,
-			headers: {
-				"Content-Type": "application/json"
-			},
 			dataType: 'json',
 			data: data
 		});
@@ -33,9 +47,6 @@ define(function(require) {
 		return this.ajax({
 			url: url,
 			data: JSON.stringify(data),
-			headers: {
-				"Content-Type": "application/json"
-			},
 			dataType: 'json'
 		});
 	};
@@ -46,7 +57,7 @@ define(function(require) {
 
 	ApiCls.prototype.put = function(url, data) {
 		return this.ajax({
-            type: 'PUT',
+            method: 'PUT',
             contentType: "application/json; charset=utf-8",
 			url: url,
 			data: JSON.stringify(data)
@@ -56,9 +67,6 @@ define(function(require) {
 	ApiCls.prototype.post = function(url, data) {
 		return this.ajax({
 			url: url,
-			headers: {
-				"Content-Type": "application/json"
-			},
 			dataType: 'application/json',
 			data: JSON.stringify(data),
 			method: 'POST'

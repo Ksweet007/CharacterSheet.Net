@@ -40,6 +40,7 @@ namespace CharacterSheet
                 .Include("~/lib/knockout/knockout.reactor.js")
                 .Include("~/lib/knockout/knockout.mapping.js")                
                 .Include("~/lib/fuse.js")
+                .Include("~/assets/js/alert.js")
                 .Include("~/assets/js/wNumb.js")
                 .Include("~/assets/js/nouislider.js");
 
@@ -56,7 +57,7 @@ namespace CharacterSheet
                 .Include("~/assets/css/bootstrap.css")
                 .Include("~/assets/css/propeller.css")
                 .Include("~/themes/css/propeller-theme.css")
-                //.Include("~/themes/css/propeller-admin.css")
+                .Include("~/assets/css/alert.css")
                 .Include("~/assets/css/sidebar.css");
 
                 styleBundle.Orderer = new BundleConfigOrderer();

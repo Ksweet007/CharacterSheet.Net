@@ -8,7 +8,7 @@
     NavAway.show = function () {
         return _i.dialog.show(new NavAway());
     };
-
+   
     NavAway.prototype.dialogButtonClick = function (btnText, accepted) {
         /// <summary>Called when Ok and Cancel are clicked</summary>
         var self = this;
