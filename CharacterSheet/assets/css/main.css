@@ -11,7 +11,7 @@ a.loader.active { visibility: visible; }
 /*END LOAD SPINNERS*/
 
 .nav>li>a:hover{background-color: #161a22 !important;}
-.pmd-card, .modal-content { background-color: rgba(19, 17, 17, 0.67); }
+.pmd-card, .modal-content { background-color: rgba(0, 0, 0, 0.66); }
 .navbar-inverse {background-color: #2c3544 !important; border-color: #2c3544 !important}
 
 .pmd-sidebar, .pmd-sidebar-right-fixed  {background-color: #2c3544 !important; border-color: rgba(16, 16, 16, 0.34) !important}
@@ -24,3 +24,11 @@ a.loader.active { visibility: visible; }
 h2.typo-fill-secondary, .pmd-card-title-text,
 .navbar-brand, .pmd-card-title strong, .pmd-card-footer, .pmd-sidebar a, .navbar-header .btn:hover,.pmd-textfield label  {color: rgba(255, 215, 0, 0.68) !important;}
 .pmd-textfield-floating-label.pmd-textfield-floating-label-completed label  {color: #c1b4b4 !important;}
+
+
+.home-content{ padding:0 20px 16px;}
+.home-content ol{ padding-left:16px;}
+.home-content h3{ font-weight:bold;}
+
+/*====================section custom css================*/
+.section-custom-home{ max-width:800px;}

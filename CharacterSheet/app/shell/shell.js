@@ -65,8 +65,8 @@ define(function (require) {
                 var routesToMap = [
 					{
 					    route: '',
-					    title: 'Class List',
-					    moduleId: 'landingpage/landingpage',
+					    title: 'Home',
+					    moduleId: 'home/home',
 					    nav: false,
 					    adminLink: false
 					}, {
@@ -84,7 +84,7 @@ define(function (require) {
 					}, {
 					    route: 'home',
 					    title: 'Home',
-					    moduleId: 'landingpage/landingpage',
+					    moduleId: 'home/home',
 					    nav: true,
 					    hash: "#home",
 					    adminLink: false
