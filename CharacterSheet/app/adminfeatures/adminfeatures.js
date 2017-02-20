@@ -41,7 +41,7 @@ define(function (require) {
         self.featuresToList = _i.ko.computed(function () {
             var stateToShow = self.currentState();
             if (stateToShow === "view") {
-                return self.features();
+                return _i.list.sortAlphabeticallyObservables(self.features());
             }
             return [];
         });
@@ -105,18 +105,8 @@ define(function (require) {
             });
         };
 
-        self.editFeature = function () {
-            self.isEditing(true);
-            self.currentState('edit');
-        };
-
-        self.returnToSelect = function (feature) {
-            self.isEditing(false);
-            self.currentState('view');
-        };
-
         self.cancelEdit = function () {
-            self.isEditing(false);
+          self.currentState('view');
         };
 
         self.deleteFeature = function (feature) {
@@ -127,7 +117,6 @@ define(function (require) {
         };
 
         self.save = function () {
-            var promise = _i.deferred.create();
             var isSaveState = self.isDirty() || self.selectedFeature.FeatureId === 0;
             var isDeleteState = self.deleteList().length > 0;
 
@@ -149,7 +138,6 @@ define(function (require) {
                         self.alertConfig.message = "Feature Edit Saved";
                         _i.alert.showAlert(self.alertConfig);
 
-                        promise.resolve(true);
                     });
                 } else { //ADD
                     return _i.charajax.post('api/AddFeature', dataToSave).done(function (response) {
@@ -158,17 +146,15 @@ define(function (require) {
                         self.alertConfig.message = "New Feature Saved";
                         _i.alert.showAlert(self.alertConfig);
 
-                        promise.resolve(true);
                     });
                 }
             } else if (isDeleteState) { //DELETE
                 return _i.charajax.delete('api/RemoveFeature/' + feature.FeatureId, '').done(function (response) {
-                    self.alertConfig.message = feature.Name() " Deleted";
+                    self.alertConfig.message = feature.Name() + " Deleted";
                     self.features.remove(feature);
                     self.currentState('view');
                     _i.alert.showAlert(self.alertConfig);
 
-                    promise.resolve(true);
                 });
             } else {
                 return _i.deferred.createResolved(true);

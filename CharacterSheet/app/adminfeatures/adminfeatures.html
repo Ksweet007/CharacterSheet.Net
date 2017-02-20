@@ -37,7 +37,7 @@
 
             			<div class="form-group pmd-textfield pmd-textfield">
             				<label class="control-label">Description</label>
-                    <div id="desc" class="pmd-card-body" data-bind="contentEditable : $parent.isEditing, htmlEditable: Description"></div>
+                    <div id="desc" class="pmd-card-body" data-bind="contentEditable : true, htmlEditable: Description"></div>
             			</div>
 
             			<div class="form-group pmd-textfield pmd-textfield">
@@ -46,10 +46,8 @@
             			</div>
 
                   <div class="pmd-card-actions">
-                    <!-- ko if: !$parent.isEditing()-->
                     <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.save'>Save</button>
                     <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.cancelEdit'>Cancel</button>
-                    <!--/ko-->
                   </div>
 
             		</div>
