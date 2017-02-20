@@ -7,7 +7,8 @@ define(function (require) {
         list: require('_custom/services/listmanager'),
         deferred: require('_custom/deferred'),
         app: require('durandal/app'),
-        CustomModal: require('./saveblock')
+        CustomModal: require('./saveblock'),
+        alert: require('_custom/services/alert')
     };
 
     return function () {
@@ -29,11 +30,13 @@ define(function (require) {
             return self.dirtyItems().length > 0 || self.deleteList().length > 0;
         });
 
-        self.showCustomModal =function(){
-          _i.CustomModal.show().then(function(respone){
-            var foo = 'respone';
-          });
-        };
+        self.alertConfig = {
+          positionX : "right",
+          positionY : "top",
+          effect : "fadeInUp",
+          message : "Feature Saved!",
+          type : "success"
+        }
 
         self.featuresToList = _i.ko.computed(function () {
             var stateToShow = self.currentState();
@@ -62,7 +65,6 @@ define(function (require) {
                 else{
                   promise.resolve(false);
                 }
-
               });
             }
             else{
@@ -144,6 +146,8 @@ define(function (require) {
                         self.selectedFeature().dirtyFlag.reset;
                         self.isEditing(false);
                         self.currentState('view');
+                        self.alertConfig.message = "Feature Edit Saved";
+                        _i.alert.showAlert(self.alertConfig);
 
                         promise.resolve(true);
                     });
@@ -151,14 +155,18 @@ define(function (require) {
                     return _i.charajax.post('api/AddFeature', dataToSave).done(function (response) {
                         self.features.push(response);
                         self.currentState('view');
+                        self.alertConfig.message = "New Feature Saved";
+                        _i.alert.showAlert(self.alertConfig);
 
                         promise.resolve(true);
                     });
                 }
             } else if (isDeleteState) { //DELETE
                 return _i.charajax.delete('api/RemoveFeature/' + feature.FeatureId, '').done(function (response) {
+                    self.alertConfig.message = feature.Name() " Deleted";
                     self.features.remove(feature);
                     self.currentState('view');
+                    _i.alert.showAlert(self.alertConfig);
 
                     promise.resolve(true);
                 });

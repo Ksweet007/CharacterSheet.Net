@@ -12,7 +12,10 @@ define(function(require) {
   require('./bindinghandlers/rangeslider');
   require('./bindinghandlers/rippleeffect');
   require('./bindinghandlers/sidebarcollapse');
-  
+  require('./bindinghandlers/alert');
+
   require('./koFunctions/changeTracker');
+
+  require('./services/alert');
 
 });

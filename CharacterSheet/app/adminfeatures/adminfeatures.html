@@ -47,12 +47,8 @@
 
                   <div class="pmd-card-actions">
                     <!-- ko if: !$parent.isEditing()-->
-                    <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.editFeature'>Edit</button>
-                    <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.returnToSelect'>Return</button>
-                    <!--/ko-->
-                    <!--ko if: $parent.isEditing()-->
                     <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.save'>Save</button>
-                    <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.cancelEdit'>Cancel Edit</button>
+                    <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.cancelEdit'>Cancel</button>
                     <!--/ko-->
                   </div>
 

@@ -1,7 +1,8 @@
 define(function(require) {
 	var _i = {
 		ko: require('knockout'),
-		$: require('jquery')
+		$: require('jquery'),
+    alert: require('_custom/services/alert')
 	};
 
 	return function() {
@@ -9,7 +10,7 @@ define(function(require) {
 		self.data = null;
 
 		self.activate = function(classId) {
-      
+
 		}//END RETURN
 
 
