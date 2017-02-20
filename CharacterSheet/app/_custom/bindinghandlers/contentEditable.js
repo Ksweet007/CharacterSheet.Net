@@ -12,7 +12,6 @@ define(function(require){
             element.innerHTML = htmlEditable();
             _i.$(element).on("input", function () {
                 if (this.isContentEditable && _i.ko.isWriteableObservable(htmlEditable)) {
-                    //value(this.innerHTML);
                     htmlEditable(this.innerHTML);
                 }
             });

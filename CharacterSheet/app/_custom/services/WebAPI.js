@@ -22,7 +22,6 @@ define(function(require) {
 			type: 'GET',
 			url: url,
 			headers: {
-				"Authorization": "Basic " + btoa('ksweet007' + ":" + '@Manda!!o5'),
 				"Content-Type": "application/json"
 			},
 			dataType: 'json',
@@ -84,22 +83,5 @@ define(function(require) {
 		});
 	};
 
-	ApiCls.prototype.AddClass = function(classToAdd) {
-		var stringifiedObj = JSON.stringify(classToAdd);
-
-		_i.$.ajax({
-			type: 'POST',
-			url: 'https://ksweet007.cloudant.com/classes',
-			headers: {
-				"Authorization": "Basic " + btoa('ksweet007' + ":" + '@Manda!!o5'),
-				"Content-Type": "application/json"
-			},
-			data: stringifiedObj,
-			dataType: 'application/json'
-
-		}).done(function(data) {
-			console.log(data);
-		});
-	};
 	return new ApiCls();
 });
