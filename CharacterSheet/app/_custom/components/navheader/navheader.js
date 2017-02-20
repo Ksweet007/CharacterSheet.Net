@@ -43,12 +43,6 @@
             return false;
         }
 
-        function showAlertMsg(textToShow) {
-            self.alertConfig.message = textToShow;
-            _i.alert.showAlert(self.alertConfig);
-        };
-
-
         self.subscriptionSave = _i.events.subscribe('sheet:AjaxStart').then(function (config) {
             if (isSave(config)) {
                 self.changeCount++;

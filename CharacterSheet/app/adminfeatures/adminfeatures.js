@@ -13,6 +13,7 @@ define(function (require) {
 
     return function () {
         var self = this;
+        self.currentState = _i.ko.observable('view');
 
         /*====================FEATURE SETUP====================*/
         self.features = _i.ko.observableArray([]);
@@ -26,16 +27,14 @@ define(function (require) {
             return [];
         });
         
-        self.currentState = _i.ko.observable('view');
-
         /*====================CHANGE TRACKER SETUP====================*/
-        self.isDirty = _i.ko.computed(function () {
-            return self.dirtyItems().length > 0;
-        });
         self.dirtyItems = _i.ko.computed(function () {
             return _i.ko.utils.arrayFilter(self.features(), function (item) {
                 return item.dirtyFlag.isDirty();
             });
+        });
+        self.isDirty = _i.ko.computed(function () {
+            return self.dirtyItems().length > 0;
         });
         
         /*==================== PAGE/DATA SETUP ====================*/       
@@ -85,7 +84,7 @@ define(function (require) {
         
         /* Set config values for Alert, trigger alert, then change page state */
         self.triggerAlertsAndSetState = function (alertType, textToShow, pageState) {
-            var alertConfig = { message: alertType, type: textToShow };
+            var alertConfig = { type: alertType, message: textToShow };
             _i.alert.showAlert(alertConfig);
             self.currentState(pageState);            
         };
@@ -109,7 +108,7 @@ define(function (require) {
 
         /* Save Edits made to a Feature, then reset that Feature's dirtyFlag and alert the user */
         self.save = function () {
-            var isSaveState = self.isDirty() && self.selectedFeature.FeatureId > 0;
+            var isSaveState = self.isDirty() && self.selectedFeature().FeatureId() > 0;
 
             if (!isSaveState) {
                 return _i.deferred.createResolved();
