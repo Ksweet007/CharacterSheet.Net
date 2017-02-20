@@ -113,6 +113,7 @@ define(function (require) {
 
         self.showAlertMsg = function(textToShow){
             self.alertConfig.message = textToShow;
+            _i.app.trigger('view:saved');
             _i.alert.showAlert(self.alertConfig);
         };
 
