@@ -47,8 +47,8 @@ h5{font-size:16px;}
 .fw-bold{font-weight:700;}
 
 /* Color & Weight style */
-h1, h2, h3, h4, h5, h6{ color: #E23C3C;}
-h1 strong, h2 strong, h3 strong, h4 strong, h5 strong{font-weight:700;}
+/*h1, h2, h3, h4, h5, h6{ color: #E23C3C;}
+h1 strong, h2 strong, h3 strong, h4 strong, h5 strong{font-weight:700;}*/
 
 /* Other Element Style */
 em{font-style:italic;font-family: 'Roboto', sans-serif;}
