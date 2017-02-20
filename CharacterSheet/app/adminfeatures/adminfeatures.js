@@ -16,7 +16,6 @@ define(function (require) {
         self.features = _i.ko.observableArray([]);
         self.newFeature = _i.ko.observable();
         self.deleteList = _i.ko.observableArray([]);
-        self.isEditing = _i.ko.observable(false);
         self.selectedFeature = _i.ko.observable();
         self.currentState = _i.ko.observable('view');
 
@@ -30,13 +29,7 @@ define(function (require) {
             return self.dirtyItems().length > 0 || self.deleteList().length > 0;
         });
 
-        self.alertConfig = {
-          positionX : "right",
-          positionY : "top",
-          effect : "fadeInUp",
-          message : "Feature Saved!",
-          type : "success"
-        }
+        self.alertConfig = {  positionX : "right", positionY : "top", effect : "fadeInUp", message : "", type : "success" }
 
         self.featuresToList = _i.ko.computed(function () {
             var stateToShow = self.currentState();
@@ -106,14 +99,21 @@ define(function (require) {
         };
 
         self.cancelEdit = function () {
+          self.resetFromEditState();
+        };
+
+        self.resetFromEditState = function(){
+          self.selectedFeature().dirtyFlag.reset();
           self.currentState('view');
         };
 
-        self.deleteFeature = function (feature) {
-            _i.charajax.delete('api/RemoveFeature/' + feature.FeatureId, '').done(function (response) {
-                self.features.remove(feature);
-                self.currentState('view');
-            });
+        self.returnToSelect = function(){
+          self.currentState('view');
+        };
+
+        self.showAlertMsg = function(textToShow){
+            self.alertConfig.message = textToShow;
+            _i.alert.showAlert(self.alertConfig);
         };
 
         self.save = function () {
@@ -132,29 +132,21 @@ define(function (require) {
 
                 if (dataToSave.FeatureId > 0) { //EDIT
                     return _i.charajax.put('api/EditFeature', dataToSave).done(function (response) {
-                        self.selectedFeature().dirtyFlag.reset;
-                        self.isEditing(false);
-                        self.currentState('view');
-                        self.alertConfig.message = "Feature Edit Saved";
-                        _i.alert.showAlert(self.alertConfig);
-
+                        self.resetFromEditState();
+                        self.showAlertMsg("Feature Edit Saved");
                     });
                 } else { //ADD
                     return _i.charajax.post('api/AddFeature', dataToSave).done(function (response) {
                         self.features.push(response);
                         self.currentState('view');
-                        self.alertConfig.message = "New Feature Saved";
-                        _i.alert.showAlert(self.alertConfig);
-
+                        self.showAlertMsg("New Feature Saved");
                     });
                 }
             } else if (isDeleteState) { //DELETE
                 return _i.charajax.delete('api/RemoveFeature/' + feature.FeatureId, '').done(function (response) {
-                    self.alertConfig.message = feature.Name() + " Deleted";
-                    self.features.remove(feature);
+                    self.showAlertMsg("Feature Deleted: " + feature.Name());
                     self.currentState('view');
-                    _i.alert.showAlert(self.alertConfig);
-
+                    self.features.remove(feature);
                 });
             } else {
                 return _i.deferred.createResolved(true);
