@@ -15,7 +15,7 @@
         var self = this;
         var showDelay = 750;
         var $body = _i.$('body');
-        self.$blockout = _i.$('<div class="splash"><div class="message">Saving...</div><span class="btn-loader loader"></span></div>')
+        self.$blockout = _i.$('<div class="uilock pagesaving text-center"><h1>Loading...</h1><span class="btn-loader loader"></span></div>')
             .css({ 'z-index': _i.dialog.getNextZIndex() });
         self.$blockout.on('click', function () {
             self.$blockout.addClass('modal-backdrop');

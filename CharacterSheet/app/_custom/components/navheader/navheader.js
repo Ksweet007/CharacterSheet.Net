@@ -85,8 +85,6 @@
             }
 
             var guardPromise = _i.deferred.create();
-
-            //var navAway = _i.showDlg.showDialog('navAway/navAway', { titleKey: 'NavAwayTitle' });
             var navAway = _i.CustomModal.show();
 
             navAway.done(function (data) {
@@ -169,13 +167,13 @@
                     self.saveSuccess(true);
                     self.lastSavedDate(new Date());
                     self.inFlightSave.resolve(true);
-                    self.lastSavedPartialMessage(_i.localizer.localize('JustSaved'));
+                    self.lastSavedPartialMessage('Just Saved');
                     self.lastSavedInterval = setTimeout(function () {
-                        self.lastSavedPartialMessage(_i.localizer.localize('AFewSecondsAgo'));
+                        self.lastSavedPartialMessage('Saved A Few Seconds Ago');
                         self.lastSavedInterval = setTimeout(function () {
-                            self.lastSavedPartialMessage(_i.localizer.localize('AMinuteAgo'));
+                            self.lastSavedPartialMessage('Saved A Minute Ago');
                             self.lastSavedInterval = setTimeout(function () {
-                                self.lastSavedPartialMessage(_i.localizer.formattedLocalize('LastSavedAt', { Time: formatTime(self.lastSavedDate()) }));
+                                self.lastSavedPartialMessage('Last Saved At ' + formatTime(self.lastSavedDate()));
                             }, 60 * 1000);
                         }, 55 * 1000);
                     }, 5 * 1000);

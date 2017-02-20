@@ -3,15 +3,13 @@
         <div class="navbar-header">
             <a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect pull-left margin-r8 pmd-sidebar-toggle" data-bind="sidebarcollapse"><i class="material-icons">menu</i></a>
             <a href="#" class="navbar-brand">Character Sheet</a>
-            <!--ko if:sessionHasSaved() == true-->
-            <div class="pmd-navbar-right-icon pull-right">
-                <h3 data-bind="text: 'Last Saved - ' + lastSavedTime()">Last Saved At - </h3>
-            </div>
-            <!--/ko-->
         </div>
 
         <div class="pmd-navbar-right-icon pull-right">
-            <!--<a class="loader" data-bind="css: { active: isSaving }"><i class="fa fa-spinner fa-spin fa-2x"></i></a>-->
+            <!--ko if:sessionHasSaved() == true-->            
+                <span class="pull-left lastSavedMessage" data-bind="text: lastSavedPartialMessage()"></span>            
+            <!--/ko-->
+            
             <span class="btn-loader loader" data-bind="css: { hidden: !showLoader() }">loading...</span>
             <a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect pmd-sidebar-toggle-right"><i class="material-icons md-light">more_horiz</i></a>
         </div>

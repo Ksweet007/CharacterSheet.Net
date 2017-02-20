@@ -57,7 +57,7 @@ define(function(require) {
 
 	ApiCls.prototype.put = function(url, data) {
 		return this.ajax({
-            type: 'PUT',
+            method: 'PUT',
             contentType: "application/json; charset=utf-8",
 			url: url,
 			data: JSON.stringify(data)
