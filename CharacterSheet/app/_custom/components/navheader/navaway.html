@@ -7,11 +7,8 @@
             <p>You have unsaved changes. Would you like to Save them? </p>
         </div>
         <div id="dlgfoot" class="pmd-modal-action pmd-modal-bordered text-right">
-            <!--<button class="btn pmd-ripple-effect btn-primary" data-bind="click: saveContinue">Save and Contiue</button>
-            <button class="btn pmd-ripple-effect btn-primary" data-bind="click: nosaveContinue">Contiue</button>
-            <button class="btn pmd-ripple-effect btn-primary" data-bind="click: cancel">Cancel</button>-->
             <button class="btn pmd-ripple-effect btn-primary" data-bind="click: dialogButtonClick.bind($root, 'save', true, true)">Save Changes</button>
-            <button class="btn pmd-ripple-effect btn-primary" data-bind="click: dialogButtonClick.bind($root, 'skipsave', true, true)">Don't Save Changes</button>
+            <button class="btn pmd-ripple-effect btn-primary" data-bind="click: dialogButtonClick.bind($root, 'skipSave', true, true)">Don't Save Changes</button>
             <button class="btn pmd-ripple-effect btn-primary" data-bind="click: dialogButtonClick.bind($root, 'cancel', false, false)">Cancel</button>
         </div>
     </div>

@@ -21,7 +21,5 @@ define(function(require) {
 		return result;
 	};
 
-  //self.userData.changeTracker = new _i.ko.changeTracker(self.userData);
-  //self.isDirty = self.userData.changeTracker.isDirty;
 
 });

@@ -13,24 +13,11 @@ define(function (require) {
 
     return function () {
         var self = this;
+
+        /*====================FEATURE SETUP====================*/
         self.features = _i.ko.observableArray([]);
         self.newFeature = _i.ko.observable();
-        self.deleteList = _i.ko.observableArray([]);
         self.selectedFeature = _i.ko.observable();
-        self.currentState = _i.ko.observable('view');
-
-        self.dirtyItems = _i.ko.computed(function () {
-            return _i.ko.utils.arrayFilter(self.features(), function (item) {
-                return item.dirtyFlag.isDirty();
-            });
-        });
-
-        self.isDirty = _i.ko.computed(function () {
-            return self.dirtyItems().length > 0 || self.deleteList().length > 0;
-        });
-
-        self.alertConfig = {  positionX : "right", positionY : "top", effect : "fadeInUp", message : "", type : "success" }
-
         self.featuresToList = _i.ko.computed(function () {
             var stateToShow = self.currentState();
             if (stateToShow === "view") {
@@ -38,37 +25,22 @@ define(function (require) {
             }
             return [];
         });
+        
+        self.currentState = _i.ko.observable('view');
 
+        /*====================CHANGE TRACKER SETUP====================*/
+        self.isDirty = _i.ko.computed(function () {
+            return self.dirtyItems().length > 0;
+        });
+        self.dirtyItems = _i.ko.computed(function () {
+            return _i.ko.utils.arrayFilter(self.features(), function (item) {
+                return item.dirtyFlag.isDirty();
+            });
+        });
+        
+        /*==================== PAGE/DATA SETUP ====================*/       
         self.activate = function () {
-            return self.getFeatures();
-        };
-
-        self.canDeactivate = function () {
-            var promise = _i.deferred.create();
-
-            if (self.isDirty() || self.deleteList().length > 0) {
-              _i.CustomModal.show().then(function(response){
-                if(response === 'save'){
-                  self.save().done(function(){
-                    promise.resolve(true);
-                  });
-                }else if (response === 'continue'){
-                  promise.resolve(true);
-                }
-                else{
-                  promise.resolve(false);
-                }
-              });
-            }
-            else{
-              promise.resolve(true);
-            }
-
-            return promise;
-        };
-
-        self.getFeatures = function () {
-            _i.charajax.getJSON('api/GetAllFeatures', '').done(function (response) {
+            return _i.charajax.getJSON('api/GetAllFeatures', '').done(function (response) {
                 var mapped = _i.ko.mapping.fromJS(response);
                 mapped().forEach(function (item) {
                     item.dirtyFlag = new _i.ko.dirtyFlag(item);
@@ -98,60 +70,69 @@ define(function (require) {
             });
         };
 
+        self.resetFromEditState = function () {
+            self.selectedFeature().dirtyFlag.reset();
+            self.currentState('view');
+        };
+
         self.cancelEdit = function () {
-          self.resetFromEditState();
+            self.resetFromEditState();
         };
 
-        self.resetFromEditState = function(){
-          self.selectedFeature().dirtyFlag.reset();
-          self.currentState('view');
+        self.returnToSelect = function () {
+            self.currentState('view');
         };
 
-        self.returnToSelect = function(){
-          self.currentState('view');
-        };
-
-        self.showAlertMsg = function(textToShow){
-            self.alertConfig.message = textToShow;
+        self.showAlertMsg = function (alertType, textToShow) {
+            var alertConfig = { message: alertType, type: textToShow };
             _i.app.trigger('view:saved');
-            _i.alert.showAlert(self.alertConfig);
+            _i.alert.showAlert(alertConfig);
+        };
+
+        self.triggerAlertsAndSetState = function (alertType, textToShow, pageState) {
+            var alertConfig = { message: alertType, type: textToShow };
+            _i.app.trigger('view:saved');
+            _i.alert.showAlert(alertConfig);
+            if (pageState !== '') {
+                self.currentState(pageState);
+            }
+        };
+
+        self.saveNewFeature = function (featureToAdd) {
+            return _i.charajax.post('api/AddFeature', featureToAdd).then(function (response) {
+                self.features.push(response);
+                self.showAlertMsg("success", "New Feature Saved", "view");
+            });
+        };
+
+        self.deleteFeature = function (featureToDelete) {
+            return _i.charajax.delete('api/RemoveFeature/' + featureToDelete.FeatureId, '').then(function (response) {
+                var alertMsg = "Feature Deleted: " + featureToDelete.Name();                
+                self.features.remove(featureToDelete);
+                self.showAlertMsg("danger", alertMsg, "view");
+            });
         };
 
         self.save = function () {
-            var isSaveState = self.isDirty() || self.selectedFeature.FeatureId === 0;
-            var isDeleteState = self.deleteList().length > 0;
+            var isSaveState = self.isDirty() && self.selectedFeature.FeatureId > 0;
 
-            if (isSaveState) { //ADD OR EDIT
-                var dataToSave = {
-                    Name: self.selectedFeature().Name(),
-                    FeatureId: self.selectedFeature().FeatureId(),
-                    Levelgained: self.selectedFeature().Levelgained(),
-                    Description: self.selectedFeature().Description(),
-                    RecoveryType: self.selectedFeature().RecoveryType(),
-                    ActionType: self.selectedFeature().ActionType()
-                };
-
-                if (dataToSave.FeatureId > 0) { //EDIT
-                    return _i.charajax.put('api/EditFeature', dataToSave).done(function (response) {
-                        self.resetFromEditState();
-                        self.showAlertMsg("Feature Edit Saved");
-                    });
-                } else { //ADD
-                    return _i.charajax.post('api/AddFeature', dataToSave).done(function (response) {
-                        self.features.push(response);
-                        self.currentState('view');
-                        self.showAlertMsg("New Feature Saved");
-                    });
-                }
-            } else if (isDeleteState) { //DELETE
-                return _i.charajax.delete('api/RemoveFeature/' + feature.FeatureId, '').done(function (response) {
-                    self.showAlertMsg("Feature Deleted: " + feature.Name());
-                    self.currentState('view');
-                    self.features.remove(feature);
-                });
-            } else {
-                return _i.deferred.createResolved(true);
+            if (!isSaveState) {
+                return _i.deferred.createResolved();
             }
+
+            var dataToSave = {
+                Name: self.selectedFeature().Name(),
+                FeatureId: self.selectedFeature().FeatureId(),
+                Levelgained: self.selectedFeature().Levelgained(),
+                Description: self.selectedFeature().Description(),
+                RecoveryType: self.selectedFeature().RecoveryType(),
+                ActionType: self.selectedFeature().ActionType()
+            };
+
+            return _i.charajax.put('api/EditFeature', dataToSave).then(function (response) {
+                self.selectedFeature().dirtyFlag.reset();                
+                self.showAlertMsg("success", "Feature Edit Saved", "view");
+            });
 
         };
 

@@ -5,25 +5,15 @@ define(function (require) {
 
     function AlertCls() { };
 
-            // self.alertConfig ={
-            // positionX : "right",
-            // positionY : "top",
-            // effect : "fadeInUp",
-            // //revert :
-            // message : "",
-            // type : "success",
-            // //text :
-            // //action :}
-
     AlertCls.prototype.showAlert = function (config) {
-        var $positionX = config.positionX;
-        var $positionY = config.positionY;
-        var $dataEffect = config.effect;
-        var $dataRevert = config.revert;
-        var $dataMessage = config.message;
-        var $dataType = config.type;
-        var $actionText = config.text;
-        var $action = config.action;
+        var $positionX = config.positionX || "right";
+        var $positionY = config.positionY || "top";
+        var $dataEffect = config.effect || "fadeInUp";
+        var $dataMessage = config.message || "Something important happened!";
+        var $dataType = config.type || "success";
+        var $action = config.action || false; //For when User needs to perform some action
+        var $actionText = config.actiontext; //Defines Action that needs to be performed
+        
 
         if (!_i.$(".pmd-alert-container." + $positionX + "." + $positionY).length) {
             _i.$('body').append("<div class='pmd-alert-container " + $positionX + " " + $positionY + "'></div>");

@@ -5,7 +5,7 @@
         router: require('plugins/router'),
         deferred: require('_custom/deferred'),
         events: require('_custom/services/event'),
-        NavAwayModal: require('./navaway'),
+        showDlg: require('_custom/dialog/show'),
         alert: require('_custom/services/alert')
     };
 
@@ -85,7 +85,7 @@
             }
 
             var guardPromise = _i.deferred.create();
-            var navAway = _i.CustomModal.show();
+            var navAway = _i.showDlg.showDialog('navaway/navaway');
 
             navAway.done(function (data) {
                 //save & continue or save & skip
@@ -96,6 +96,7 @@
                         guardPromise.resolve(true);
                     }).fail(function () {
                         guardPromise.resolve(false);
+                        self.isSaving(false);
                     });
                 }
             });

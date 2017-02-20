@@ -8,25 +8,13 @@
     NavAway.show = function () {
         return _i.dialog.show(new NavAway());
     };
-
-    //NavAway.prototype.saveContinue = function () {
-    //    _i.dialog.close(this, 'save');
-    //};
-
-    //NavAway.prototype.nosaveContinue = function () {
-    //    _i.dialog.close(this, 'continue');
-    //};
-
-    //NavAway.prototype.cancel = function () {
-    //    _i.dialog.close(this, 'cancel');
-    //};
-    
+   
     NavAway.prototype.dialogButtonClick = function (btnText, accepted) {
         /// <summary>Called when Ok and Cancel are clicked</summary>
         var self = this;
-        var closeResult = { btnText: btnText, accepted: accepted, canceled: !accepted, data: self.dlgData() };
+        var closeResult = { btnText: btnText, accepted: accepted, canceled: !accepted };
 
-        _i.dialogPlugin.close(self, closeResult);
+        _i.dialog.close(self, closeResult);
 
     };
     NavAway.prototype.dialogEscKey = function (eventObj) {
