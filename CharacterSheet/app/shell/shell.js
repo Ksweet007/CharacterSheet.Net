@@ -65,8 +65,8 @@ define(function (require) {
                 var routesToMap = [
 					{
 					    route: '',
-					    title: 'Class List',
-					    moduleId: 'landingpage/landingpage',
+					    title: 'Home',
+					    moduleId: 'home/home',
 					    nav: false,
 					    adminLink: false
 					}, {
@@ -84,7 +84,7 @@ define(function (require) {
 					}, {
 					    route: 'home',
 					    title: 'Home',
-					    moduleId: 'landingpage/landingpage',
+					    moduleId: 'home/home',
 					    nav: true,
 					    hash: "#home",
 					    adminLink: false
@@ -101,26 +101,18 @@ define(function (require) {
 					    nav: false,
 					    hash: '#classdetails',
 					    adminLink: false
-					}, {
-					    route: 'manageclass/:id*details',
-					    title: 'Manage Class',
-					    moduleId: 'manageclass/manageclass',
-					    nav: false,
-					    hash: '#manageclass/:id',
-					    adminLink: false
-					}
-                ]
+					}]
 
-                if (self.isAdmin()) {
-                    routesToMap.push({
-                        route: 'adminfeatures',
-                        title: 'Features',
-                        moduleId: 'adminfeatures/adminfeatures',
-                        nav: true,
-                        hash: "#adminfeatures",
-                        adminLink: true
-                    });
-                }
+              if (self.isAdmin()) {
+                  routesToMap.push({
+                      route: 'adminfeatures',
+                      title: 'Features',
+                      moduleId: 'adminfeatures/adminfeatures',
+                      nav: true,
+                      hash: "#adminfeatures",
+                      adminLink: true
+                  });
+              }
 
                 self.router.map(routesToMap).buildNavigationModel();
                 return self.router.activate();

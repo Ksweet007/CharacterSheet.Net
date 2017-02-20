@@ -5,15 +5,14 @@ define(function(require) {
 
 	require('./cls');
 
-	require('./bindinghandlers/columnbuilder');
-	require('./bindinghandlers/LockScroll');
-	require('./bindinghandlers/fadeVisible');
-  require('./bindinghandlers/sidebarcollapse');
+  require('./bindinghandlers/contentEditable');
   require('./bindinghandlers/dropdown');
+  require('./bindinghandlers/fadeVisible');
+  require('./bindinghandlers/htmlEditable');
   require('./bindinghandlers/rangeslider');
   require('./bindinghandlers/rippleeffect');
-  require('./bindinghandlers/contentEditable');
-  require('./bindinghandlers/htmlEditable');
+  require('./bindinghandlers/sidebarcollapse');
+  
   require('./koFunctions/changeTracker');
 
 });

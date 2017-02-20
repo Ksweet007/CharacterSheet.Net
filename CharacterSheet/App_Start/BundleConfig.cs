@@ -56,6 +56,7 @@ namespace CharacterSheet
                 .Include("~/assets/css/bootstrap.css")
                 .Include("~/assets/css/propeller.css")
                 .Include("~/themes/css/propeller-theme.css")
+                //.Include("~/themes/css/propeller-admin.css")
                 .Include("~/assets/css/sidebar.css");
 
                 styleBundle.Orderer = new BundleConfigOrderer();

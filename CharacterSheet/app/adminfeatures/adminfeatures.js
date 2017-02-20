@@ -5,7 +5,6 @@ define(function (require) {
         utils: require('_custom/services/utils'),
         charajax: require('_custom/services/WebAPI'),
         list: require('_custom/services/listmanager'),
-        uiblock: require('_custom/services/uiblocks'),
         deferred: require('_custom/deferred'),
         app: require('durandal/app'),
         CustomModal: require('./saveblock')
@@ -65,6 +64,9 @@ define(function (require) {
                 }
 
               });
+            }
+            else{
+              promise.resolve(true);
             }
 
             return promise;
