@@ -93,6 +93,13 @@ define(function (require) {
 					    nav: true,
 					    adminLink: false
 					}, {
+					    route: 'skills',
+					    title: 'Skill List',
+					    moduleId: 'skills/skills',
+					    nav: true,
+					    adminLink: false
+					},
+           {
 					    route: 'classdetails/:id',
 					    title: 'Class Details',
 					    moduleId: 'classdetails/classdetails',

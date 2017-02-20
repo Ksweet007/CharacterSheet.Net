@@ -8,7 +8,7 @@
         <div class="row" id="card-masonry">
             <!--ko foreach:featuresToList-->
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-              <div class="pmd-card pmd-z-depth-5">
+              <div class="pmd-card pmd-card-inverse pmd-z-depth-5">
                 <div class="pmd-card-title">
                   <h2 class="pmd-card-title-text typo-fill-secondary propeller-title" data-bind="text:Name"></h2>
                 </div>
@@ -23,7 +23,7 @@
 
         <div class="row"  data-bind="visible: currentState() === 'edit' ">
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-6">
-            	<div class="pmd-card pmd-z-depth-5 pmd-card-custom-form" data-bind="with : selectedFeature">
+            	<div class="pmd-card pmd-card-inverse pmd-z-depth-5 pmd-card-custom-form" data-bind="with : selectedFeature">
             		<div class="pmd-card-body">
 
             			<div class="form-group pmd-textfield pmd-textfield">
@@ -58,7 +58,7 @@
 
         <div class="row"  data-bind="visible: currentState() === 'new' ">
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-6">
-            	<div class="pmd-card pmd-z-depth-5 pmd-card-custom-form" data-bind="with : newFeature">
+            	<div class="pmd-card pmd-card-inverse pmd-z-depth-5 pmd-card-custom-form" data-bind="with : newFeature">
             		<div class="pmd-card-body">
 
             			<div class="form-group pmd-textfield pmd-textfield">

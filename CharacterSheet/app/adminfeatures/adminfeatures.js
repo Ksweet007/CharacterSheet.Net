@@ -6,8 +6,6 @@ define(function (require) {
         charajax: require('_custom/services/WebAPI'),
         list: require('_custom/services/listmanager'),
         deferred: require('_custom/deferred'),
-        app: require('durandal/app'),
-        CustomModal: require('./saveblock'),
         alert: require('_custom/services/alert')
     };
 
@@ -26,7 +24,7 @@ define(function (require) {
             }
             return [];
         });
-        
+
         /*====================CHANGE TRACKER SETUP====================*/
         self.dirtyItems = _i.ko.computed(function () {
             return _i.ko.utils.arrayFilter(self.features(), function (item) {
@@ -36,8 +34,8 @@ define(function (require) {
         self.isDirty = _i.ko.computed(function () {
             return self.dirtyItems().length > 0;
         });
-        
-        /*==================== PAGE/DATA SETUP ====================*/       
+
+        /*==================== PAGE/DATA SETUP ====================*/
         self.activate = function () {
             return _i.charajax.getJSON('api/GetAllFeatures', '').done(function (response) {
                 var mapped = _i.ko.mapping.fromJS(response);
@@ -49,7 +47,7 @@ define(function (require) {
                 _i.list.sortAlphabeticallyObservables(self.features());
             });
         };
-        
+
         /*==================== PAGE ACTIONS ====================*/
         self.createNewFeature = function (feature) {
             self.currentState('new');
@@ -81,12 +79,12 @@ define(function (require) {
         self.cancelNew = function () {
             self.currentState('view');
         };
-        
+
         /* Set config values for Alert, trigger alert, then change page state */
         self.triggerAlertsAndSetState = function (alertType, textToShow, pageState) {
             var alertConfig = { type: alertType, message: textToShow };
             _i.alert.showAlert(alertConfig);
-            self.currentState(pageState);            
+            self.currentState(pageState);
         };
 
         /* Save new Feature with ajax then add the returned feature to our feature list (so it has the newly assigned DB ID value, then alert the user */
@@ -100,7 +98,7 @@ define(function (require) {
         /* Delete the Feature, remove it from our list of Features, then alert the user */
         self.deleteFeature = function (featureToDelete) {
             return _i.charajax.delete('api/RemoveFeature/' + featureToDelete.FeatureId, '').then(function (response) {
-                var alertMsg = "Feature Deleted: " + featureToDelete.Name();                
+                var alertMsg = "Feature Deleted: " + featureToDelete.Name();
                 self.features.remove(featureToDelete);
                 self.triggerAlertsAndSetState("danger", alertMsg, "view");
             });
@@ -124,7 +122,7 @@ define(function (require) {
             };
 
             return _i.charajax.put('api/EditFeature', dataToSave).then(function (response) {
-                self.selectedFeature().dirtyFlag.reset();                
+                self.selectedFeature().dirtyFlag.reset();
                 self.triggerAlertsAndSetState("success", "Feature Edit Saved", "view");
             });
 
