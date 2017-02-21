@@ -1,3 +1,4 @@
+/// <reference path="C:\Git\ServerSideProjects\CharacterSheet\CharacterSheet\lib/propeller/propeller.js" />
 define(function(require) {
 	var _i = {
 		ko: require('knockout')
@@ -5,20 +6,22 @@ define(function(require) {
 
 	require('./cls');
 
-  require('./bindinghandlers/contentEditable');
-  require('./bindinghandlers/dropdown');
-  require('./bindinghandlers/fadeVisible');
-  require('./bindinghandlers/htmlEditable');
-  require('./bindinghandlers/rangeslider');
-  require('./bindinghandlers/rippleeffect');
-  require('./bindinghandlers/sidebarcollapse');
-  require('./bindinghandlers/alert');
+    require('./bindinghandlers/contentEditable');
+    require('./bindinghandlers/dropdown');
+    require('./bindinghandlers/fadeVisible');
+    require('./bindinghandlers/htmlEditable');
+    require('./bindinghandlers/rangeslider');
+    require('./bindinghandlers/rippleeffect');
+    require('./bindinghandlers/sidebarcollapse');
+    require('./bindinghandlers/alert');
 
-  require('./dialog/captureDialogKeyEvents');
+    require('./services/propeller');
 
-  require('./events/captureKeyEvents');
+    require('./dialog/captureDialogKeyEvents');
 
-  require('./koFunctions/changeTracker');
+    require('./events/captureKeyEvents');
+
+    require('./koFunctions/changeTracker');
 
  
   _i.ko.components.register('nav-header', { require: './_custom/components/navheader/navheader' });

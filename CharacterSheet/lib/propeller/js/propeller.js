@@ -4,7 +4,9 @@
  * Licensed under MIT (http://propeller.in/LICENSE)
  */
 
-!(function($) {
+
+
+require(['domReady'],(function($) {
 
 	// ------- Propeller Textfield component js function ------- //
 	// paper input
@@ -539,9 +541,20 @@
 
 	});
 
-});
-	// ------- Propeller Tab component js function ------- //
-	(function($) {
+}));
+
+
+
+
+
+
+
+
+
+
+
+// ------- Propeller Tab component js function ------- //
+(function($) {
 		$.fn.pmdTab = function( options ){
 			// Establish our default settings
 			var settings = $.extend({
@@ -739,78 +752,78 @@
 	var toggleButtons = $('.pmd-sidebar-toggle');
 	var pmdtopbartoggle = $('.topbar-fixed');
 
-	$(document).ready(function() {
+	//$(document).ready(function() {
 
-		// toggleButtons.css('display', 'none');
+	//	// toggleButtons.css('display', 'none');
 
-		// Left Sidebar
-		$('.pmd-sidebar-toggle').on( 'click', function(e) {
-			lsidebar.toggleClass('pmd-sidebar-open');
-				if ((lsidebar.hasClass('pmd-sidebar-left-fixed') || lsidebar.hasClass('pmd-sidebar-right-fixed')) && lsidebar.hasClass('pmd-sidebar-open')) {
-			overlay.addClass('pmd-sidebar-overlay-active');
-				$('body').addClass("pmd-body-open")
-			} else {
-				overlay.removeClass('pmd-sidebar-overlay-active');
-				$('body').removeClass("pmd-body-open")
-			}
-		});
+	//	// Left Sidebar
+	//	$('.pmd-sidebar-toggle').on( 'click', function(e) {
+	//		lsidebar.toggleClass('pmd-sidebar-open');
+	//			if ((lsidebar.hasClass('pmd-sidebar-left-fixed') || lsidebar.hasClass('pmd-sidebar-right-fixed')) && lsidebar.hasClass('pmd-sidebar-open')) {
+	//		overlay.addClass('pmd-sidebar-overlay-active');
+	//			$('body').addClass("pmd-body-open")
+	//		} else {
+	//			overlay.removeClass('pmd-sidebar-overlay-active');
+	//			$('body').removeClass("pmd-body-open")
+	//		}
+	//	});
 
-		$( ".pmd-sidebar .dropdown-menu, .pmd-navbar-sidebar .dropdown-menu" ).click(function(event) {
-			event.stopPropagation();
-		});
+	//	$( ".pmd-sidebar .dropdown-menu, .pmd-navbar-sidebar .dropdown-menu" ).click(function(event) {
+	//		event.stopPropagation();
+	//	});
 
-		// Right Sidebar
-		$('.pmd-sidebar-toggle-right').on( 'click', function(e) {
-			rsidebar.toggleClass('pmd-sidebar-open');
-			if ((rsidebar.hasClass('pmd-sidebar-right')) && rsidebar.hasClass('pmd-sidebar-open')) {
-				overlay.addClass('pmd-sidebar-overlay-active');
-				$('body').addClass("pmd-body-open")
-			} else {
-				overlay.removeClass('pmd-sidebar-overlay-active');
-				$('body').removeClass("pmd-body-open")
-			}
-		});
+	//	// Right Sidebar
+	//	$('.pmd-sidebar-toggle-right').on( 'click', function(e) {
+	//		rsidebar.toggleClass('pmd-sidebar-open');
+	//		if ((rsidebar.hasClass('pmd-sidebar-right')) && rsidebar.hasClass('pmd-sidebar-open')) {
+	//			overlay.addClass('pmd-sidebar-overlay-active');
+	//			$('body').addClass("pmd-body-open")
+	//		} else {
+	//			overlay.removeClass('pmd-sidebar-overlay-active');
+	//			$('body').removeClass("pmd-body-open")
+	//		}
+	//	});
 
-		// Right Sidebar
-		$('.pmd-topbar-toggle').on( 'click', function(e) {
-			pmdtopbartoggle.toggleClass('pmd-sidebar-open');
-		});
+	//	// Right Sidebar
+	//	$('.pmd-topbar-toggle').on( 'click', function(e) {
+	//		pmdtopbartoggle.toggleClass('pmd-sidebar-open');
+	//	});
 
-		$('.topbar-close').on('click', function() {
-			pmdtopbartoggle.removeClass('pmd-sidebar-open');
-		});
+	//	$('.topbar-close').on('click', function() {
+	//		pmdtopbartoggle.removeClass('pmd-sidebar-open');
+	//	});
 
-		// Nave bar in Sidebar
-		$('.pmd-navbar-toggle').on('click', function(e) {
-			pmdnavbarsidebar.toggleClass('pmd-sidebar-open');
-			if ((pmdnavbarsidebar.hasClass('pmd-navbar-sidebar')) && pmdnavbarsidebar.hasClass('pmd-sidebar-open')) {
-				overlay.addClass('pmd-sidebar-overlay-active');
-				$('body').addClass("pmd-body-open")
-			} else {
-				overlay.removeClass('pmd-sidebar-overlay-active');
-				$('body').removeClass("pmd-body-open")
-			}
-		});
+	//	// Nave bar in Sidebar
+	//	$('.pmd-navbar-toggle').on('click', function(e) {
+	//		pmdnavbarsidebar.toggleClass('pmd-sidebar-open');
+	//		if ((pmdnavbarsidebar.hasClass('pmd-navbar-sidebar')) && pmdnavbarsidebar.hasClass('pmd-sidebar-open')) {
+	//			overlay.addClass('pmd-sidebar-overlay-active');
+	//			$('body').addClass("pmd-body-open")
+	//		} else {
+	//			overlay.removeClass('pmd-sidebar-overlay-active');
+	//			$('body').removeClass("pmd-body-open")
+	//		}
+	//	});
 
-		// Overlay
-		overlay.on( 'click', function(e) {
-			$(this).removeClass('pmd-sidebar-overlay-active');
-			$('.pmd-sidebar').removeClass('pmd-sidebar-open');
-			$('.pmd-navbar-sidebar').removeClass('pmd-sidebar-open');
-			$('body').removeClass("pmd-body-open")
-			 event.stopPropagation();
-		});
+	//	// Overlay
+	//	overlay.on( 'click', function(e) {
+	//		$(this).removeClass('pmd-sidebar-overlay-active');
+	//		$('.pmd-sidebar').removeClass('pmd-sidebar-open');
+	//		$('.pmd-navbar-sidebar').removeClass('pmd-sidebar-open');
+	//		$('body').removeClass("pmd-body-open")
+	//		 event.stopPropagation();
+	//	});
 
-		// Window load browser resize position
-		if($(window).width() < 1200){
-			sidebar.removeClass('pmd-sidebar-open pmd-sidebar-slide-push');
-			lsidebar.addClass('pmd-sidebar-left-fixed');
-			rsidebar.addClass('pmd-sidebar-right');
-			toggleButtons.css('display', 'inherit');
-			$('body').removeClass("pmd-body-open")
-		}
+	//	// Window load browser resize position
+	//	if($(window).width() < 1200){
+	//		sidebar.removeClass('pmd-sidebar-open pmd-sidebar-slide-push');
+	//		lsidebar.addClass('pmd-sidebar-left-fixed');
+	//		rsidebar.addClass('pmd-sidebar-right');
+	//		toggleButtons.css('display', 'inherit');
+	//		$('body').removeClass("pmd-body-open")
+	//	}
 
-	});
+	//});
 
 	// window resize position
 	$(window).resize(function(){

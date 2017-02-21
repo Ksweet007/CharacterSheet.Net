@@ -1,7 +1,6 @@
 /* global jQuery:false, $:false, ko:false, require:false, requirejs:false, moment:false */
 define('jquery', function () { return jQuery; });
-define('knockout', ko);
-define('propeller', function() { return propeller; });
+define('knockout', ko)
 define('moment', function() { return moment; });
 
 requirejs.config({
@@ -11,8 +10,8 @@ requirejs.config({
         'plugins' : '../lib/durandal/js/plugins',
         'transitions' : '../lib/durandal/js/transitions',
         'bootstrap': '../lib/bootstrap/js/bootstrap',
-        'propeller': '../lib/propeller/js/propeller'
-      }
+        'propeller' : '../lib/propeller/'
+    }
 });
 
 define(['durandal/system', 'durandal/app', 'durandal/viewLocator','knockout','_custom/all'],  function (system, app, viewLocator,ko,all) {
