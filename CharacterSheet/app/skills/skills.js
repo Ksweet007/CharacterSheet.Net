@@ -10,20 +10,27 @@ define(function (require) {
     return function () {
         var self = this;
 
+        /*====================Ability Setup====================*/
+        self.abilities = _i.ko.observableArray(['Strength','Dexterity','Constitution','Wisdom','Intelligence','Charisma']);
+		// //self.selectedAbilities = _i.ko.observableArray(self.abilities); This is another way to do Checkbox check state using a simple array with the observableArray
         /*====================SKILL SETUP====================*/
         self.skills = _i.ko.observableArray([]);
         self.typeToShow = _i.ko.observable("all");
         self.selectedSkill = _i.ko.observable();
 
-        self.skillsToShow = _i.ko.computed(function () {
-            var desiredType = self.typeToShow();
-            if (desiredType === "all") {
-                return _i.list.sortAlphabeticallyObservables(self.skills());
-            }
-            return _i.ko.utils.arrayFilter(self.skills(), function(skill){
-              return skill.AbilityScore.Name() === desiredType;
-            });
-        });
+		self.skillsToShow = _i.ko.computed(function(){
+
+		});
+
+        // self.skillsToShow = _i.ko.computed(function () {
+        //     var desiredType = self.typeToShow();
+        //     if (desiredType === "all") {
+        //         return _i.list.sortAlphabeticallyObservables(self.skills());
+        //     }
+        //     return _i.ko.utils.arrayFilter(self.skills(), function(skill){
+        //       return skill.AbilityScore.Name() === desiredType;
+        //     });
+        // });
 
         /*==================== PAGE/DATA SETUP ====================*/
         self.activate = function () {
