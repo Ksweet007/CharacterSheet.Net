@@ -1,60 +1,63 @@
 <nav-header params="{isDirty: null, save: null}"></nav-header>
 <div class="container-fluid full-width-container">
     <h2 class="section-title pmd-display2" id="services"><span>Skills</span></h2>
-    <div class="pmd-card-body">
-        <button class="btn pmd-ripple-effect btn-primary" data-bind='click: createNewFeature'>Add New</button>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="pmd-card pmd-card-inverse pmd-z-depth-5">
+                <div class="pmd-card-body">
+                  <label class="radio-inline pmd-radio">
+                      <input type='radio' name="type" value='all' data-bind='checked: typeToShow' />
+                      <span class="pmd-radio-label">&nbsp;</span><span> All</span>
+                  </label>
+                  <label class="radio-inline pmd-radio">
+                      <input type='radio' name="type" value='Strength' data-bind='checked: typeToShow' />
+                      <span class="pmd-radio-label">&nbsp;</span><span> Strength</span>
+                  </label>
+                  <label class="radio-inline pmd-radio">
+                      <input type='radio' name="type" value='Dexterity' data-bind='checked: typeToShow' />
+                      <span class="pmd-radio-label">&nbsp;</span><span> Dexterity</span>
+                  </label>
+
+                  <label class="radio-inline pmd-radio">
+                      <input type='radio' name="type" value='Constitution' data-bind='checked: typeToShow' />
+                      <span class="pmd-radio-label">&nbsp;</span><span> Constitution</span>
+                  </label>
+
+                  <label class="radio-inline pmd-radio">
+                      <input type='radio' name="type" value='Intelligence' data-bind='checked: typeToShow' />
+                      <span class="pmd-radio-label">&nbsp;</span><span> Intelligence</span>
+                  </label>
+
+                  <label class="radio-inline pmd-radio">
+                      <input type='radio' name="type" value='Wisdom' data-bind='checked: typeToShow' />
+                      <span class="pmd-radio-label">&nbsp;</span><span> Wisdom</span>
+                  </label>
+
+                  <label class="radio-inline pmd-radio">
+                      <input type='radio' name="type" value='Charisma' data-bind='checked: typeToShow' />
+                      <span class="pmd-radio-label">&nbsp;</span><span> Charisma</span>
+                  </label>
+                </div>
+            </div>
+        </div>
     </div>
+
     <div class="section">
-        <div class="row" id="card-masonry">
+        <div class="row">
             <!--ko foreach:skillsToShow-->
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-              <div class="pmd-card pmd-card-inverse pmd-z-depth-5">
-                <div class="pmd-card-title">
-                  <h1 class="pmd-display1" data-bind="text:Name"></h1>
+                <div class="pmd-card pmd-card-inverse pmd-z-depth-5">
+                    <div class="pmd-card-title">
+                        <h1 class="pmd-display1" data-bind="text:Name"></h1>
+                    </div>
+                    <div class="pmd-card-body">
+                        <p data-bind="text:AbilityScore.Name"></p>
+                    </div>
                 </div>
-                <div class="pmd-card-body">
-                  <p data-bind="text:AbilityScore.Name">
-                  </p>
-                  <!-- <p data-bind="html: Description"></p> -->
-                </div>
-              </div>
             </div>
             <!--/ko-->
         </div>
-
-        <!-- <div class="row"  data-bind="visible: currentState() === 'edit' ">
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-6">
-            	<div class="pmd-card pmd-z-depth-5 pmd-card-custom-form" data-bind="with : selectedFeature">
-            		<div class="pmd-card-body">
-
-            			<div class="form-group pmd-textfield pmd-textfield">
-            				<label for="name" class="control-label">Name</label>
-            				<input type="text" id="name" data-bind='value: Name, valueUpdate: "afterkeydown"' class="form-control">
-            			</div>
-
-            			<div class="form-group pmd-textfield pmd-textfield">
-                    <label for="pmd-slider-value-input" class="control-label">Level Gained</label>
-                    <div id="pmd-slider-value-input" class="pmd-range-slider pmd-range-tooltip" data-bind="rangeslider:{valueInput : Levelgained, type : 'input' }"></div>
-            			</div>
-
-            			<div class="form-group pmd-textfield pmd-textfield">
-            				<label class="control-label">Description</label>
-                    <div id="desc" class="pmd-card-body" data-bind="contentEditable : true, htmlEditable: Description"></div>
-            			</div>
-
-            			<div class="form-group pmd-textfield pmd-textfield">
-            				<label for="recType" class="control-label">Recovery Type</label>
-            				<input type="text" id="recType" data-bind='value: RecoveryType, valueUpdate: "afterkeydown"' class="form-control">
-            			</div>
-
-                  <div class="pmd-card-actions">
-                    <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.returnToViewAll'>Cancel</button>
-                  </div>
-
-            		</div>
-            	</div>
-            </div>
-        </div> -->
 
     </div>
 </div>

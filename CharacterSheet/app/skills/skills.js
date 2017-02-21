@@ -12,13 +12,17 @@ define(function (require) {
 
         /*====================SKILL SETUP====================*/
         self.skills = _i.ko.observableArray([]);
+        self.typeToShow = _i.ko.observable("all");
         self.selectedSkill = _i.ko.observable();
-        self.pageState = _i.ko.observable('viewall');
+
         self.skillsToShow = _i.ko.computed(function () {
-            var stateToShow = self.pageState();
-            if (stateToShow === "viewall") {
+            var desiredType = self.typeToShow();
+            if (desiredType === "all") {
                 return _i.list.sortAlphabeticallyObservables(self.skills());
             }
+            return _i.ko.utils.arrayFilter(self.skills(), function(skill){
+              return skill.AbilityScore.Name() === desiredType;
+            });
         });
 
         /*==================== PAGE/DATA SETUP ====================*/
@@ -33,15 +37,9 @@ define(function (require) {
 
         /*==================== PAGE ACTIONS ====================*/
 
-        /* Set the selected skill and put our page in to detail view state */
-        self.selectSkill = function (obj) {
-            self.selectedSkill(obj);
-            self.pageState('detailview');
-        };
-
         /* Return to the main skill list from the details panel */
         self.returnToViewAll = function () {
-            self.pageState('viewall');
+            self.typeToShow('viewall');
         };
     }
 });

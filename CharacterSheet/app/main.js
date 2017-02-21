@@ -12,7 +12,7 @@ requirejs.config({
         'transitions' : '../lib/durandal/js/transitions',
         'bootstrap': '../lib/bootstrap/js/bootstrap',
         'propeller': '../lib/propeller/js/propeller'
-      }
+    }
 });
 
 define(['durandal/system', 'durandal/app', 'durandal/viewLocator','knockout','_custom/all'],  function (system, app, viewLocator,ko,all) {
