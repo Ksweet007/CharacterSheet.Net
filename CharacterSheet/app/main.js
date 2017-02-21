@@ -1,7 +1,6 @@
 /* global jQuery:false, $:false, ko:false, require:false, requirejs:false, moment:false */
 define('jquery', function () { return jQuery; });
-define('knockout', ko);
-define('propeller', function() { return propeller; });
+define('knockout', ko)
 define('moment', function() { return moment; });
 
 requirejs.config({
@@ -11,11 +10,11 @@ requirejs.config({
         'plugins' : '../lib/durandal/js/plugins',
         'transitions' : '../lib/durandal/js/transitions',
         'bootstrap': '../lib/bootstrap/js/bootstrap',
-        'propeller': '../lib/propeller/js/propeller'
+        'domReady'  : '../lib/require/domReady'
     }
 });
 
-define(['durandal/system', 'durandal/app', 'durandal/viewLocator','knockout','_custom/all'],  function (system, app, viewLocator,ko,all) {
+define(['durandal/system', 'durandal/app', 'durandal/viewLocator','knockout','_custom/all','domReady'],  function (system, app, viewLocator,ko,all,domReady) {
     //>>excludeStart("build", true);
     system.debug(true);
     //>>excludeEnd("build");
@@ -35,6 +34,10 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator','knockout','_c
         widget:{
             kinds:['expander']
         }
+    });
+
+    domReady(function () {
+        console.info('This runs when the dom gets ready and modules are loaded.');
     });
 
     app.start().then(function() {
