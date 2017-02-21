@@ -10,11 +10,11 @@ requirejs.config({
         'plugins' : '../lib/durandal/js/plugins',
         'transitions' : '../lib/durandal/js/transitions',
         'bootstrap': '../lib/bootstrap/js/bootstrap',
-        'domReady'  : '../lib/require/domReady'
+        'propeller' : '../lib/propeller/'
     }
 });
 
-define(['durandal/system', 'durandal/app', 'durandal/viewLocator','knockout','_custom/all','domReady'],  function (system, app, viewLocator,ko,all,domReady) {
+define(['durandal/system', 'durandal/app', 'durandal/viewLocator','knockout','_custom/all'],  function (system, app, viewLocator,ko,all) {
     //>>excludeStart("build", true);
     system.debug(true);
     //>>excludeEnd("build");
@@ -34,10 +34,6 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator','knockout','_c
         widget:{
             kinds:['expander']
         }
-    });
-
-    domReady(function () {
-        console.info('This runs when the dom gets ready and modules are loaded.');
     });
 
     app.start().then(function() {
