@@ -20,7 +20,7 @@ namespace CharacterSheet.Controllers.Api
         [Route("api/GetAllArmor/")]
         public IHttpActionResult GetAllFeatures()
         {
-            var armorList = _equipmentService.GetArmorDTOList();
+            var armorList = _equipmentRepository.GetArmors();
 
             return Ok(armorList);
         }
@@ -29,7 +29,7 @@ namespace CharacterSheet.Controllers.Api
         [Route("api/AddArmor/")]
         public IHttpActionResult AddNewFeature([FromBody] ArmorDTO armorToAdd)
         {
-            _equipmentService.AddNewArmor(armorToAdd);
+            //_equipmentService.AddNewArmor(armorToAdd);
 
             return Ok(armorToAdd);
         }

@@ -19,6 +19,8 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
         public DbSet<Proficiency> Proficiencies { get; set; }
         public DbSet<ProficiencyType> ProficiencyTypes { get; set; }
         public DbSet<Skill> Skills { get; set; }
+        public DbSet<Weapon>  Weapons { get; set; }
+        public DbSet<WeaponProperty> WeaponProperties { get; set; }
 
         //Fluent API
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -32,6 +34,7 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             EfMapProficiency(modelBuilder);
             EfMapProficiencyTypes(modelBuilder);
             EfMapSkills(modelBuilder);
+            EfMapWeaponProperty(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }
@@ -79,9 +82,13 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             var prof = modelBuilder.Entity<Proficiency>();
             prof.ToTable("Proficiencies").HasKey(k => k.ProficiencyId);
 
-            prof.HasMany(e => e.Armors)
-                .WithRequired(e => e.Proficiency)
-                .HasForeignKey(e => e.ArmorProficiencyId)
+            //prof.HasMany(e => e.Armors)
+            //    .WithRequired(e => e.ProficiencyId)
+            //    .HasForeignKey(e => e.ArmorProficiencyId)
+            //    .WillCascadeOnDelete(false);
+
+            prof.HasMany(e => e.Weapon)
+                .WithRequired(e => e.Proficiencies)
                 .WillCascadeOnDelete(false);
         }
 
@@ -100,6 +107,15 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
         {
             var skill = modelBuilder.Entity<Skill>();
             skill.ToTable("skills").HasKey(k => k.skillId);
+        }
+
+        private static void EfMapWeaponProperty(DbModelBuilder modelBuilder)
+        {
+            var prop = modelBuilder.Entity<WeaponProperty>();
+
+            prop.HasMany(e => e.Weapons)
+                .WithRequired(e => e.WeaponProperty)
+                .WillCascadeOnDelete(false);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace CharacterSheet.Infrastructure.Data
 
         public void AddArmor(Armor armorToAdd)
         {
-            if (armorToAdd.ArmorId == 0)
+            if (armorToAdd.Id == 0)
             {
                 _db.Armors.Add(armorToAdd);
             }
@@ -24,19 +24,11 @@ namespace CharacterSheet.Infrastructure.Data
             _db.SaveChanges();
         }
 
-        public IList<Armor> GetArmorList()
+        public IList<Armor> GetArmors()
         {
-            var armorList = _db.Armors.ToList();
+            var armors = _db.Armors.ToList();
 
-            foreach (var item in armorList)
-            {
-                var prof = _db.Proficiencies.Single(p => p.ProficiencyId == item.ArmorProficiencyId);
-                prof.ProficiencyType = GetArmorProficiencyType(prof.ProficiencytypeId);
-
-                item.Proficiency = prof;
-            }
-
-            return armorList;
+            return armors;
         }
 
         public ProficiencyType GetArmorProficiencyType(int proficiencyTypeId)

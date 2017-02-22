@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Enums\AbilityScoreTypeValues.cs" />
     <Compile Include="Enums\ProficiencyTypeId.cs" />
+    <Compile Include="Enums\ProfTypeId.cs" />
     <Compile Include="Enums\RecoveryTypes.cs" />
     <Compile Include="Enums\SkillTypeValues.cs" />
     <Compile Include="Interfaces\ICharacterClassRepository.cs" />
@@ -59,6 +60,8 @@
     <Compile Include="Model\Proficiency.cs" />
     <Compile Include="Model\ProficiencyType.cs" />
     <Compile Include="Model\Skill.cs" />
+    <Compile Include="Model\Weapon.cs" />
+    <Compile Include="Model\WeaponProperty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
