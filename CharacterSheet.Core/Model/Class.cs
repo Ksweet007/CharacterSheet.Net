@@ -9,7 +9,7 @@ namespace CharacterSheet.Core.Model
         {
             Features = new HashSet<Feature>();
             Skills = new HashSet<Skill>();
-            Proficiencies = new HashSet<Proficiency>();
+            //Proficienciessss = new HashSet<Proficiency>();
             ProficiencyTypes = new HashSet<ProficiencyType>();
         }
         public int classId { get; set; }
@@ -21,7 +21,7 @@ namespace CharacterSheet.Core.Model
         public string hpathigherlevels { get; set; }
         public ICollection<Feature> Features { get; set; }
         public virtual ICollection<Skill> Skills { get; set; }
-        public ICollection<Proficiency> Proficiencies { get; set; }
+        //public ICollection<Proficiency> Proficienciessss { get; set; }
         public virtual ICollection<ProficiencyType> ProficiencyTypes { get; set; }
     }
 }

@@ -25,9 +25,9 @@ namespace CharacterSheet.Infrastructure.Data
         }
 
         public IList<Armor> GetArmors()
-        {
+        {            
             var armors = _db.Armors.ToList();
-
+            
             return armors;
         }
 

@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\AbilityScoreTypeValues.cs" />
+    <Compile Include="Enums\Proficiencies.cs" />
     <Compile Include="Enums\ProficiencyTypeId.cs" />
     <Compile Include="Enums\ProfTypeId.cs" />
     <Compile Include="Enums\RecoveryTypes.cs" />
@@ -51,13 +52,13 @@
     <Compile Include="Model\Armor.cs" />
     <Compile Include="Model\Class.cs" />
     <Compile Include="Model\ClassSkill.cs" />
+    <Compile Include="Model\Proficiency.cs" />
     <Compile Include="Model\DTO\ClassSkillViewModel.cs" />
     <Compile Include="Model\DTO\ArmorDTO.cs" />
     <Compile Include="Model\DTO\NewClassDTO.cs" />
     <Compile Include="Model\ClassProficiencyAssoc.cs" />
     <Compile Include="Model\DTO\ClassProficiencyViewModel.cs" />
     <Compile Include="Model\Feature.cs" />
-    <Compile Include="Model\Proficiency.cs" />
     <Compile Include="Model\ProficiencyType.cs" />
     <Compile Include="Model\Skill.cs" />
     <Compile Include="Model\Weapon.cs" />

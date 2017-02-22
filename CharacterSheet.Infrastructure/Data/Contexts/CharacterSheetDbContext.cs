@@ -15,7 +15,7 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
         public DbSet<AbilityScore> AbilityScores { get; set; }
         public DbSet<Armor> Armors { get; set; }
         public DbSet<Class> Classes { get; set; }
-        public DbSet<Feature> Features { get; set; }
+        public DbSet<Feature> Features { get; set; } 
         public DbSet<Proficiency> Proficiencies { get; set; }
         public DbSet<ProficiencyType> ProficiencyTypes { get; set; }
         public DbSet<Skill> Skills { get; set; }
@@ -57,9 +57,9 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
                 .WithMany(c => c.Classes)
                 .Map(m => m.ToTable("ClassSkill").MapLeftKey("ClassId").MapRightKey("SkillId"));
 
-            cls.HasMany(p => p.Proficiencies)
-                .WithMany(c => c.Classes)
-                .Map(m => m.ToTable("ClassProficiency").MapLeftKey("ClassId").MapRightKey("ProficiencyId"));
+            //cls.HasMany(p => p.Proficienciessss)
+            //    .WithMany(c => c.Classes)
+            //    .Map(m => m.ToTable("ClassProficiency").MapLeftKey("ClassId").MapRightKey("ProficiencyId"));
 
             cls.HasMany(e => e.Features)
                 .WithMany(e => e.Classes)
@@ -79,17 +79,17 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
 
         private static void EfMapProficiency(DbModelBuilder modelBuilder)
         {
-            var prof = modelBuilder.Entity<Proficiency>();
-            prof.ToTable("Proficiencies").HasKey(k => k.ProficiencyId);
+            //var prof = modelBuilder.Entity<Proficiency>();
+            //prof.ToTable("Proficiencies").HasKey(k => k.ProficiencyId);
 
-            //prof.HasMany(e => e.Armors)
-            //    .WithRequired(e => e.ProficiencyId)
-            //    .HasForeignKey(e => e.ArmorProficiencyId)
-            //    .WillCascadeOnDelete(false);
+            ////prof.HasMany(e => e.Armors)
+            ////    .WithRequired(e => e.ProficiencyId)
+            ////    .HasForeignKey(e => e.ArmorProficiencyId)
+            ////    .WillCascadeOnDelete(false);
 
-            prof.HasMany(e => e.Weapon)
-                .WithRequired(e => e.Proficiencies)
-                .WillCascadeOnDelete(false);
+            //prof.HasMany(e => e.Weapon)
+            //    .WithRequired(e => e.Proficiencies)
+            //.WillCascadeOnDelete(false);
         }
 
         private static void EfMapProficiencyTypes(DbModelBuilder modelBuilder)
@@ -98,9 +98,9 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             profType.ToTable("ProficiencyTypes").HasKey(p => p.ProficiencyTypeId);
             profType.Property(p => p.Name).HasColumnName("proficiencytype");
 
-            profType.HasMany(e => e.Proficiencies)
-                .WithRequired(e => e.ProficiencyType)
-                .WillCascadeOnDelete(false);
+            //profType.HasMany(e => e.Proficiencies)
+            //    .WithRequired(e => e.ProficiencyType)
+            //    .WillCascadeOnDelete(false);
         }
 
         private static void EfMapSkills(DbModelBuilder modelBuilder)

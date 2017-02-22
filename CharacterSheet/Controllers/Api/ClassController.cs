@@ -70,8 +70,8 @@ namespace CharacterSheet.Controllers.Api
                 hpatfirstlevel = cls.hpatfirstlevel,
                 hpathigherlevels = cls.hpathigherlevels,
                 skills = allSkills,
-                ClassSkills = cls.Skills.ToList(),
-                Proficiencies = cls.Proficiencies.ToList()
+                ClassSkills = cls.Skills.ToList()
+                
             };
 
             return Ok(mappedClass);

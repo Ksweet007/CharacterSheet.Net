@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using CharacterSheet.Core.Model;
 using CharacterSheet.Core.Model.DTO;
 
 namespace CharacterSheet.Infrastructure.Data.Services
@@ -9,30 +7,31 @@ namespace CharacterSheet.Infrastructure.Data.Services
     public class EquipmentService
     {
         private readonly EquipmentRepository _equipmentRepository;
+        private readonly ProficiencyRepository _proficiencyRepository;
 
         public EquipmentService()
         {
             _equipmentRepository = new EquipmentRepository();
+            _proficiencyRepository = new ProficiencyRepository();
         }
 
+        public IList<ArmorDTO> GetAndMapArmorList()
+        {
+            var armorList = _equipmentRepository.GetArmors();
 
-        //public void AddNewArmor(ArmorDTO armorDto)
-        //{
-        //     var armorToSave = new Armor()
-        //    {
-        //        ArmorId = armorDto.ArmorId,
-        //        ArmorProficiencyId = armorDto.ArmorProficiencyId,
-        //        ArmorClass = armorDto.ArmorClass,
-        //        Cost = armorDto.Cost,
-        //        Name = armorDto.Name,
-        //        Stealth = armorDto.Stealth,
-        //        Strength = armorDto.Strength,
-        //        Weight = armorDto.Weight
+            return armorList.Select(item => new ArmorDTO
+            {
+                Id = item.Id,
+                ProficiencyId = item.ProficiencyId,
+                Name = item.Name,
+                ArmorClass = item.ArmorClass,
+                Cost = item.Cost,
+                Stealth = item.Stealth,
+                Strength = item.Strength,
+                Weight = item.Weight,
+                ProficiencyName = _proficiencyRepository.GetProficiencyById(item.ProficiencyId).Name
+            }).ToList();
+        }
 
-        //    };
-
-        //    _equipmentRepository.AddArmor(armorToSave);
-        //    armorDto.ArmorId = armorToSave.ArmorId;
-        //}
     }
 }

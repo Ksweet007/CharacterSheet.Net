@@ -4,8 +4,8 @@ namespace CharacterSheet.Core.Model
 {
     public class Armor
     {
-        public int Id { get; set; }
-        public ProfTypeId ProficiencyId { get; set; } //this replaces Proficiencies since Armor will be attached to a single instance of Prof. Let the code drive the DB model.
+        public int Id { get; set; }        
+        public int ProficiencyId { get; set; }
         public string Name { get; set; }
         public string Cost { get; set; }
         public string ArmorClass { get; set; }

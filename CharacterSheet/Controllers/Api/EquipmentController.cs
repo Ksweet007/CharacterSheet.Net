@@ -12,22 +12,22 @@ namespace CharacterSheet.Controllers.Api
 
         public EquipmentController()
         {
-            _equipmentRepository = new EquipmentRepository();
+            _equipmentRepository = new EquipmentRepository();            
             _equipmentService = new EquipmentService();
         }
 
         [HttpGet]
         [Route("api/GetAllArmor/")]
-        public IHttpActionResult GetAllFeatures()
+        public IHttpActionResult GetAllArmor()
         {
-            var armorList = _equipmentRepository.GetArmors();
+            var armorList = _equipmentService.GetAndMapArmorList();
 
             return Ok(armorList);
         }
 
         [HttpPost]
         [Route("api/AddArmor/")]
-        public IHttpActionResult AddNewFeature([FromBody] ArmorDTO armorToAdd)
+        public IHttpActionResult AddArmor([FromBody] ArmorDTO armorToAdd)
         {
             //_equipmentService.AddNewArmor(armorToAdd);
 

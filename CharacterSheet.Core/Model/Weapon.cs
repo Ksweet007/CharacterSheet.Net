@@ -13,7 +13,7 @@ namespace CharacterSheet.Core.Model
         public int PropertyId { get; set; }
         public int ProficiencyId { get; set; }
 
-        public virtual Proficiency Proficiencies { get; set; }
+        //public virtual Proficiency Proficiencies { get; set; }
 
         public virtual WeaponProperty WeaponProperty { get; set; }
     }

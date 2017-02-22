@@ -35,11 +35,11 @@ namespace CharacterSheet.Infrastructure.Data
             return tstskl;
         }
 
-        public IList<Proficiency> GetClassProficiencies(int classId)
-        {
-            var cls = _db.Classes.Include(x=>x.Proficiencies).SingleOrDefault(x => x.classId == classId);
-            return cls?.Proficiencies.ToList() ?? new List<Proficiency>();
-        }
+        //public IList<Proficiency> GetClassProficiencies(int classId)
+        //{
+        //    var cls = _db.Classes.Include(x=>x.Proficienciessss).SingleOrDefault(x => x.classId == classId);
+        //    return cls?.Proficienciessss.ToList() ?? new List<Proficiency>();
+        //}
 
         public IList<Class> GetClassList()
         {
@@ -57,39 +57,39 @@ namespace CharacterSheet.Infrastructure.Data
             return _db.Skills.Include(s => s.AbilityScore).ToList();
         }
 
-        public IList<Proficiency> GetAllProfs()
-        {
-            return _db.Proficiencies.Include(p => p.ProficiencyType).ToList();
-        }
+        //public IList<Proficiency> GetAllProfs()
+        //{
+        //    return _db.Proficiencies.Include(p => p.ProficiencyType).ToList();
+        //}
 
         public IList<ProficiencyType> GetallProficiencyTypes()
         {
             return _db.ProficiencyTypes.ToList();
         }
 
-        public void AddProficiency(Proficiency proficiencyToAdd)
-        {
-            if (proficiencyToAdd.ProficiencyId == 0)
-            {
-                _db.Proficiencies.Add(proficiencyToAdd);
-            }
+        //public void AddProficiency(Proficiency proficiencyToAdd)
+        //{
+        //    if (proficiencyToAdd.ProficiencyId == 0)
+        //    {
+        //        _db.Proficiencies.Add(proficiencyToAdd);
+        //    }
             
-            _db.SaveChanges();
-        }
+        //    _db.SaveChanges();
+        //}
 
-        public void RemoveProficiency(int proficiencyId)
-        {
-            var profToDelete = _db.Proficiencies.Single(p => p.ProficiencyId == proficiencyId);
+        //public void RemoveProficiency(int proficiencyId)
+        //{
+        //    var profToDelete = _db.Proficiencies.Single(p => p.ProficiencyId == proficiencyId);
 
-            _db.Proficiencies.Remove(profToDelete);
-            _db.SaveChanges();
-        }
+        //    _db.Proficiencies.Remove(profToDelete);
+        //    _db.SaveChanges();
+        //}
 
-        public void AddProficiencyList(IList<Proficiency> profs)
-        {
-            _db.Proficiencies.AddRange(profs);
-            _db.SaveChanges();
-        }
+        //public void AddProficiencyList(IList<Proficiency> profs)
+        //{
+        //    _db.Proficiencies.AddRange(profs);
+        //    _db.SaveChanges();
+        //}
 
         public void AddSkillList(Skill skill, int classId)
         {           
