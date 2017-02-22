@@ -11,8 +11,8 @@ define(function(require) {
 		var self = this;
 
 		/*====================Type Setup====================*/
-		//self.armorType = _i.ko.observableArray(['Light','Medium','Heavy','Shield']);
 		self.armorType = _i.ko.observableArray(["light armor","medium armor","heavy armor","shield"]);
+		self.isAddingNew = _i.ko.observable(false);
 
 		/*====================ARMOR SETUP====================*/
 		self.armors = _i.ko.observableArray([]);
@@ -31,11 +31,14 @@ define(function(require) {
             });
         });
         self.isDirty = _i.ko.computed(function () {
-            return self.dirtyItems().length > 0;
+			if(self.dirtyItems().length > 0 || self.isAddingNew()){
+				return true;
+			}
+            return false;
         });
 
+
 		/*==================== PAGE/DATA SETUP ====================*/
-		self.isAddingNew = _i.ko.observable();
 		self.activate = function() {
 			return _i.charajax.get('api/GetAllArmor', '').done(function(response) {
 				var mapped = _i.ko.mapping.fromJS(response);
@@ -56,9 +59,30 @@ define(function(require) {
 	        self.isAddingNew(false);
 	    };
 
+		/*==================== PAGE FUNCTIONS ====================*/
+		self.openCreateForm = function (obj){
+			self.isAddingNew(true);
+			self.newArmor({
+                ArmorId: 0,
+				ArmorProficiencyId: _i.ko.observable(0),	//This associates it to a specific Prof Type I.E Light Armor
+				ProficiencyName: _i.ko.observable(''),	//Tied To ArmorProficiencyId as it's descriptor
+                ArmorClass: _i.ko.observable(''),
+				Cost: _i.ko.observable(''),
+				Name: _i.ko.observable(''),
+				ProficiencyTypeId: 1, //What is the parent Proficiency. For this page it's Armor so ID 1
+				Stealth: _i.ko.observable(''),
+				Strength: _i.ko.observable(''),
+                Weight: _i.ko.observable('')
+			});
+
+		};
+
+        self.cancelNew = function () {
+            self.isAddingNew(false);
+        };
 
         /*==================== SAVE/EDIT/DELETE ====================*/
-		self.saveNewFeature = function (armorToAdd) {
+		self.saveNewArmor = function (armorToAdd) {
             return _i.charajax.post('api/AddArmor', armorToAdd).then(function (response) {
                 self.armors.push(response);
                 self.resetToBaseList("success", "New Armor Added");
