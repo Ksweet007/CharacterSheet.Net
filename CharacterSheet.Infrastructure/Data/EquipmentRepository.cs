@@ -35,5 +35,6 @@ namespace CharacterSheet.Infrastructure.Data
         {
             return  _db.ProficiencyTypes.Single(t => t.ProficiencyTypeId == proficiencyTypeId);
         }
+        
     }
 }

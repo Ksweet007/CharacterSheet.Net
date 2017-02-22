@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using CharacterSheet.Core.Enums;
 using CharacterSheet.Core.Model;
 using CharacterSheet.Infrastructure.Data.Contexts;
 
@@ -18,6 +20,10 @@ namespace CharacterSheet.Infrastructure.Data
             return _db.Proficiencies.Single(p => p.Id == proficiencyId);
         }
 
+        public IList<Proficiency> GetArmorProficiencies()
+        {
+            return _db.Proficiencies.Where(t => t.ProficiencyTypeId == ProficiencyTypeId.Armor).ToList();
+        }      
 
     }
 }

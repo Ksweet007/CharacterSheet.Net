@@ -12,6 +12,7 @@ define(function(require) {
 
 		/*====================Type Setup====================*/
 		self.armorType = _i.ko.observableArray(["light armor","medium armor","heavy armor","shield"]);
+		self.armorTypes = _i.ko.observableArray([]);
 		self.isAddingNew = _i.ko.observable(false);
 
 		/*====================ARMOR SETUP====================*/
@@ -39,16 +40,48 @@ define(function(require) {
 
 		/*==================== PAGE/DATA SETUP ====================*/
 		self.activate = function() {
-			return _i.charajax.get('api/GetAllArmor', '').done(function(response) {
+			return self.getPageData().done(function(){
+			});
+		};
+
+		self.getPageData = function(){
+			var deferred = _i.deferred.create();
+			var promise = _i.deferred.waitForAll(self.getArmorProficiencies());
+
+			promise.done(function(){
+				self.getArmor().done(function(){
+					deferred.resolve();
+				});
+			});
+
+			return deferred;
+		};
+
+		self.getArmorProficiencies = function(){
+			var deferred = _i.deferred.create();
+			_i.charajax.get('api/GetArmorProficiencyTypes','').done(function(){
+				self.armorTypes(response);
+				deferred.resolve();
+			});
+			return deferred;
+		};
+
+		self.getArmor = function(){
+			var promise = _i.deferred.create();
+			_i.charajax.get('api/GetAllArmor', '').done(function(response) {
 				var mapped = _i.ko.mapping.fromJS(response);
 				mapped().forEach(function (item) {
-                    item.dirtyFlag = new _i.ko.dirtyFlag(item);
-                });
+					item.dirtyFlag = new _i.ko.dirtyFlag(item);
+				});
 
 				self.armors(mapped());
 
 				_i.list.sortAlphabeticallyObservables(self.armors());
+
+				promise.resolve();
 			});
+
+			return promise;
 		};
 
 		/*==================== ALERT THEN CHANGE PAGE STATE ====================*/
