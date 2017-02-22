@@ -11,7 +11,7 @@ define(function(require) {
 		var self = this;
 
 		/*====================Type Setup====================*/
-		self.armorType = _i.ko.observableArray(["light armor","medium armor","heavy armor","shield"]);
+		self.armorType = _i.ko.observableArray([]);
 		self.armorTypes = _i.ko.observableArray([]);
 		self.isAddingNew = _i.ko.observable(false);
 
@@ -21,7 +21,7 @@ define(function(require) {
         self.selectedArmor = _i.ko.observable();
 		self.armorsToShow = _i.ko.computed(function() {
 			return self.armors().filter(function(armor) {
-			  return self.armorType().includes(armor.ProficiencyName().toLowerCase());
+			  return self.armorType().includes(armor.ProficiencyName());
 			});
 		});
 

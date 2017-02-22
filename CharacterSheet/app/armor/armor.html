@@ -11,7 +11,7 @@
 							<div class="col-xs-6 col-sm-6 col-md-8">
 								<!--ko foreach:armorTypes()-->
 			                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
-			                        <input type='checkbox' name="type" value='light armor' checked="checked" data-bind='checked: $parent.armorType'/>
+			                        <input type='checkbox' name="type" checked="checked" data-bind='checked: $parent.armorType, value:Name'/>
 			                    	<span data-bind="text:Name"> </span>
 			                    </label>
 								<!--/ko-->
