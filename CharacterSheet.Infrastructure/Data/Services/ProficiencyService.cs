@@ -16,24 +16,7 @@ namespace CharacterSheet.Infrastructure
             _characterClassRepository = new CharacterClassRepository();
         }
 
-        public ClassProficiencyViewModel GetProficienciesByClassId(int classId)
-        {
-            var clsProficiencies = _characterClassRepository.GetClassProficiencies(classId);
-            var armorProficiencies = clsProficiencies.Where(p => p.ProficiencytypeId == (int)ProficiencyTypeId.Armor).ToList();
-            var weaponProficiencies = clsProficiencies.Where(p => p.ProficiencytypeId == (int)ProficiencyTypeId.Weapon).ToList();
-            var toolProficiencies = clsProficiencies.Where(p => p.ProficiencytypeId == (int)ProficiencyTypeId.Tool).ToList();
-            var saveProficiencies = clsProficiencies.Where(p => p.ProficiencytypeId == (int)ProficiencyTypeId.Save).ToList();
 
-            return new ClassProficiencyViewModel
-            {
-                AllClassProficiencies = clsProficiencies,
-                ArmorProficiencies = armorProficiencies,
-                WeaponProficiencies = weaponProficiencies,
-                ToolProficiencies = toolProficiencies,
-                SaveProficiencies = saveProficiencies
-
-            };
-        }
 
         public IList<Skill> GetClassSkillsById(int classId)
         {

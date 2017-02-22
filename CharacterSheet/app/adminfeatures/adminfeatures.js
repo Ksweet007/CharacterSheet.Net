@@ -89,7 +89,16 @@ define(function (require) {
 
         /* Save new Feature with ajax then add the returned feature to our feature list (so it has the newly assigned DB ID value, then alert the user */
         self.saveNewFeature = function (featureToAdd) {
-            return _i.charajax.post('api/AddFeature', featureToAdd).then(function (response) {
+			var dataToSave = {
+				Name: featureToAdd.Name(),
+				FeatureId: 0,
+				Levelgained: featureToAdd.Levelgained(),
+				Description: featureToAdd.Description(),
+				RecoveryType: featureToAdd.RecoveryType(),
+				ActionType: featureToAdd.ActionType()
+			};
+
+            return _i.charajax.post('api/AddFeature', dataToSave).then(function (response) {
                 self.features.push(response);
                 self.triggerAlertsAndSetState("success", "New Feature Saved", "view");
             });

@@ -17,15 +17,6 @@ namespace CharacterSheet.Controllers
             _featureRepository = new FeatureRepository();
         }
 
-        //[HttpPut]
-        //[Route("api/AddFeature/")]
-        //public IHttpActionResult AddNewFeature(Feature featureToAdd)
-        //{
-        //    _featureRepository.AddFeature(featureToAdd);
-
-        //    return Ok(featureToAdd);
-        //}
-
         [HttpPost]
         [Route("api/AddFeature/")]
         public IHttpActionResult AddNewFeature([FromBody] Feature featureToAdd)

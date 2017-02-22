@@ -19,14 +19,14 @@ namespace CharacterSheet.Controllers.Api
             _proficiencyService = new ProficiencyService();
         }
 
-        [HttpGet]
-        [Route("api/GetAllProficiencies")]
-        public IHttpActionResult GetAllProficiencies()
-        {
-            var allProfs = _characterClassRepository.GetAllProfs();
+        //[HttpGet]
+        //[Route("api/GetAllProficiencies")]
+        //public IHttpActionResult GetAllProficiencies()
+        //{
+        //    var allProfs = _characterClassRepository.GetAllProfs();
 
-            return Ok(allProfs);
-        }
+        //    return Ok(allProfs);
+        //}
 
         [HttpGet]
         [Route("api/GetAllProficiencyTypes")]
@@ -49,14 +49,14 @@ namespace CharacterSheet.Controllers.Api
 
 
 
-        [HttpGet]
-        [Route("api/GetClassProficiencies/{classId}")]
-        public IHttpActionResult GetClassProficiencyList(int classId)
-        {
-            var classProficiencies = _proficiencyService.GetProficienciesByClassId(classId);
+        //[HttpGet]
+        //[Route("api/GetClassProficiencies/{classId}")]
+        //public IHttpActionResult GetClassProficiencyList(int classId)
+        //{
+        //    var classProficiencies = _proficiencyService.GetProficienciesByClassId(classId);
 
-            return Ok(classProficiencies);
-        }
+        //    return Ok(classProficiencies);
+        //}
 
         [HttpGet]
         [Route("api/GetClassSkills/{classId}")]
@@ -67,34 +67,34 @@ namespace CharacterSheet.Controllers.Api
             return Ok(clsSkills);
         }
 
-        [HttpPut]
-        [Route("api/AddProficiency")]
-        public IHttpActionResult AddNewProficiency(Proficiency proficiencyToAdd)
-        {
-            _characterClassRepository.AddProficiency(proficiencyToAdd);
+        //[HttpPut]
+        //[Route("api/AddProficiency")]
+        //public IHttpActionResult AddNewProficiency(Proficiency proficiencyToAdd)
+        //{
+        //    _characterClassRepository.AddProficiency(proficiencyToAdd);
 
-            return Ok(proficiencyToAdd);
-        }
+        //    return Ok(proficiencyToAdd);
+        //}
 
-        [HttpDelete]
-        [Route("api/RemoveProficiency/{proficiencyId}")]
-        public IHttpActionResult RemoveProficiency(int proficiencyId)
-        {
-            _characterClassRepository.RemoveProficiency(proficiencyId);
+        //[HttpDelete]
+        //[Route("api/RemoveProficiency/{proficiencyId}")]
+        //public IHttpActionResult RemoveProficiency(int proficiencyId)
+        //{
+        //    _characterClassRepository.RemoveProficiency(proficiencyId);
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
 
-        [HttpPut]
-        [Route("api/AddProficiencies")]
-        public IHttpActionResult AddNewProficiencies(IList<Proficiency> profsToAdd)
-        {
-            var itemsToAdd = profsToAdd.Where(item => item.ProficiencyId == 0).ToList();
+        //[HttpPut]
+        //[Route("api/AddProficiencies")]
+        //public IHttpActionResult AddNewProficiencies(IList<Proficiency> profsToAdd)
+        //{
+        //    var itemsToAdd = profsToAdd.Where(item => item.ProficiencyId == 0).ToList();
 
-            _characterClassRepository.AddProficiencyList(itemsToAdd);
+        //    _characterClassRepository.AddProficiencyList(itemsToAdd);
 
-            return Ok(profsToAdd);
-        }
+        //    return Ok(profsToAdd);
+        //}
 
         [HttpPut]
         [Route("api/AddSkills/{classId}")]

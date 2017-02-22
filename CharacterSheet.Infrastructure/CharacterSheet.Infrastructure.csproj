@@ -56,8 +56,11 @@
   <ItemGroup>
     <Compile Include="Data\CharacterClassRepository.cs" />
     <Compile Include="Data\Contexts\CharacterSheetDbContext.cs" />
+    <Compile Include="Data\EquipmentRepository.cs" />
     <Compile Include="Data\FeatureRepository.cs" />
+    <Compile Include="Data\ProficiencyRepository.cs" />
     <Compile Include="Data\Services\BuildPDF.cs" />
+    <Compile Include="Data\Services\EquipmentService.cs" />
     <Compile Include="Data\Services\ProficiencyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
