@@ -30,9 +30,9 @@ h1 strong, h2 strong, h3 strong, h4 strong, h5 strong{font-weight:700;}
     opacity: .3;
 }
 
-.btn-loader.loader { opacity:1; margin: auto; font-size: 0.3em; position: absolute; text-indent: -9999em; border-top: 1em solid rgba(226, 60, 60, 0.2); border-right: 1em solid rgba(226, 60, 60, 0.2); border-bottom: 1em solid rgba(226, 60, 60, 0.2); border-left: 1em solid #E23C3C; -webkit-transform: translateZ(0); -ms-transform: translateZ(0); transform: translateZ(0); -webkit-animation: load8 1.1s infinite linear; animation: load8 1.1s infinite linear; top:0; right:0; left:0; bottom:0; overflow:hidden;}
+.btn-loader.loader { opacity:1; margin: auto; font-size: 0.3em; position: absolute; text-indent: -9999em; border-top: 1rem solid rgba(226, 60, 60, 0.2); border-right: 1rem solid rgba(226, 60, 60, 0.2); border-bottom: 1rem solid rgba(226, 60, 60, 0.2); border-left: 1rem solid #E23C3C; -webkit-transform: translateZ(0); -ms-transform: translateZ(0); transform: translateZ(0); -webkit-animation: load8 1.1s infinite linear; animation: load8 1.1s infinite linear; top:0; right:0; left:0; bottom:0; overflow:hidden;}
 .btn-loader.loader,
-.btn-loader.loader:after { border-radius: 50%; width: 7em; height: 7em;}
+.btn-loader.loader:after { border-radius: 50%; width: 15rem; height: 15rem;}
 
 @-webkit-keyframes load8 { 0% {
     -webkit-transform: rotate(0deg);

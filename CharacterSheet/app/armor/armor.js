@@ -21,7 +21,7 @@ define(function(require) {
 		self.armorsToShow = _i.ko.computed(function() {
 			return self.armors().filter(function(armor) {
 			  return self.armorType().includes(armor.ProficiencyName().toLowerCase());
-			} );
+			});
 		});
 
         /*====================CHANGE TRACKER SETUP====================*/
@@ -36,7 +36,6 @@ define(function(require) {
 			}
             return false;
         });
-
 
 		/*==================== PAGE/DATA SETUP ====================*/
 		self.activate = function() {
@@ -109,9 +108,9 @@ define(function(require) {
                 Weight: self.selectedArmor().Weight()
             };
 
-            return _i.charajax.put('api/EditFeature', dataToSave).then(function (response) {
+            return _i.charajax.put('api/AddArmor', dataToSave).then(function (response) {
                 self.selectedArmor().dirtyFlag.reset();
-                self.triggerAlertsAndSetState("success", "Feature Edit Saved", "view");
+                self.isAddingNew(false);
             });
 
         };

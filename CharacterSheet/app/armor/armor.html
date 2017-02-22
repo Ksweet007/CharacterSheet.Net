@@ -4,31 +4,38 @@
 
     <div class="section">
 	    <div class="row">
-	        <div class="col-xs-12 col-sm-12">
+			<div class="col-md-6">
 	            <div class="pmd-card pmd-card-inverse pmd-z-depth-5">
 	                <div class="pmd-card-body">
-	                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
-	                        <input type='checkbox' name="type" value='light armor' checked="checked" data-bind='checked: armorType'/>
-	                    	<span> Light</span>
-	                    </label>
-	                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
-	                        <input type='checkbox' name="type" value='medium armor' checked="checked" data-bind='checked: armorType'/>
-	                        <span> Medium</span>
-	                    </label>
+						<div class="row">
+							<div class="col-xs-6 col-sm-6 col-md-8">
+			                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+			                        <input type='checkbox' name="type" value='light armor' checked="checked" data-bind='checked: armorType'/>
+			                    	<span> Light</span>
+			                    </label>
+			                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+			                        <input type='checkbox' name="type" value='medium armor' checked="checked" data-bind='checked: armorType'/>
+			                        <span> Medium</span>
+			                    </label>
 
-	                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
-	                        <input type='checkbox' name="type" value='heavy armor' checked="checked" data-bind='checked: armorType'/>
-	                        <span> Heavy</span>
-	                    </label>
+			                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+			                        <input type='checkbox' name="type" value='heavy armor' checked="checked" data-bind='checked: armorType'/>
+			                        <span> Heavy</span>
+			                    </label>
 
-	                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
-	                        <input type='checkbox' name="type" value='shield' checked="checked" data-bind='checked: armorType'/>
-	                        <span> Shield</span>
-	                    </label>
-						<button class="btn pmd-ripple-effect btn-primary btn-inline" data-bind='click: openCreateForm'>Add New</button>
+			                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+			                        <input type='checkbox' name="type" value='shield' checked="checked" data-bind='checked: armorType'/>
+			                        <span> Shield</span>
+			                    </label>
+							</div>
+							<div class="col-sm-3">
+								<button class="btn pmd-ripple-effect btn-primary btn-inline" data-bind='click: openCreateForm'>Add New</button>
+							</div>
+						</div>
+
 	                </div>
 	            </div>
-	        </div>
+			</div>
 	    </div>
 
         <div class="row" data-bind="visible: !isAddingNew() ">
@@ -52,12 +59,6 @@
             		<div class="pmd-card-body">
 
             			<div class="form-group pmd-textfield pmd-textfield">
-            				<label for="name" class="control-label">Name</label>
-            				<input type="text" id="name" data-bind='value: Name, valueUpdate: "afterkeydown"' class="form-control">
-            			</div>
-
-            			<div class="form-group pmd-textfield pmd-textfield">
-
                             <label class="radio-inline pmd-radio pmd-radio-ripple-effect">
 		                        <input type='radio' name="inlineRadioOptions" value='1' data-bind='checked: ArmorProficiencyId'/><span class="pmd-radio-label">&nbsp;</span>
 		                    	<span> Light</span>
@@ -76,12 +77,16 @@
 		                        <input type='radio' name="inlineRadioOptions" value='19' data-bind='checked: ArmorProficiencyId'/><span class="pmd-radio-label">&nbsp;</span>
 		                        <span> Shield</span>
 		                    </label>
-
             			</div>
 
             			<div class="form-group pmd-textfield pmd-textfield">
-            				<label for="recType" class="control-label">Name</label>
-            				<input type="text" id="recType" data-bind='value: Name, valueUpdate: "afterkeydown"' class="form-control">
+            				<label for="name" class="control-label">Name</label>
+            				<input type="text" id="name" data-bind='value: Name, valueUpdate: "afterkeydown"' class="form-control">
+            			</div>
+
+            			<div class="form-group pmd-textfield pmd-textfield">
+            				<label for="recType" class="control-label">Cost</label>
+            				<input type="text" id="recType" data-bind='value: Cost, valueUpdate: "afterkeydown"' class="form-control">
             			</div>
 
             			<div class="form-group pmd-textfield pmd-textfield">
@@ -90,8 +95,18 @@
             			</div>
 
             			<div class="form-group pmd-textfield pmd-textfield">
-            				<label class="control-label">Cost</label>
-                      		<input type="text" id="recType" data-bind='value: Cost, valueUpdate: "afterkeydown"' class="form-control">
+            				<label class="control-label">Strength</label>
+                      		<input type="text" id="recType" data-bind='value: Strength, valueUpdate: "afterkeydown"' class="form-control">
+            			</div>
+
+            			<div class="form-group pmd-textfield pmd-textfield">
+            				<label class="control-label">Stealth</label>
+                      		<input type="text" id="recType" data-bind='value: Stealth, valueUpdate: "afterkeydown"' class="form-control">
+            			</div>
+
+            			<div class="form-group pmd-textfield pmd-textfield">
+            				<label class="control-label">Weight</label>
+                      		<input type="text" id="recType" data-bind='value: Weight, valueUpdate: "afterkeydown"' class="form-control">
             			</div>
 
 						<div class="pmd-card-actions">
