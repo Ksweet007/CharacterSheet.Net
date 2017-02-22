@@ -59,7 +59,9 @@ define(function(require) {
 
 		self.getArmorProficiencies = function(){
 			var deferred = _i.deferred.create();
-			_i.charajax.get('api/GetArmorProficiencyTypes','').done(function(){
+			_i.charajax.get('api/GetArmorProficiencyTypes','').done(function(response){
+				var mapped = _i.ko.mapping.fromJS(response);
+
 				self.armorTypes(response);
 				deferred.resolve();
 			});

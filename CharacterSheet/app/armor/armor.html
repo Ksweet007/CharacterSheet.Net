@@ -9,11 +9,13 @@
 	                <div class="pmd-card-body">
 						<div class="row">
 							<div class="col-xs-6 col-sm-6 col-md-8">
+								<!--ko foreach:armorTypes()-->
 			                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
-			                        <input type='checkbox' name="type" value='light armor' checked="checked" data-bind='checked: armorType'/>
-			                    	<span> Light</span>
+			                        <input type='checkbox' name="type" value='light armor' checked="checked" data-bind='checked: $parent.armorType'/>
+			                    	<span data-bind="text:Name"> </span>
 			                    </label>
-			                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+								<!--/ko-->
+			                    <!-- <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
 			                        <input type='checkbox' name="type" value='medium armor' checked="checked" data-bind='checked: armorType'/>
 			                        <span> Medium</span>
 			                    </label>
@@ -26,7 +28,7 @@
 			                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
 			                        <input type='checkbox' name="type" value='shield' checked="checked" data-bind='checked: armorType'/>
 			                        <span> Shield</span>
-			                    </label>
+			                    </label> -->
 							</div>
 							<div class="col-sm-3">
 								<button class="btn pmd-ripple-effect btn-primary btn-inline" data-bind='click: openCreateForm'>Add New</button>
@@ -59,11 +61,13 @@
             		<div class="pmd-card-body">
 
             			<div class="form-group pmd-textfield pmd-textfield">
+							<!--ko foreach:armorTypes-->
                             <label class="radio-inline pmd-radio pmd-radio-ripple-effect">
 		                        <input type='radio' name="inlineRadioOptions" value='1' data-bind='checked: ArmorProficiencyId'/><span class="pmd-radio-label">&nbsp;</span>
 		                    	<span> Light</span>
 		                    </label>
-		                    <label class="radio-inline pmd-radio pmd-radio-ripple-effect">
+							<!--/ko-->
+		                    <!-- <label class="radio-inline pmd-radio pmd-radio-ripple-effect">
 		                        <input type='radio' name="inlineRadioOptions" value='2' data-bind='checked: ArmorProficiencyId'/><span class="pmd-radio-label">&nbsp;</span>
 		                        <span> Medium</span>
 		                    </label>
@@ -76,7 +80,7 @@
 		                    <label class="radio-inline pmd-radio pmd-radio-ripple-effect">
 		                        <input type='radio' name="inlineRadioOptions" value='19' data-bind='checked: ArmorProficiencyId'/><span class="pmd-radio-label">&nbsp;</span>
 		                        <span> Shield</span>
-		                    </label>
+		                    </label> -->
             			</div>
 
             			<div class="form-group pmd-textfield pmd-textfield">
