@@ -11,7 +11,7 @@ define(function(require) {
 		var self = this;
 
 		/*====================Type Setup====================*/
-		self.armorType = _i.ko.observableArray([]);
+		self.selectedArmorType = _i.ko.observableArray([]);
 		self.armorTypes = _i.ko.observableArray([]);
 		self.isAddingNew = _i.ko.observable(false);
 
@@ -21,7 +21,7 @@ define(function(require) {
         self.selectedArmor = _i.ko.observable();
 		self.armorsToShow = _i.ko.computed(function() {
 			return self.armors().filter(function(armor) {
-			  return self.armorType().includes(armor.ProficiencyName());
+			  return self.selectedArmorType().includes(armor.ProficiencyName());
 			});
 		});
 
@@ -61,6 +61,10 @@ define(function(require) {
 			var deferred = _i.deferred.create();
 			_i.charajax.get('api/GetArmorProficiencyTypes','').done(function(response){
 				var mapped = _i.ko.mapping.fromJS(response);
+
+				response.forEach(function(item){
+					self.selectedArmorType().push(item.Name);
+				});
 
 				self.armorTypes(response);
 				deferred.resolve();
