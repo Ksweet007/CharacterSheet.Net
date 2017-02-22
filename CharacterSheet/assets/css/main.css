@@ -76,10 +76,17 @@ h1 strong, h2 strong, h3 strong, h4 strong, h5 strong{font-weight:700;}
 .pmd-textfield-floating-label label,.login-register,.material-icons.md-dark {color:#c1b4b4 !important;}
 .section-inner.pmd-card { color: #c1b4b4;}
 
+/*==================== BORDERS ====================*/
+.item-details { border-right:1px solid #dfe3e7; }
+
+
 /*==================== INNER HEADERS ====================*/
 h2.typo-fill-secondary, .pmd-card-title-text,
 .navbar-brand, .pmd-card-title strong, .pmd-card-footer, .pmd-sidebar a, .navbar-header .btn:hover,.pmd-textfield label { color: #e2733c !important;}  /*{color: #E23C3C !important;}*/
 .pmd-textfield-floating-label.pmd-textfield-floating-label-completed label  {color: #c1b4b4 !important;}
+
+/*==================== BUTTONS ====================*/
+.btndelete {border:0;background-color: #ff5722; opacity: .75; border-radius:2px;}
 
 
 /*==================== PAGE SPECIFIC STYLES ====================*/

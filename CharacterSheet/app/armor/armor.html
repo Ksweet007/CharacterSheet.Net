@@ -29,15 +29,40 @@
         <div class="row" data-bind="visible: !isAddingNew() ">
             <!--ko foreach:armorsToShow-->
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-				<div class="col-md-2 col-sm-3 col-xs-6">
-					<i class="material-icons md-dark pmd-md">delete</i>
-				</div>
                 <div class="pmd-card pmd-card-inverse pmd-z-depth-5">
                     <div class="pmd-card-title">
-                        <h1 class="pmd-display1" data-bind="text:Name"></h1>
+						<div class="media-body media-middle">
+                        	<h1 class="pmd-display1 pmd-card-title-text typo-fill-secondary" data-bind="text:Name"></h1>
+							<span class="pmd-card-subtitle-text" data-bind="text:ProficiencyName"></span>
+						</div>
+						<div class="media-right">
+							<button class="material-icons md-dark pmd-xs btndelete pmd-ripple-effect btn-danger">
+								delete
+							</button>
+						</div>
                     </div>
                     <div class="pmd-card-body">
+						<span class="pmd-card-subtitle-text">Armor Class</span>
                         <p data-bind="text:ArmorClass"></p>
+
+						<span class="pmd-card-subtitle-text">Cost</span>
+                        <p data-bind="text:Cost"></p>
+
+
+						<span class="pmd-card-subtitle-text">Weight</span>
+						<p data-bind="text:Weight"></p>
+
+						<div class="row">
+							<div class="col-xs-6">
+								<span class="pmd-card-subtitle-text">Strength</span>
+								<p data-bind="text:Strength"></p>
+							</div>
+							<div class="col-xs-6">
+								<span class="pmd-card-subtitle-text">Stealth</span>
+								<p data-bind="text:Stealth"></p>
+							</div>
+						</div>
+
                     </div>
                 </div>
             </div>
