@@ -66,46 +66,59 @@ define(function (require) {
 					    title: 'Home',
 					    moduleId: 'home/home',
 					    nav: false,
-					    adminLink: false
+					    linktype: ''
 					}, {
 					    route: 'logout',
 					    title: 'Logout',
 					    moduleId: 'logout/logout',
 					    nav: false,
-					    adminLink: false
+					    linktype: ''
 					}, {
 					    route: 'login',
 					    title: 'Login',
 					    moduleId: 'login/login',
 					    nav: false,
-					    adminLink: false
+					    linktype: ''
 					}, {
 					    route: 'home',
 					    title: 'Home',
 					    moduleId: 'home/home',
 					    nav: true,
 					    hash: "#home",
-					    adminLink: false
+					    linktype: 'general'
 					}, {
 					    route: 'classlist',
 					    title: 'Class List',
 					    moduleId: 'selectclass/selectclass',
 					    nav: true,
-					    adminLink: false
-					}, {
+					    linktype: 'general'
+					},{
+					    route: 'armor',
+					    title: 'Armor',
+					    moduleId: 'armor/armor',
+					    nav: true,
+					    hash: '#armor',
+					    linktype: 'equipment'
+					},{
+					    route: 'weapons',
+					    title: 'Weapons',
+					    moduleId: 'weapons/weapons',
+					    nav: true,
+					    hash: '#weapons',
+					    linktype: 'equipment'
+					},{
 					    route: 'skills',
 					    title: 'Skill List',
 					    moduleId: 'skills/skills',
 					    nav: true,
-					    adminLink: false
-					},
-           {
+					    linktype: 'general'
+					},{
 					    route: 'classdetails/:id',
 					    title: 'Class Details',
 					    moduleId: 'classdetails/classdetails',
 					    nav: false,
 					    hash: '#classdetails',
-					    adminLink: false
+					    linktype: ''
 					}]
 
               if (self.isAdmin()) {
@@ -115,7 +128,7 @@ define(function (require) {
                       moduleId: 'adminfeatures/adminfeatures',
                       nav: true,
                       hash: "#adminfeatures",
-                      adminLink: true
+                      linktype: 'admin'
                   });
               }
 

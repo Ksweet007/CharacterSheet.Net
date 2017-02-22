@@ -13,57 +13,93 @@
 				<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
 			</a>
 			<ul class="dropdown-menu">
-				<li><a href="auth/logout"><div class="media-body media-middle">Logout</div></a></li>
+				<li>
+					<a href="auth/logout">
+						<div class="media-body media-middle">Logout</div>
+					</a>
+				</li>
 			</ul>
-		</li><!-- End user info -->
+		</li>
+		<!-- End user info -->
 
-  <!--ko foreach: router.navigationModel-->
-    <!--ko if: !adminLink -->
+		<!--ko foreach: router.navigationModel-->
+		<!--ko if: linktype === 'general' -->
 		<li data-bind="dropdown">
 			<a class="pmd-ripple-effect" data-bind="attr: { href: hash }">
 				<i class="media-left media-middle"></i>
 				<span class="media-body" data-bind="text: title"></span>
 			</a>
 		</li>
-    <!--/ko-->
-  <!--/ko-->
+		<!--/ko-->
+		<!--/ko-->
+
+
+		<li class="dropdown pmd-dropdown pmd-user-info visible-xs visible-md visible-sm visible-lg" data-bind="dropdown">
+			<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media pmd-ripple-effect" data-sidebar="true" aria-expandedhref="javascript:void(0);">
+				<div class="media-left">
+					<img src="themes/images/user-icon.png" alt="New User">
+				</div>
+				<div class="media-body media-middle">Equipment</div>
+				<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
+			</a>
+			<ul class="dropdown-menu">
+				<!--ko foreach: router.navigationModel-->
+				<!--ko if: linktype === 'equipment'-->
+				<li data-bind="dropdown">
+					<a class="pmd-ripple-effect" data-bind="attr: { href: hash }">
+						<i class="media-left media-middle"></i>
+						<span class="media-body" data-bind="text: title"></span>
+					</a>
+				</li>
+				<!--/ko-->
+				<!--/ko-->
+			</ul>
+		</li>
+
 	</ul>
-</aside><!-- End Left sidebar -->
+</aside>
+<!-- End Left sidebar -->
 
 <div id="content" class="pmd-content content-area dashboard" data-bind="router: { transition:'entrance'}, rippleeffect"></div>
 
 <!--ko if: isAdmin() == true -->
-  <aside class="pmd-sidebar sidebar-custom sidebar-default pmd-sidebar-right-fixed pmd-z-depth pmd-sidebar-right" role="navigation" data-bind="rippleeffect">
-      <ul class="nav pmd-sidebar-nav">
-    		<!-- Class Admin -->
-    		<li class="dropdown pmd-dropdown pmd-user-info visible-xs visible-md visible-sm visible-lg" data-bind="dropdown">
-    			<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media pmd-ripple-effect" data-sidebar="true" aria-expandedhref="javascript:void(0);">
-    				<div class="media-body media-middle">Class Admin</div>
-    				<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
-    			</a>
-    			<ul class="dropdown-menu">
-            <!--ko foreach: classList-->
-              <li><a href="#" data-bind="attr:{href: '#manageclass/'+classId}, text:Name" class="pmd-ripple-effect"></a></li>
-            <!--/ko-->
-    			</ul>
-    		</li><!-- End Class Admin -->
+<aside class="pmd-sidebar sidebar-custom sidebar-default pmd-sidebar-right-fixed pmd-z-depth pmd-sidebar-right" role="navigation" data-bind="rippleeffect">
+	<ul class="nav pmd-sidebar-nav">
+		<!-- Class Admin -->
+		<li class="dropdown pmd-dropdown pmd-user-info visible-xs visible-md visible-sm visible-lg" data-bind="dropdown">
+			<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media pmd-ripple-effect" data-sidebar="true" aria-expandedhref="javascript:void(0);">
+				<div class="media-body media-middle">Class Admin</div>
+				<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
+			</a>
+			<ul class="dropdown-menu">
+				<!--ko foreach: classList-->
+				<li>
+					<a href="#" data-bind="attr:{href: '#manageclass/'+classId}, text:Name" class="pmd-ripple-effect"></a>
+				</li>
+				<!--/ko-->
+			</ul>
+		</li>
+		<!-- End Class Admin -->
 
-    		<!-- Global Admin -->
-    		<li class="dropdown pmd-dropdown pmd-user-info visible-xs visible-md visible-sm visible-lg" data-bind="dropdown">
-    			<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media pmd-ripple-effect" data-sidebar="true" aria-expandedhref="javascript:void(0);">
-    				<div class="media-body media-middle">Global Admin</div>
-    				<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
-    			</a>
-    			<ul class="dropdown-menu">
-            <!--ko foreach: router.navigationModel-->
-                <!--ko if: adminLink-->
-          		<li><a class="pmd-ripple-effect" data-bind="attr: { href: hash }, text:title"></a></li>
-                <!--/ko-->
-            <!--/ko-->
-    			</ul>
-    		</li><!-- End Global Admin -->
-      </ul>
-  </aside>
+		<!-- Global Admin -->
+		<li class="dropdown pmd-dropdown pmd-user-info visible-xs visible-md visible-sm visible-lg" data-bind="dropdown">
+			<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media pmd-ripple-effect" data-sidebar="true" aria-expandedhref="javascript:void(0);">
+				<div class="media-body media-middle">Global Admin</div>
+				<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
+			</a>
+			<ul class="dropdown-menu">
+				<!--ko foreach: router.navigationModel-->
+				<!--ko if: linktype == 'admin' -->
+				<li>
+					<a class="pmd-ripple-effect" data-bind="attr: { href: hash }, text:title"></a>
+				</li>
+				<!--/ko-->
+				<!--/ko-->
+			</ul>
+		</li>
+		<!-- End Global Admin -->
+	</ul>
+</aside>
 <!--/ko-->
 
 <!-- Sidebar Ends -->

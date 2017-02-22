@@ -217,6 +217,7 @@
     <Compile Include="Controllers\Api\BaseApiController.cs" />
     <Compile Include="Controllers\Api\ClassController.cs" />
     <Compile Include="Controllers\Api\ClassProficiencyController.cs" />
+    <Compile Include="Controllers\Api\EquipmentController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CharacterSheetController.cs" />

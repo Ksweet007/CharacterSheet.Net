@@ -47,9 +47,11 @@
     <Compile Include="Enums\SkillTypeValues.cs" />
     <Compile Include="Interfaces\ICharacterClassRepository.cs" />
     <Compile Include="Model\AbilityScore.cs" />
+    <Compile Include="Model\Armor.cs" />
     <Compile Include="Model\Class.cs" />
     <Compile Include="Model\ClassSkill.cs" />
     <Compile Include="Model\DTO\ClassSkillViewModel.cs" />
+    <Compile Include="Model\DTO\ArmorDTO.cs" />
     <Compile Include="Model\DTO\NewClassDTO.cs" />
     <Compile Include="Model\ClassProficiencyAssoc.cs" />
     <Compile Include="Model\DTO\ClassProficiencyViewModel.cs" />

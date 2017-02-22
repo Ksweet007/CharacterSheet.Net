@@ -12,7 +12,6 @@ define(function(require) {
 
 		/*====================Ability Setup====================*/
 		self.abilities = _i.ko.observableArray(['Strength',	'Dexterity','Constitution',	'Wisdom','Intelligence','Charisma']);
-		// //self.selectedAbilities = _i.ko.observableArray(self.abilities); This is another way to do Checkbox check state using a simple array with the observableArray
 
 		/*====================SKILL SETUP====================*/
 		self.skills = _i.ko.observableArray([]);

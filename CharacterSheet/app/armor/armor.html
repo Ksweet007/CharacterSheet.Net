@@ -1,0 +1,101 @@
+<nav-header params="{isDirty: isDirty, save: save}"></nav-header>
+<div class="container-fluid full-width-container">
+    <h2 class="section-title pmd-display2" id="services"><span>Armor</span></h2>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="pmd-card pmd-card-inverse pmd-z-depth-5">
+                <div class="pmd-card-body">
+                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+                        <input type='checkbox' name="type" value='light armor' checked="checked" data-bind='checked: armorType'/>
+                    	<span> Light</span>
+                    </label>
+                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+                        <input type='checkbox' name="type" value='medium armor' checked="checked" data-bind='checked: armorType'/>
+                        <span> Medium</span>
+                    </label>
+
+                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+                        <input type='checkbox' name="type" value='heavy armor' checked="checked" data-bind='checked: armorType'/>
+                        <span> Heavy</span>
+                    </label>
+
+                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+                        <input type='checkbox' name="type" value='shield' checked="checked" data-bind='checked: armorType'/>
+                        <span> Shield</span>
+                    </label>
+					<button class="btn pmd-ripple-effect btn-primary btn-inline" data-bind='click: createNewFeature'>Add New</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="row">
+            <!--ko foreach:armorsToShow-->
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <div class="pmd-card pmd-card-inverse pmd-z-depth-5">
+                    <div class="pmd-card-title">
+                        <h1 class="pmd-display1" data-bind="text:Name"></h1>
+                    </div>
+                    <div class="pmd-card-body">
+                        <p data-bind="text:ArmorClass"></p>
+                    </div>
+                </div>
+            </div>
+            <!--/ko-->
+        </div>
+
+        <div class="row" data-bind="visible: isAddingNew() ">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-6">
+            	<div class="pmd-card pmd-card-inverse pmd-z-depth-5 pmd-card-custom-form" data-bind="with : newArmor">
+            		<div class="pmd-card-body">
+
+            			<div class="form-group pmd-textfield pmd-textfield">
+            				<label for="name" class="control-label">Name</label>
+            				<input type="text" id="name" data-bind='value: Name, valueUpdate: "afterkeydown"' class="form-control">
+            			</div>
+
+            			<div class="form-group pmd-textfield pmd-textfield">
+                            <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+		                        <input type='checkbox' name="type" value='1' checked="checked" data-bind='checked: armorType'/>
+		                    	<span> Light</span>
+		                    </label>
+		                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+		                        <input type='checkbox' name="type" value='2' checked="checked" data-bind='checked: armorType'/>
+		                        <span> Medium</span>
+		                    </label>
+
+		                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+		                        <input type='checkbox' name="type" value='3' checked="checked" data-bind='checked: armorType'/>
+		                        <span> Heavy</span>
+		                    </label>
+
+		                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+		                        <input type='checkbox' name="type" value='4' checked="checked" data-bind='checked: armorType'/>
+		                        <span> Shield</span>
+		                    </label>
+            			</div>
+
+            			<div class="form-group pmd-textfield pmd-textfield">
+            				<label class="control-label">Description</label>
+                      <div id="desc" class="pmd-card-body" data-bind="contentEditable : true, htmlEditable: Description"></div>
+            			</div>
+
+            			<div class="form-group pmd-textfield pmd-textfield">
+            				<label for="recType" class="control-label">Recovery Type</label>
+            				<input type="text" id="recType" data-bind='value: RecoveryType, valueUpdate: "afterkeydown"' class="form-control">
+            			</div>
+
+                  <div class="pmd-card-actions">
+                    <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.save'>Save</button>
+                    <button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.cancelNew'>Cancel</button>
+                  </div>
+
+            		</div>
+            	</div>
+            </div>
+        </div>
+
+    </div>
+</div>
