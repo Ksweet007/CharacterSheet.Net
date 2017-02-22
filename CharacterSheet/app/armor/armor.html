@@ -15,20 +15,6 @@
 			                    	<span data-bind="text:Name"> </span>
 			                    </label>
 								<!--/ko-->
-			                    <!-- <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
-			                        <input type='checkbox' name="type" value='medium armor' checked="checked" data-bind='checked: armorType'/>
-			                        <span> Medium</span>
-			                    </label>
-
-			                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
-			                        <input type='checkbox' name="type" value='heavy armor' checked="checked" data-bind='checked: armorType'/>
-			                        <span> Heavy</span>
-			                    </label>
-
-			                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
-			                        <input type='checkbox' name="type" value='shield' checked="checked" data-bind='checked: armorType'/>
-			                        <span> Shield</span>
-			                    </label> -->
 							</div>
 							<div class="col-sm-3">
 								<button class="btn pmd-ripple-effect btn-primary btn-inline" data-bind='click: openCreateForm'>Add New</button>
@@ -61,10 +47,10 @@
             		<div class="pmd-card-body">
 
             			<div class="form-group pmd-textfield pmd-textfield">
-							<!--ko foreach:armorTypes-->
+							<!--ko foreach: $parent.armorTypes()-->
                             <label class="radio-inline pmd-radio pmd-radio-ripple-effect">
-		                        <input type='radio' name="inlineRadioOptions" value='1' data-bind='checked: ArmorProficiencyId'/><span class="pmd-radio-label">&nbsp;</span>
-		                    	<span> Light</span>
+		                        <input type='radio' name="inlineRadioOptions" data-bind='checked: $parent.ProficiencyId, value: Id'/><span class="pmd-radio-label">&nbsp;</span>
+		                    	<span data-bind="text:Name"> </span>
 		                    </label>
 							<!--/ko-->
 		                    <!-- <label class="radio-inline pmd-radio pmd-radio-ripple-effect">

@@ -98,7 +98,7 @@ define(function(require) {
 			self.isAddingNew(true);
 			self.newArmor({
                 ArmorId: 0,
-				ArmorProficiencyId: _i.ko.observable(0),	//This associates it to a specific Prof Type I.E Light Armor
+				ProficiencyId: _i.ko.observable(0),	//This associates it to a specific Prof Type I.E Light Armor
 				ProficiencyName: _i.ko.observable(''),	//Tied To ArmorProficiencyId as it's descriptor
                 ArmorClass: _i.ko.observable(''),
 				Cost: _i.ko.observable(''),
@@ -119,7 +119,7 @@ define(function(require) {
 		self.saveNewArmor = function (armorToAdd) {
 			var dataToSave = {
 				ArmorId: 0,
-				ArmorProficiencyId: armorToAdd.ArmorProficiencyId(),
+				ProficiencyId: armorToAdd.ProficiencyId(),
 				ArmorClass: armorToAdd.ArmorClass(),
 				Cost: armorToAdd.Cost(),
 				Name: armorToAdd.Name(),
@@ -145,7 +145,7 @@ define(function(require) {
 
             var dataToSave = {
                 ArmorId: self.selectedArmor().ArmorId(),
-				ArmorProficiencyId: self.selectedArmor().ArmorProficiencyId(),
+				ProficiencyId: self.selectedArmor().ProficiencyId(),
                 ArmorClass: self.selectedArmor().ArmorClass(),
 				Cost: self.selectedArmor().Cost(),
 				Name: self.selectedArmor().Name(),
