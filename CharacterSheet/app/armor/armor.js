@@ -82,7 +82,20 @@ define(function(require) {
 
         /*==================== SAVE/EDIT/DELETE ====================*/
 		self.saveNewArmor = function (armorToAdd) {
-            return _i.charajax.post('api/AddArmor', armorToAdd).then(function (response) {
+			var dataToSave = {
+				ArmorId: 0,
+				ArmorProficiencyId: armorToAdd.ArmorProficiencyId(),
+				ArmorClass: armorToAdd.ArmorClass(),
+				Cost: armorToAdd.Cost(),
+				Name: armorToAdd.Name(),
+				ProficiencyName: armorToAdd.ProficiencyName(),
+				ProficiencyTypeId: 1,
+				Stealth: armorToAdd.Stealth(),
+				Strength: armorToAdd.Strength(),
+				Weight: armorToAdd.Weight()
+			};
+
+            return _i.charajax.post('api/AddArmor', dataToSave).then(function (response) {
                 self.armors.push(response);
                 self.resetToBaseList("success", "New Armor Added");
             });
@@ -114,10 +127,6 @@ define(function(require) {
             });
 
         };
-
-
-
-
 
 	}
 });

@@ -263,6 +263,8 @@
     <Content Include="app\admin\proficiency\proficiency.js" />
     <Content Include="app\admin\skills\skills.html" />
     <Content Include="app\admin\skills\skills.js" />
+    <Content Include="app\armor\armor.html" />
+    <Content Include="app\armor\armor.js" />
     <Content Include="app\classdetails\classdetails.html" />
     <Content Include="app\classdetails\classdetails.js" />
     <Content Include="app\domainmanipulations\LockScroll.js" />
@@ -380,10 +382,11 @@
     <Content Include="app\_custom\koFunctions\changeTracker.js" />
     <Content Include="app\_custom\koFunctions\objectBuilder.js" />
     <Content Include="app\_custom\services\alert.js" />
-    <Content Include="app\_custom\services\databaseutils.js" />
+    <Content Include="app\_custom\services\event.js" />
     <Content Include="app\_custom\services\indexeddb.js" />
     <Content Include="app\_custom\services\listmanager.js" />
     <Content Include="app\_custom\services\propeller.js" />
+    <Content Include="app\_custom\services\saveblockui.js" />
     <Content Include="app\_custom\services\search.js" />
     <Content Include="app\_custom\services\utils.js" />
     <Content Include="app\_custom\services\WebAPI.js" />
@@ -599,6 +602,7 @@
     <Content Include="lib\propeller\js\propeller.js" />
     <Content Include="lib\propeller\propeller.min.js" />
     <Content Include="lib\require\almond-custom.js" />
+    <Content Include="lib\require\domReady.js" />
     <Content Include="lib\require\r.js" />
     <Content Include="lib\require\require.js" />
     <Content Include="lib\require\text.js" />

@@ -1,5 +1,5 @@
 ﻿using System.Web.Http;
-using CharacterSheet.Core.Model;
+using CharacterSheet.Core.Model.DTO;
 using CharacterSheet.Infrastructure.Data;
 using CharacterSheet.Infrastructure.Data.Services;
 
@@ -27,9 +27,9 @@ namespace CharacterSheet.Controllers.Api
 
         [HttpPost]
         [Route("api/AddArmor/")]
-        public IHttpActionResult AddNewFeature([FromBody] Armor armorToAdd)
+        public IHttpActionResult AddNewFeature([FromBody] ArmorDTO armorToAdd)
         {
-            _equipmentRepository.AddArmor(armorToAdd);
+            _equipmentService.AddNewArmor(armorToAdd);
 
             return Ok(armorToAdd);
         }

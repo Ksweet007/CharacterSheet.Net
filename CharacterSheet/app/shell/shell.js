@@ -13,18 +13,7 @@ define(function (require) {
         var self = this;
         self.isAdmin = ko.observable(false);
         self.classList = ko.observableArray([]);
-
-        self.lastSavedTime = _i.ko.observable('');
-        self.sessionHasSaved = _i.ko.computed(function(){
-          return self.lastSavedTime() !== '';
-        });
-        self.isSaving = _i.ko.observable(false);
-
-        _i.app.on('view:saved').then(function () {
-            var lastSaved = _i.moment().format('LTS');
-            self.lastSavedTime(lastSaved);
-        });
-
+    
         self.getAdmin = function () {
             return _i.charajax.universal('api/IsAdmin', '', 'GET').done(function (response) {
                 if (response) {

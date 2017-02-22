@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CharacterSheet.Core.Model;
 using CharacterSheet.Core.Model.DTO;
 
@@ -35,6 +33,25 @@ namespace CharacterSheet.Infrastructure.Data.Services
                 Weight = item.Weight
 
             }).ToList();
+        }
+
+        public void AddNewArmor(ArmorDTO armorDto)
+        {
+             var armorToSave = new Armor()
+            {
+                ArmorId = armorDto.ArmorId,
+                ArmorProficiencyId = armorDto.ArmorProficiencyId,
+                ArmorClass = armorDto.ArmorClass,
+                Cost = armorDto.Cost,
+                Name = armorDto.Name,
+                Stealth = armorDto.Stealth,
+                Strength = armorDto.Strength,
+                Weight = armorDto.Weight
+
+            };
+
+            _equipmentRepository.AddArmor(armorToSave);
+            armorDto.ArmorId = armorToSave.ArmorId;
         }
     }
 }
