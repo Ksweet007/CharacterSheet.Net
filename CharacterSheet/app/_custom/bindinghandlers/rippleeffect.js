@@ -80,7 +80,7 @@ define(function (require) {
                 // set .ink diametr
                 if (!ink.height() && !ink.width()) {
                     var d = Math.max(rippler.outerWidth(), rippler.outerHeight());
-                    ink.css({ height: 15, width: 15 });
+                    ink.css({ height: d, width: d });
                 }
                 // get click coordinates
                 var x = e.pageX - rippler.offset().left - ink.width() / 2;

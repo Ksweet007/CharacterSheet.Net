@@ -12,6 +12,9 @@ define(function (require) {
     return function () {
         var self = this;
         self.currentState = _i.ko.observable('view');
+		self.isAddingNew = _i.ko.observable(false);
+		self.isEditing = _i.ko.observable(false);
+		self.showAll = _i.ko.observable(true);
 
         /*====================FEATURE SETUP====================*/
         self.features = _i.ko.observableArray([]);

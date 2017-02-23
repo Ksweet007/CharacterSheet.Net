@@ -1,9 +1,46 @@
 <nav-header params="{isDirty: isDirty, save: save}"></nav-header>
 <div class="container-fluid full-width-container">
-    <h2 class="section-title pmd-display2" id="services"><span>Armor</span></h2>
+	<div class="row" data-bind="visible: showAll()">
+		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+			<div class="pmd-card pmd-card-inverse pageTitle">
+				<div class="pmd-card-title">
+					<div class= "row">
+						<div class="media-left">
+							<h2 class="pmd-display2 typo-fill-secondary"><span>Armor</span></h2>
+						</div>
+					</div>
+					<div class="row">
+						<div class="media-left">
+							<span class="pmd-card-subtitle-text">Add New</span>
+						</div>
+						<div class="media-right">
+							<button class="material-icons md-light pmd-xs btncard btnadd pmd-ripple-effect" data-bind='click: openCreateForm, enable: showAll()'>
+								add
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="pmd-card-title">
+					<div class="row">
+						<div class="media-left">
+							<span class="pmd-card-subtitle-text">Sort:</span>
+						</div>
+						<div class="media-right">
+							<!--ko foreach:armorTypes()-->
+							<label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+								<input type='checkbox' name="type" data-bind='checked: $parent.selectedArmorType, value:Name'/>
+								<span data-bind="text:Name"> </span>
+							</label>
+							<!--/ko-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
     <div class="section">
-	    <div class="row">
+	    <div class="row" data-bind="visible: false">
 			<div class="col-md-6">
 	            <div class="pmd-card pmd-card-inverse pmd-z-depth-5">
 	                <div class="pmd-card-body">
@@ -11,13 +48,13 @@
 							<div class="col-xs-6 col-sm-6 col-md-8">
 								<!--ko foreach:armorTypes()-->
 			                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
-			                        <input type='checkbox' name="type" checked="checked" data-bind='checked: $parent.armorType, value:Name'/>
+			                        <input type='checkbox' name="type" data-bind='checked: $parent.selectedArmorType, value:Name'/>
 			                    	<span data-bind="text:Name"> </span>
 			                    </label>
 								<!--/ko-->
 							</div>
 							<div class="col-sm-3">
-								<button class="btn pmd-ripple-effect btn-primary btn-inline" data-bind='click: openCreateForm'>Add New</button>
+								<button class="btn pmd-ripple-effect btn-primary btn-inline" data-bind='click: openCreateForm, enable: showAll()'>Add New</button>
 							</div>
 						</div>
 
@@ -26,15 +63,43 @@
 			</div>
 	    </div>
 
-        <div class="row" data-bind="visible: !isAddingNew() ">
+        <div class="row" data-bind="visible: showAll() ">
             <!--ko foreach:armorsToShow-->
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
                 <div class="pmd-card pmd-card-inverse pmd-z-depth-5">
                     <div class="pmd-card-title">
-                        <h1 class="pmd-display1" data-bind="text:Name"></h1>
+						<div class="media-body media-middle">
+                        	<h1 class="pmd-display1 pmd-card-title-text typo-fill-secondary" data-bind="text:Name"></h1>
+							<span class="pmd-card-subtitle-text" data-bind="text:ProficiencyName"></span>
+						</div>
+						<div class="media-right">
+							<button class="material-icons md-light pmd-xs btncard btnedit pmd-ripple-effect btn-danger" data-bind="click:$parent.selectArmorToEdit">
+								edit
+							</button>
+							<button class="material-icons md-light pmd-xs btncard btndelete pmd-ripple-effect btn-danger" data-bind="click:$parent.deleteArmor">
+								delete
+							</button>
+						</div>
                     </div>
                     <div class="pmd-card-body">
+						<span class="pmd-card-subtitle-text">Armor Class</span>
                         <p data-bind="text:ArmorClass"></p>
+						<span class="pmd-card-subtitle-text">Cost</span>
+                        <p data-bind="text:Cost"></p>
+						<span class="pmd-card-subtitle-text">Weight</span>
+						<p data-bind="text:Weight"></p>
+						<div class="row">
+							<div class="col-xs-6">
+								<span class="pmd-card-subtitle-text">Strength</span>
+								<p data-bind="text:Strength"></p>
+							</div>
+							<div class="col-xs-6" data-bind="enable:false">
+								<label class="pmd-checkbox pmd-checkbox-ripple-effect" data-bind="enable: false">
+									<input type="checkbox" data-bind='checked: Stealth, enable:false'>
+									<span> Stealth</span>
+								</label>
+							</div>
+						</div>
                     </div>
                 </div>
             </div>
@@ -49,24 +114,10 @@
             			<div class="form-group pmd-textfield pmd-textfield">
 							<!--ko foreach: $parent.armorTypes()-->
                             <label class="radio-inline pmd-radio pmd-radio-ripple-effect">
-		                        <input type='radio' name="inlineRadioOptions" data-bind='checked: $parent.ProficiencyId, value: Id'/><span class="pmd-radio-label">&nbsp;</span>
+		                        <input type='radio' name="inlineRadioOptions" data-bind="checked: $parent.ProficiencyId, value: Id"/><span class="pmd-radio-label">&nbsp;</span>
 		                    	<span data-bind="text:Name"> </span>
 		                    </label>
 							<!--/ko-->
-		                    <!-- <label class="radio-inline pmd-radio pmd-radio-ripple-effect">
-		                        <input type='radio' name="inlineRadioOptions" value='2' data-bind='checked: ArmorProficiencyId'/><span class="pmd-radio-label">&nbsp;</span>
-		                        <span> Medium</span>
-		                    </label>
-
-		                    <label class="radio-inline pmd-radio pmd-radio-ripple-effect">
-		                        <input type='radio' name="inlineRadioOptions" value='3' data-bind='checked: ArmorProficiencyId'/><span class="pmd-radio-label">&nbsp;</span>
-		                        <span> Heavy</span>
-		                    </label>
-
-		                    <label class="radio-inline pmd-radio pmd-radio-ripple-effect">
-		                        <input type='radio' name="inlineRadioOptions" value='19' data-bind='checked: ArmorProficiencyId'/><span class="pmd-radio-label">&nbsp;</span>
-		                        <span> Shield</span>
-		                    </label> -->
             			</div>
 
             			<div class="form-group pmd-textfield pmd-textfield">
@@ -85,22 +136,26 @@
             			</div>
 
             			<div class="form-group pmd-textfield pmd-textfield">
+            				<label class="control-label">Weight</label>
+                      		<input type="text" id="recType" data-bind='value: Weight, valueUpdate: "afterkeydown"' class="form-control">
+            			</div>
+
+            			<div class="form-group pmd-textfield pmd-textfield">
             				<label class="control-label">Strength</label>
                       		<input type="text" id="recType" data-bind='value: Strength, valueUpdate: "afterkeydown"' class="form-control">
             			</div>
 
             			<div class="form-group pmd-textfield pmd-textfield">
-            				<label class="control-label">Stealth</label>
-                      		<input type="text" id="recType" data-bind='value: Stealth, valueUpdate: "afterkeydown"' class="form-control">
-            			</div>
-
-            			<div class="form-group pmd-textfield pmd-textfield">
-            				<label class="control-label">Weight</label>
-                      		<input type="text" id="recType" data-bind='value: Weight, valueUpdate: "afterkeydown"' class="form-control">
+							<div class="checkbox">
+								<label class="pmd-checkbox pmd-checkbox-ripple-effect">
+									<input type="checkbox" data-bind='checked: Stealth '>
+									<span class="pmd-checkbox-label">Stealth</span>
+								</label>
+							</div>
             			</div>
 
 						<div class="pmd-card-actions">
-							<button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.saveNewArmor'>Save</button>
+							<button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.save'>Save</button>
 							<button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.cancelNew'>Cancel</button>
 						</div>
 
@@ -108,6 +163,65 @@
             	</div>
             </div>
         </div>
+
+        <div class="row" data-bind="visible: $data.isEditing() ">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-6">
+            	<div class="pmd-card pmd-card-inverse pmd-z-depth-5 pmd-card-custom-form" data-bind="with : selectedArmor">
+            		<div class="pmd-card-body">
+
+            			<div class="form-group pmd-textfield pmd-textfield">
+							<!--ko foreach: $parent.armorTypes()-->
+                            <label class="radio-inline pmd-radio pmd-radio-ripple-effect">
+		                        <input type='radio' name="inlineRadioOptions" data-bind='checked: $parent.ProficiencyId, value: Id'/><span class="pmd-radio-label">&nbsp;</span>
+		                    	<span data-bind="text:Name"> </span>
+		                    </label>
+							<!--/ko-->
+            			</div>
+
+            			<div class="form-group pmd-textfield pmd-textfield">
+            				<label for="name" class="control-label">Name</label>
+            				<input type="text" id="name" data-bind='value: Name, valueUpdate: "afterkeydown"' class="form-control">
+            			</div>
+
+            			<div class="form-group pmd-textfield pmd-textfield">
+            				<label for="recType" class="control-label">Cost</label>
+            				<input type="text" id="recType" data-bind='value: Cost, valueUpdate: "afterkeydown"' class="form-control">
+            			</div>
+
+            			<div class="form-group pmd-textfield pmd-textfield">
+            				<label for="recType" class="control-label">Armor Class</label>
+            				<input type="text" id="recType" data-bind='value: ArmorClass, valueUpdate: "afterkeydown"' class="form-control">
+            			</div>
+
+            			<div class="form-group pmd-textfield pmd-textfield">
+            				<label class="control-label">Weight</label>
+                      		<input type="text" id="recType" data-bind='value: Weight, valueUpdate: "afterkeydown"' class="form-control">
+            			</div>
+
+            			<div class="form-group pmd-textfield pmd-textfield">
+            				<label class="control-label">Strength</label>
+                      		<input type="text" id="recType" data-bind='value: Strength, valueUpdate: "afterkeydown"' class="form-control">
+            			</div>
+
+            			<div class="form-group pmd-textfield pmd-textfield">
+							<div class="checkbox">
+								<label class="pmd-checkbox pmd-checkbox-ripple-effect">
+									<input type="checkbox" data-bind='checked: Stealth '>
+									<span class="pmd-checkbox-label">Stealth</span>
+								</label>
+							</div>
+            			</div>
+
+						<div class="pmd-card-actions">
+							<button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.save'>Save</button>
+							<button class="btn pmd-ripple-effect btn-primary" data-bind='click: $parent.cancelNew'>Cancel</button>
+						</div>
+
+            		</div>
+            	</div>
+            </div>
+        </div>
+
 
     </div>
 </div>
