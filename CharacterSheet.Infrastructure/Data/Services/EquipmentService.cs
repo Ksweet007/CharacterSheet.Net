@@ -52,5 +52,20 @@ namespace CharacterSheet.Infrastructure.Data.Services
             };
         }
 
+        public void EditArmor(Armor armorToEdit)
+        {
+            var fromDb = _equipmentRepository.GetArmorById(armorToEdit.Id);
+            fromDb.ProficiencyId = armorToEdit.ProficiencyId;
+            fromDb.Name = armorToEdit.Name;
+            fromDb.Cost = armorToEdit.Cost;
+            fromDb.ArmorClass = armorToEdit.ArmorClass;
+            fromDb.Strength = armorToEdit.Strength;
+            fromDb.Stealth = armorToEdit.Stealth;
+            fromDb.Weight = armorToEdit.Weight;
+            
+            _equipmentRepository.Save();
+
+        }
+
     }
 }

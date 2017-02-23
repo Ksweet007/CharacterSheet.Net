@@ -15,6 +15,8 @@ define(function(require) {
 		self.selectedArmorType = _i.ko.observableArray([]);
 		self.armorTypes = _i.ko.observableArray([]);
 		self.isAddingNew = _i.ko.observable(false);
+		self.isEditing = _i.ko.observable(false);
+		self.showAll = _i.ko.observable(true);
 
 		/*====================ARMOR SETUP====================*/
 		self.armors = _i.ko.observableArray([]);
@@ -96,20 +98,33 @@ define(function(require) {
 	    self.resetToBaseList = function (alertType, textToShow, pageState) {
 	        var alertConfig = { type: alertType, message: textToShow };
 	        _i.alert.showAlert(alertConfig);
-	        self.isAddingNew(false);
+			self.isAddingNew(false);
+			self.isEditing(false);
+			self.showAll(true);
 	    };
 
 		/*==================== PAGE FUNCTIONS ====================*/
+		self.selectArmorToEdit = function(obj){
+			self.selectedArmor(obj);
+
+			self.isAddingNew(false);
+			self.isEditing(true);
+			self.showAll(false);
+		};
+
 		self.openCreateForm = function (obj){
 			self.isAddingNew(true);
+			self.isEditing(false);
+			self.showAll(false);
+
 			self.newArmor({
-                ArmorId: _i.ko.observable(0),
+                Id: _i.ko.observable(0),
 				ProficiencyId: _i.ko.observable(0),	//This associates it to a specific Prof Type I.E Light Armor
 				ProficiencyName: _i.ko.observable(''),	//Tied To ArmorProficiencyId as it's descriptor
                 ArmorClass: _i.ko.observable(''),
 				Cost: _i.ko.observable(''),
 				Name: _i.ko.observable(''),
-				ProficiencyTypeId: _i.ko.observable(1), //What is the parent Proficiency. For this page it's Armor so ID 1
+				ProficiencyId: _i.ko.observable(1), //What is the parent Proficiency. For this page it's Armor so ID 1
 				Stealth: _i.ko.observable(false),
 				Strength: _i.ko.observable(''),
                 Weight: _i.ko.observable('')
@@ -118,30 +133,12 @@ define(function(require) {
 		};
 
         self.cancelNew = function () {
-            self.isAddingNew(false);
+			self.isAddingNew(false);
+			self.isEditing(false);
+			self.showAll(true);
         };
 
         /*==================== SAVE/EDIT/DELETE ====================*/
-		self.saveNewArmor = function (armorToAdd) {
-			var dataToSave = {
-				ArmorId: 0,
-				ProficiencyId: armorToAdd.ProficiencyId(),
-				ArmorClass: armorToAdd.ArmorClass(),
-				Cost: armorToAdd.Cost(),
-				Name: armorToAdd.Name(),
-				ProficiencyName: armorToAdd.ProficiencyName(),
-				ProficiencyTypeId: 1,
-				Stealth: armorToAdd.Stealth(),
-				Strength: armorToAdd.Strength(),
-				Weight: armorToAdd.Weight()
-			};
-
-            return _i.charajax.post('api/AddArmor', dataToSave).then(function (response) {
-                self.armors.push(response);
-                self.resetToBaseList("success", "New Armor Added");
-            });
-        };
-
 		self.deleteArmor = function(obj){
 			_i.charajax.delete('api/DeleteArmor/' + obj.Id(),'').done(function(response){
 				self.armors.remove(obj);
@@ -149,17 +146,17 @@ define(function(require) {
 		};
 
         self.save = function (armorToSave) {
-			var isEditState = self.isDirty() && !self.isAddingNew();
+			var isEditState = self.isDirty() && self.isEditing();
 			var isNewState = self.isAddingNew();
 
             var dataToSave = {
-                ArmorId: armorToSave.ArmorId(),
+                Id: armorToSave.Id(),
 				ProficiencyId: armorToSave.ProficiencyId(),
                 ArmorClass: armorToSave.ArmorClass(),
 				Cost: armorToSave.Cost(),
 				Name: armorToSave.Name(),
 				ProficiencyName: armorToSave.ProficiencyName(),
-				ProficiencyTypeId: armorToSave.ProficiencyTypeId(),
+				ProficiencyId: armorToSave.ProficiencyId(),
 				Stealth: armorToSave.Stealth(),
 				Strength: armorToSave.Strength(),
                 Weight: armorToSave.Weight()
@@ -171,7 +168,6 @@ define(function(require) {
 					mapped.dirtyFlag = new _i.ko.dirtyFlag(mapped);
 
 	                self.armors.push(mapped);
-					self.isAddingNew(false);
 	                self.resetToBaseList("success", "New Armor Added");
 	            });
 			}
@@ -179,7 +175,6 @@ define(function(require) {
 			if(isEditState){
 	            return _i.charajax.put('api/EditArmor/', dataToSave).done(function (response) {
 	                self.selectedArmor().dirtyFlag.reset();
-	                self.isEditing(false);
 					self.resetToBaseList("success", "Armor Edit Saved");
 	            });
 			}

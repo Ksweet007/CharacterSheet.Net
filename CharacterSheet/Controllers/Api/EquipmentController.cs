@@ -45,6 +45,15 @@ namespace CharacterSheet.Controllers.Api
             return Ok(returnArmor);
         }
 
+        [HttpPut]
+        [Route("api/EditArmor/")]
+        public IHttpActionResult EditArmor([FromBody] Armor armorToEdit)
+        {
+            _equipmentService.EditArmor(armorToEdit);
+
+            return Ok(armorToEdit);
+        }
+
         [HttpDelete]
         [Route("api/DeleteArmor/{armorId}")]
         public IHttpActionResult DeleteArmorById(int armorId)
