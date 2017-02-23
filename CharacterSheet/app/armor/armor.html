@@ -1,7 +1,7 @@
 <nav-header params="{isDirty: isDirty, save: save}"></nav-header>
 <div class="container-fluid full-width-container">
-	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+	<div class="row" data-bind="visible: showAll()">
+		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 			<div class="pmd-card pmd-card-inverse pageTitle">
 				<div class="pmd-card-title">
 					<div class= "row">
@@ -14,9 +14,24 @@
 							<span class="pmd-card-subtitle-text">Add New</span>
 						</div>
 						<div class="media-right">
-							<button class="material-icons md-light pmd-xs btncard btnadd pmd-ripple-effect" data-bind='click: createNewFeature'>
+							<button class="material-icons md-light pmd-xs btncard btnadd pmd-ripple-effect" data-bind='click: openCreateForm, enable: showAll()'>
 								add
 							</button>
+						</div>
+					</div>
+				</div>
+				<div class="pmd-card-title">
+					<div class="row">
+						<div class="media-left">
+							<span class="pmd-card-subtitle-text">Sort:</span>
+						</div>
+						<div class="media-right">
+							<!--ko foreach:armorTypes()-->
+							<label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+								<input type='checkbox' name="type" data-bind='checked: $parent.selectedArmorType, value:Name'/>
+								<span data-bind="text:Name"> </span>
+							</label>
+							<!--/ko-->
 						</div>
 					</div>
 				</div>
@@ -24,9 +39,8 @@
 		</div>
 	</div>
 
-
     <div class="section">
-	    <div class="row" data-bind="visible: showAll()">
+	    <div class="row" data-bind="visible: false">
 			<div class="col-md-6">
 	            <div class="pmd-card pmd-card-inverse pmd-z-depth-5">
 	                <div class="pmd-card-body">
