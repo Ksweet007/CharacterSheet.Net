@@ -66,6 +66,5 @@ namespace CharacterSheet.Infrastructure.Data.Services
             _equipmentRepository.Save();
 
         }
-
     }
 }

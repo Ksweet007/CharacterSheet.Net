@@ -67,8 +67,9 @@ h1 strong, h2 strong, h3 strong, h4 strong, h5 strong{font-weight:700;}
 /*==================== SIDEBAR ====================*/
 .pmd-sidebar, .pmd-sidebar-right-fixed  {background-color: #2c3544 !important; border-color: rgba(16, 16, 16, 0.34) !important}
 .login-card   {background-color: #333 !important;}
-.btn-primary  {background-color: #E23C3C !important; opacity: .8;}
-
+.btn-primary  {background-color: #E23C3C; opacity: .8;}
+.btn-primary:hover  {background-color: #d20b0b; opacity: .8;}
+.btn-primary:disabled {background-color: #cc6767; opacity: .5; }
 
 /*==================== CARDS ====================*/
 .modal-content { background-color: rgba(33, 33, 33, 0.46); }

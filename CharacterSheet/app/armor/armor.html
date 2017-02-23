@@ -3,7 +3,7 @@
     <h2 class="section-title pmd-display2" id="services"><span>Armor</span></h2>
 
     <div class="section">
-	    <div class="row">
+	    <div class="row" data-bind="visible: showAll()">
 			<div class="col-md-6">
 	            <div class="pmd-card pmd-card-inverse pmd-z-depth-5">
 	                <div class="pmd-card-body">
@@ -17,7 +17,7 @@
 								<!--/ko-->
 							</div>
 							<div class="col-sm-3">
-								<button class="btn pmd-ripple-effect btn-primary btn-inline" data-bind='click: openCreateForm'>Add New</button>
+								<button class="btn pmd-ripple-effect btn-primary btn-inline" data-bind='click: openCreateForm, enable: showAll()'>Add New</button>
 							</div>
 						</div>
 
@@ -71,13 +71,13 @@
 
         <div class="row" data-bind="visible: $data.isAddingNew() ">
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-6">
-            	<div class="pmd-card pmd-card-inverse pmd-z-depth-5 pmd-card-custom-form" data-bind="with : armorNew">
+            	<div class="pmd-card pmd-card-inverse pmd-z-depth-5 pmd-card-custom-form" data-bind="with : newArmor">
             		<div class="pmd-card-body">
 
             			<div class="form-group pmd-textfield pmd-textfield">
 							<!--ko foreach: $parent.armorTypes()-->
                             <label class="radio-inline pmd-radio pmd-radio-ripple-effect">
-		                        <input type='radio' name="inlineRadioOptions" data-bind='checked: $parent.ProficiencyId, value: Id'/><span class="pmd-radio-label">&nbsp;</span>
+		                        <input type='radio' name="inlineRadioOptions" data-bind="checked: $parent.ProficiencyId, value: Id"/><span class="pmd-radio-label">&nbsp;</span>
 		                    	<span data-bind="text:Name"> </span>
 		                    </label>
 							<!--/ko-->

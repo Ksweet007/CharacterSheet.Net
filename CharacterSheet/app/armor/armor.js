@@ -22,11 +22,12 @@ define(function(require) {
 		self.armors = _i.ko.observableArray([]);
         self.newArmor = _i.ko.observable();
         self.selectedArmor = _i.ko.observable();
+
 		self.armorsToShow = _i.ko.computed(function() {
 			var returnList = self.armors().filter(function(armor) {
 			  return self.selectedArmorType().includes(armor.ProficiencyName());
 			});
-			return returnList.sort(function (left, right) { return left.Name() == right.Name() ? 0 : (left.Name() < right.Name() ? -1 : 1) })
+			return returnList.sort(function (left, right) { return left.ProficiencyName() == right.ProficiencyName() ? 0 : (left.ArmorClass() < right.ArmorClass() ? -1 : 1) });
 		});
 
         /*====================CHANGE TRACKER SETUP====================*/
