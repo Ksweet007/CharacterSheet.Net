@@ -76,6 +76,7 @@ h1 strong, h2 strong, h3 strong, h4 strong, h5 strong{font-weight:700;}
 .pmd-card-body, .pmd-card-body label,.form-control,.modal-body,
 .pmd-textfield-floating-label label,.login-register,.material-icons.md-dark {color:#c1b4b4 !important;}
 .section-inner.pmd-card { color: #c1b4b4;}
+.pageTitle{ background: transparent;}
 
 /*==================== BORDERS ====================*/
 .item-details { border-right:1px solid #dfe3e7; }
