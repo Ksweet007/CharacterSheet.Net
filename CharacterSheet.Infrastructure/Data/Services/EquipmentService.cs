@@ -2,6 +2,7 @@
 using System.Linq;
 using CharacterSheet.Core.Model;
 using CharacterSheet.Core.Model.DTO;
+using CharacterSheet.Infrastructure.Mappers;
 
 namespace CharacterSheet.Infrastructure.Data.Services
 {
@@ -9,11 +10,13 @@ namespace CharacterSheet.Infrastructure.Data.Services
     {
         private readonly EquipmentRepository _equipmentRepository;
         private readonly ProficiencyRepository _proficiencyRepository;
+        private readonly WeaponRepository _weaponRepository;
 
         public EquipmentService()
         {
             _equipmentRepository = new EquipmentRepository();
             _proficiencyRepository = new ProficiencyRepository();
+            _weaponRepository = new WeaponRepository();
         }
 
         public IList<ArmorDTO> GetAndMapArmorList()
@@ -65,6 +68,19 @@ namespace CharacterSheet.Infrastructure.Data.Services
             
             _equipmentRepository.Save();
 
+        }
+
+        public IList<WeaponClientDTO> GetWeaponListDTOForClient()
+        {
+            var weapons = _weaponRepository.GetAllWeapons();
+            var mappedList = WeaponMapper.MapDatabaseListToClientDTO(weapons);
+            foreach (var item in mappedList)
+            {
+                item.ProficiencyName = _proficiencyRepository.GetProficiencyById(item.ProficiencyId).Name;
+            }
+
+            return mappedList;
+            
         }
     }
 }

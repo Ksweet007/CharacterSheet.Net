@@ -52,6 +52,8 @@
     <Compile Include="Model\Armor.cs" />
     <Compile Include="Model\Class.cs" />
     <Compile Include="Model\ClassSkill.cs" />
+    <Compile Include="Model\DTO\WeaponClientDTO.cs" />
+    <Compile Include="Model\EntityBase.cs" />
     <Compile Include="Model\Proficiency.cs" />
     <Compile Include="Model\DTO\ClassSkillViewModel.cs" />
     <Compile Include="Model\DTO\ArmorDTO.cs" />

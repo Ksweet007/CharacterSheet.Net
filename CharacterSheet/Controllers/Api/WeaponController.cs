@@ -1,15 +1,19 @@
 ﻿using System.Web.Http;
 using CharacterSheet.Infrastructure.Data;
+using CharacterSheet.Infrastructure.Data.Services;
+using CharacterSheet.Infrastructure.Mappers;
 
 namespace CharacterSheet.Controllers.Api
 {
     public class WeaponController : BaseApiController
     {
         private readonly WeaponRepository _weaponRepository;
+        private readonly EquipmentService _equipmentService;
 
         public WeaponController()
         {
             _weaponRepository = new WeaponRepository();
+            _equipmentService = new EquipmentService();
         }
 
 
@@ -17,9 +21,9 @@ namespace CharacterSheet.Controllers.Api
         [Route("api/GetAllWeapons/")]
         public IHttpActionResult GetAllWeapons()
         {
-            var weapons = _weaponRepository.GetAllWeapons();
+            var weaponList = _equipmentService.GetWeaponListDTOForClient();
 
-            return Ok(weapons);
+            return Ok(weaponList);
         }
 
         [HttpGet]
@@ -27,7 +31,7 @@ namespace CharacterSheet.Controllers.Api
         public IHttpActionResult GetWeaponProficiencyTypes()
         {
             var profList = _weaponRepository.GetWeaponProficiencies();
-
+            
             return Ok(profList);
         }
 
