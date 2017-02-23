@@ -13,7 +13,7 @@ define(function (require) {
         var self = this;
         self.isAdmin = ko.observable(false);
         self.classList = ko.observableArray([]);
-    
+
         self.getAdmin = function () {
             return _i.charajax.universal('api/IsAdmin', '', 'GET').done(function (response) {
                 if (response) {
@@ -89,11 +89,11 @@ define(function (require) {
 					    hash: '#armor',
 					    linktype: 'equipment'
 					},{
-					    route: 'weapons',
-					    title: 'Weapons',
-					    moduleId: 'weapons/weapons',
+					    route: 'weapon',
+					    title: 'Weapon',
+					    moduleId: 'weapon/weapon',
 					    nav: true,
-					    hash: '#weapons',
+					    hash: '#weapon',
 					    linktype: 'equipment'
 					},{
 					    route: 'skills',

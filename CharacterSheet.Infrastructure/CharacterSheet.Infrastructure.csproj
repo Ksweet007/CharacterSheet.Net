@@ -62,6 +62,7 @@
     <Compile Include="Data\Services\BuildPDF.cs" />
     <Compile Include="Data\Services\EquipmentService.cs" />
     <Compile Include="Data\Services\ProficiencyService.cs" />
+    <Compile Include="Data\WeaponRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

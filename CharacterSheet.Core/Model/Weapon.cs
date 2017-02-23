@@ -4,17 +4,17 @@ namespace CharacterSheet.Core.Model
 {
     public class Weapon
     {
-        public int WeaponId { get; set; }
+        public Weapon()
+        {
+            WeaponProperties = new HashSet<WeaponProperty>();
+        }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Cost { get; set; }
-        public string DamageDie { get; set; }
-        public string DamageDieCount { get; set; }
+        public int DamageDie { get; set; }
+        public int DamageDieCount { get; set; }
         public string Weight { get; set; }
-        public int PropertyId { get; set; }
         public int ProficiencyId { get; set; }
-
-        //public virtual Proficiency Proficiencies { get; set; }
-
-        public virtual WeaponProperty WeaponProperty { get; set; }
+        public virtual ICollection<WeaponProperty> WeaponProperties { get; set; }
     }
 }

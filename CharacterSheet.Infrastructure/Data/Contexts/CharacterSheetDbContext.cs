@@ -34,7 +34,6 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             EfMapProficiency(modelBuilder);
             EfMapProficiencyTypes(modelBuilder);
             EfMapSkills(modelBuilder);
-            EfMapWeaponProperty(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }
@@ -109,13 +108,13 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             skill.ToTable("skills").HasKey(k => k.skillId);
         }
 
-        private static void EfMapWeaponProperty(DbModelBuilder modelBuilder)
-        {
-            var prop = modelBuilder.Entity<WeaponProperty>();
+        //private static void EfMapWeaponProperty(DbModelBuilder modelBuilder)
+        //{
+        //    var prop = modelBuilder.Entity<WeaponProperty>();
 
-            prop.HasMany(e => e.Weapons)
-                .WithRequired(e => e.WeaponProperty)
-                .WillCascadeOnDelete(false);
-        }
+        //    prop.HasMany(e => e.Weapons)
+        //        .WithOptional(e => e.WeaponProperty)
+        //        .WillCascadeOnDelete(false);
+        //}
     }
 }

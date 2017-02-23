@@ -9,10 +9,9 @@ namespace CharacterSheet.Core.Model
             Weapons = new HashSet<Weapon>();
         }
 
-        public int WeaponPropertyId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int WeaponsWeaponId { get; set; }
 
         public virtual ICollection<Weapon> Weapons { get; set; }
     }
