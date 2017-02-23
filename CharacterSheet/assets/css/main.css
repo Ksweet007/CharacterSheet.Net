@@ -86,9 +86,11 @@ h2.typo-fill-secondary, .pmd-card-title-text,
 .pmd-textfield-floating-label.pmd-textfield-floating-label-completed label  {color: #c1b4b4 !important;}
 
 /*==================== BUTTONS ====================*/
-.btndelete {border:0;background-color: #ff5722; opacity: .75; border-radius:2px;}
-
-
+.btncard { border:0; opacity: .75; border-radius:2px;}
+.btndelete { background-color: #ff5722; }
+	.btndelete:hover{ background-color: #c9302c; border-color: #ac2925;}
+.btnedit {background-color: #4acc8e;}
+	.btnedit:hover{ background-color: #337ab7; border-color: #2e6da4;}
 /*==================== PAGE SPECIFIC STYLES ====================*/
 .home-content{ padding:0 20px 16px;}
 .home-content ol{ padding-left:16px;}
