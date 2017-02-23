@@ -39,10 +39,19 @@ namespace CharacterSheet.Controllers.Api
         [HttpPost]
         [Route("api/AddArmor/")]
         public IHttpActionResult AddArmor([FromBody] Armor armorToAdd)
-        {
-            _equipmentRepository.AddArmor(armorToAdd);
+        {             
+            var returnArmor = _equipmentService.SaveArmorAndMapReturnDTO(armorToAdd);
 
-            return Ok(armorToAdd);
+            return Ok(returnArmor);
+        }
+
+        [HttpDelete]
+        [Route("api/DeleteArmor/{armorId}")]
+        public IHttpActionResult DeleteArmorById(int armorId)
+        {
+            _equipmentRepository.DeleteArmorById(armorId);
+
+            return Ok(armorId);
         }
 
     }

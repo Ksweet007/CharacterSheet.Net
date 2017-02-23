@@ -69,7 +69,8 @@ define(function(require) {
 			url: url,
 			dataType: 'application/json',
 			data: JSON.stringify(data),
-			method: 'POST'
+			method: 'POST',
+			dataType: 'json'
 		});
 	};
 

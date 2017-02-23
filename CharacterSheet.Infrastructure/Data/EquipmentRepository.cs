@@ -35,6 +35,14 @@ namespace CharacterSheet.Infrastructure.Data
         {
             return  _db.ProficiencyTypes.Single(t => t.ProficiencyTypeId == proficiencyTypeId);
         }
+
+        public void DeleteArmorById(int armorId)
+        {
+            var armorToDelete = _db.Armors.Single(a => a.Id == armorId);
+            _db.Armors.Remove(armorToDelete);
+            _db.SaveChanges();
+
+        }
         
     }
 }
