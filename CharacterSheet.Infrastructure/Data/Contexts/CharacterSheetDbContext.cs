@@ -13,7 +13,6 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
         }
 
         public DbSet<AbilityScore> AbilityScores { get; set; }
-        public DbSet<Armor> Armors { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<Feature> Features { get; set; } 
         public DbSet<Proficiency> Proficiencies { get; set; }
@@ -46,13 +45,6 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             abil.HasMany(e => e.Skills)
                 .WithRequired(e => e.AbilityScore)
                 .WillCascadeOnDelete(false);
-        }
-
-        public static void EfMapArmor(DbModelBuilder modelBuilder)
-        {
-            var armor = modelBuilder.Entity<Armor>();
-            armor.HasRequired(p => p.Proficiency)
-                .WithMany(p => p.Armors);
         }
 
         private static void EfMapClass(DbModelBuilder modelBuilder)

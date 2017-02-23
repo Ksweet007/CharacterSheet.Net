@@ -8,53 +8,48 @@ namespace CharacterSheet.Infrastructure.Data
 {
     public class EquipmentRepository
     {
-        private readonly CharacterSheetDbContext _db;
+        private readonly EquipmentDbContext _edb;
 
         public EquipmentRepository()
         {
-            _db = new CharacterSheetDbContext();
+            _edb = new EquipmentDbContext();
         }
 
         public void AddArmor(Armor armorToAdd)
         {
             if (armorToAdd.Id == 0)
             {
-                _db.Armors.Add(armorToAdd);
+                _edb.Armors.Add(armorToAdd);
             }
             
-            _db.SaveChanges();
+            _edb.SaveChanges();
         }
 
         public Armor GetArmorById(int armorId)
         {
-            var armor = _db.Armors.Single(a => a.Id == armorId);
+            var armor = _edb.Armors.Single(a => a.Id == armorId);
 
             return armor;
         }
 
         public IList<Armor> GetAllArmors()
         {
-            var armors = _db.Armors.Include(p => p.Proficiency).ToList();
+            var armors = _edb.Armors.Include(p => p.Proficiency).ToList();
             
             return armors;
         }
 
-        public ProficiencyType GetArmorProficiencyType(int proficiencyTypeId)
-        {
-            return  _db.ProficiencyTypes.Single(t => t.ProficiencyTypeId == proficiencyTypeId);
-        }
-
         public void DeleteArmorById(int armorId)
         {
-            var armorToDelete = _db.Armors.Single(a => a.Id == armorId);
-            _db.Armors.Remove(armorToDelete);
-            _db.SaveChanges();
+            var armorToDelete = _edb.Armors.Single(a => a.Id == armorId);
+            _edb.Armors.Remove(armorToDelete);
+            _edb.SaveChanges();
 
         }
 
         public void Save()
         {
-            _db.SaveChanges();
+            _edb.SaveChanges();
         }
         
     }

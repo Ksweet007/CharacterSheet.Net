@@ -23,7 +23,12 @@ namespace CharacterSheet.Infrastructure.Data
         public IList<Proficiency> GetArmorProficiencies()
         {
             return _db.Proficiencies.Where(t => t.ProficiencyTypeId == ProficiencyTypeId.Armor).ToList();
-        }      
+        }
+
+        public IList<Proficiency> GetAllProficiencies()
+        {
+            return _db.Proficiencies.ToList();
+        }
 
     }
 }
