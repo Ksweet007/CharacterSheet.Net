@@ -53,9 +53,11 @@
 								<span class="pmd-card-subtitle-text">Strength</span>
 								<p data-bind="text:Strength"></p>
 							</div>
-							<div class="col-xs-6">
-								<span class="pmd-card-subtitle-text">Stealth</span>
-								<p data-bind="text:Stealth"></p>
+							<div class="col-xs-6" data-bind="enable:false">
+								<label class="pmd-checkbox pmd-checkbox-ripple-effect" data-bind="enable: false">
+									<input type="checkbox" data-bind='checked: Stealth, enable:false'>
+									<span> Stealth</span>
+								</label>
 							</div>
 						</div>
                     </div>
