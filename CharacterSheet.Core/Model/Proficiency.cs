@@ -8,10 +8,12 @@ namespace CharacterSheet.Core.Model
         public Proficiency()
         {
             Weapons = new HashSet<Weapon>();
+            Armors = new HashSet<Armor>();
         }
         public int Id { get; set; }
         public string Name { get; set; }
         public ProficiencyTypeId ProficiencyTypeId { get; set; }
-        public virtual ICollection<Weapon> Weapons { get; set; } 
+        public virtual ICollection<Weapon> Weapons { get; set; }
+        public virtual ICollection<Armor> Armors { get; set; }
     }
 }

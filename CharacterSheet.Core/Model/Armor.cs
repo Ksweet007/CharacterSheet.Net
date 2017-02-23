@@ -1,11 +1,11 @@
-﻿using CharacterSheet.Core.Enums;
-
-namespace CharacterSheet.Core.Model
+﻿namespace CharacterSheet.Core.Model
 {
     public class Armor
     {
         public int Id { get; set; }        
         public int ProficiencyId { get; set; }
+        public Proficiency Proficiency { get; set; }
+        public string ProficiencyName => Proficiency?.Name;        
         public string Name { get; set; }
         public string Cost { get; set; }
         public string ArmorClass { get; set; }

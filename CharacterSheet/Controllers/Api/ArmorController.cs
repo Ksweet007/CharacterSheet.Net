@@ -24,7 +24,7 @@ namespace CharacterSheet.Controllers.Api
         [Route("api/GetAllArmor/")]
         public IHttpActionResult GetAllArmor()
         {
-            var armorList = _equipmentService.GetAndMapArmorList();
+            var armorList = _equipmentRepository.GetAllArmors();
 
             return Ok(armorList);
         }

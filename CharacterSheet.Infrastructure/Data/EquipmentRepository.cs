@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using CharacterSheet.Core.Model;
 using CharacterSheet.Infrastructure.Data.Contexts;
@@ -31,9 +32,9 @@ namespace CharacterSheet.Infrastructure.Data
             return armor;
         }
 
-        public IList<Armor> GetArmors()
-        {            
-            var armors = _db.Armors.ToList();
+        public IList<Armor> GetAllArmors()
+        {
+            var armors = _db.Armors.Include(p => p.Proficiency).ToList();
             
             return armors;
         }

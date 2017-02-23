@@ -2,7 +2,6 @@
 using System.Linq;
 using CharacterSheet.Core.Model;
 using CharacterSheet.Core.Model.DTO;
-using CharacterSheet.Infrastructure.Mappers;
 
 namespace CharacterSheet.Infrastructure.Data.Services
 {
@@ -10,31 +9,11 @@ namespace CharacterSheet.Infrastructure.Data.Services
     {
         private readonly EquipmentRepository _equipmentRepository;
         private readonly ProficiencyRepository _proficiencyRepository;
-        private readonly WeaponRepository _weaponRepository;
-
+        
         public EquipmentService()
         {
             _equipmentRepository = new EquipmentRepository();
             _proficiencyRepository = new ProficiencyRepository();
-            _weaponRepository = new WeaponRepository();
-        }
-
-        public IList<ArmorDTO> GetAndMapArmorList()
-        {
-            var armorList = _equipmentRepository.GetArmors();
-
-            return armorList.Select(item => new ArmorDTO
-            {
-                Id = item.Id,
-                ProficiencyId = item.ProficiencyId,
-                Name = item.Name,
-                ArmorClass = item.ArmorClass,
-                Cost = item.Cost,
-                Stealth = item.Stealth,
-                Strength = item.Strength,
-                Weight = item.Weight,
-                ProficiencyName = _proficiencyRepository.GetProficiencyById(item.ProficiencyId).Name
-            }).ToList();
         }
 
         public ArmorDTO SaveArmorAndMapReturnDTO(Armor armorToAdd)
@@ -70,17 +49,5 @@ namespace CharacterSheet.Infrastructure.Data.Services
 
         }
 
-        public IList<WeaponClientDTO> GetWeaponListDTOForClient()
-        {
-            var weapons = _weaponRepository.GetAllWeapons();
-            var mappedList = WeaponMapper.MapDatabaseListToClientDTO(weapons);
-            //foreach (var item in mappedList)
-            //{
-            //    item.ProficiencyName = _proficiencyRepository.GetProficiencyById(item.ProficiencyId).Name;
-            //}
-
-            return mappedList;
-            
-        }
     }
 }

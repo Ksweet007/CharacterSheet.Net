@@ -63,10 +63,11 @@
     <Compile Include="Data\Services\EquipmentService.cs" />
     <Compile Include="Data\Services\ProficiencyService.cs" />
     <Compile Include="Data\WeaponRepository.cs" />
-    <Compile Include="Mappers\WeaponMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Mappers\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
