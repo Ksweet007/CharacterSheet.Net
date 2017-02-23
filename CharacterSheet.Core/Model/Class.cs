@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using CharacterSheet.Core.Enums;
 
 namespace CharacterSheet.Core.Model
 {

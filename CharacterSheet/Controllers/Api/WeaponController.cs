@@ -21,7 +21,9 @@ namespace CharacterSheet.Controllers.Api
         [Route("api/GetAllWeapons/")]
         public IHttpActionResult GetAllWeapons()
         {
-            var weaponList = _equipmentService.GetWeaponListDTOForClient();
+            //var weaponList = _equipmentService.GetWeaponListDTOForClient();
+
+            var weaponList = _weaponRepository.GetAllWeapons();
 
             return Ok(weaponList);
         }

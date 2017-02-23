@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using CharacterSheet.Core.Enums;
 using CharacterSheet.Core.Model;
@@ -17,8 +18,8 @@ namespace CharacterSheet.Infrastructure.Data
 
         public IList<Weapon> GetAllWeapons()
         {
-            var weaponList = _db.Weapons.ToList();
-
+            var weaponList = _db.Weapons.Include(p => p.Proficiency).ToList();
+            
             return weaponList;
         }
 

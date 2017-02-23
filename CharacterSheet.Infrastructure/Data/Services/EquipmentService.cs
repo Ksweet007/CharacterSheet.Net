@@ -74,10 +74,10 @@ namespace CharacterSheet.Infrastructure.Data.Services
         {
             var weapons = _weaponRepository.GetAllWeapons();
             var mappedList = WeaponMapper.MapDatabaseListToClientDTO(weapons);
-            foreach (var item in mappedList)
-            {
-                item.ProficiencyName = _proficiencyRepository.GetProficiencyById(item.ProficiencyId).Name;
-            }
+            //foreach (var item in mappedList)
+            //{
+            //    item.ProficiencyName = _proficiencyRepository.GetProficiencyById(item.ProficiencyId).Name;
+            //}
 
             return mappedList;
             

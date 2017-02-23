@@ -13,7 +13,8 @@ namespace CharacterSheet.Infrastructure.Mappers
             {
                 Id = w.Id,
                 Name = w.Name,
-                ProficiencyId = w.ProficiencyId,
+                Proficiency = w.Proficiency,
+                //ProficiencyId = w.Proficiency.Id,
                 Cost = w.Cost,
                 DamageDie = w.DamageDie,
                 DamageDieCount = w.DamageDieCount,

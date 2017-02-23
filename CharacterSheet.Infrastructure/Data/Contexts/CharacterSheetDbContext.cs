@@ -23,6 +23,7 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
         public DbSet<WeaponProperty> WeaponProperties { get; set; }
 
         //Fluent API
+        //http://www.entityframeworktutorial.net/code-first/configure-one-to-one-relationship-in-code-first.aspx
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("ksweetadmin");
@@ -34,6 +35,7 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             EfMapProficiency(modelBuilder);
             EfMapProficiencyTypes(modelBuilder);
             EfMapSkills(modelBuilder);
+            EfMapWeapons(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }
@@ -79,7 +81,10 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
         private static void EfMapProficiency(DbModelBuilder modelBuilder)
         {
             //var prof = modelBuilder.Entity<Proficiency>();
-            //prof.ToTable("Proficiencies").HasKey(k => k.ProficiencyId);
+            //prof.HasKey(k => k.Id);
+            //prof.HasMany(w=>w.Weapons)
+            //    .WithRequired(w=>w.Proficiency)
+            //    .HasForeignKey(w=>w.)
 
             ////prof.HasMany(e => e.Armors)
             ////    .WithRequired(e => e.ProficiencyId)
@@ -108,13 +113,11 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             skill.ToTable("skills").HasKey(k => k.skillId);
         }
 
-        //private static void EfMapWeaponProperty(DbModelBuilder modelBuilder)
-        //{
-        //    var prop = modelBuilder.Entity<WeaponProperty>();
-
-        //    prop.HasMany(e => e.Weapons)
-        //        .WithOptional(e => e.WeaponProperty)
-        //        .WillCascadeOnDelete(false);
-        //}
+        private static void EfMapWeapons(DbModelBuilder modelBuilder)
+        {
+            var weap = modelBuilder.Entity<Weapon>();
+            weap.HasRequired(p => p.Proficiency)
+                .WithMany(p => p.Weapons);
+        }
     }
 }
