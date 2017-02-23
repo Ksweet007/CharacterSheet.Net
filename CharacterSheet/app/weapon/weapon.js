@@ -5,12 +5,13 @@ define(function(require) {
 		charajax: require('_custom/services/WebAPI'),
 		list: require('_custom/services/listmanager'),
 		deferred: require('_custom/deferred'),
-		alert: require('_custom/services/alert')
+		alert: require('_custom/services/alert'),
+		confirmdelete: require('confirmdelete/confirmdelete')
 	};
 
 	return function() {
 		var self = this;
-
+//build
 		/*====================Type Setup====================*/
 		self.selectedWeaponType = _i.ko.observableArray([]);
 		self.weaponTypes = _i.ko.observableArray([]);
@@ -140,8 +141,12 @@ define(function(require) {
 
         /*==================== SAVE/EDIT/DELETE ====================*/
 		self.deleteArmor = function(obj){
-			// _i.charajax.delete('api/DeleteArmor/' + obj.Id(),'').done(function(response){
-			// 	self.armors.remove(obj);
+			// _i.confirmdelete.show().then(function(response){
+			// 	if(response.accepted){
+			// 		_i.charajax.delete('api/DeleteArmor/' + obj.Id(),'').done(function(response){
+			// 			self.armors.remove(obj);
+			// 		});
+			// 	}
 			// });
 		};
 
