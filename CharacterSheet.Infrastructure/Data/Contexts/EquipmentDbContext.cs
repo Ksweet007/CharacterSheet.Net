@@ -24,6 +24,7 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             EfMapArmor(modelBuilder);
             EfMapWeapons(modelBuilder);
 
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -31,14 +32,23 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
         {
             var armor = modelBuilder.Entity<Armor>();
             armor.HasRequired(p => p.Proficiency)
-                .WithMany(p => p.Armors);        
+                .WithMany(p => p.Armors)
+                .WillCascadeOnDelete(false);       
         }
 
         private static void EfMapWeapons(DbModelBuilder modelBuilder)
         {
             var weap = modelBuilder.Entity<Weapon>();
+            weap.Ignore(x => x.ProficiencyName);
+
             weap.HasRequired(p => p.Proficiency)
-                .WithMany(p => p.Weapons);
+                .WithMany(p => p.Weapons)
+                .WillCascadeOnDelete(false);
+
+            weap.HasMany(s => s.WeaponProperties)
+                .WithMany(c => c.Weapons)
+                .Map(m => m.ToTable("WeaponWeaponProperty", "assocs"));
         }
+        
     }
 }
