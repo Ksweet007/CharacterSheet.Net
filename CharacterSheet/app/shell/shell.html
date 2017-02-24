@@ -33,7 +33,6 @@
 		<!--/ko-->
 		<!--/ko-->
 
-
 		<li class="dropdown pmd-dropdown pmd-user-info visible-xs visible-md visible-sm visible-lg" data-bind="dropdown">
 			<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media pmd-ripple-effect" data-sidebar="true" aria-expandedhref="javascript:void(0);">
 				<div class="media-left">
@@ -54,7 +53,7 @@
 						</svg>
 					</div>
 				</div>
-				<div class="media-body media-middle">Equipment</div>
+				<div class="media-body media-middle">Equipment Admin</div>
 				<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
 			</a>
 			<ul class="dropdown-menu">
@@ -71,18 +70,12 @@
 			</ul>
 		</li>
 
-	</ul>
-</aside>
-<!-- End Left sidebar -->
-
-<div id="content" class="pmd-content content-area dashboard" data-bind="router: { transition:'entrance'}, rippleeffect"></div>
-
-<!--ko if: isAdmin() == true -->
-<aside class="pmd-sidebar sidebar-custom sidebar-default pmd-sidebar-right-fixed pmd-z-depth pmd-sidebar-right" role="navigation" data-bind="rippleeffect">
-	<ul class="nav pmd-sidebar-nav">
-		<!-- Class Admin -->
+		<!--ko if: isAdmin() == true-->
 		<li class="dropdown pmd-dropdown pmd-user-info visible-xs visible-md visible-sm visible-lg" data-bind="dropdown">
 			<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media pmd-ripple-effect" data-sidebar="true" aria-expandedhref="javascript:void(0);">
+				<div class="media-left">
+					<img src="assets/images/D20_Inverted.png" alt="New User" style="height:40px;width:40px;">
+				</div>
 				<div class="media-body media-middle">Class Admin</div>
 				<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
 			</a>
@@ -94,27 +87,11 @@
 				<!--/ko-->
 			</ul>
 		</li>
-		<!-- End Class Admin -->
+		<!--/ko-->
 
-		<!-- Global Admin -->
-		<li class="dropdown pmd-dropdown pmd-user-info visible-xs visible-md visible-sm visible-lg" data-bind="dropdown">
-			<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media pmd-ripple-effect" data-sidebar="true" aria-expandedhref="javascript:void(0);">
-				<div class="media-body media-middle">Global Admin</div>
-				<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
-			</a>
-			<ul class="dropdown-menu">
-				<!--ko foreach: router.navigationModel-->
-				<!--ko if: linktype == 'admin' -->
-				<li>
-					<a class="pmd-ripple-effect" data-bind="attr: { href: hash }, text:title"></a>
-				</li>
-				<!--/ko-->
-				<!--/ko-->
-			</ul>
-		</li>
-		<!-- End Global Admin -->
+
 	</ul>
 </aside>
-<!--/ko-->
+<!-- End Left sidebar -->
 
-<!-- Sidebar Ends -->
+<div id="content" class="pmd-content content-area dashboard" data-bind="router: { transition:'entrance'}, rippleeffect"></div>
