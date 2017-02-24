@@ -4,14 +4,17 @@
             <a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect pull-left margin-r8 pmd-sidebar-toggle" data-bind="sidebarcollapse"><i class="material-icons">menu</i></a>
             <a href="#" class="navbar-brand">Character Sheet</a>
         </div>
-
-        <div class="pmd-navbar-right-icon pull-right">
-            <!--ko if:sessionHasSaved() == true-->            
-                <span class="pull-left lastSavedMessage" data-bind="text: lastSavedPartialMessage()"></span>            
-            <!--/ko-->
+        <div class="row">
             
-            <span class="btn-loader loader" data-bind="css: { hidden: !showLoader() }">loading...</span>
-            <a href="javascript:void(0);" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect pmd-sidebar-toggle-right"><i class="material-icons md-light">more_horiz</i></a>
+                <div class="col-xs-10 col-sm-9 col-md-8 col-lg-7">
+                    <!--ko if:sessionHasSaved() == true-->
+                    <span class="lastSavedMessage" data-bind="text: lastSavedPartialMessage()"></span>
+                    <!--/ko-->                    
+                </div>
+                <div class="col-xs-1 col-sm-2 col-md-3 col-lg-4">
+                    <span class="btn-loader loader" data-bind="css: { hidden: !showLoader() }">loading...</span>
+                </div>
+            
         </div>
     </div>
 </nav>
