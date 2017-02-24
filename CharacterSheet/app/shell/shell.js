@@ -12,7 +12,7 @@ define(function (require) {
     return function () {
         var self = this;
         self.isAdmin = ko.observable(false);
-        self.classList = ko.observableArray([]);
+        // self.classList = ko.observableArray([]);
 
         self.getAdmin = function () {
             return _i.charajax.universal('api/IsAdmin', '', 'GET').done(function (response) {
@@ -22,24 +22,21 @@ define(function (require) {
             });
         };
 
-        self.getClassList = function () {
-            var promise = _i.deferred.create();
-            _i.charajax.getJSON('/api/GetClassList').done(function (response) {
-                self.classList(response);
-                promise.resolve();
-            });
-            return promise;
-        };
+        // self.getClassList = function () {
+        //     var promise = _i.deferred.create();
+        //     _i.charajax.getJSON('/api/GetClassList').done(function (response) {
+        //         self.classList(response);
+        //         promise.resolve();
+        //     });
+        //     return promise;
+        // };
 
         self.getNavData = function () {
-            var deferred = _i.deferred.create();
             var promise = _i.deferred.waitForAll(self.getAdmin());
+			var deferred = _i.deferred.create();
 
             promise.done(function () {
-                self.getClassList().done(function () {
-                    deferred.resolve();
-                });
-
+                deferred.resolve();
             });
 
             return deferred;
@@ -55,32 +52,20 @@ define(function (require) {
 					    title: 'Home',
 					    moduleId: 'home/home',
 					    nav: false,
-					    linktype: ''
-					}, {
-					    route: 'logout',
-					    title: 'Logout',
-					    moduleId: 'logout/logout',
-					    nav: false,
-					    linktype: ''
-					}, {
-					    route: 'login',
-					    title: 'Login',
-					    moduleId: 'login/login',
-					    nav: false,
-					    linktype: ''
+					    linktype: 'user'
 					}, {
 					    route: 'home',
 					    title: 'Home',
 					    moduleId: 'home/home',
 					    nav: true,
 					    hash: "#home",
-					    linktype: 'general'
+					    linktype: 'user'
 					}, {
 					    route: 'classlist',
 					    title: 'Class List',
 					    moduleId: 'selectclass/selectclass',
 					    nav: true,
-					    linktype: 'general'
+					    linktype: 'class'
 					},{
 					    route: 'armor',
 					    title: 'Armor',

@@ -13,25 +13,25 @@
 				<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
 			</a>
 			<ul class="dropdown-menu">
-				<li>
+				<!--ko foreach: router.navigationModel-->
+				<!--ko if: linktype === 'user'-->
+				<li data-bind="dropdown">
+					<a class="pmd-ripple-effect" data-bind="attr: { href: hash }">
+						<i class="media-left media-middle"></i>
+						<span class="media-body" data-bind="text: title"></span>
+					</a>
+				</li>
+				<!--/ko-->
+				<!--/ko-->
+				<li data-bind="dropdown">
 					<a href="auth/logout">
-						<div class="media-body media-middle">Logout</div>
+						<i class="media-left media-middle"></i>
+						<div class="media-body">Logout</div>
 					</a>
 				</li>
 			</ul>
 		</li>
 		<!-- End user info -->
-
-		<!--ko foreach: router.navigationModel-->
-		<!--ko if: linktype === 'general' -->
-		<li data-bind="dropdown">
-			<a class="pmd-ripple-effect" data-bind="attr: { href: hash }">
-				<i class="media-left media-middle"></i>
-				<span class="media-body" data-bind="text: title"></span>
-			</a>
-		</li>
-		<!--/ko-->
-		<!--/ko-->
 
 		<li class="dropdown pmd-dropdown pmd-user-info visible-xs visible-md visible-sm visible-lg" data-bind="dropdown">
 			<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media pmd-ripple-effect" data-sidebar="true" aria-expandedhref="javascript:void(0);">
@@ -83,25 +83,12 @@
 				<!--ko foreach: router.navigationModel-->
 				<!--ko if: linktype == 'admin' -->
 				<li>
-					<a class="pmd-ripple-effect" data-bind="attr: { href: hash }, text:title"></a>
+					<a class="pmd-ripple-effect" data-bind="attr: { href: hash }">
+						<i class="media-left media-middle"></i>
+						<span class="media-body" data-bind="text: title"></span>
+					</a>
 				</li>
 				<!--/ko-->
-				<!--/ko-->
-			</ul>
-		</li>
-		<li class="dropdown pmd-dropdown pmd-user-info visible-xs visible-md visible-sm visible-lg" data-bind="dropdown">
-			<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media pmd-ripple-effect" data-sidebar="true" aria-expandedhref="javascript:void(0);">
-				<div class="media-left">
-					<img src="assets/images/D20_Inverted.png" alt="New User" style="height:40px;width:40px;">
-				</div>
-				<div class="media-body media-middle">Class List</div>
-				<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
-			</a>
-			<ul class="dropdown-menu">
-				<!--ko foreach: classList-->
-				<li>
-					<a href="#" data-bind="attr:{href: '#manageclass/'+classId}, text:Name" class="pmd-ripple-effect"></a>
-				</li>
 				<!--/ko-->
 			</ul>
 		</li>
