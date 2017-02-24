@@ -26,7 +26,11 @@ define(function(require) {
 		self.selectedProperty = _i.ko.observableArray([]);
 		self.weaponsToShow = _i.ko.computed(function() {
 			var returnList = self.weapons().filter(function(weap) {
-			  return self.selectedWeaponType().includes(weap.ProficiencyName());
+				return self.selectedWeaponType().includes(weap.ProficiencyName());
+			});
+			returnList.forEach(function(weap){
+				weap.Damage = weap.DamageDieCount() + 'd' + weap.DamageDie();
+				weap.Properties = weap.WeaponProperties().join(',');
 			});
 			return returnList.sort(function (left, right) { return left.ProficiencyName() == right.ProficiencyName() ? 0 : (left.ArmorClass() < right.ArmorClass() ? -1 : 1) });
 		});
@@ -83,8 +87,6 @@ define(function(require) {
 			_i.charajax.get('api/GetAllWeapons', '').done(function(response) {
 				response.forEach(function(weap){
 					weap.dirtyFlag = new _i.ko.dirtyFlag(weap);
-					var damage = weap.DamageDieCount + 'd' + weap.DamageDie;
-					weap.Damage = _i.ko.observable(damage);
 				});
 
 				var mapped = _i.ko.mapping.fromJS(response);
