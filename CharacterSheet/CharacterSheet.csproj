@@ -253,8 +253,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\adminfeatures\adminfeatures.html" />
-    <Content Include="app\adminfeatures\adminfeatures.js" />
     <Content Include="app\admin\admin.html" />
     <Content Include="app\admin\admin.js" />
     <Content Include="app\admin\features\features.html" />
@@ -273,6 +271,8 @@
     <Content Include="app\confirmdelete\confirmdelete.js" />
     <Content Include="app\domainmanipulations\LockScroll.js" />
     <Content Include="app\experimentfolder\CharacterListing.js" />
+    <Content Include="app\features\features.html" />
+    <Content Include="app\features\features.js" />
     <Content Include="app\home\home.html" />
     <Content Include="app\home\home.js" />
     <Content Include="app\landingpage\landingpage.html" />

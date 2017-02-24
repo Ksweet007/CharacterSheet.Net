@@ -109,10 +109,10 @@ define(function (require) {
 
         /* Delete the Feature, remove it from our list of Features, then alert the user */
         self.deleteFeature = function (featureToDelete) {
-            return _i.charajax.delete('api/RemoveFeature/' + featureToDelete.FeatureId, '').then(function (response) {
+            return _i.charajax.delete('api/RemoveFeature/' + featureToDelete.FeatureId(), '').then(function (response) {
                 var alertMsg = "Feature Deleted: " + featureToDelete.Name();
                 self.features.remove(featureToDelete);
-                self.triggerAlertsAndSetState("danger", alertMsg, "view");
+                self.triggerAlertsAndSetState("error", alertMsg, "view");
             });
         };
 
