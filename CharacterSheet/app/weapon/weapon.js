@@ -12,27 +12,31 @@ define(function(require) {
 	return function() {
 		var self = this;
 
-		/*====================Type Setup====================*/
-		self.selectedWeaponType = _i.ko.observableArray([]);
-		self.weaponTypes = _i.ko.observableArray([]);
+		/*==================== PAGE-STATE OBSERVABLES ====================*/
 		self.isAddingNew = _i.ko.observable(false);
 		self.isEditing = _i.ko.observable(false);
 		self.showAll = _i.ko.observable(true);
 
-		/*====================WEAPON SETUP====================*/
+		/*==================== WEAPON OBSERVABLES ====================*/
 		self.weapons = _i.ko.observableArray([]);
 		self.newWeapon = _i.ko.observable();
 		self.selectedWeapon = _i.ko.observable();
-		self.selectedProperty = _i.ko.observableArray([]);
+		self.weaponProperties = _i.ko.observableArray([]);
+
+		self.newSelectedWeaponTypes = _i.ko.observableArray([]);
+		self.selectedWeaponTypes = _i.ko.observableArray([]);
+		self.selectedProperties = _i.ko.observableArray([]);
+		self.weaponTypes = _i.ko.observableArray([]);
+
 		self.weaponsToShow = _i.ko.computed(function() {
 			var returnList = self.weapons().filter(function(weap) {
-				return self.selectedWeaponType().includes(weap.ProficiencyName());
+				return self.selectedWeaponTypes().includes(weap.ProficiencyName());
 			});
 			returnList.forEach(function(weap){
 				weap.Damage = weap.DamageDieCount() + 'd' + weap.DamageDie();
 				weap.Properties = weap.WeaponProperties().join(',');
 			});
-			return returnList.sort(function (left, right) { return left.ProficiencyName() == right.ProficiencyName() ? 0 : (left.ArmorClass() < right.ArmorClass() ? -1 : 1) });
+			return returnList.sort(function (left, right) { return left.ProficiencyName() == right.ProficiencyName() ? 0 : (left.Name() < right.Name() ? -1 : 1) });
 		});
 
         /*====================CHANGE TRACKER SETUP====================*/
@@ -48,7 +52,7 @@ define(function(require) {
             return false;
         });
 
-		/*==================== PAGE/DATA SETUP ====================*/
+		/*==================== DATA SETUP ====================*/
 		self.activate = function() {
 			return self.getPageData().done(function(){
 			});
@@ -56,7 +60,7 @@ define(function(require) {
 
 		self.getPageData = function(){
 			var deferred = _i.deferred.create();
-			var promise = _i.deferred.waitForAll(self.getWeaponProficiencies());
+			var promise = _i.deferred.waitForAll(self.getWeaponProficiencies(),self.getAllWeaponProperties());
 
 			promise.done(function(){
 				self.getWeapons().done(function(){
@@ -73,7 +77,7 @@ define(function(require) {
 				var mapped = _i.ko.mapping.fromJS(response);
 
 				response.forEach(function(item){
-					self.selectedWeaponType().push(item.Name);
+					self.selectedWeaponTypes().push(item.Name);
 				});
 
 				self.weaponTypes(response);
@@ -82,14 +86,28 @@ define(function(require) {
 			return deferred;
 		};
 
+		self.getAllWeaponProperties = function(){
+			var deferred = _i.deferred.create();
+			_i.charajax.get('api/getAllWeaponProperties','').done(function(response){
+				var mapped = _i.ko.mapping.fromJS(response);
+
+				response.forEach(function(property){
+					self.selectedProperties().push(property.Name);
+				});
+
+				self.weaponProperties(response);
+				deferred.resolve();
+			});
+			return deferred;
+		};
+
 		self.getWeapons = function(){
 			var promise = _i.deferred.create();
 			_i.charajax.get('api/GetAllWeapons', '').done(function(response) {
-				response.forEach(function(weap){
+				var mapped = _i.ko.mapping.fromJS(response);
+				mapped().forEach(function(weap){
 					weap.dirtyFlag = new _i.ko.dirtyFlag(weap);
 				});
-
-				var mapped = _i.ko.mapping.fromJS(response);
 				self.weapons(mapped());
 
 				_i.list.sortAlphabeticallyObservables(self.weapons());
@@ -125,15 +143,14 @@ define(function(require) {
 
 			self.newWeapon({
                 Id: _i.ko.observable(0),
-				ProficiencyId: _i.ko.observable(0),	//This associates it to a specific Prof Type I.E Light Armor
-				ProficiencyName: _i.ko.observable(''),	//Tied To ArmorProficiencyId as it's descriptor
-                ArmorClass: _i.ko.observable(''),
+				ProficiencyId: _i.ko.observable(0),
+				ProficiencyName: _i.ko.observable(''),
+                Name: _i.ko.observable(''),
 				Cost: _i.ko.observable(''),
-				Name: _i.ko.observable(''),
-				ProficiencyId: _i.ko.observable(1), //What is the parent Proficiency. For this page it's Armor so ID 1
-				Stealth: _i.ko.observable(false),
-				Strength: _i.ko.observable(''),
-                Weight: _i.ko.observable('')
+				DamageDie: _i.ko.observable(),
+				DamageDieCount: _i.ko.observable(),
+				Weight: _i.ko.observable(''),
+                WeaponProperties: _i.ko.observableArray([])
 			});
 
 		};

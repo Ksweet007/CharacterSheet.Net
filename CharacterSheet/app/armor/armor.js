@@ -119,12 +119,11 @@ define(function(require) {
 
 			self.newArmor({
                 Id: _i.ko.observable(0),
-				ProficiencyId: _i.ko.observable(0),	//This associates it to a specific Prof Type I.E Light Armor
 				ProficiencyName: _i.ko.observable(''),	//Tied To ArmorProficiencyId as it's descriptor
                 ArmorClass: _i.ko.observable(''),
 				Cost: _i.ko.observable(''),
 				Name: _i.ko.observable(''),
-				ProficiencyId: _i.ko.observable(1), //What is the parent Proficiency. For this page it's Armor so ID 1
+				ProficiencyId: _i.ko.observable(0), //What is the parent Proficiency. For this page it's Armor so ID 1
 				Stealth: _i.ko.observable(false),
 				Strength: _i.ko.observable(''),
                 Weight: _i.ko.observable('')
@@ -140,7 +139,7 @@ define(function(require) {
 		};
 
         /*==================== SAVE/EDIT/DELETE ====================*/
-		
+
 		self.deleteArmor = function(obj){
 			_i.confirmdelete.show().then(function(response){
 				if(response.accepted){

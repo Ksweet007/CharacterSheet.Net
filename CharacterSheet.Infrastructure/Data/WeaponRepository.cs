@@ -27,6 +27,11 @@ namespace CharacterSheet.Infrastructure.Data
             return _db.Weapons.Include(p => p.Proficiency).Include(p => p.WeaponProperties).ToList();
         }
 
+        public IList<WeaponProperty> GetAllWeaponProperties()
+        {
+            return _db.WeaponProperties.ToList();
+        }
+
         public void AddWeapon(Weapon weaponToAdd)
         {
             if (weaponToAdd.Id != 0) return;                

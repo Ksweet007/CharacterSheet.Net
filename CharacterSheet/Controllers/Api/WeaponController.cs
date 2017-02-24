@@ -34,6 +34,15 @@ namespace CharacterSheet.Controllers.Api
             return Ok(profList);
         }
 
+        [HttpGet]
+        [Route("api/GetAllWeaponProperties/")]
+        public IHttpActionResult GetAllWeaponProperties()
+        {
+            var profList = _weaponRepository.GetAllWeaponProperties();
+
+            return Ok(profList);
+        }
+
         [HttpPut]
         [Route("api/EditWeapon/")]
         public IHttpActionResult EditWeapon([FromBody] Weapon weaponToEdit)
