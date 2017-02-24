@@ -12,17 +12,18 @@ define(function(require) {
 	return function() {
 		var self = this;
 
-		/*====================Type Setup====================*/
-		self.selectedArmorType = _i.ko.observableArray([]);
-		self.armorTypes = _i.ko.observableArray([]);
+		/*==================== PAGE-STATE OBSERVABLES ====================*/
 		self.isAddingNew = _i.ko.observable(false);
 		self.isEditing = _i.ko.observable(false);
 		self.showAll = _i.ko.observable(true);
 
-		/*====================ARMOR SETUP====================*/
+		/*==================== ARMOR OBSERVABLES ====================*/
 		self.armors = _i.ko.observableArray([]);
-        self.newArmor = _i.ko.observable();
-        self.selectedArmor = _i.ko.observable();
+		self.newArmor = _i.ko.observable();
+		self.selectedArmor = _i.ko.observable();
+
+		self.selectedArmorType = _i.ko.observableArray([]);
+		self.armorTypes = _i.ko.observableArray([]);
 
 		self.armorsToShow = _i.ko.computed(function() {
 			var returnList = self.armors().filter(function(armor) {
@@ -44,7 +45,7 @@ define(function(require) {
             return false;
         });
 
-		/*==================== PAGE/DATA SETUP ====================*/
+		/*==================== DATA SETUP ====================*/
 		self.activate = function() {
 			return self.getPageData().done(function(){
 			});
@@ -66,8 +67,6 @@ define(function(require) {
 		self.getArmorProficiencies = function(){
 			var deferred = _i.deferred.create();
 			_i.charajax.get('api/GetArmorProficiencyTypes','').done(function(response){
-				var mapped = _i.ko.mapping.fromJS(response);
-
 				response.forEach(function(item){
 					self.selectedArmorType().push(item.Name);
 				});
@@ -85,7 +84,6 @@ define(function(require) {
 				mapped().forEach(function (item) {
 					item.dirtyFlag = new _i.ko.dirtyFlag(item);
 				});
-
 				self.armors(mapped());
 
 				_i.list.sortAlphabeticallyObservables(self.armors());
@@ -134,13 +132,15 @@ define(function(require) {
 
 		};
 
-        self.cancelNew = function () {
+		/* Close the editor (new or edit) and return to the base list */
+		self.cancelEditor = function () {
 			self.isAddingNew(false);
 			self.isEditing(false);
 			self.showAll(true);
-        };
+		};
 
         /*==================== SAVE/EDIT/DELETE ====================*/
+		
 		self.deleteArmor = function(obj){
 			_i.confirmdelete.show().then(function(response){
 				if(response.accepted){
