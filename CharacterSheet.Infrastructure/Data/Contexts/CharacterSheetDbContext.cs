@@ -18,8 +18,6 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
         public DbSet<Proficiency> Proficiencies { get; set; }
         public DbSet<ProficiencyType> ProficiencyTypes { get; set; }
         public DbSet<Skill> Skills { get; set; }
-        public DbSet<Weapon>  Weapons { get; set; }
-        public DbSet<WeaponProperty> WeaponProperties { get; set; }
 
         //Fluent API
         //http://www.entityframeworktutorial.net/code-first/configure-one-to-one-relationship-in-code-first.aspx
@@ -33,7 +31,6 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             EfMapFeatures(modelBuilder);
             EfMapProficiencyTypes(modelBuilder);
             EfMapSkills(modelBuilder);
-            EfMapWeapons(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }
@@ -83,13 +80,6 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
         {
             var skill = modelBuilder.Entity<Skill>();
             skill.ToTable("skills").HasKey(k => k.skillId);
-        }
-
-        private static void EfMapWeapons(DbModelBuilder modelBuilder)
-        {
-            var weap = modelBuilder.Entity<Weapon>();
-            weap.HasRequired(p => p.Proficiency)
-                .WithMany(p => p.Weapons);
         }
     }
 }

@@ -1,21 +1,18 @@
 ﻿using System.Web.Http;
 using CharacterSheet.Core.Model;
 using CharacterSheet.Infrastructure.Data;
-using CharacterSheet.Infrastructure.Data.Services;
 
 namespace CharacterSheet.Controllers.Api
 {
     public class ArmorController : BaseApiController
     {
-        private readonly EquipmentRepository _equipmentRepository;
-        private readonly EquipmentService _equipmentService;
         private readonly ProficiencyRepository _profRepository;
+        private readonly ArmorRepository _armorRepository;
 
         public ArmorController()
         {
-            _equipmentRepository = new EquipmentRepository();
-            _equipmentService = new EquipmentService();
             _profRepository = new ProficiencyRepository();
+            _armorRepository = new ArmorRepository();
         }
 
 
@@ -24,7 +21,7 @@ namespace CharacterSheet.Controllers.Api
         [Route("api/GetAllArmor/")]
         public IHttpActionResult GetAllArmor()
         {
-            var armorList = _equipmentRepository.GetAllArmors();
+            var armorList = _armorRepository.GetAllArmors();
 
             return Ok(armorList);
         }
@@ -42,16 +39,16 @@ namespace CharacterSheet.Controllers.Api
         [Route("api/AddArmor/")]
         public IHttpActionResult AddArmor([FromBody] Armor armorToAdd)
         {
-            var returnArmor = _equipmentService.SaveArmorAndMapReturnDTO(armorToAdd);
+            _armorRepository.AddArmor(armorToAdd);
 
-            return Ok(returnArmor);
+            return Ok(armorToAdd);
         }
 
         [HttpPut]
         [Route("api/EditArmor/")]
         public IHttpActionResult EditArmor([FromBody] Armor armorToEdit)
         {
-            _equipmentService.EditArmor(armorToEdit);
+            _armorRepository.EditArmor(armorToEdit);
 
             return Ok(armorToEdit);
         }
@@ -60,7 +57,7 @@ namespace CharacterSheet.Controllers.Api
         [Route("api/DeleteArmor/{armorId}")]
         public IHttpActionResult DeleteArmorById(int armorId)
         {
-            _equipmentRepository.DeleteArmorById(armorId);
+            _armorRepository.DeleteArmorById(armorId);
 
             return Ok(armorId);
         }

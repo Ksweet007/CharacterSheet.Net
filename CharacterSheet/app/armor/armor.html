@@ -40,29 +40,6 @@
 	</div>
 
     <div class="section">
-	    <div class="row" data-bind="visible: false">
-			<div class="col-md-6">
-	            <div class="pmd-card pmd-card-inverse pmd-z-depth-5">
-	                <div class="pmd-card-body">
-						<div class="row">
-							<div class="col-xs-6 col-sm-6 col-md-8">
-								<!--ko foreach:armorTypes()-->
-			                    <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
-			                        <input type='checkbox' name="type" data-bind='checked: $parent.selectedArmorType, value:Name'/>
-			                    	<span data-bind="text:Name"> </span>
-			                    </label>
-								<!--/ko-->
-							</div>
-							<div class="col-sm-3">
-								<button class="btn pmd-ripple-effect btn-primary btn-inline" data-bind='click: openCreateForm, enable: showAll()'>Add New</button>
-							</div>
-						</div>
-
-	                </div>
-	            </div>
-			</div>
-	    </div>
-
         <div class="row" data-bind="visible: showAll() ">
             <!--ko foreach:armorsToShow-->
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">

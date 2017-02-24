@@ -6,11 +6,11 @@ using CharacterSheet.Infrastructure.Data.Contexts;
 
 namespace CharacterSheet.Infrastructure.Data
 {
-    public class EquipmentRepository
+    public class ArmorRepository
     {
         private readonly EquipmentDbContext _db;
 
-        public EquipmentRepository()
+        public ArmorRepository()
         {
             _db = new EquipmentDbContext();
         }
@@ -21,8 +21,8 @@ namespace CharacterSheet.Infrastructure.Data
             {
                 _db.Armors.Add(armorToAdd);
             }
-            
-            _db.SaveChanges();
+
+            Save();
         }
 
         public Armor GetArmorById(int armorId)
@@ -35,7 +35,7 @@ namespace CharacterSheet.Infrastructure.Data
         public IList<Armor> GetAllArmors()
         {
             var armors = _db.Armors.Include(p => p.Proficiency).ToList();
-            
+
             return armors;
         }
 
@@ -43,14 +43,29 @@ namespace CharacterSheet.Infrastructure.Data
         {
             var armorToDelete = _db.Armors.Single(a => a.Id == armorId);
             _db.Armors.Remove(armorToDelete);
-            _db.SaveChanges();
 
+            Save();
+
+        }
+
+        public void EditArmor(Armor armorToEdit)
+        {
+            var fromDb = GetArmorById(armorToEdit.Id);
+
+            fromDb.ProficiencyId = armorToEdit.ProficiencyId;
+            fromDb.Name = armorToEdit.Name;
+            fromDb.Cost = armorToEdit.Cost;
+            fromDb.ArmorClass = armorToEdit.ArmorClass;
+            fromDb.Strength = armorToEdit.Strength;
+            fromDb.Stealth = armorToEdit.Stealth;
+            fromDb.Weight = armorToEdit.Weight;
+
+            Save();
         }
 
         public void Save()
         {
             _db.SaveChanges();
         }
-        
     }
 }

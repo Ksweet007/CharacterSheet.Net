@@ -20,15 +20,20 @@ namespace CharacterSheet.Infrastructure.Data
             return _db.Proficiencies.Single(p => p.Id == proficiencyId);
         }
 
-        public IList<Proficiency> GetArmorProficiencies()
-        {
-            return _db.Proficiencies.Where(t => t.ProficiencyTypeId == ProficiencyTypeId.Armor).ToList();
-        }
-
         public IList<Proficiency> GetAllProficiencies()
         {
             return _db.Proficiencies.ToList();
         }
 
+        public IList<Proficiency> GetArmorProficiencies()
+        {
+            return _db.Proficiencies.Where(t => t.ProficiencyTypeId == ProficiencyTypeId.Armor).ToList();
+        }
+
+        public IList<Proficiency> GetWeaponProficiencies()
+        {
+            return _db.Proficiencies.Where(t => t.ProficiencyTypeId == ProficiencyTypeId.Weapon).ToList();
+        }
+        
     }
 }

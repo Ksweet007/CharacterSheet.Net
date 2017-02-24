@@ -11,7 +11,7 @@ define(function(require) {
 
 	return function() {
 		var self = this;
-//build
+
 		/*====================Type Setup====================*/
 		self.selectedWeaponType = _i.ko.observableArray([]);
 		self.weaponTypes = _i.ko.observableArray([]);
@@ -19,10 +19,11 @@ define(function(require) {
 		self.isEditing = _i.ko.observable(false);
 		self.showAll = _i.ko.observable(true);
 
-		/*====================ARMOR SETUP====================*/
+		/*====================WEAPON SETUP====================*/
 		self.weapons = _i.ko.observableArray([]);
 		self.newWeapon = _i.ko.observable();
 		self.selectedWeapon = _i.ko.observable();
+		self.selectedProperty = _i.ko.observableArray([]);
 		self.weaponsToShow = _i.ko.computed(function() {
 			var returnList = self.weapons().filter(function(weap) {
 			  return self.selectedWeaponType().includes(weap.ProficiencyName());
@@ -80,11 +81,13 @@ define(function(require) {
 		self.getWeapons = function(){
 			var promise = _i.deferred.create();
 			_i.charajax.get('api/GetAllWeapons', '').done(function(response) {
-				var mapped = _i.ko.mapping.fromJS(response);
-				mapped().forEach(function (item) {
-					item.dirtyFlag = new _i.ko.dirtyFlag(item);
+				response.forEach(function(weap){
+					weap.dirtyFlag = new _i.ko.dirtyFlag(weap);
+					var damage = weap.DamageDieCount + 'd' + weap.DamageDie;
+					weap.Damage = _i.ko.observable(damage);
 				});
 
+				var mapped = _i.ko.mapping.fromJS(response);
 				self.weapons(mapped());
 
 				_i.list.sortAlphabeticallyObservables(self.weapons());
@@ -105,7 +108,7 @@ define(function(require) {
 	    };
 
 		/*==================== PAGE FUNCTIONS ====================*/
-		self.selectArmorToEdit = function(obj){
+		self.selectWeaponToEdit = function(obj){
 			self.selectedWeapon(obj);
 
 			self.isAddingNew(false);
@@ -140,14 +143,14 @@ define(function(require) {
         };
 
         /*==================== SAVE/EDIT/DELETE ====================*/
-		self.deleteArmor = function(obj){
-			// _i.confirmdelete.show().then(function(response){
-			// 	if(response.accepted){
-			// 		_i.charajax.delete('api/DeleteArmor/' + obj.Id(),'').done(function(response){
-			// 			self.armors.remove(obj);
-			// 		});
-			// 	}
-			// });
+		self.deleteWeapon = function(obj){
+			_i.confirmdelete.show().then(function(response){
+				if(response.accepted){
+					_i.charajax.delete('api/DeleteWeapon/' + obj.Id(),'').done(function(response){
+						self.weapons.remove(obj);
+					});
+				}
+			});
 		};
 
         self.save = function (weaponToSave) {

@@ -13,13 +13,16 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
         }
 
         public DbSet<Armor> Armors { get; set; }
-        
+        public DbSet<Weapon> Weapons { get; set; }
+        public DbSet<WeaponProperty> WeaponProperties { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("ksweetadmin");
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
             EfMapArmor(modelBuilder);
+            EfMapWeapons(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }
@@ -29,6 +32,13 @@ namespace CharacterSheet.Infrastructure.Data.Contexts
             var armor = modelBuilder.Entity<Armor>();
             armor.HasRequired(p => p.Proficiency)
                 .WithMany(p => p.Armors);        
+        }
+
+        private static void EfMapWeapons(DbModelBuilder modelBuilder)
+        {
+            var weap = modelBuilder.Entity<Weapon>();
+            weap.HasRequired(p => p.Proficiency)
+                .WithMany(p => p.Weapons);
         }
     }
 }

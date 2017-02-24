@@ -9,11 +9,13 @@ namespace CharacterSheet.Infrastructure.Data.Services
     {
         private readonly EquipmentRepository _equipmentRepository;
         private readonly ProficiencyRepository _proficiencyRepository;
+        private readonly ArmorRepository _armorRepository;
         
         public EquipmentService()
         {
             _equipmentRepository = new EquipmentRepository();
             _proficiencyRepository = new ProficiencyRepository();
+            _armorRepository = new ArmorRepository();
         }
 
         public ArmorDTO SaveArmorAndMapReturnDTO(Armor armorToAdd)

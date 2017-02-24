@@ -269,6 +269,8 @@
     <Content Include="app\armor\armor.js" />
     <Content Include="app\classdetails\classdetails.html" />
     <Content Include="app\classdetails\classdetails.js" />
+    <Content Include="app\confirmdelete\confirmdelete.html" />
+    <Content Include="app\confirmdelete\confirmdelete.js" />
     <Content Include="app\domainmanipulations\LockScroll.js" />
     <Content Include="app\experimentfolder\CharacterListing.js" />
     <Content Include="app\home\home.html" />

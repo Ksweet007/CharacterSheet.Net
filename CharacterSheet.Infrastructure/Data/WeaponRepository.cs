@@ -9,23 +9,57 @@ namespace CharacterSheet.Infrastructure.Data
 {
     public class WeaponRepository
     {
-        private readonly CharacterSheetDbContext _db;
+        
+        private readonly EquipmentDbContext _db;
 
         public WeaponRepository()
         {
-            _db = new CharacterSheetDbContext();
+            _db = new EquipmentDbContext();
+        }
+
+        public Weapon GetWeaponById(int weaponId)
+        {
+            return _db.Weapons.Single(w => w.Id == weaponId);
         }
 
         public IList<Weapon> GetAllWeapons()
         {
-            var weaponList = _db.Weapons.Include(p => p.Proficiency).ToList();
-            
-            return weaponList;
+            return _db.Weapons.Include(p => p.Proficiency).ToList();
         }
 
-        public IList<Proficiency> GetWeaponProficiencies()
+        public void AddWeapon(Weapon weaponToAdd)
         {
-            return _db.Proficiencies.Where(t => t.ProficiencyTypeId == ProficiencyTypeId.Weapon).ToList();
+            if (weaponToAdd.Id != 0) return;                
+
+            _db.Weapons.Add(weaponToAdd);
+            Save();
+        }
+
+        public void EditWeapon(Weapon weaponToEdit)
+        {
+            var fromDb = _db.Weapons.Include(p=>p.WeaponProperties).Single(w => w.Id == weaponToEdit.Id);
+            
+            fromDb.ProficiencyId = weaponToEdit.ProficiencyId;
+            fromDb.Name = weaponToEdit.Name;
+            fromDb.Cost = weaponToEdit.Cost;
+            fromDb.DamageDieCount = weaponToEdit.DamageDieCount;
+            fromDb.DamageDie = weaponToEdit.DamageDie;
+            fromDb.WeaponProperties = weaponToEdit.WeaponProperties;
+                       
+            Save();         
+        }
+
+        public void DeleteWeaponById(int weaponId)
+        {
+            var weaponToDelete = _db.Weapons.Single(w => w.Id == weaponId);
+            _db.Weapons.Remove(weaponToDelete);
+
+            Save();
+        }
+
+        public void Save()
+        {
+            _db.SaveChanges();
         }
     }
 }
