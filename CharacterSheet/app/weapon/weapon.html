@@ -29,8 +29,8 @@
                         <div class="media-right">
                             <!--ko foreach:weaponTypes()-->
                             <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
-                                <input type='checkbox' name="type" data-bind='checked: $parent.selectedWeaponType, value:Name' />
-                                <span data-bind="text:Name"> </span>
+                                <input type='checkbox' name="type" data-bind='checked: $parent.selectedWeaponType, value:$data' />
+                                <span data-bind="text:$data"> </span>
                             </label>
                             <!--/ko-->
                         </div>
@@ -87,8 +87,8 @@
 						<div class="form-group pmd-textfield pmd-textfield">
 							<!--ko foreach: $parent.weaponTypes()-->
 							<label class="radio-inline pmd-radio pmd-radio-ripple-effect">
-								<input type='radio' name="inlineRadioOptions" data-bind="checked: $parent.ProficiencyId, value: Id"/><span class="pmd-radio-label">&nbsp;</span>
-								<span data-bind="text:Name"> </span>
+								<input type='radio' name="inlineRadioOptions" data-bind="checked: $parent.newSelectedWeaponTypes, value: $data"/><span class="pmd-radio-label">&nbsp;</span>
+								<span data-bind="text:$data"> </span>
 							</label>
 							<!--/ko-->
 						</div>

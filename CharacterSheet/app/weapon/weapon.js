@@ -24,13 +24,16 @@ define(function(require) {
 		self.weaponProperties = _i.ko.observableArray([]);
 
 		self.newSelectedWeaponTypes = _i.ko.observableArray([]);
-		self.selectedWeaponTypes = _i.ko.observableArray([]);
 		self.selectedProperties = _i.ko.observableArray([]);
-		self.weaponTypes = _i.ko.observableArray([]);
+		self.weaponTypes = _i.ko.observableArray(["Simple Melee","Simple Ranged","Martial Melee","Martial Ranged"]);
+		self.selectedWeaponType = _i.ko.observable('');
 
 		self.weaponsToShow = _i.ko.computed(function() {
 			var returnList = self.weapons().filter(function(weap) {
-				return self.selectedWeaponTypes().includes(weap.ProficiencyName());
+				if(self.selectedWeaponType() === ''){
+					return true;
+				}
+				return self.selectedWeaponType() === weap.ProficiencyName();
 			});
 			returnList.forEach(function(weap){
 				weap.Damage = weap.DamageDieCount() + 'd' + weap.DamageDie();
@@ -60,7 +63,7 @@ define(function(require) {
 
 		self.getPageData = function(){
 			var deferred = _i.deferred.create();
-			var promise = _i.deferred.waitForAll(self.getWeaponProficiencies(),self.getAllWeaponProperties());
+			var promise = _i.deferred.waitForAll(self.getAllWeaponProperties());
 
 			promise.done(function(){
 				self.getWeapons().done(function(){
@@ -68,21 +71,6 @@ define(function(require) {
 				});
 			});
 
-			return deferred;
-		};
-
-		self.getWeaponProficiencies = function(){
-			var deferred = _i.deferred.create();
-			_i.charajax.get('api/GetWeaponProficiencyTypes','').done(function(response){
-				var mapped = _i.ko.mapping.fromJS(response);
-
-				response.forEach(function(item){
-					self.selectedWeaponTypes().push(item.Name);
-				});
-
-				self.weaponTypes(response);
-				deferred.resolve();
-			});
 			return deferred;
 		};
 
