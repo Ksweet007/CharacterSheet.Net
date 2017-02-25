@@ -95,7 +95,9 @@ h2.typo-fill-secondary, .pmd-card-title-text,
 	.btnedit:hover{ background-color: #337ab7; border-color: #2e6da4;}
 .btnadd {background-color: #E23c3c;}
 	.btnadd:hover{ background-color: #337ab7; border-color: #ac2925;}
-
+.btnAddNew { position:relative; display: block; margin-top: 10px; margin-bottom: 10px }
+.btnAddNewContainer { display: table-cell; vertical-align: bottom; padding-left: 10px;}
+.btnAddNewContainer>.btnAddNew button { margin-left: 5px;}
 
 /*==================== PAGE SPECIFIC STYLES ====================*/
 .home-content{ padding:0 20px 16px;}

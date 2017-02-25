@@ -9,28 +9,23 @@
                         <div class="media-left">
                             <h2 class="pmd-display2 typo-fill-secondary"><span>Weapons</span></h2>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="media-left">
-                            <span class="pmd-card-subtitle-text">Add New</span>
-                        </div>
-                        <div class="media-right">
-                            <button class="material-icons md-light pmd-xs btncard btnadd pmd-ripple-effect" data-bind='click: openCreateForm, enable: showAll()'>
-                                add
-                            </button>
+                        <div class="btnAddNewContainer">
+							<span class="btnAddNew">
+								<span class="pmd-card-subtitle-text">Add New</span>
+	                            <button class="material-icons md-light pmd-xs btncard btnadd pmd-ripple-effect" data-bind='click: openCreateForm, enable: showAll()'>
+	                                add
+	                            </button>
+							</span>
                         </div>
                     </div>
                 </div>
                 <div class="pmd-card-title">
                     <div class="row">
-                        <div class="media-left">
-                            <span class="pmd-card-subtitle-text">Sort:</span>
-                        </div>
                         <div class="media-right">
                             <!--ko foreach:weaponTypes-->
                             <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
                                 <input type='checkbox' name="type" data-bind='checked: $parent.selectedWeaponType, value:Name' />
-                                <span data-bind="text:Name"> </span>
+                                <span class="pmd-checkbox-label" data-bind="text:Name"> </span>
                             </label>
                             <!--/ko-->
                         </div>
