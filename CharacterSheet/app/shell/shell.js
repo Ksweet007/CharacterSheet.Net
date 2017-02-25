@@ -34,22 +34,55 @@ define(function(require) {
 
 		self.router = _i.router;
 
+		//Race - parent nav to race listing page
+		//Class - parent nav to class listing page
+		//background - parent nav to background listing page
+		//Skills - parent nav
+			//Race Skills
+			//Class Skills
+			//Background skills
+		//Proficiencies - parent nav
+			//Racial Proficiencies
+			//Class Proficiencies
+			//Background Proficiencies
+		//Equipment - parent nav
+			//Armor
+			//Weapons
+			//Tools
+			//Items
+			//Other
+		//Spells - parent nav
+			//Class Spells
+			//Race spells
+			//Bonus spells
+		//Character Overview
+			//Features
+			//skills
+			//Proficiencies
+			//Equipment
+			//Items
+			//Spells
+
 		self.activate = function(foo) {
 			return self.getNavData().done(function(result) {
 				var routesToMap = [
 					{ route: '', title: 'Home', moduleId: 'home/home', nav: false, linktype: 'user' },
 					{ route: 'home', title: 'Home', moduleId: 'home/home', nav: true, hash: "#home", linktype: 'user' },
-					{ route: 'classes', title: 'Classes', moduleId: 'selectclass/selectclass', nav: true, linktype: 'classrace' },
-					// { route: 'classes', title: 'Races', moduleId: 'races/races', nav: true, linktype: 'classrace' },
+					// { route: 'races', title: 'Races', moduleId: 'races/races', nav: true, linktype: 'classrace' },
+					{ route: 'classes', title: 'Class', moduleId: 'selectclass/selectclass', nav: true, linktype: 'classrace' },
+					// { route: 'background', title: 'Background', moduleId: 'background/background', nav: true, linktype: 'classrace' },
 					{ route: 'armor', title: 'Armor', moduleId: 'armor/armor', nav: true, hash: '#armor', linktype: 'equipment' },
 					{ route: 'weapon', title: 'Weapon', moduleId: 'weapon/weapon', nav: true, hash: '#weapon', linktype: 'equipment' },
+					// { route: 'tools', title: 'Tools', moduleId: 'tools/tools', nav: true, hash: '#tools', linktype: 'equipment' },
+					// { route: 'weapon', other: 'Other', moduleId: 'other/other', nav: true, hash: '#other', linktype: 'equipment' },
 					{ route: 'skills', title: 'Skill List', moduleId: 'skills/skills', nav: true, linktype: 'general' },
-					{ route: 'classdetails/:id', title: 'Class Details', moduleId: 'classdetails/classdetails', nav: false, hash: '#classdetails', linktype: '' }
+					{ route: 'classdetails/:id', title: 'Class Details', moduleId: 'classdetails/classdetails', nav: false, hash: '#classdetails', linktype: '' },
+					{ route: 'features', title: 'Features', moduleId: 'features/features', nav: true, hash: "#features", linktype: 'admin' }
 				]
 
-				if (self.isAdmin()) {
-					routesToMap.push({ route: 'features', title: 'Features', moduleId: 'features/features', nav: true, hash: "#features", linktype: 'admin' });
-				}
+				// if (self.isAdmin()) {
+				// 	routesToMap.push({ route: 'features', title: 'Features', moduleId: 'features/features', nav: true, hash: "#features", linktype: 'admin' });
+				// }
 
 				self.router.map(routesToMap).buildNavigationModel();
 				return self.router.activate();

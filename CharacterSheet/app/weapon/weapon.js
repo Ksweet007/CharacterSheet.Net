@@ -25,15 +25,12 @@ define(function(require) {
 
 		self.newSelectedWeaponTypes = _i.ko.observableArray([]);
 		self.selectedProperties = _i.ko.observableArray([]);
-		self.weaponTypes = _i.ko.observableArray(["Simple Melee","Simple Ranged","Martial Melee","Martial Ranged"]);
-		self.selectedWeaponType = _i.ko.observable('');
+		self.weaponTypes = _i.ko.observableArray([{Name:"Simple Melee"},{Name:"Simple Ranged"},{Name:"Martial Melee"},{Name:"Martial Ranged"}]);
+		self.selectedWeaponType = _i.ko.observableArray([]);
 
 		self.weaponsToShow = _i.ko.computed(function() {
 			var returnList = self.weapons().filter(function(weap) {
-				if(self.selectedWeaponType() === ''){
-					return true;
-				}
-				return self.selectedWeaponType() === weap.ProficiencyName();
+				return self.selectedWeaponType().includes(weap.ProficiencyName());
 			});
 			returnList.forEach(function(weap){
 				weap.Damage = weap.DamageDieCount() + 'd' + weap.DamageDie();
@@ -94,6 +91,7 @@ define(function(require) {
 			_i.charajax.get('api/GetAllWeapons', '').done(function(response) {
 				var mapped = _i.ko.mapping.fromJS(response);
 				mapped().forEach(function(weap){
+					self.selectedWeaponType().push(weap.ProficiencyName())
 					weap.dirtyFlag = new _i.ko.dirtyFlag(weap);
 				});
 				self.weapons(mapped());
@@ -143,7 +141,7 @@ define(function(require) {
 
 		};
 
-        self.cancelNew = function () {
+        self.cancelEditor = function () {
 			self.isAddingNew(false);
 			self.isEditing(false);
 			self.showAll(true);
