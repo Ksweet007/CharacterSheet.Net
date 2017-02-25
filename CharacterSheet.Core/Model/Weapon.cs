@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CharacterSheet.Core.Enums;
 
 namespace CharacterSheet.Core.Model
 {
@@ -18,5 +19,6 @@ namespace CharacterSheet.Core.Model
         public virtual Proficiency Proficiency { get; set; }
         public string ProficiencyName => Proficiency?.Name;
         public virtual ICollection<WeaponProperty> WeaponProperties { get; set; }
+        public virtual WeaponCategory WeaponCategory { get; set; }
     }
 }

@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,6 +48,7 @@
     <Compile Include="Enums\ProfTypeId.cs" />
     <Compile Include="Enums\RecoveryTypes.cs" />
     <Compile Include="Enums\SkillTypeValues.cs" />
+    <Compile Include="Enums\WeaponCategory.cs" />
     <Compile Include="Interfaces\ICharacterClassRepository.cs" />
     <Compile Include="Model\AbilityScore.cs" />
     <Compile Include="Model\Armor.cs" />
